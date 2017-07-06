@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/app-root/header/header.component';
 import { MenuComponent } from './components/app-root/menu/menu.component';
 import { FooterComponent } from './components/app-root/footer/footer.component';
+import { LoginComponent } from './components/app-root/cuenta/login/login.component';
+import { CambioClaveComponent } from './components/app-root/cuenta/cambio-clave/cambio-clave.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { FooterComponent } from './components/app-root/footer/footer.component';
     AppRoot,
     HeaderComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    CambioClaveComponent
   ],
   imports: [
     BrowserModule,
