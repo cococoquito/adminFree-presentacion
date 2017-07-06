@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './routing/app-routing.module';
 import { AppRoot } from './components/app-root/app-root';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,7 +11,7 @@ import { MenuComponent } from './components/app-root/menu/menu.component';
 import { FooterComponent } from './components/app-root/footer/footer.component';
 import { LoginComponent } from './components/app-root/cuenta/login/login.component';
 import { CambioClaveComponent } from './components/app-root/cuenta/cambio-clave/cambio-clave.component';
-
+import { HomeComponent } from './components/app-root/home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +20,11 @@ import { CambioClaveComponent } from './components/app-root/cuenta/cambio-clave/
     MenuComponent,
     FooterComponent,
     LoginComponent,
-    CambioClaveComponent
+    CambioClaveComponent,
+    HomeComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     HttpModule,
     DialogModule,
