@@ -1,3 +1,4 @@
+import { UtilitarioService } from './service/utilitario.service';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { AppRoot } from './components/app-root/app-root';
 import { BrowserModule } from '@angular/platform-browser';
@@ -33,7 +34,7 @@ import { LoginComponent } from './components/seguridad/login/login.component';
     PanelModule,
     MessagesModule
   ],
-  providers: [],
+  providers: [UtilitarioService],
   bootstrap: [AppRoot]
 })
 export class AppModule { }
