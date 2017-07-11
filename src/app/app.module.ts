@@ -11,6 +11,7 @@ import { HeaderComponent } from './components/app-root/header/header.component';
 import { MenuComponent } from './components/app-root/menu/menu.component';
 import { FooterComponent } from './components/app-root/footer/footer.component';
 import { LoginComponent } from './components/seguridad/login/login.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoginComponent } from './components/seguridad/login/login.component';
     HeaderComponent,
     MenuComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    LoadingComponent
   ],
   imports: [
     AppRoutingModule,

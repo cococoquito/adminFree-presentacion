@@ -1,5 +1,5 @@
 import { KEY_LOCAL_STORE_USER } from './../../util/Constants';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UtilitarioService } from './../../service/utilitario.service';
 import { Usuario } from './../../model/Usuario';
 
@@ -23,7 +23,6 @@ export class AppRoot implements OnInit {
      * Inicializa el componente una vez Angular haya mostrado las propiedades
      */
     ngOnInit() {
-
         //se configura el usuario autenticado
         this.setUsuarioAutenticado();
     }

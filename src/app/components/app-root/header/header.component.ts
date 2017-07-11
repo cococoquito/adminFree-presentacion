@@ -21,7 +21,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  private cerrarSesion(){
+  /**
+   * Metodo que permite cerrar sesion del user autenticado
+   */
+  private cerrarSesion() {
     localStorage.removeItem(KEY_LOCAL_STORE_USER);
     window.location.reload();
   }
