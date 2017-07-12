@@ -1,14 +1,18 @@
 import { AlertService } from './../../../service/alert.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'alert',
   templateUrl: './alert.component.html'
 })
-export class AlertComponent implements OnInit {
+export class AlertComponent implements OnInit, OnDestroy {
 
   /** Mensaje a mostrar en el componente de alerta*/
   private message: any;
+
+  /** es la subscripción del service alert */
+  private subscription: Subscription;
 
   /**
    * Contructor del component alert
@@ -25,10 +29,19 @@ export class AlertComponent implements OnInit {
   }
 
   /**
+   * Se debe eliminar las subscripciones realizadas por el componente
+   */
+  ngOnDestroy() {
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  /**
    * Metodo que permite obtener la susbricion del alert service
    */
   private getSubscribeAlertService(): void {
-    this.alertService.getMessage().subscribe(
+    this.subscription = this.alertService.getMessage().subscribe(
       message => {
         this.message = message;
       });
