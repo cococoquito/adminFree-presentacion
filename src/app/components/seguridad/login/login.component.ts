@@ -7,8 +7,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
 
@@ -54,7 +53,10 @@ export class LoginComponent implements OnInit {
         this.utilService.displayLoading(false);
       },
       error => {
-        this.alertService.showAlert(error.json().mensaje, "alert alert-danger text_center" , false);
+        // se muestra el mensaje alert danger
+        this.alertService.showAlert(error.json().mensaje, "alert alert-danger text_center", false);
+
+        // se cierra el modal de carga
         this.utilService.displayLoading(false);
       }
     );
