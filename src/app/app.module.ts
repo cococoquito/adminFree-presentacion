@@ -1,3 +1,4 @@
+import { AlertService } from './service/alert.service';
 import { SeguridadService } from './service/seguridad.service';
 import { UtilitarioService } from './service/utilitario.service';
 import { AppRoutingModule } from './routing/app-routing.module';
@@ -13,6 +14,7 @@ import { MenuComponent } from './components/app-root/menu/menu.component';
 import { FooterComponent } from './components/app-root/footer/footer.component';
 import { LoginComponent } from './components/seguridad/login/login.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { AlertComponent } from './components/directivas/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     MenuComponent,
     FooterComponent,
     LoginComponent,
-    LoadingComponent
+    LoadingComponent,
+    AlertComponent
   ],
   imports: [
     AppRoutingModule,
@@ -39,7 +42,8 @@ import { LoadingComponent } from './components/loading/loading.component';
   ],
   providers: [
     UtilitarioService,
-    SeguridadService
+    SeguridadService,
+    AlertService
   ],
   bootstrap: [AppRoot]
 })

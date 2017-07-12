@@ -1,3 +1,4 @@
+import { AlertService } from './../../../service/alert.service';
 import { SeguridadService } from './../../../service/seguridad.service';
 import { UtilitarioService } from './../../../service/utilitario.service';
 import { KEY_LOCAL_STORE_USER } from './../../../util/Constants';
@@ -18,10 +19,12 @@ export class LoginComponent implements OnInit {
    * Constructor del componente para la autenticacion ante el sistema
    * @param utilService, service con las funciones utilitarias
    * @param seguridadService, service que contiene los servicioes para la seguridad 
+   * @param alertService, service para la comunicacion del el mensaje de alerta
    */
   constructor(
     private utilService: UtilitarioService,
-    private seguridadService: SeguridadService) { }
+    private seguridadService: SeguridadService,
+    private alertService: AlertService) { }
 
   /**
    * Metodo que permite inicializar las variables del component
@@ -51,8 +54,7 @@ export class LoginComponent implements OnInit {
         this.utilService.displayLoading(false);
       },
       error => {
-
-
+        this.alertService.showAlert(error.json().mensaje, "alert alert-danger text_center" , false);
         this.utilService.displayLoading(false);
       }
     );
