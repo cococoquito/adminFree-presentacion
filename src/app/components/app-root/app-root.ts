@@ -5,8 +5,7 @@ import { Usuario } from './../../model/Usuario';
 
 @Component({
     selector: 'app-root',
-    templateUrl: './app-root.html',
-    styleUrls: ['./app-root.css']
+    templateUrl: './app-root.html'
 })
 export class AppRoot implements OnInit {
 

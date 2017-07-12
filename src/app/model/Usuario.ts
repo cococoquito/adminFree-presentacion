@@ -1,11 +1,14 @@
 /**
- * Clase que reprsenta los datos de los usuario del APP
+ * Clase que representa los datos de los usuario del APP
  */
 export class Usuario {
 
-    /** es el usuario que se utiliza para la autenticacion */
-    loginUsuario: string;
+    /** propiedad que representa el nombre del user */
+    nombre: string;
 
-    /** es la clave que se utiliza para la autenticacion */
-    loginClave: string;
+    /** propiedad que representa el valor del usuario para la autenticacion */
+    usuario: string;
+
+    /** propiedad que representa la clave del user */
+    clave: string;
 }

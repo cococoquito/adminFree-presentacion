@@ -1,3 +1,4 @@
+import { SeguridadService } from './service/seguridad.service';
 import { UtilitarioService } from './service/utilitario.service';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { AppRoot } from './components/app-root/app-root';
@@ -36,7 +37,10 @@ import { LoadingComponent } from './components/loading/loading.component';
     PanelModule,
     MessagesModule
   ],
-  providers: [UtilitarioService],
+  providers: [
+    UtilitarioService,
+    SeguridadService
+  ],
   bootstrap: [AppRoot]
 })
 export class AppModule { }

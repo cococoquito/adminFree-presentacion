@@ -24,6 +24,14 @@ export class UtilitarioService {
         return null;
     }
 
+    /**
+     * Metodo que permite registrar el usuario en el local storage
+     * @param user, es el usuario autenticado en el sistema
+     */
+    public setUsuarioAutenticado(user: Usuario): void {
+        localStorage.setItem(KEY_LOCAL_STORE_USER, JSON.stringify(user));
+    }
+
 	/**
      * Metodo que permite visualizar el modal Loading
      * @param value , bandera que permite visualizar el modal loading
