@@ -15,6 +15,7 @@ import { FooterComponent } from './components/app-root/footer/footer.component';
 import { LoginComponent } from './components/seguridad/login/login.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { AlertComponent } from './components/directivas/alert/alert.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AlertComponent } from './components/directivas/alert/alert.component';
     FooterComponent,
     LoginComponent,
     LoadingComponent,
-    AlertComponent
+    AlertComponent,
+    HomeComponent
   ],
   imports: [
     AppRoutingModule,

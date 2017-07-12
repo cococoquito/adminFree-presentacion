@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { UtilitarioService } from './../../service/utilitario.service';
+import { Usuario } from './../../model/Usuario';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './home.component.html'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  /**Fecha de ingreso a visualizar*/
+  private dateNow: Date = new Date();
 }

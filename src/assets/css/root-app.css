@@ -243,3 +243,20 @@ ul.alert-dropdown {
     margin-bottom: 10px;
     color:#A94442
 }
+
+.title-home{
+    color: #f15928; 
+    font-family: 'Handlee', Sans; font-size: 20pt; 
+    font-weight: normal;
+}
+
+.sub-title-home{
+    color: #555555; 
+    font-family: 'Handlee', Sans; font-size: 15pt; 
+    font-weight: normal;
+}
+
+.fecha-ingreso{
+    text-align: right; 
+    margin-right: 10px;
+ }   
