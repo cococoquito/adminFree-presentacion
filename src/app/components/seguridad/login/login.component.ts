@@ -2,10 +2,13 @@ import { Router } from '@angular/router';
 import { AlertService } from './../../../service/alert.service';
 import { SeguridadService } from './../../../service/seguridad.service';
 import { UtilitarioService } from './../../../service/utilitario.service';
-import { KEY_LOCAL_STORE_USER, HOME } from './../../../util/Constants';
+import { HOME } from './../../../util/Constants';
 import { Usuario } from './../../../model/Usuario';
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * Componente para la autenticacion ante el sistema 
+ */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
@@ -46,11 +49,8 @@ export class LoginComponent implements OnInit {
     // se procede a iniciar sesion ante el sistema
     this.seguridadService.iniciarSesion(this.user).subscribe(
       data => {
-        // se configura el usuario en el localStorage
-        this.utilService.setUsuarioAutenticado(data.json());
-
-        // se recarga la pagina para que se refresca el header y el menu
-        window.location.reload();
+        // se procede a notificar a los suscriptores que el usuario se autentico ante el sistema
+        this.seguridadService.notificarUserAutenticado(data.json());
 
         // se procede a redireccionar a HOME
         this.router.navigate([HOME]);

@@ -2,6 +2,9 @@ import { AlertService } from './../../../service/alert.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
+/**
+ * Componente para visualizar Alert exitoso o error dentro de la app
+ */
 @Component({
   selector: 'alert',
   templateUrl: './alert.component.html'
@@ -23,7 +26,7 @@ export class AlertComponent implements OnInit, OnDestroy {
   /**
    * Inicializa el componente una vez Angular haya mostrado las propiedades
    */
-  ngOnInit() {
+  ngOnInit(): void {
     // se obtiene la susbricion del alert service
     this.getSubscribeAlertService();
   }
@@ -31,7 +34,7 @@ export class AlertComponent implements OnInit, OnDestroy {
   /**
    * Se debe eliminar las subscripciones realizadas por el componente
    */
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.subscription != null) {
       this.subscription.unsubscribe();
     }

@@ -1,7 +1,8 @@
-import { URL_BASE } from './../util/Constants';
+import { URL_BASE, KEY_LOCAL_STORE_USER } from './../util/Constants';
 import { Usuario } from './../model/Usuario';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 
 /**
@@ -9,6 +10,9 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
  */
 @Injectable()
 export class SeguridadService {
+
+    /** se utiliza para las notificaciones cuando el usuario se autentica */
+    public behaviorAutenticacion: BehaviorSubject<Usuario> = new BehaviorSubject<Usuario>(null);
 
     /** URL para el recurso de autenticacion en el sistema */
     private static URL_AUTENTICACION = 'general/iniciarSesion';
@@ -31,5 +35,39 @@ export class SeguridadService {
      */
     public iniciarSesion(user: Usuario): Observable<Response> {
         return this.http.post(URL_BASE + SeguridadService.URL_AUTENTICACION, user, this.options);
+    }
+
+    /**
+     * Metodo que permite notificar a los susbcritores que el usuario esta autenticado
+     * @param user, usuario autenticado en el sistema
+     */
+    public notificarUserAutenticado(user: Usuario): void {
+        // se almacena el usuario en el local storage
+        localStorage.setItem(KEY_LOCAL_STORE_USER, JSON.stringify(user));
+
+        // se notifica a los suscriptores que el user se encuentra autenticado
+        this.behaviorAutenticacion.next(user);
+    }
+
+    /**
+     * Metodo que permite notificar a los susbcritores que el usuario cerro session
+     */
+    public notificarUserLogout() {
+        // se elimina el usuario del localStorage
+        localStorage.removeItem(KEY_LOCAL_STORE_USER);
+
+        // se notifica a los suscriptores que el user se encuentra logout
+        this.behaviorAutenticacion.next(null);
+    }
+
+    /**
+     * Metodo que permite obtener el usuario autenticado en el sistema
+     */
+    public getUsuarioAutenticado(): Usuario {
+        let userIn = localStorage.getItem(KEY_LOCAL_STORE_USER);
+        if (userIn) {
+            return JSON.parse(userIn);
+        }
+        return null;
     }
 }

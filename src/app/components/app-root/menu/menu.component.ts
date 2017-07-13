@@ -1,35 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { SeguridadService } from './../../../service/seguridad.service';
 import { Usuario } from './../../../model/Usuario';
-import { UtilitarioService } from './../../../service/utilitario.service';
+import { Subscription } from 'rxjs/Subscription';
 
+/**
+ * Component del menu de la app, donde se contruye dependiendo del user autenticado
+ */
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html'
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnDestroy {
 
   /**Usuario autenticado en el sistema*/
   private userAutenticado: Usuario;
 
-  /**
-   * Constructor del componente Header del app
-   * @param util, service utilitario
-   */
-  constructor(private util: UtilitarioService) { }
+  /** Es la subscripción para las notificaciones cuando el user ingrese al sistema */
+  private subscription: Subscription;
 
   /**
+   * Constructor del componente Menu del app
+   * @param seguridadService, seguridad service para la notificacion de la autenticacion
+   */
+  constructor(private seguridadService: SeguridadService) { }
+
+ /**
   * Inicializa el componente una vez Angular haya mostrado las propiedades
   */
-  ngOnInit() {
-
-    //se configura el usuario autenticado
-    this.setUsuarioAutenticado();
+  ngOnInit(): void {
+    // se obtiene la suscripcion para la notificacion cuando el user ingrese
+    this.getSuscripcionAutenticacion();
   }
 
   /**
-   * Metodo que permite obtener el usuario autenticado en el sistema
+   * Se debe eliminar las subscripciones realizadas por el componente
    */
-  private setUsuarioAutenticado(): void {
-    this.userAutenticado = this.util.getUsuarioAutenticado();
+  ngOnDestroy(): void {
+    if (this.subscription != null) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  /**
+   * Metodo que permite obtener la suscripcion de la autenticacion
+   */
+  private getSuscripcionAutenticacion(): void {
+    this.subscription = this.seguridadService.behaviorAutenticacion.subscribe(
+      (user: Usuario) => {
+        this.userAutenticado = user;
+      }
+    );
   }
 }

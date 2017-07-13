@@ -1,7 +1,8 @@
-import { UtilitarioService } from './../../service/utilitario.service';
-import { Usuario } from './../../model/Usuario';
 import { Component } from '@angular/core';
 
+/**
+ * Componente para la pagina HOME de la aplicacion
+ */
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html'

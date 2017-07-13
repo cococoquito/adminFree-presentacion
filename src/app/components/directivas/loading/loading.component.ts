@@ -1,7 +1,10 @@
-import { UtilitarioService } from './../../service/utilitario.service';
+import { UtilitarioService } from './../../../service/utilitario.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
+/**
+ * Componente para el modal de loading cuando se hace una peticion asyncrona
+ */
 @Component({
   selector: 'app-loading',
   templateUrl: './loading.component.html',
@@ -9,10 +12,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class LoadingComponent implements OnInit, OnDestroy {
 
-  /** es la subscripción del service loading */
+  /** Es la subscripción del service loading */
   private subscription: Subscription;
 
-  /** bandera para la visualizacion del loading */
+  /** Bandera para la visualizacion del loading */
   private showLoader: boolean;
 
   /**
@@ -25,7 +28,7 @@ export class LoadingComponent implements OnInit, OnDestroy {
   /**
    * Inicializa el componente una vez Angular haya mostrado las propiedades
    */
-  ngOnInit() {
+  ngOnInit(): void {
     // se obtiene la suscripcion del loading
     this.obtenerSuscripcionLoading();
   }
@@ -33,7 +36,7 @@ export class LoadingComponent implements OnInit, OnDestroy {
   /**
    * Se debe eliminar las subscripciones realizadas por el componente
    */
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.subscription != null) {
       this.subscription.unsubscribe();
     }
@@ -43,7 +46,7 @@ export class LoadingComponent implements OnInit, OnDestroy {
    * Metodo que permite obtener la suscripcion del loading
    */
   private obtenerSuscripcionLoading(): void {
-    this.subscription = this.service.loadingBehavior.subscribe(
+    this.subscription = this.service.behaviorLoading.subscribe(
       (val: boolean) => {
         this.showLoader = val;
       }

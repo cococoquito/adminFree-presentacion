@@ -13,8 +13,8 @@ import { HeaderComponent } from './components/app-root/header/header.component';
 import { MenuComponent } from './components/app-root/menu/menu.component';
 import { FooterComponent } from './components/app-root/footer/footer.component';
 import { LoginComponent } from './components/seguridad/login/login.component';
-import { LoadingComponent } from './components/loading/loading.component';
 import { AlertComponent } from './components/directivas/alert/alert.component';
+import { LoadingComponent } from './components/directivas/loading/loading.component';
 import { HomeComponent } from './components/home/home.component';
 
 @NgModule({

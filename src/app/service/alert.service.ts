@@ -12,7 +12,7 @@ export class AlertService {
     /** Se utiliza para la comunicacion de los component con el alert */
     private subject: Subject<any>;
 
-    /** bandera que indica si se debe mantener el mensaje de alert despues de un redireccionamiento*/
+    /** Bandera que indica si se debe mantener el mensaje de alert despues de un redireccionamiento*/
     private keepAfterNavigationChange: boolean;
 
     /**

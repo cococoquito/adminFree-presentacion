@@ -260,3 +260,10 @@ ul.alert-dropdown {
     text-align: right; 
     margin-right: 10px;
  }   
+
+.footer-app{
+    text-align: center;
+    background-color: #404042;
+    font-size: 12px;
+    color: #FFFFFF;
+}
