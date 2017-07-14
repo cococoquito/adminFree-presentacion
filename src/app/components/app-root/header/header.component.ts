@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   /**
    * Constructor del componente Header del app
    * @param seguridadService, seguridad service para la notificacion de la autenticacion
+   * @param router, Router de la app para redireccionar al login
    */
   constructor(
     private seguridadService: SeguridadService,
