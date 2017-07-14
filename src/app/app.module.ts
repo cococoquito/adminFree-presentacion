@@ -10,8 +10,6 @@ import { HttpModule } from '@angular/http';
 import { DialogModule, ConfirmDialogModule, DataTableModule, SharedModule, FieldsetModule, PanelModule, MessagesModule } from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { HeaderComponent } from './components/app-root/header/header.component';
-import { MenuComponent } from './components/app-root/menu/menu.component';
 import { FooterComponent } from './components/app-root/footer/footer.component';
 import { LoginComponent } from './components/seguridad/login/login.component';
 import { AlertComponent } from './components/directivas/alert/alert.component';
@@ -21,8 +19,6 @@ import { HomeComponent } from './components/home/home.component';
 @NgModule({
   declarations: [
     AppRoot,
-    HeaderComponent,
-    MenuComponent,
     FooterComponent,
     LoginComponent,
     LoadingComponent,

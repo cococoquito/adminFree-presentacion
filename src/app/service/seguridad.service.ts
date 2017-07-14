@@ -46,7 +46,7 @@ export class SeguridadService {
         localStorage.setItem(KEY_LOCAL_STORE_USER, JSON.stringify(user));
 
         // se notifica a los suscriptores que el user se encuentra autenticado
-        this.behaviorAutenticacion.next(user);
+        this.behaviorAutenticacion.next(null);
     }
 
     /**

@@ -39,7 +39,7 @@ export class GuardRouting implements CanActivate {
             }
         } else {
             // como el user esta autenticado y la invocacion es pagina login se redirecciona para HOME
-            if (LOGIN == requestURL) {
+            if (requestURL == LOGIN || requestURL == RAIZ) {
                 this.router.navigate([HOME]);
                 return false;
             }

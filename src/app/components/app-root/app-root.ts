@@ -1,7 +1,9 @@
+import { LOGIN } from './../../util/Constants';
 import { SeguridadService } from './../../service/seguridad.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Usuario } from './../../model/Usuario';
 import { Subscription } from 'rxjs/Subscription';
+import { Router } from '@angular/router';
 
 /**
  * Componente Raiz de la app donde contiene HEADER, MENU, FOOTER, ROUTER, LOGIN
@@ -21,8 +23,11 @@ export class AppRoot implements OnInit, OnDestroy {
     /**
      * Constructor del componente Raiz app
      * @param seguridadService, service de seguridad
+     * @param router, Router de la app para redireccionar al login
      */
-    constructor(private seguridadService: SeguridadService) { }
+    constructor(
+        private seguridadService: SeguridadService,
+        private router: Router) { }
 
     /**
      * Inicializa el componente una vez Angular haya mostrado las propiedades
@@ -42,12 +47,23 @@ export class AppRoot implements OnInit, OnDestroy {
     }
 
     /**
+     * Metodo que permite cerrar sesion del user autenticado
+     */
+    private cerrarSesion() {
+        // se notifica el cierre de sesion
+        this.seguridadService.notificarUserLogout();
+
+        // se procede a redireccionar a LOGIN
+        this.router.navigate([LOGIN]);
+    }
+
+    /**
      * Metodo que permite obtener la suscripcion de la autenticacion
      */
     private getSuscripcionAutenticacion(): void {
         this.subscription = this.seguridadService.behaviorAutenticacion.subscribe(
-            (user: Usuario) => {
-                this.userAutenticado = user;
+            () => {
+                this.userAutenticado = this.seguridadService.getUsuarioAutenticado();
             }
         );
     }
