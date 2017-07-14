@@ -33,7 +33,7 @@
                     <a class="dropdown-toggle" style="cursor:pointer" data-toggle="dropdown"><i class="fa fa-user"></i> {{userAutenticado?.nombre}} <b class="caret"></b></a>
                     <ul class="dropdown-menu" style="min-width:260px">
                         <li>
-                            <a style="cursor:pointer"><i class="fa fa-fw fa-gear"></i> Cambiar Contraseña</a>
+                            <a (click)="showCambiarClave()" style="cursor:pointer"><i class="fa fa-fw fa-gear"></i> Cambiar Contraseña</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -69,13 +69,13 @@
                 <li>
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
                     <ul id="demo" class="collapse">
-                <li>
-                    <a href="#">Dropdown Item</a>
-                </li>
-                <li>
-                    <a href="#">Dropdown Item</a>
-                </li>
-                </ul>
+                        <li>
+                            <a href="#">Dropdown Item</a>
+                        </li>
+                        <li>
+                            <a href="#">Dropdown Item</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
@@ -101,12 +101,12 @@
     <app-footer></app-footer>
 </div>
 
-<!-- raiz del proyecto cuando el user NO esta autenticado-->
+<!-- se muestra el login cuando el user no esta autenticado-->
 <div *ngIf="!userAutenticado">
     <img src="../../assets/img/vivook_logo.jpg" class="img-responsive img-center" />
     <hr class="without_marge" />
     <alert></alert>
-    <router-outlet></router-outlet>
+    <app-login></app-login>
     <app-footer></app-footer>
 </div>
 

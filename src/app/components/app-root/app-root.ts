@@ -1,4 +1,4 @@
-import { LOGIN } from './../../util/Constants';
+import { CAMBIO_CLAVE, RAIZ } from './../../util/Constants';
 import { SeguridadService } from './../../service/seguridad.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Usuario } from './../../model/Usuario';
@@ -53,8 +53,15 @@ export class AppRoot implements OnInit, OnDestroy {
         // se notifica el cierre de sesion
         this.seguridadService.notificarUserLogout();
 
-        // se procede a redireccionar a LOGIN
-        this.router.navigate([LOGIN]);
+        // se procede a redireccionar a RAIZ
+        this.router.navigate([RAIZ]);
+    }
+
+    /**
+     * Metodo que permite abrir la pagina de cambio de clave
+     */
+    private showCambiarClave() {
+        this.router.navigate([CAMBIO_CLAVE]);
     }
 
     /**

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { LOGIN, HOME, RAIZ } from './../../util/Constants';
+import { HOME, RAIZ } from './../../util/Constants';
 import { SeguridadService } from './../../service/seguridad.service';
 import { Usuario } from './../../model/Usuario';
 
@@ -32,14 +32,14 @@ export class GuardRouting implements CanActivate {
 
         // se verifica si el usuario esta autenticado
         if (!usuarioAutenticado) {
-            //si la pagina invocada no es la de login el user debe autenticarse
-            if (requestURL != LOGIN && requestURL != RAIZ) {
-                this.router.navigate([LOGIN]);
+            //si la pagina invocada no es la de login(RAIZ) el user debe autenticarse
+            if (requestURL != RAIZ) {
+                this.router.navigate([RAIZ]);
                 return false;
             }
         } else {
-            // como el user esta autenticado y la invocacion es pagina login se redirecciona para HOME
-            if (requestURL == LOGIN || requestURL == RAIZ) {
+            // como el user esta autenticado y la invocacion es pagina RAIZ se redirecciona para HOME
+            if (requestURL == RAIZ) {
                 this.router.navigate([HOME]);
                 return false;
             }

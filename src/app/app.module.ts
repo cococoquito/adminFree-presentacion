@@ -15,6 +15,7 @@ import { LoginComponent } from './components/seguridad/login/login.component';
 import { AlertComponent } from './components/directivas/alert/alert.component';
 import { LoadingComponent } from './components/directivas/loading/loading.component';
 import { HomeComponent } from './components/home/home.component';
+import { CambioClaveComponent } from './components/seguridad/cambio-clave/cambio-clave.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HomeComponent } from './components/home/home.component';
     LoginComponent,
     LoadingComponent,
     AlertComponent,
-    HomeComponent
+    HomeComponent,
+    CambioClaveComponent
   ],
   imports: [
     AppRoutingModule,
