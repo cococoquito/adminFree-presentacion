@@ -1,3 +1,4 @@
+import { GuardRouting } from './routing/guards/guards-routing';
 import { AlertService } from './service/alert.service';
 import { SeguridadService } from './service/seguridad.service';
 import { UtilitarioService } from './service/utilitario.service';
@@ -45,7 +46,8 @@ import { HomeComponent } from './components/home/home.component';
   providers: [
     UtilitarioService,
     SeguridadService,
-    AlertService
+    AlertService,
+    GuardRouting
   ],
   bootstrap: [AppRoot]
 })
