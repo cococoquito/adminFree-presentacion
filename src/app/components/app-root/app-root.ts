@@ -1,7 +1,7 @@
 import { CAMBIO_CLAVE, RAIZ } from './../../util/Constants';
 import { SeguridadService } from './../../service/seguridad.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Usuario } from './../../model/Usuario';
+import { UsuarioDTO } from './../../model/UsuarioDTO';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class AppRoot implements OnInit, OnDestroy {
 
     /**Usuario autenticado en el sistema*/
-    private userAutenticado: Usuario;
+    private userAutenticado: UsuarioDTO;
 
     /** Es la subscripción para las notificaciones cuando el user ingrese al sistema */
     private subscription: Subscription;

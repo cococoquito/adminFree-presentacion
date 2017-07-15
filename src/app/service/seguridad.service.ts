@@ -1,5 +1,6 @@
+import { CambioClaveDTO } from './../model/CambioClaveDTO';
 import { URL_BASE, KEY_LOCAL_STORE_USER } from './../util/Constants';
-import { Usuario } from './../model/Usuario';
+import { UsuarioDTO } from './../model/UsuarioDTO';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -12,10 +13,13 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 export class SeguridadService {
 
     /** se utiliza para las notificaciones cuando el usuario se autentica */
-    public behaviorAutenticacion: BehaviorSubject<Usuario> = new BehaviorSubject<Usuario>(null);
+    public behaviorAutenticacion: BehaviorSubject<UsuarioDTO> = new BehaviorSubject<UsuarioDTO>(null);
 
     /** URL para el recurso de autenticacion en el sistema */
     private static URL_AUTENTICACION = 'general/iniciarSesion';
+
+    /** URL para el recurso de cambio de clave */
+    private static URL_CAMBIO_CLAVE = 'general/cambiarClave';
 
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json' });
@@ -33,15 +37,23 @@ export class SeguridadService {
      * Metodo que permite iniciar sesion sobre la APP
      * @param user, usuario que intenta autenticarse en el sistema
      */
-    public iniciarSesion(user: Usuario): Observable<Response> {
+    public iniciarSesion(user: UsuarioDTO): Observable<Response> {
         return this.http.post(URL_BASE + SeguridadService.URL_AUTENTICACION, user, this.options);
+    }
+
+    /**
+     * Metodo que permite cambiar la clave del usuario autenticado
+     * @param cambioClave, DTO con los datos de la nueva clave a cambiar
+     */
+    public cambiarClave(cambioClave: CambioClaveDTO): Observable<Response> {
+        return this.http.post(URL_BASE + SeguridadService.URL_CAMBIO_CLAVE, cambioClave, this.options);
     }
 
     /**
      * Metodo que permite notificar a los susbcritores que el usuario esta autenticado
      * @param user, usuario autenticado en el sistema
      */
-    public notificarUserAutenticado(user: Usuario): void {
+    public notificarUserAutenticado(user: UsuarioDTO): void {
         // se almacena el usuario en el local storage
         localStorage.setItem(KEY_LOCAL_STORE_USER, JSON.stringify(user));
 
@@ -63,7 +75,7 @@ export class SeguridadService {
     /**
      * Metodo que permite obtener el usuario autenticado en el sistema
      */
-    public getUsuarioAutenticado(): Usuario {
+    public getUsuarioAutenticado(): UsuarioDTO {
         let userIn = localStorage.getItem(KEY_LOCAL_STORE_USER);
         if (userIn) {
             return JSON.parse(userIn);

@@ -3,7 +3,7 @@ import { AlertService } from './../../../service/alert.service';
 import { SeguridadService } from './../../../service/seguridad.service';
 import { UtilitarioService } from './../../../service/utilitario.service';
 import { HOME } from './../../../util/Constants';
-import { Usuario } from './../../../model/Usuario';
+import { UsuarioDTO } from './../../../model/UsuarioDTO';
 import { Component, OnInit } from '@angular/core';
 
 /**
@@ -16,7 +16,7 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   /** variable que contiene los datos para la autenticacion */
-  private user: Usuario;
+  private user: UsuarioDTO;
 
   /**
    * Constructor del componente para la autenticacion ante el sistema
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
    * Metodo que permite inicializar las variables del component
    */
   ngOnInit(): void {
-    this.user = new Usuario();
+    this.user = new UsuarioDTO();
   }
 
   /**

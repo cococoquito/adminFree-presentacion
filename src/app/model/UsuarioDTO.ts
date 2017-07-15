@@ -1,7 +1,10 @@
 /**
- * Clase que representa los datos de los usuario del APP
+ * DTO que representa los datos de los usuario del APP
  */
-export class Usuario {
+export class UsuarioDTO {
+
+    /** identificador del user */
+    id: number;
 
     /** propiedad que representa el nombre del user */
     nombre: string;

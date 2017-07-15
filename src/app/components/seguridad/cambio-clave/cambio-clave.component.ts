@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CambioClave } from './../../../model/CambioClave';
+import { CambioClaveDTO } from './../../../model/CambioClaveDTO';
 import { AlertService } from './../../../service/alert.service';
 import { SeguridadService } from './../../../service/seguridad.service';
 import { UtilitarioService } from './../../../service/utilitario.service';
@@ -14,7 +14,7 @@ import { UtilitarioService } from './../../../service/utilitario.service';
 export class CambioClaveComponent implements OnInit {
 
   /** variable que contiene los datos para el cambio de clave */
-  private cambioClave: CambioClave;
+  private cambioClave: CambioClaveDTO;
 
   /**
    * Constructor del componente para el cambio de clave
@@ -28,18 +28,49 @@ export class CambioClaveComponent implements OnInit {
     private alertService: AlertService) { }
 
   /**
-   * Metodo que permite inicializar las variables del component
+   * Inicializa el componente una vez Angular haya mostrado las propiedades
    */
   ngOnInit(): void {
-    this.cambioClave = new CambioClave();
+    // se inicializa las variables globales
+    this.init();
   }
 
   /**
    * Metodo que permite cambiar la clave en el sistema
    */
-  private cambiarClave() {
-    console.log("clave actual:"+this.cambioClave.claveActual);
-    console.log("clave nueva:"+this.cambioClave.claveNueva);
-    console.log("clave nueva again:"+this.cambioClave.repetirClaveNueva);
+  private cambiarClave(): void {
+    console.log(this.cambioClave);
+
+    // se muestra el modal de carga
+    this.utilService.displayLoading(true);
+
+    // se procede a cambiar la clave del usuario
+    this.seguridadService.cambiarClave(this.cambioClave).subscribe(
+      data => {
+        // se muestra el mensaje exitoso
+        this.alertService.showAlert(data.json().mensaje, "alert alert-success text_center", false);
+
+        // se inicializa las variables
+        this.init();
+
+        // se cierra el modal de carga
+        this.utilService.displayLoading(false);
+      },
+      error => {
+        // se muestra el mensaje alert danger
+        this.alertService.showAlert(error.json().mensaje, "alert alert-danger text_center", false);
+
+        // se cierra el modal de carga
+        this.utilService.displayLoading(false);
+      }
+    );
+  }
+
+  /**
+   * Metodo que permite inicializar las variables del component
+   */
+  private init(): void {
+    this.cambioClave = new CambioClaveDTO();
+    this.cambioClave.usuario = this.seguridadService.getUsuarioAutenticado();
   }
 }
