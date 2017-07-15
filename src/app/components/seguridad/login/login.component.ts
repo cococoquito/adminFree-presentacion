@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   /**
    * Metodo que permite inicializar las variables del component
    */
-  ngOnInit() {
+  ngOnInit(): void {
     this.user = new Usuario();
   }
 
