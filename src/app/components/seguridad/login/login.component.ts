@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit {
   /** variable que contiene los datos para la autenticacion */
   private user: UsuarioDTO;
 
+  /** bandera que identifica si ya se hizo submit */
+  private submitted: boolean;
+
   /**
    * Constructor del componente para la autenticacion ante el sistema
    * @param utilService, service con las funciones utilitarias
@@ -35,14 +38,27 @@ export class LoginComponent implements OnInit {
    * Metodo que permite inicializar las variables del component
    */
   ngOnInit(): void {
-    this.user = new UsuarioDTO();
+    this.init();
+  }
+
+  /**
+   * Metodo que permite establecer que el user ya hizo submitted
+   */
+  private onSubmit(): boolean {
+    
+    // se oculta el alert esto por si hay errores con el submit anterior
+    this.alertService.hiddenAlert();
+
+    // se notifica que el user hizo submitted
+    this.submitted = true;
+    return this.submitted;
   }
 
   /**
    * Metodo que permite iniciar sesion sobre el sistema
    */
   private iniciarSesion(): void {
-
+    
     // se muestra el modal de carga
     this.utilService.displayLoading(true);
 
@@ -62,9 +78,23 @@ export class LoginComponent implements OnInit {
         // se muestra el mensaje alert danger
         this.alertService.showAlert(error.json().mensaje, "alert alert-danger text_center", false);
 
+        // se limpia todo ingresado por pantalla
+        this.init();
+
         // se cierra el modal de carga
         this.utilService.displayLoading(false);
       }
     );
+  }
+
+  /**
+   * Metodo que permite inicializar las variables del component
+   */
+  private init(): void {
+    // incialmente la pantalla no se ha dado submit
+    this.submitted = false;
+
+    // se crea la instancia para el USER
+    this.user = new UsuarioDTO();
   }
 }
