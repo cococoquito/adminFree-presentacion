@@ -8,28 +8,28 @@
 <br/><br/><br/>
 
 <!-- formulario con el enter desabilitado -->
-<form name="form" #f="ngForm" (ngSubmit)="f.form.valid && cambiarClave()" (keydown.enter)="$event.preventDefault()" novalidate>
+<form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && cambiarClave()" (keydown.enter)="$event.preventDefault()" novalidate>
 
   <div style="width: 40%" class="img-center">
     <!-- clave actual -->
     <div class="form-group">
       <label for="claveActual">Contraseña actual*</label>
       <input type="password" [(ngModel)]="cambioClave.claveActual" name="claveActual" #claveActual="ngModel" class="form-control" maxlength="100" required/>
-      <div *ngIf="f.submitted && !claveActual.valid" class="field-requerido">La contraseña actual es requerida</div>
+      <div *ngIf="submitted && !claveActual.valid" class="field-requerido">La contraseña actual es requerida</div>
     </div>
 
     <!-- clave nueva -->
     <div class="form-group">
       <label for="claveNueva">Contraseña nueva*</label>
       <input type="password" [(ngModel)]="cambioClave.claveNueva" name="claveNueva" #claveNueva="ngModel" class="form-control" maxlength="100" required/>
-      <div *ngIf="f.submitted && !claveNueva.valid" class="field-requerido">La contraseña nueva es requerida</div>
+      <div *ngIf="submitted && !claveNueva.valid" class="field-requerido">La contraseña nueva es requerida</div>
     </div>
 
     <!-- repetir clave nueva -->
     <div class="form-group">
       <label for="repetirClaveNueva">Repetir nueva contraseña*</label>
       <input type="password" [(ngModel)]="cambioClave.repetirClaveNueva" name="repetirClaveNueva" #repetirClaveNueva="ngModel" class="form-control" maxlength="100" required/>
-      <div *ngIf="f.submitted && !repetirClaveNueva.valid" class="field-requerido">Debe ingresar nuevamente la contraseña nueva</div>
+      <div *ngIf="submitted && !repetirClaveNueva.valid" class="field-requerido">Debe ingresar nuevamente la contraseña nueva</div>
     </div>
 
     <!-- button guardar cambios -->

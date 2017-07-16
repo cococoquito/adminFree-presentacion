@@ -39,6 +39,13 @@ export class AlertService {
     }
 
     /**
+     * Metodo que permite ocultar el componente del Alert
+     */
+    public hiddenAlert(){
+        this.subject.next();
+    }
+
+    /**
      * Retorna el observador del subject para las notificaciones
      */
     public getMessage(): Observable<any> {

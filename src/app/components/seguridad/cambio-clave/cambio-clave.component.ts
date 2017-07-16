@@ -16,6 +16,9 @@ export class CambioClaveComponent implements OnInit {
   /** variable que contiene los datos para el cambio de clave */
   private cambioClave: CambioClaveDTO;
 
+  /** bandera que identifica si ya se hizo submit */
+  private submitted: boolean;
+
   /**
    * Constructor del componente para el cambio de clave
    * @param utilService, service con las funciones utilitarias
@@ -36,10 +39,22 @@ export class CambioClaveComponent implements OnInit {
   }
 
   /**
+   * Metodo que permite establecer que el user ya hizo submitted
+   */
+  private onSubmit(): boolean {
+    // se oculta el alert esto por si hay errores con el submit anterior
+    this.alertService.hiddenAlert();
+
+    // se notifica que el user hizo submitted
+    this.submitted = true;
+    return this.submitted;
+  }
+
+  /**
    * Metodo que permite cambiar la clave en el sistema
    */
   private cambiarClave(): void {
-
+    
     // se muestra el modal de carga
     this.utilService.displayLoading(true);
 
@@ -69,6 +84,10 @@ export class CambioClaveComponent implements OnInit {
    * Metodo que permite inicializar las variables del component
    */
   private init(): void {
+    // incialmente la pantalla no se ha dado submit
+    this.submitted = false;
+
+    // se crea la instancia para el DTO cambio de clave
     this.cambioClave = new CambioClaveDTO();
     this.cambioClave.usuario = this.seguridadService.getUsuarioAutenticado();
   }
