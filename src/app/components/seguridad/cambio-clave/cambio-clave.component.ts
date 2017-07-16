@@ -39,7 +39,6 @@ export class CambioClaveComponent implements OnInit {
    * Metodo que permite cambiar la clave en el sistema
    */
   private cambiarClave(): void {
-    console.log(this.cambioClave);
 
     // se muestra el modal de carga
     this.utilService.displayLoading(true);

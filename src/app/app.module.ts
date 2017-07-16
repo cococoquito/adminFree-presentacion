@@ -7,8 +7,6 @@ import { AppRoot } from './components/app-root/app-root';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { DialogModule, ConfirmDialogModule, DataTableModule, SharedModule, FieldsetModule, PanelModule, MessagesModule } from 'primeng/primeng';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './components/app-root/footer/footer.component';
 import { LoginComponent } from './components/seguridad/login/login.component';
@@ -31,15 +29,7 @@ import { CambioClaveComponent } from './components/seguridad/cambio-clave/cambio
     AppRoutingModule,
     BrowserModule,
     HttpModule,
-    DialogModule,
-    ConfirmDialogModule,
-    BrowserAnimationsModule,
-    DataTableModule,
-    SharedModule,
-    FormsModule,
-    FieldsetModule,
-    PanelModule,
-    MessagesModule
+    FormsModule
   ],
   providers: [
     UtilitarioService,
