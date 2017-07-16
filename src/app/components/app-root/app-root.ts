@@ -1,4 +1,4 @@
-import { CAMBIO_CLAVE, RAIZ } from './../../util/Constants';
+import { CAMBIO_CLAVE, RAIZ, HOME } from './../../util/Constants';
 import { SeguridadService } from './../../service/seguridad.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UsuarioDTO } from './../../model/UsuarioDTO';
@@ -62,6 +62,13 @@ export class AppRoot implements OnInit, OnDestroy {
      */
     private showCambiarClave() {
         this.router.navigate([CAMBIO_CLAVE]);
+    }
+
+    /**
+     * Metodo que permite abrir la pagina de HOME de la app
+     */
+    private showHome() {
+        this.router.navigate([HOME]);
     }
 
     /**
