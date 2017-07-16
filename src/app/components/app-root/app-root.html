@@ -53,7 +53,15 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav" style="background-color: #F1F6FA;">
                 <li>
-                    <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    <a style="cursor:pointer" data-toggle="collapse" data-target="#subAdmin"><i class="fa fa-fw fa-dashboard"></i> Administrador <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="subAdmin" class="collapse">
+                        <li>
+                            <a style="cursor:pointer" (click)="showConfigIniciales()">Configuraciones Iniciales</a>
+                        </li>
+                        <li>
+                            <a style="cursor:pointer" (click)="showCasasResidentes()">Casas y Residentes</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
