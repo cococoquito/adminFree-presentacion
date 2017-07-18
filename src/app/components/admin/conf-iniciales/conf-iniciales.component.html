@@ -1,3 +1,9 @@
+<!-- titulo de la pagina -->
+<div class="text_center title-home back-ground-title">
+  Configuraciones Iniciales
+</div>
+<br/>
+
 <ul class="nav nav-tabs">
   <li role="presentation" [class.active]="tiposViviendasB"><a (click)="showTiposVivienda()" [ngStyle]="(tiposViviendasB) ? style_tab_selected : style_tab_not_selected">Tipos viviendas</a></li>
   <li role="presentation" [class.active]="tiposVehiculosB"><a (click)="showTiposVehiculos()" [ngStyle]="(tiposVehiculosB) ? style_tab_selected : style_tab_not_selected">Tipos vehículos</a></li>
@@ -6,6 +12,27 @@
   <li role="presentation" [class.active]="mensualidadVehiculosB"><a (click)="showMensualidadVehiculo()" [ngStyle]="(mensualidadVehiculosB) ? style_tab_selected : style_tab_not_selected">Mensualidad vehículos</a></li>
 </ul>
 
-<div class="panel panel-default">
+<div class="panel panel-default" *ngIf="!tiposViviendasB && !tiposVehiculosB && !tiposCuentasB && !mensualidadViviendasB && !mensualidadVehiculosB">
+  panel por defauls
+</div>
 
+
+<div class="panel panel-default" *ngIf="tiposViviendasB">
+  tipos viviendas
+</div>
+
+<div class="panel panel-default" *ngIf="tiposVehiculosB">
+  tipos vehiculos
+</div>
+
+<div class="panel panel-default" *ngIf="tiposCuentasB">
+  tipos cuentas
+</div>
+
+<div class="panel panel-default" *ngIf="mensualidadViviendasB">
+  mensualidad viviendas
+</div>
+
+<div class="panel panel-default" *ngIf="mensualidadVehiculosB">
+  mensualidad vehiculos
 </div>
