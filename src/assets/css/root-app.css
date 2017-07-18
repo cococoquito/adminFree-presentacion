@@ -276,3 +276,7 @@ ul.alert-dropdown {
     font-size: 12px;
     color: #FFFFFF;
 }
+
+.cursor-manito{
+    cursor:pointer;
+}

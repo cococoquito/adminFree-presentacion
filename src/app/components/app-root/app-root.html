@@ -23,25 +23,25 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
                         <li>
-                            <a style="cursor:pointer">Alert Name <span class="label label-default">Alert Badge</span></a>
+                            <a class="cursor-manito">Alert Name <span class="label label-default">Alert Badge</span></a>
                         </li>
                         <li class="divider"></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
-                    <a class="dropdown-toggle" style="cursor:pointer" data-toggle="dropdown"><i class="fa fa-user"></i> {{userAutenticado?.nombre}} <b class="caret"></b></a>
+                    <a class="dropdown-toggle cursor-manito" data-toggle="dropdown"><i class="fa fa-user"></i> {{userAutenticado?.nombre}} <b class="caret"></b></a>
                     <ul class="dropdown-menu" style="min-width:260px">
                         <li>
-                            <a (click)="showCambiarClave()" style="cursor:pointer"><i class="fa fa-fw fa-gear"></i> Cambiar Contraseña</a>
+                            <a (click)="showCambiarClave()" class="cursor-manito"><i class="fa fa-fw fa-gear"></i> Cambiar Contraseña</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a (click)="showHome()" style="cursor:pointer"><i class="fa fa-fw fa-file"></i> Home </a>
+                            <a (click)="showHome()" class="cursor-manito"><i class="fa fa-fw fa-file"></i> Home </a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a (click)="cerrarSesion()" style="cursor:pointer"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a>
+                            <a (click)="cerrarSesion()" class="cursor-manito"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a>
                         </li>
                     </ul>
                 </li>
@@ -53,13 +53,13 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav" style="background-color: #F1F6FA;">
                 <li>
-                    <a style="cursor:pointer" data-toggle="collapse" data-target="#subAdmin"><i class="fa fa-fw fa-dashboard"></i> Administrador <i class="fa fa-fw fa-caret-down"></i></a>
+                    <a class="cursor-manito" data-toggle="collapse" data-target="#subAdmin"><i class="fa fa-fw fa-dashboard"></i> Administrador <i class="fa fa-fw fa-caret-down"></i></a>
                     <ul id="subAdmin" class="collapse">
                         <li>
-                            <a style="cursor:pointer" (click)="showConfigIniciales()">Configuraciones Iniciales</a>
+                            <a class="cursor-manito" (click)="showConfigIniciales()">Configuraciones Iniciales</a>
                         </li>
                         <li>
-                            <a style="cursor:pointer" (click)="showCasasResidentes()">Casas y Residentes</a>
+                            <a class="cursor-manito" (click)="showCasasResidentes()">Casas y Residentes</a>
                         </li>
                     </ul>
                 </li>

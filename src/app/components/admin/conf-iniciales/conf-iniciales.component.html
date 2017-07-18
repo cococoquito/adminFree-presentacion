@@ -1,3 +1,11 @@
-<p>
-  conf-iniciales works!
-</p>
+<ul class="nav nav-tabs">
+  <li role="presentation" [class.active]="tiposViviendasB"><a (click)="showTiposVivienda()" [ngStyle]="(tiposViviendasB) ? style_tab_selected : style_tab_not_selected">Tipos viviendas</a></li>
+  <li role="presentation" [class.active]="tiposVehiculosB"><a (click)="showTiposVehiculos()" [ngStyle]="(tiposVehiculosB) ? style_tab_selected : style_tab_not_selected">Tipos vehículos</a></li>
+  <li role="presentation" [class.active]="tiposCuentasB"><a (click)="showTiposCuentas()" [ngStyle]="(tiposCuentasB) ? style_tab_selected : style_tab_not_selected">Tipos cuentas</a></li>
+  <li role="presentation" [class.active]="mensualidadViviendasB"><a (click)="showMensualidadVivienda()" [ngStyle]="(mensualidadViviendasB) ? style_tab_selected : style_tab_not_selected">Mensualidad viviendas</a></li>
+  <li role="presentation" [class.active]="mensualidadVehiculosB"><a (click)="showMensualidadVehiculo()" [ngStyle]="(mensualidadVehiculosB) ? style_tab_selected : style_tab_not_selected">Mensualidad vehículos</a></li>
+</ul>
+
+<div class="panel panel-default">
+
+</div>
