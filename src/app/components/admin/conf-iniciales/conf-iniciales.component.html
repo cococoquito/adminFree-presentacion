@@ -5,20 +5,49 @@
 <br/>
 
 <ul class="nav nav-tabs">
-  <li role="presentation" [class.active]="tiposViviendasB"><a (click)="showTiposVivienda()" [ngStyle]="(tiposViviendasB) ? style_tab_selected : style_tab_not_selected">Tipos viviendas</a></li>
-  <li role="presentation" [class.active]="tiposVehiculosB"><a (click)="showTiposVehiculos()" [ngStyle]="(tiposVehiculosB) ? style_tab_selected : style_tab_not_selected">Tipos vehículos</a></li>
-  <li role="presentation" [class.active]="tiposCuentasB"><a (click)="showTiposCuentas()" [ngStyle]="(tiposCuentasB) ? style_tab_selected : style_tab_not_selected">Tipos cuentas</a></li>
+  <li role="presentation" [class.active]="tiposViviendasB"><a (click)="showTiposVivienda()" [ngStyle]="(tiposViviendasB) ? style_tab_selected : style_tab_not_selected">Tipos de vivienda</a></li>
+  <li role="presentation" [class.active]="tiposVehiculosB"><a (click)="showTiposVehiculos()" [ngStyle]="(tiposVehiculosB) ? style_tab_selected : style_tab_not_selected">Tipos de vehículos</a></li>
+  <li role="presentation" [class.active]="tiposCuentasB"><a (click)="showTiposCuentas()" [ngStyle]="(tiposCuentasB) ? style_tab_selected : style_tab_not_selected">Tipos de cuenta</a></li>
   <li role="presentation" [class.active]="mensualidadViviendasB"><a (click)="showMensualidadVivienda()" [ngStyle]="(mensualidadViviendasB) ? style_tab_selected : style_tab_not_selected">Mensualidad viviendas</a></li>
   <li role="presentation" [class.active]="mensualidadVehiculosB"><a (click)="showMensualidadVehiculo()" [ngStyle]="(mensualidadVehiculosB) ? style_tab_selected : style_tab_not_selected">Mensualidad vehículos</a></li>
 </ul>
 
-<div class="panel panel-default" *ngIf="!tiposViviendasB && !tiposVehiculosB && !tiposCuentasB && !mensualidadViviendasB && !mensualidadVehiculosB">
-  panel por defauls
+<div *ngIf="!tiposViviendasB && !tiposVehiculosB && !tiposCuentasB && !mensualidadViviendasB && !mensualidadVehiculosB" class="panel panel-default div-conf-init">
+  <p class="sub-title-home">Seleccione en la parte superior el tipo de</p>
+  <p class="sub-title-home" style="color: #C45246">&nbsp;configuración</p>
+  <p class="sub-title-home">&nbsp;que desea registrar</p>
 </div>
 
 
-<div class="panel panel-default" *ngIf="tiposViviendasB">
-  tipos viviendas
+<div class="panel panel-default" *ngIf="tiposViviendasB" style="min-height: 400px;">
+
+  <div style="text-align: center">
+    <p class="sub-title-home" style="line-height: 50px">Ingresa los tipos de vivienda que existen en el condominio</p>
+  </div>
+
+
+
+
+  <form class="form-inline">
+    <div class="form-group">
+      <p class="form-control-static">&nbsp;Tipo de vivienda*:</p>
+    </div>
+    <div class="form-group">
+      <input type="text" size="60" class="form-control" id="inputPassword2" placeholder="Este campo es requerido" aria-describedby="sizing-addon1"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+  <br/>
+  <p-dataTable [value]="items" [responsive]="true" selectionMode="single" emptyMessage="No hay registros de tipos de viviendas.">
+    <p-column field="nombre" header="Tipos de vivienda"></p-column>
+    <p-column [style]="{'width':'5%'}">
+      <ng-template let-item="rowData" pTemplate="body">
+        <button class="delete">x</button>
+      </ng-template>
+    </p-column>
+  </p-dataTable>
+
 </div>
 
 <div class="panel panel-default" *ngIf="tiposVehiculosB">
@@ -36,3 +65,5 @@
 <div class="panel panel-default" *ngIf="mensualidadVehiculosB">
   mensualidad vehiculos
 </div>
+<br/>
+<alert></alert>

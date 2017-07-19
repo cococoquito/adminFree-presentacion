@@ -284,3 +284,12 @@ ul.alert-dropdown {
 .cursor-manito{
     cursor:pointer;
 }
+
+.div-conf-init{
+ height: 300px;
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ justify-content: center;
+ align-items:center;
+}

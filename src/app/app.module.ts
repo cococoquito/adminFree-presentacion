@@ -5,6 +5,7 @@ import { UtilitarioService } from './service/utilitario.service';
 import { SeguridadService } from './service/seguridad.service';
 import { AlertService } from './service/alert.service';
 import { GuardRouting } from './routing/guards/guards-routing';
+import { AdminFreeService } from './service/admin-free.service';
 
 /**
  * imports
@@ -13,6 +14,7 @@ import { AppRoutingModule } from './routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { DataTableModule } from 'primeng/primeng';
 
 /**
  * declarations
@@ -45,14 +47,16 @@ import { CasasResidentesComponent } from './components/admin/casas-residentes/ca
     AppRoutingModule,
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    DataTableModule
   ],
 
   providers: [
     UtilitarioService,
     SeguridadService,
     AlertService,
-    GuardRouting
+    GuardRouting,
+    AdminFreeService
   ],
   bootstrap: [AppRoot]
 })
