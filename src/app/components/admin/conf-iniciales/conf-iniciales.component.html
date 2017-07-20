@@ -40,11 +40,11 @@
   </form>
   <br/>
   <p-dataTable [value]="items" [responsive]="true" selectionMode="single" emptyMessage="No hay registros de tipos de viviendas."
-    [(selection)]="itemAgregarEditar">
+    (onRowSelect)="rowSelected($event.data)">
     <p-column field="nombre" header="Tipos de vivienda"></p-column>
     <p-column [style]="{'width':'5%'}">
       <ng-template let-item="rowData" pTemplate="body">
-        <button class="delete" (click)=onRowSelect(item)>X</button>
+        <button class="delete" (click)=eliminarItem(item)>X</button>
       </ng-template>
     </p-column>
   </p-dataTable>
@@ -67,3 +67,4 @@
   mensualidad vehiculos
 </div>
 <alert></alert>
+<p-confirmDialog header="Eliminar Registro" icon="fa fa-question-circle" width="500"></p-confirmDialog>

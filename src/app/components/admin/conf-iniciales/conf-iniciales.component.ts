@@ -4,6 +4,7 @@ import { AlertService } from './../../../service/alert.service';
 import { UtilitarioService } from './../../../service/utilitario.service';
 import { AdminFreeService } from './../../../service/admin-free.service';
 import { Component, OnInit } from '@angular/core';
+import { ConfirmDialogModule, ConfirmationService } from 'primeng/primeng';
 
 /**
  * Componente para las configuraciones iniciales del sistema
@@ -49,11 +50,13 @@ export class ConfInicialesComponent implements OnInit {
    * @param adminFreeService , contienen los servicios especificos de adminFree
    * @param utilService , service con las funciones utilitarias
    * @param alertService , service para la comunicacion del el mensaje de alerta
+   * @param confirmationService, servicio para la visualizacion del modal de confirmacion
    */
   constructor(
     private adminFreeService: AdminFreeService,
     private utilService: UtilitarioService,
-    private alertService: AlertService) { }
+    private alertService: AlertService,
+    private confirmationService: ConfirmationService) { }
 
   /**
    * Metodo que permite inicializar las variables del component
@@ -64,6 +67,7 @@ export class ConfInicialesComponent implements OnInit {
    * Metodo que permite establecer que el user ya hizo submitted
    */
   private onSubmit(): boolean {
+    this.alertService.hiddenAlert();
     this.submitted = true;
     return this.submitted;
   }
@@ -75,6 +79,9 @@ export class ConfInicialesComponent implements OnInit {
 
     // solo aplica si no se ha dado click con anterioridad
     if (!this.tiposViviendasB) {
+
+      // se inicia como si el user no hay dado commit
+      this.submitted = false;
 
       // inidica que tipo de registro es, se utiliza para guardar, editar, eliminar
       this.tipoRegistro = TIPOS_VIVIENDAS;
@@ -184,6 +191,9 @@ export class ConfInicialesComponent implements OnInit {
 
             // se cierra el modal de carga
             this.utilService.displayLoading(false);
+
+            // se inicia como si el user no hay dado commit
+            this.submitted = false;
           },
           error => {
             // se muestra el mensaje alert danger
@@ -195,18 +205,19 @@ export class ConfInicialesComponent implements OnInit {
         )
 
       } else {
-
-
         // se procede a listar los tipos de vivienda
         this.adminFreeService.editarItem(this.itemAgregarEditar).subscribe(
           data => {
             // se configuran los tipos de viviendas retornados
-            this.items = data.json();
+            this.items = data.json().result;
 
             this.alertService.showAlert(data.json().mensaje, "alert alert-success text_center", false);
 
             // se cierra el modal de carga
             this.utilService.displayLoading(false);
+
+            // se inicia como si el user no hay dado commit
+            this.submitted = false;
           },
           error => {
             // se muestra el mensaje alert danger
@@ -216,14 +227,62 @@ export class ConfInicialesComponent implements OnInit {
             this.utilService.displayLoading(false);
           }
         )
-
-
-
       }
     }
 
     this.itemAgregarEditar = new CommonDTO();
     this.itemAgregarEditar.tipoRegistro = this.tipoRegistro;
     this.itemAgregarEditar.estado = ESTADO_ACTIVO;
+  }
+
+  private eliminarItem(item: CommonDTO): void {
+
+    // se procede abrir la ventana de confirmacion
+    this.confirmationService.confirm({
+      message: '¿Desea eliminar el registro ' + item.nombre + '?',
+      header: 'Confirmación',
+      icon: 'fa fa-question-circle',
+      accept: () => {
+
+        // se muestra el modal de carga
+        this.utilService.displayLoading(true);
+
+        // susbripcion para la eliminacion de paciente
+        this.adminFreeService.eliminarItem(item).subscribe(
+          data => {
+            // se configuran los tipos de viviendas retornados
+            this.items = data.json().result;
+
+            this.alertService.showAlert(data.json().mensaje, "alert alert-success text_center", false);
+
+            // se cierra el modal de carga
+            this.utilService.displayLoading(false);
+
+            // se inicia como si el user no hay dado commit
+            this.submitted = false;
+          },
+          error => {
+            // se muestra el mensaje alert danger
+            this.alertService.showAlert(error.json().mensaje, "alert alert-danger text_center", false);
+
+            // se cierra el modal de carga
+            this.utilService.displayLoading(false);
+          }
+        );
+      }
+    });
+  }
+
+  private rowSelected(data): void {
+
+
+    this.itemAgregarEditar = new CommonDTO();
+    this.itemAgregarEditar.tipoRegistro = this.tipoRegistro;
+    this.itemAgregarEditar.estado = ESTADO_ACTIVO;
+    this.itemAgregarEditar.id = data.id;
+    this.itemAgregarEditar.nombre = data.nombre;
+
+    console.log(this.itemAgregarEditar);
+
   }
 }

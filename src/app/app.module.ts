@@ -6,6 +6,7 @@ import { SeguridadService } from './service/seguridad.service';
 import { AlertService } from './service/alert.service';
 import { GuardRouting } from './routing/guards/guards-routing';
 import { AdminFreeService } from './service/admin-free.service';
+import { ConfirmationService } from 'primeng/primeng';
 
 /**
  * imports
@@ -14,7 +15,8 @@ import { AppRoutingModule } from './routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { DataTableModule } from 'primeng/primeng';
+import { DataTableModule, ConfirmDialogModule } from 'primeng/primeng';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /**
  * declarations
@@ -48,7 +50,9 @@ import { CasasResidentesComponent } from './components/admin/casas-residentes/ca
     BrowserModule,
     HttpModule,
     FormsModule,
-    DataTableModule
+    DataTableModule,
+    ConfirmDialogModule,
+    BrowserAnimationsModule
   ],
 
   providers: [
@@ -56,7 +60,8 @@ import { CasasResidentesComponent } from './components/admin/casas-residentes/ca
     SeguridadService,
     AlertService,
     GuardRouting,
-    AdminFreeService
+    AdminFreeService,
+    ConfirmationService
   ],
   bootstrap: [AppRoot]
 })
