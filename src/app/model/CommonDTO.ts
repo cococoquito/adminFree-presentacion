@@ -11,4 +11,7 @@ export class CommonDTO {
 
     /** identifica que tipo de registro es (TIPO VIVIENDAS, TIPOS CUENTAS, TIPOS VEHICULOS etc) */
     tipoRegistro: number;
+
+    /** estado del registro */
+    estado: number;
 }

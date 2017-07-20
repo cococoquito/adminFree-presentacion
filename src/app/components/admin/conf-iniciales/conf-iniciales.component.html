@@ -27,23 +27,24 @@
 
 
 
+  
+  <form class="form-inline" name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && guardarItem()" (keydown.enter)="$event.preventDefault()" novalidate>
 
-  <form class="form-inline">
     <div class="form-group">
-      <p class="form-control-static">&nbsp;Tipo de vivienda*:</p>
-    </div>
-    <div class="form-group">
-      <input type="text" size="60" class="form-control" id="inputPassword2" placeholder="Este campo es requerido" aria-describedby="sizing-addon1"
-      />
+      
+      <label for="tnombre">&nbsp;Tipo de vivienda*:</label>
+      <input type="text" size="60"  [ngClass]="(submitted && !tnombre.valid) ? 'form-control input-invalido':'form-control input-valido'" placeholder="Este campo es requerido" [(ngModel)]="itemAgregarEditar.nombre"
+        #tnombre="ngModel" name="tnombre" required  maxlength="100"/>
     </div>
     <button type="submit" class="btn btn-primary">Guardar</button>
   </form>
   <br/>
-  <p-dataTable [value]="items" [responsive]="true" selectionMode="single" emptyMessage="No hay registros de tipos de viviendas.">
+  <p-dataTable [value]="items" [responsive]="true" selectionMode="single" emptyMessage="No hay registros de tipos de viviendas."
+    [(selection)]="itemAgregarEditar">
     <p-column field="nombre" header="Tipos de vivienda"></p-column>
     <p-column [style]="{'width':'5%'}">
       <ng-template let-item="rowData" pTemplate="body">
-        <button class="delete">x</button>
+        <button class="delete" (click)=onRowSelect(item)>X</button>
       </ng-template>
     </p-column>
   </p-dataTable>
@@ -65,5 +66,4 @@
 <div class="panel panel-default" *ngIf="mensualidadVehiculosB">
   mensualidad vehiculos
 </div>
-<br/>
 <alert></alert>

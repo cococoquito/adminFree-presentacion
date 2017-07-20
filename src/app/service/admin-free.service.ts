@@ -10,8 +10,11 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 @Injectable()
 export class AdminFreeService {
 
-    /** URL para obtener los items del sistema */
+    /** URL para obtener la administracion de los items del sistema*/
     private static URL_LISTAR_ITEMS = 'general/listar_items';
+    private static URL_AGREGAR_ITEMS = 'general/agregar_item';
+    private static URL_ELIMINAR_ITEMS = 'general/eliminar_item';
+    private static URL_EDITAR_ITEMS = 'general/editar_item';
 
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json' });
@@ -31,5 +34,29 @@ export class AdminFreeService {
      */
     public listarItems(parametro: CommonDTO): Observable<Response> {
         return this.http.post(URL_BASE + AdminFreeService.URL_LISTAR_ITEMS, parametro, this.options);
+    }
+
+    /**
+     * Metodo que permite agregar un item en el sistema
+     * @param item , es el item a registrar en el sistema
+     */
+    public agregarItem(item: CommonDTO): Observable<Response> {
+        return this.http.post(URL_BASE + AdminFreeService.URL_AGREGAR_ITEMS, item, this.options);
+    }
+
+    /**
+     * Metodo que permite eliminar un item en el sistema
+     * @param item , es el item a eliminar en el sistema
+     */
+    public eliminarItem(item: CommonDTO): Observable<Response> {
+        return this.http.post(URL_BASE + AdminFreeService.URL_ELIMINAR_ITEMS, item, this.options);
+    }
+
+    /**
+     * Metodo que permite editar un item en el sistema
+    * @param item , es el item a editar en el sistema
+    */
+    public editarItem(item: CommonDTO): Observable<Response> {
+        return this.http.post(URL_BASE + AdminFreeService.URL_EDITAR_ITEMS, item, this.options);
     }
 }

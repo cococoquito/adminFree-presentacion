@@ -1,4 +1,4 @@
-import { TIPOS_VIVIENDAS } from './../../../util/Constants';
+import { TIPOS_VIVIENDAS, ESTADO_ACTIVO } from './../../../util/Constants';
 import { CommonDTO } from './../../../model/CommonDTO';
 import { AlertService } from './../../../service/alert.service';
 import { UtilitarioService } from './../../../service/utilitario.service';
@@ -35,6 +35,15 @@ export class ConfInicialesComponent implements OnInit {
   /** lista de tipos de configuraciones a visualizar en pantalla */
   private items: Array<CommonDTO>;
 
+  /** es el item agregar o editar */
+  private itemAgregarEditar: CommonDTO;
+
+  /** inidica que tipo de registro el usuario va parametrizar */
+  private tipoRegistro: number;
+
+  /** bandera que identifica si ya se hizo submit */
+  private submitted: boolean;
+
   /**
    * Constructor del componente para las configuraciones iniciales del sistema
    * @param adminFreeService , contienen los servicios especificos de adminFree
@@ -49,7 +58,14 @@ export class ConfInicialesComponent implements OnInit {
   /**
    * Metodo que permite inicializar las variables del component
    */
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  /**
+   * Metodo que permite establecer que el user ya hizo submitted
+   */
+  private onSubmit(): boolean {
+    this.submitted = true;
+    return this.submitted;
   }
 
   /**
@@ -57,34 +73,48 @@ export class ConfInicialesComponent implements OnInit {
    */
   private showTiposVivienda(): void {
 
-    // se muestra el modal de carga
-    this.utilService.displayLoading(true);
+    // solo aplica si no se ha dado click con anterioridad
+    if (!this.tiposViviendasB) {
 
-    this.tiposViviendasB = true;
-    this.tiposVehiculosB = false;
-    this.tiposCuentasB = false;
-    this.mensualidadViviendasB = false;
-    this.mensualidadVehiculosB = false;
+      // inidica que tipo de registro es, se utiliza para guardar, editar, eliminar
+      this.tipoRegistro = TIPOS_VIVIENDAS;
 
-    this.items = new Array<CommonDTO>();
+      // es el item para agregar o editar, se utiliza tambien para listar las viviendas
+      this.itemAgregarEditar = new CommonDTO();
+      this.itemAgregarEditar.tipoRegistro = this.tipoRegistro;
+      this.itemAgregarEditar.estado = ESTADO_ACTIVO;
 
-    let parametro = new CommonDTO();
-    parametro.tipoRegistro = TIPOS_VIVIENDAS;
+      // se muestra el modal de carga
+      this.utilService.displayLoading(true);
 
-    this.adminFreeService.listarItems(parametro).subscribe(
-      data => {
-        this.items = data.json();
-        // se cierra el modal de carga
-        this.utilService.displayLoading(false);
-      },
-      error => {
-        // se muestra el mensaje alert danger
-        this.alertService.showAlert(error.json().mensaje, "alert alert-danger text_center", false);
+      // se habilita el tab tipos de viviendas
+      this.tiposViviendasB = true;
+      this.tiposVehiculosB = false;
+      this.tiposCuentasB = false;
+      this.mensualidadViviendasB = false;
+      this.mensualidadVehiculosB = false;
 
-        // se cierra el modal de carga
-        this.utilService.displayLoading(false);
-      }
-    )
+      // son los items a mostrar por pantalla
+      this.items = new Array<CommonDTO>();
+
+      // se procede a listar los tipos de vivienda
+      this.adminFreeService.listarItems(this.itemAgregarEditar).subscribe(
+        data => {
+          // se configuran los tipos de viviendas retornados
+          this.items = data.json();
+
+          // se cierra el modal de carga
+          this.utilService.displayLoading(false);
+        },
+        error => {
+          // se muestra el mensaje alert danger
+          this.alertService.showAlert(error.json().mensaje, "alert alert-danger text_center", false);
+
+          // se cierra el modal de carga
+          this.utilService.displayLoading(false);
+        }
+      )
+    }
   }
 
   /**
@@ -130,5 +160,70 @@ export class ConfInicialesComponent implements OnInit {
     this.tiposCuentasB = false;
     this.mensualidadViviendasB = false;
     this.mensualidadVehiculosB = true;
+  }
+
+  /**
+   * Metodo que permite soportar el evento del boton guardar
+   */
+  private guardarItem(): void {
+    if (this.itemAgregarEditar) {
+
+      this.itemAgregarEditar.tipoRegistro = this.tipoRegistro;
+      // son los items a mostrar por pantalla
+      this.items = new Array<CommonDTO>();
+
+      if (!this.itemAgregarEditar.id) {
+
+        // se procede a listar los tipos de vivienda
+        this.adminFreeService.agregarItem(this.itemAgregarEditar).subscribe(
+          data => {
+            // se configuran los tipos de viviendas retornados
+            this.items = data.json().result;
+
+            this.alertService.showAlert(data.json().mensaje, "alert alert-success text_center", false);
+
+            // se cierra el modal de carga
+            this.utilService.displayLoading(false);
+          },
+          error => {
+            // se muestra el mensaje alert danger
+            this.alertService.showAlert(error.json().mensaje, "alert alert-danger text_center", false);
+
+            // se cierra el modal de carga
+            this.utilService.displayLoading(false);
+          }
+        )
+
+      } else {
+
+
+        // se procede a listar los tipos de vivienda
+        this.adminFreeService.editarItem(this.itemAgregarEditar).subscribe(
+          data => {
+            // se configuran los tipos de viviendas retornados
+            this.items = data.json();
+
+            this.alertService.showAlert(data.json().mensaje, "alert alert-success text_center", false);
+
+            // se cierra el modal de carga
+            this.utilService.displayLoading(false);
+          },
+          error => {
+            // se muestra el mensaje alert danger
+            this.alertService.showAlert(error.json().mensaje, "alert alert-danger text_center", false);
+
+            // se cierra el modal de carga
+            this.utilService.displayLoading(false);
+          }
+        )
+
+
+
+      }
+    }
+
+    this.itemAgregarEditar = new CommonDTO();
+    this.itemAgregarEditar.tipoRegistro = this.tipoRegistro;
+    this.itemAgregarEditar.estado = ESTADO_ACTIVO;
   }
 }

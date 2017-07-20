@@ -17,3 +17,8 @@ export var TIPOS_VIVIENDAS: number = 1;
 export var TIPOS_VEHICULOS: number = 2;
 export var TIPOS_CUENTAS: number = 3;
 /** Constantes para los tipos de registros communes - final*/
+
+/** Constantes para los estados - inicio*/
+export var ESTADO_ACTIVO: number = 1;
+export var ESTADO_BORRRADO: number = 2;
+/** Constantes para los estados - final*/
