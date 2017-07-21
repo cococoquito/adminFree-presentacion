@@ -4,13 +4,15 @@
 		<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4  col-xs-12">
 			<div class="form-group col-xs-12">
 				<label for="username">Usuario*</label>
-				<input type="text" [(ngModel)]="user.usuario" name="username" #username="ngModel" class="form-control" placeholder="Ingrese el usuario" maxlength="100" required/>
-				<div *ngIf="submitted && !username.valid" class="field-requerido">El usuario es requerido</div>
+				<input type="text" [(ngModel)]="user.usuario" name="username" #username="ngModel" 
+				 [ngClass]="(submitted && !username.valid) ? 'form-control input-invalido':'form-control input-valido'"
+				 placeholder="Ingrese el usuario" maxlength="100" required/>
 			</div>
 			<div class="form-group col-xs-12">
 				<label for="contrasena">Contraseña*</label>
-				<input type="password" [(ngModel)]="user.clave" name="contrasena" #contrasena="ngModel" class="form-control" placeholder="Ingrese la contraseña" maxlength="100" required/>
-				<div *ngIf="submitted && !contrasena.valid" class="field-requerido">La contraseña es requerido</div>
+				<input type="password" [(ngModel)]="user.clave" name="contrasena" #contrasena="ngModel"
+				 [ngClass]="(submitted && !contrasena.valid) ? 'form-control input-invalido':'form-control input-valido'" 
+				 placeholder="Ingrese la contraseña" maxlength="100" required/>
 			</div>
 			<div class="form-group col-md-12 col-xs-12 text-center">
 				<button type="submit" class="btn btn-primary">Iniciar Sesión</button>
