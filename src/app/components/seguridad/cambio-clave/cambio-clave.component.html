@@ -14,22 +14,25 @@
     <!-- clave actual -->
     <div class="form-group">
       <label for="claveActual">Contraseña actual*</label>
-      <input type="password" [(ngModel)]="cambioClave.claveActual" name="claveActual" #claveActual="ngModel" class="form-control" maxlength="100" required/>
-      <div *ngIf="submitted && !claveActual.valid" class="field-requerido">La contraseña actual es requerida</div>
+      <input type="password" [(ngModel)]="cambioClave.claveActual" name="claveActual" #claveActual="ngModel" 
+       [ngClass]="(submitted && !claveActual.valid) ? 'form-control input-invalido':'form-control input-valido'"
+       maxlength="100" required/>
     </div>
 
     <!-- clave nueva -->
     <div class="form-group">
       <label for="claveNueva">Contraseña nueva*</label>
-      <input type="password" [(ngModel)]="cambioClave.claveNueva" name="claveNueva" #claveNueva="ngModel" class="form-control" maxlength="100" required/>
-      <div *ngIf="submitted && !claveNueva.valid" class="field-requerido">La contraseña nueva es requerida</div>
+      <input type="password" [(ngModel)]="cambioClave.claveNueva" name="claveNueva" #claveNueva="ngModel" 
+       [ngClass]="(submitted && !claveNueva.valid) ? 'form-control input-invalido':'form-control input-valido'"
+       maxlength="100" required/>
     </div>
 
     <!-- repetir clave nueva -->
     <div class="form-group">
       <label for="repetirClaveNueva">Repetir nueva contraseña*</label>
-      <input type="password" [(ngModel)]="cambioClave.repetirClaveNueva" name="repetirClaveNueva" #repetirClaveNueva="ngModel" class="form-control" maxlength="100" required/>
-      <div *ngIf="submitted && !repetirClaveNueva.valid" class="field-requerido">Debe ingresar nuevamente la contraseña nueva</div>
+      <input type="password" [(ngModel)]="cambioClave.repetirClaveNueva" name="repetirClaveNueva" #repetirClaveNueva="ngModel" 
+       [ngClass]="(submitted && !repetirClaveNueva.valid) ? 'form-control input-invalido':'form-control input-valido'"
+       maxlength="100" required/>
     </div>
 
     <!-- button guardar cambios -->
