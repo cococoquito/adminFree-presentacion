@@ -4,67 +4,80 @@
 </div>
 <br/>
 
+<!-- tab configuraciones -->
 <ul class="nav nav-tabs">
-  <li role="presentation" [class.active]="tiposViviendasB"><a (click)="showTiposVivienda()" [ngStyle]="(tiposViviendasB) ? style_tab_selected : style_tab_not_selected">Tipos de vivienda</a></li>
-  <li role="presentation" [class.active]="tiposVehiculosB"><a (click)="showTiposVehiculos()" [ngStyle]="(tiposVehiculosB) ? style_tab_selected : style_tab_not_selected">Tipos de vehículos</a></li>
-  <li role="presentation" [class.active]="tiposCuentasB"><a (click)="showTiposCuentas()" [ngStyle]="(tiposCuentasB) ? style_tab_selected : style_tab_not_selected">Tipos de cuenta</a></li>
-  <li role="presentation" [class.active]="mensualidadViviendasB"><a (click)="showMensualidadVivienda()" [ngStyle]="(mensualidadViviendasB) ? style_tab_selected : style_tab_not_selected">Mensualidad viviendas</a></li>
-  <li role="presentation" [class.active]="mensualidadVehiculosB"><a (click)="showMensualidadVehiculo()" [ngStyle]="(mensualidadVehiculosB) ? style_tab_selected : style_tab_not_selected">Mensualidad vehículos</a></li>
+  <li role="presentation" [class.active]="TIPOS_VIVIENDAS == tipoConfiguracion"><a (click)="showTabConfiguracionItem(TIPOS_VIVIENDAS)" [ngStyle]="(TIPOS_VIVIENDAS == tipoConfiguracion) ? style_tab_selected : style_tab_not_selected">Tipos de vivienda</a></li>
+  <li role="presentation" [class.active]="TIPOS_VEHICULOS == tipoConfiguracion"><a (click)="showTabConfiguracionItem(TIPOS_VEHICULOS)" [ngStyle]="(TIPOS_VEHICULOS == tipoConfiguracion) ? style_tab_selected : style_tab_not_selected">Tipos de vehículos</a></li>
+  <li role="presentation" [class.active]="TIPOS_CUENTAS == tipoConfiguracion"><a (click)="showTabConfiguracionItem(TIPOS_CUENTAS)" [ngStyle]="(TIPOS_CUENTAS == tipoConfiguracion) ? style_tab_selected : style_tab_not_selected">Tipos de cuenta</a></li>
+  <li role="presentation" [class.active]="MENSUALIDAD_VIVIENDA == tipoConfiguracion"><a (click)="showMensualidadVivienda()" [ngStyle]="(MENSUALIDAD_VIVIENDA == tipoConfiguracion) ? style_tab_selected : style_tab_not_selected">Mensualidad viviendas</a></li>
+  <li role="presentation" [class.active]="MENSUALIDAD_VEHICULOS == tipoConfiguracion"><a (click)="showMensualidadVehiculo()" [ngStyle]="(MENSUALIDAD_VEHICULOS == tipoConfiguracion) ? style_tab_selected : style_tab_not_selected">Mensualidad vehículos</a></li>
 </ul>
 
-<div *ngIf="!tiposViviendasB && !tiposVehiculosB && !tiposCuentasB && !mensualidadViviendasB && !mensualidadVehiculosB" class="panel panel-default div-conf-init">
+<!-- panel cuando no hay configuracion seleccionado -->
+<div *ngIf="!tipoConfiguracion" class="panel panel-default div-conf-init">
   <p class="sub-title-home">Seleccione en la parte superior el tipo de</p>
   <p class="sub-title-home" style="color: #C45246">&nbsp;configuración</p>
   <p class="sub-title-home">&nbsp;que desea registrar</p>
 </div>
 
+<!-- panel para la administracion de los items del sistema - inicio -->
+<div *ngIf="(TIPOS_VIVIENDAS == tipoConfiguracion) || (TIPOS_VEHICULOS == tipoConfiguracion) || (TIPOS_CUENTAS == tipoConfiguracion)"
+  class="panel panel-default" style="min-height: 400px;">
 
-<div class="panel panel-default" *ngIf="tiposViviendasB" style="min-height: 400px;">
-
+  <!-- subtitulo configuracion -->
   <div style="text-align: center">
-    <p class="sub-title-home" style="line-height: 50px">Ingresa los tipos de vivienda que existen en el condominio</p>
+    <p class="sub-title-conf" *ngIf="(TIPOS_VIVIENDAS == tipoConfiguracion)">Ingresa los tipos de vivienda que existen en el condominio</p>
+    <p class="sub-title-conf" *ngIf="(TIPOS_VEHICULOS == tipoConfiguracion)">Ingresa los tipos de vehículos que tienen los residentes del condominio</p>
+    <p class="sub-title-conf" *ngIf="(TIPOS_CUENTAS == tipoConfiguracion)">Ingresa los tipos de cuenta donde el dinero del condominio se depositará</p>
   </div>
 
-
-
-  
+  <!-- formulario para crear o editar el item-->
   <form class="form-inline" name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && guardarItem()" (keydown.enter)="$event.preventDefault()" novalidate>
-
     <div class="form-group">
-      
-      <label for="tnombre">&nbsp;Tipo de vivienda*:</label>
-      <input type="text" size="60"  [ngClass]="(submitted && !tnombre.valid) ? 'form-control input-invalido':'form-control input-valido'" placeholder="Este campo es requerido" [(ngModel)]="itemAgregarEditar.nombre"
-        #tnombre="ngModel" name="tnombre" required  maxlength="100"/>
+
+      <!-- label -->
+      <label for="tnombre" *ngIf="(TIPOS_VIVIENDAS == tipoConfiguracion)">&nbsp;Tipo de vivienda*:</label>
+      <label for="tnombre" *ngIf="(TIPOS_VEHICULOS == tipoConfiguracion)">&nbsp;Tipo de vehículo*:</label>
+      <label for="tnombre" *ngIf="(TIPOS_CUENTAS == tipoConfiguracion)">&nbsp;Tipo de cuenta*:</label>
+
+      <!-- input -->
+      <input type="text" [(ngModel)]="itemAgregarEditar.nombre" name="tnombre" #tnombre="ngModel" size="60" 
+        [ngClass]="(submitted && !tnombre.valid) ? 'form-control input-invalido':'form-control input-valido'"
+        placeholder="Este campo es requerido" maxlength="100" required/>
     </div>
+
+    <!-- button guardar -->
     <button type="submit" class="btn btn-primary">Guardar</button>
   </form>
   <br/>
-  <p-dataTable [value]="items" [responsive]="true" selectionMode="single" emptyMessage="No hay registros de tipos de viviendas."
-    (onRowSelect)="rowSelected($event.data)">
-    <p-column field="nombre" header="Tipos de vivienda"></p-column>
+
+  <!-- table lista de los items -->
+  <p-dataTable [value]="items" [responsive]="true" selectionMode="single" emptyMessage="No se encontrarón registros." (onRowSelect)="seleccionarItemEditar($event.data)">
+    <p-column field="nombre" header="Tipos de vivienda" *ngIf="(TIPOS_VIVIENDAS == tipoConfiguracion)"></p-column>
+    <p-column field="nombre" header="Tipo de vehículo" *ngIf="(TIPOS_VEHICULOS == tipoConfiguracion)"></p-column>
+    <p-column field="nombre" header="Tipo de cuenta" *ngIf="(TIPOS_CUENTAS == tipoConfiguracion)"></p-column>
+
     <p-column [style]="{'width':'5%'}">
       <ng-template let-item="rowData" pTemplate="body">
         <button class="delete" (click)=eliminarItem(item)>X</button>
       </ng-template>
     </p-column>
   </p-dataTable>
-
 </div>
+<!-- panel para la administracion de los items del sistema - final -->
 
-<div class="panel panel-default" *ngIf="tiposVehiculosB">
-  tipos vehiculos
-</div>
-
-<div class="panel panel-default" *ngIf="tiposCuentasB">
-  tipos cuentas
-</div>
-
-<div class="panel panel-default" *ngIf="mensualidadViviendasB">
+<!-- panel para la configuracion de la mensualidad de vivienda - inicio -->
+<div class="panel panel-default" *ngIf="MENSUALIDAD_VIVIENDA == tipoConfiguracion">
   mensualidad viviendas
 </div>
+<!-- panel para la configuracion de la mensualidad de vivienda - final -->
 
-<div class="panel panel-default" *ngIf="mensualidadVehiculosB">
+<!-- panel para la configuracion de la mensualidad de vehiculos - inicio -->
+<div class="panel panel-default" *ngIf="MENSUALIDAD_VEHICULOS == tipoConfiguracion">
   mensualidad vehiculos
 </div>
+<!-- panel para la configuracion de la mensualidad de vehiculos - final -->
+
+<!-- ventanas de mensaje de alerta y de confirmacion  -->
 <alert></alert>
-<p-confirmDialog header="Eliminar Registro" icon="fa fa-question-circle" width="500"></p-confirmDialog>
+<p-confirmDialog width="500" acceptLabel="Aceptar" rejectLabel="Cancelar"></p-confirmDialog>
