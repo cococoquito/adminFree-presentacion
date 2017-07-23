@@ -3,7 +3,7 @@ import { AlertService } from './../../../service/alert.service';
 import { SeguridadService } from './../../../service/seguridad.service';
 import { UtilitarioService } from './../../../service/utilitario.service';
 import { HOME } from './../../../util/Constants';
-import { UsuarioDTO } from './../../../model/UsuarioDTO';
+import { UsuariosVO } from './../../../model/UsuariosVO';
 import { Component, OnInit } from '@angular/core';
 
 /**
@@ -16,7 +16,7 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   /** variable que contiene los datos para la autenticacion */
-  private user: UsuarioDTO;
+  private user: UsuariosVO;
 
   /** bandera que identifica si ya se hizo submit */
   private submitted: boolean;
@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         // se muestra el mensaje alert danger
-        this.alertService.showAlert(error.json().mensaje, "alert alert-danger text_center", false);
+        this.alertService.showAlert(error.text(), "alert alert-danger text_center", false);
 
         // se limpia todo ingresado por pantalla
         this.init();
@@ -95,6 +95,6 @@ export class LoginComponent implements OnInit {
     this.submitted = false;
 
     // se crea la instancia para el USER
-    this.user = new UsuarioDTO();
+    this.user = new UsuariosVO();
   }
 }

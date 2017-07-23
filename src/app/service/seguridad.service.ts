@@ -1,6 +1,7 @@
+import { UsuariosVO } from './../model/UsuariosVO';
 import { CambioClaveDTO } from './../model/CambioClaveDTO';
 import { URL_BASE, KEY_LOCAL_STORE_USER } from './../util/Constants';
-import { UsuarioDTO } from './../model/UsuarioDTO';
+import { UsuarioSessionDTO } from './../model/UsuarioSessionDTO';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -13,10 +14,10 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 export class SeguridadService {
 
     /** se utiliza para las notificaciones cuando el usuario se autentica */
-    public behaviorAutenticacion: BehaviorSubject<UsuarioDTO> = new BehaviorSubject<UsuarioDTO>(null);
+    public behaviorAutenticacion: BehaviorSubject<UsuarioSessionDTO> = new BehaviorSubject<UsuarioSessionDTO>(null);
 
     /** URL para el recurso de autenticacion en el sistema */
-    private static URL_AUTENTICACION = 'general/iniciarSesion';
+    private static URL_AUTENTICACION = 'admin/iniciar_sesion';
 
     /** URL para el recurso de cambio de clave */
     private static URL_CAMBIO_CLAVE = 'general/cambiarClave';
@@ -37,7 +38,7 @@ export class SeguridadService {
      * Metodo que permite iniciar sesion sobre la APP
      * @param user, usuario que intenta autenticarse en el sistema
      */
-    public iniciarSesion(user: UsuarioDTO): Observable<Response> {
+    public iniciarSesion(user: UsuariosVO): Observable<Response> {
         return this.http.post(URL_BASE + SeguridadService.URL_AUTENTICACION, user, this.options);
     }
 
@@ -53,7 +54,7 @@ export class SeguridadService {
      * Metodo que permite notificar a los susbcritores que el usuario esta autenticado
      * @param user, usuario autenticado en el sistema
      */
-    public notificarUserAutenticado(user: UsuarioDTO): void {
+    public notificarUserAutenticado(user: UsuarioSessionDTO): void {
         // se almacena el usuario en el local storage
         localStorage.setItem(KEY_LOCAL_STORE_USER, JSON.stringify(user));
 
@@ -75,7 +76,7 @@ export class SeguridadService {
     /**
      * Metodo que permite obtener el usuario autenticado en el sistema
      */
-    public getUsuarioAutenticado(): UsuarioDTO {
+    public getUsuarioAutenticado(): UsuarioSessionDTO {
         let userIn = localStorage.getItem(KEY_LOCAL_STORE_USER);
         if (userIn) {
             return JSON.parse(userIn);
