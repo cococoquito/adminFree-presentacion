@@ -17,12 +17,3 @@ button.delete {
   font-size: 19px;
   font-weight: bold;
 }
-
-.div-conf-init{
-  height: 300px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items:center;
-}
