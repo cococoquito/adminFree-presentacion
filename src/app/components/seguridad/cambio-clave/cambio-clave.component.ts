@@ -62,7 +62,7 @@ export class CambioClaveComponent implements OnInit {
     this.seguridadService.cambiarClave(this.cambioClave).subscribe(
       data => {
         // se muestra el mensaje exitoso
-        this.alertService.showAlert(data.json().mensaje, "alert alert-success text_center", false);
+        this.alertService.showAlert(data.text(), "alert alert-success text_center", false);
 
         // se inicializa las variables
         this.init();
@@ -72,7 +72,7 @@ export class CambioClaveComponent implements OnInit {
       },
       error => {
         // se muestra el mensaje alert danger
-        this.alertService.showAlert(error.json().mensaje, "alert alert-danger text_center", false);
+        this.alertService.showAlert(error.text(), "alert alert-danger text_center", false);
 
         // se cierra el modal de carga
         this.utilService.displayLoading(false);
@@ -89,6 +89,6 @@ export class CambioClaveComponent implements OnInit {
 
     // se crea la instancia para el DTO cambio de clave
     this.cambioClave = new CambioClaveDTO();
-    this.cambioClave.usuario = this.seguridadService.getUsuarioAutenticado();
+    this.cambioClave.idUsuario = this.seguridadService.getUsuarioAutenticado().usuario.idUsuario;
   }
 }

@@ -1,8 +1,12 @@
-import { UsuarioDTO } from './UsuarioDTO';
+import { UsuariosVO } from './UsuariosVO';
+
 /**
  * DTO que contiene los datos para el cambio de clave
  */
 export class CambioClaveDTO {
+
+    /** representa el identificador del user autenticado **/
+    idUsuario: number;
 
     /** propiedad que representa la clave actual */
     claveActual: string;
@@ -12,7 +16,4 @@ export class CambioClaveDTO {
 
     /** propiedad que representa la clave nueva repetida */
     repetirClaveNueva: string;
-
-    /** usuario a quien se le cambia la clave */
-    usuario: UsuarioDTO;
 }

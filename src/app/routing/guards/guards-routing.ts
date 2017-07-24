@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { HOME, RAIZ } from './../../util/Constants';
 import { SeguridadService } from './../../service/seguridad.service';
-import { UsuarioDTO } from './../../model/UsuarioDTO';
+import { UsuarioSessionDTO } from './../../model/UsuarioSessionDTO';
 
 /**
  * Service que permite proteger los redireccionamiento de la aplicacion

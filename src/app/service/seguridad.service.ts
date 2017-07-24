@@ -20,7 +20,7 @@ export class SeguridadService {
     private static URL_AUTENTICACION = 'admin/iniciar_sesion';
 
     /** URL para el recurso de cambio de clave */
-    private static URL_CAMBIO_CLAVE = 'general/cambiarClave';
+    private static URL_CAMBIO_CLAVE = 'admin/cambiar_clave';
 
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json' });
