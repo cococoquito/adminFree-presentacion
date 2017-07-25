@@ -1,4 +1,4 @@
-import { CAMBIO_CLAVE, RAIZ, HOME, CONF_INCIALES, CASAS_RESIDENTES } from './../../util/Constants';
+import { CAMBIO_CLAVE, RAIZ, HOME, CONF_INCIALES } from './../../util/Constants';
 import { SeguridadService } from './../../service/seguridad.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UsuarioSessionDTO } from './../../model/UsuarioSessionDTO';
@@ -76,13 +76,6 @@ export class AppRoot implements OnInit, OnDestroy {
      */
     private showConfigIniciales() {
         this.router.navigate([CONF_INCIALES]);
-    }
-
-    /**
-     * Metodo que permite abrir la pagina de casas y residentes
-     */
-    private showCasasResidentes() {
-        this.router.navigate([CASAS_RESIDENTES]);
     }
 
     /**

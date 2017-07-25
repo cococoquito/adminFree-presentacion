@@ -30,7 +30,6 @@ import { LoadingComponent } from './components/directivas/loading/loading.compon
 import { HomeComponent } from './components/home/home.component';
 import { CambioClaveComponent } from './components/seguridad/cambio-clave/cambio-clave.component';
 import { ConfInicialesComponent } from './components/admin/conf-iniciales/conf-iniciales.component';
-import { CasasResidentesComponent } from './components/admin/casas-residentes/casas-residentes.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +40,7 @@ import { CasasResidentesComponent } from './components/admin/casas-residentes/ca
     AlertComponent,
     HomeComponent,
     CambioClaveComponent,
-    ConfInicialesComponent,
-    CasasResidentesComponent
+    ConfInicialesComponent
   ],
 
   imports: [
