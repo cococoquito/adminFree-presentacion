@@ -33,6 +33,7 @@ import { SolicitarConsecutivoComponent } from './components/correspondencia/soli
 import { ArchivoGestionComponent } from './components/correspondencia/archivo_gestion/archivo-gestion.component';
 import { ConsecutivosSolicitadosComponent } from './components/correspondencia/consecutivos_solicitados/consecutivos-solicitados.component';
 import { UsuariosComponent } from './components/admin/usuarios/usuarios.component';
+import { ParametrizacionRegistrosComponent } from './components/admin/parametrizacion_registros/parametrizacion-registros.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { UsuariosComponent } from './components/admin/usuarios/usuarios.componen
     SolicitarConsecutivoComponent,
     ArchivoGestionComponent,
     ConsecutivosSolicitadosComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    ParametrizacionRegistrosComponent
   ],
 
   imports: [

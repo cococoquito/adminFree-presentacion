@@ -8,6 +8,7 @@ import { SolicitarConsecutivoComponent } from './../components/correspondencia/s
 import { ArchivoGestionComponent } from './../components/correspondencia/archivo_gestion/archivo-gestion.component';
 import { ConsecutivosSolicitadosComponent } from './../components/correspondencia/consecutivos_solicitados/consecutivos-solicitados.component';
 import { UsuariosComponent } from './../components/admin/usuarios/usuarios.component';
+import { ParametrizacionRegistrosComponent } from './../components/admin/parametrizacion_registros/parametrizacion-registros.component';
 
 const ROUTES: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [GuardRouting] },
@@ -16,6 +17,7 @@ const ROUTES: Routes = [
   { path: 'arhivo_gestion', component: ArchivoGestionComponent },
   { path: 'consecutivos_solicitados', component: ConsecutivosSolicitadosComponent },
   { path: 'admin_usuarios', component: UsuariosComponent },
+  { path: 'parametrizaciones', component: ParametrizacionRegistrosComponent },
   { path: '', component: AppRoot, canActivate: [GuardRouting] }
 ];
 @NgModule({
