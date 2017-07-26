@@ -5,11 +5,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './../components/app-root/home/home.component';
 import { CambioClaveComponent } from './../components/seguridad/cambio-clave/cambio-clave.component';
 import { SolicitarConsecutivoComponent } from './../components/correspondencia/solicitar_consecutivo/solicitar-consecutivo.component';
+import { ArchivoGestionComponent } from './../components/correspondencia/archivo_gestion/archivo-gestion.component';
 
 const ROUTES: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [GuardRouting] },
   { path: 'cambio_clave', component: CambioClaveComponent, canActivate: [GuardRouting] },
   { path: 'solicitar_consecutivo', component: SolicitarConsecutivoComponent },
+  { path: 'arhivo_gestion', component: ArchivoGestionComponent },
   { path: '', component: AppRoot, canActivate: [GuardRouting] }
 ];
 @NgModule({

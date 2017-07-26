@@ -30,6 +30,7 @@ import { LoadingComponent } from './components/directivas/loading/loading.compon
 import { LoginComponent } from './components/seguridad/login/login.component';
 import { CambioClaveComponent } from './components/seguridad/cambio-clave/cambio-clave.component';
 import { SolicitarConsecutivoComponent } from './components/correspondencia/solicitar_consecutivo/solicitar-consecutivo.component';
+import { ArchivoGestionComponent } from './components/correspondencia/archivo_gestion/archivo-gestion.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SolicitarConsecutivoComponent } from './components/correspondencia/soli
     AlertComponent,
     HomeComponent,
     CambioClaveComponent,
-    SolicitarConsecutivoComponent
+    SolicitarConsecutivoComponent,
+    ArchivoGestionComponent
   ],
 
   imports: [
