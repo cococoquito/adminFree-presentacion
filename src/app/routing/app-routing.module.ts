@@ -9,7 +9,6 @@ import { ConfInicialesComponent } from './../components/admin/conf-iniciales/con
 const ROUTES: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [GuardRouting] },
   { path: 'cambio_clave', component: CambioClaveComponent, canActivate: [GuardRouting] },
-  { path: 'conf_iniciales', component: ConfInicialesComponent, canActivate: [GuardRouting] },
   { path: '', component: AppRoot, canActivate: [GuardRouting] }
 ];
 @NgModule({

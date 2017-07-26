@@ -8,7 +8,6 @@ export var KEY_LOCAL_STORE_USER: string = "adminFree-user";
 export var RAIZ: string = "/";
 export var HOME: string = "/home";
 export var CAMBIO_CLAVE: string = "/cambio_clave";
-export var CONF_INCIALES: string = "/conf_iniciales";
 /** Constante para los PATH del routing - final */
 
 /** Constantes para los estados - inicio*/
