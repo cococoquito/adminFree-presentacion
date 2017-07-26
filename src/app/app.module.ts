@@ -31,6 +31,7 @@ import { LoginComponent } from './components/seguridad/login/login.component';
 import { CambioClaveComponent } from './components/seguridad/cambio-clave/cambio-clave.component';
 import { SolicitarConsecutivoComponent } from './components/correspondencia/solicitar_consecutivo/solicitar-consecutivo.component';
 import { ArchivoGestionComponent } from './components/correspondencia/archivo_gestion/archivo-gestion.component';
+import { ConsecutivosSolicitadosComponent } from './components/correspondencia/consecutivos_solicitados/consecutivos-solicitados.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ArchivoGestionComponent } from './components/correspondencia/archivo_ge
     HomeComponent,
     CambioClaveComponent,
     SolicitarConsecutivoComponent,
-    ArchivoGestionComponent
+    ArchivoGestionComponent,
+    ConsecutivosSolicitadosComponent
   ],
 
   imports: [
