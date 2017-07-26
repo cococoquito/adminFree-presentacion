@@ -9,6 +9,7 @@ import { ArchivoGestionComponent } from './../components/correspondencia/archivo
 import { ConsecutivosSolicitadosComponent } from './../components/correspondencia/consecutivos_solicitados/consecutivos-solicitados.component';
 import { UsuariosComponent } from './../components/admin/usuarios/usuarios.component';
 import { ParametrizacionRegistrosComponent } from './../components/admin/parametrizacion_registros/parametrizacion-registros.component';
+import { FormatoFuenteComponent } from './../components/admin/formato_fuente/formato-fuente.component';
 
 const ROUTES: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [GuardRouting] },
@@ -18,6 +19,7 @@ const ROUTES: Routes = [
   { path: 'consecutivos_solicitados', component: ConsecutivosSolicitadosComponent },
   { path: 'admin_usuarios', component: UsuariosComponent },
   { path: 'parametrizaciones', component: ParametrizacionRegistrosComponent },
+  { path: 'formato', component: FormatoFuenteComponent },
   { path: '', component: AppRoot, canActivate: [GuardRouting] }
 ];
 @NgModule({
