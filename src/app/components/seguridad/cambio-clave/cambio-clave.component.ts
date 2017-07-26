@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CambioClaveDTO } from './../../../model/CambioClaveDTO';
+import { CambioClaveDTO } from './../../../model/seguridad/CambioClaveDTO';
 import { AlertService } from './../../../service/alert.service';
 import { SeguridadService } from './../../../service/seguridad.service';
 import { UtilitarioService } from './../../../service/utilitario.service';

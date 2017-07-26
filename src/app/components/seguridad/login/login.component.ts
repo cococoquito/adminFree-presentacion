@@ -3,7 +3,7 @@ import { AlertService } from './../../../service/alert.service';
 import { SeguridadService } from './../../../service/seguridad.service';
 import { UtilitarioService } from './../../../service/utilitario.service';
 import { HOME } from './../../../util/Constants';
-import { UsuariosVO } from './../../../model/UsuariosVO';
+import { UsuariosVO } from './../../../model/seguridad/UsuariosVO';
 import { Component, OnInit } from '@angular/core';
 
 /**

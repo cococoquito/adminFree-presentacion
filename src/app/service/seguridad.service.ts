@@ -1,7 +1,7 @@
-import { UsuariosVO } from './../model/UsuariosVO';
-import { CambioClaveDTO } from './../model/CambioClaveDTO';
+import { CambioClaveDTO } from './../model/seguridad/CambioClaveDTO';
+import { UsuarioSessionDTO } from './../model/seguridad/UsuarioSessionDTO';
+import { UsuariosVO } from './../model/seguridad/UsuariosVO';
 import { URL_BASE, KEY_LOCAL_STORE_USER } from './../util/Constants';
-import { UsuarioSessionDTO } from './../model/UsuarioSessionDTO';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

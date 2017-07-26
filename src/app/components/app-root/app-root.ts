@@ -1,7 +1,7 @@
 import { CAMBIO_CLAVE, RAIZ, HOME, CONF_INCIALES } from './../../util/Constants';
 import { SeguridadService } from './../../service/seguridad.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UsuarioSessionDTO } from './../../model/UsuarioSessionDTO';
+import { UsuarioSessionDTO } from './../../model/seguridad/UsuarioSessionDTO';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 
