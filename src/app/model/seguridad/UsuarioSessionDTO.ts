@@ -1,3 +1,4 @@
+import { ModuloDTO } from './../menu/ModuloDTO';
 import { UsuariosVO } from './UsuariosVO';
 
 /**
@@ -7,4 +8,7 @@ export class UsuarioSessionDTO {
 
     /** Objecto que contiene el usuario autenticado en el sistema */
     usuario: UsuariosVO;
+
+    /** Son los modulos que puede visualizar el usuario autenticado */
+    modulos: Array<ModuloDTO>;
 }

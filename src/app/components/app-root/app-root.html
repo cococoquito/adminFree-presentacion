@@ -50,50 +50,17 @@
         <!-- header final -->
 
         <!-- menu - inicio -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <div class="collapse navbar-collapse navbar-ex1-collapse" *ngIf="userAutenticado.modulos">
             <ul class="nav navbar-nav side-nav" style="background-color: #F1F6FA;">
-                <li>
-                    <a class="cursor-manito" data-toggle="collapse" data-target="#subAdmin"><i class="fa fa-fw fa-dashboard"></i> Administrador <i class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="subAdmin" class="collapse">
-                        <li>
-                            <a class="cursor-manito" (click)="showConfigIniciales()">Configuraciones Iniciales</a>
-                        </li>
-                        <li>
-                            <a class="cursor-manito" (click)="showCasasResidentes()">Casas y Residentes</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
-                </li>
-                <li>
-                    <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
-                </li>
-                <li>
-                    <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
-                </li>
-                <li>
-                    <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
-                </li>
-                <li>
-                    <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-                </li>
-                <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="demo" class="collapse">
-                        <li>
-                            <a href="#">Dropdown Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Dropdown Item</a>
+                <li *ngFor="let modulo of userAutenticado.modulos">
+                    <a class="cursor-manito" data-toggle="collapse" [attr.data-target]="'#modulo' + modulo.idModulo">
+                        <i [ngClass]="(modulo.idModulo == 1)?'fa fa-fw glyphicon glyphicon-envelope':'my-class2'">
+                        </i> {{modulo.nombreModulo}} <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul [attr.id]="'modulo' + modulo.idModulo" class="collapse in">
+                        <li *ngFor="let item of modulo.itemsModulo">
+                            <a class="cursor-manito" (click)="redireccionar(item.urlRouter)"><i class="fa fa-fw glyphicon glyphicon-circle-arrow-right"></i> {{item.nombreItem}}</a>
                         </li>
                     </ul>
-                </li>
-                <li>
-                    <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-                </li>
-                <li>
-                    <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
                 </li>
             </ul>
         </div>

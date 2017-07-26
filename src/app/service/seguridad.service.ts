@@ -1,3 +1,5 @@
+import { ModuloItemDTO } from './../model/menu/ModuloItemDTO';
+import { ModuloDTO } from './../model/menu/ModuloDTO';
 import { CambioClaveDTO } from './../model/seguridad/CambioClaveDTO';
 import { UsuarioSessionDTO } from './../model/seguridad/UsuarioSessionDTO';
 import { UsuariosVO } from './../model/seguridad/UsuariosVO';
@@ -55,6 +57,30 @@ export class SeguridadService {
      * @param user, usuario autenticado en el sistema
      */
     public notificarUserAutenticado(user: UsuarioSessionDTO): void {
+         // este codigo es para borrar - inicio
+        let modulos = new Array<ModuloDTO>();
+        let correspondecia = new ModuloDTO();
+        correspondecia.idModulo = 1;
+        correspondecia.nombreModulo = "Correspondencia";
+
+        let itemsModulo = new  Array<ModuloItemDTO>();
+        let solicitar = new ModuloItemDTO();
+        solicitar.idItem=1;
+        solicitar.nombreItem="Tiempo de servicios y salarios";
+        solicitar.urlRouter="/conf_iniciales";
+        itemsModulo.push(solicitar);
+
+        let gestion = new ModuloItemDTO();
+        gestion.idItem=2;
+        gestion.nombreItem="Gestion Archivos";
+        gestion.urlRouter="/cambio_clave";
+        itemsModulo.push(gestion);
+
+        correspondecia.itemsModulo =  itemsModulo;
+        modulos.push(correspondecia);
+        user.modulos = modulos;
+        // este codigo es para borrar - final
+
         // se almacena el usuario en el local storage
         localStorage.setItem(KEY_LOCAL_STORE_USER, JSON.stringify(user));
 

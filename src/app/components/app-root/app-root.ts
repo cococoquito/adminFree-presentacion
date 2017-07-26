@@ -49,7 +49,7 @@ export class AppRoot implements OnInit, OnDestroy {
     /**
      * Metodo que permite cerrar sesion del user autenticado
      */
-    private cerrarSesion() {
+    private cerrarSesion(): void {
         // se notifica el cierre de sesion
         this.seguridadService.notificarUserLogout();
 
@@ -60,22 +60,23 @@ export class AppRoot implements OnInit, OnDestroy {
     /**
      * Metodo que permite abrir la pagina de cambio de clave
      */
-    private showCambiarClave() {
+    private showCambiarClave(): void {
         this.router.navigate([CAMBIO_CLAVE]);
     }
 
     /**
      * Metodo que permite abrir la pagina de HOME de la app
      */
-    private showHome() {
+    private showHome(): void {
         this.router.navigate([HOME]);
     }
 
     /**
-     * Metodo que permite abrir la pagina de configuraciones iniciales
+     * Metodo que soporta el redireccionamiento para los items del menu
+     * @param urlRouter , es la URL donde se prentende a redireccionar
      */
-    private showConfigIniciales() {
-        this.router.navigate([CONF_INCIALES]);
+    private redireccionar(urlRouter: string): void {
+        this.router.navigate([urlRouter]);
     }
 
     /**
