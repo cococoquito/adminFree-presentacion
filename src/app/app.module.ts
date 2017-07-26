@@ -24,12 +24,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoot } from './components/app-root/app-root';
 import { NgModule } from '@angular/core';
 import { FooterComponent } from './components/app-root/footer/footer.component';
-import { LoginComponent } from './components/seguridad/login/login.component';
+import { HomeComponent } from './components/app-root/home/home.component';
 import { AlertComponent } from './components/directivas/alert/alert.component';
 import { LoadingComponent } from './components/directivas/loading/loading.component';
-import { HomeComponent } from './components/app-root/home/home.component';
+import { LoginComponent } from './components/seguridad/login/login.component';
 import { CambioClaveComponent } from './components/seguridad/cambio-clave/cambio-clave.component';
-import { ConfInicialesComponent } from './components/admin/conf-iniciales/conf-iniciales.component';
 import { SolicitarConsecutivoComponent } from './components/correspondencia/solicitar_consecutivo/solicitar-consecutivo.component';
 
 @NgModule({
@@ -41,7 +40,6 @@ import { SolicitarConsecutivoComponent } from './components/correspondencia/soli
     AlertComponent,
     HomeComponent,
     CambioClaveComponent,
-    ConfInicialesComponent,
     SolicitarConsecutivoComponent
   ],
 
