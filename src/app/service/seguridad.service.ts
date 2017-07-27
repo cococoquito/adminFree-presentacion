@@ -67,7 +67,7 @@ export class SeguridadService {
         let solicitar = new ModuloItemDTO();
         solicitar.idItem=1;
         solicitar.nombreItem="Tiempo de servicios y salarios";
-        solicitar.urlRouter="/conf_iniciales";
+        solicitar.urlRouter="/arhivo_gestion";
         itemsModulo.push(solicitar);
 
         let gestion = new ModuloItemDTO();
