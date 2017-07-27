@@ -14,6 +14,10 @@ import { CartasLaboralesComponent } from './../components/solicitud_certificados
 import { ReporteCesantiasComponent } from './../components/solicitud_certificados/reporte_cesantias/reporte-cesantias';
 import { TiempoServiciosSalariosComponent } from './../components/solicitud_certificados/tiempo_servicios_salarios/tiempo-servicios-salarios';
 import { CertificadosSolicitadosComponent } from './../components/solicitud_certificados/certificados_solicitados/certificados-solicitados';
+import { CrearProcesosComponent } from './../components/demandas/crear_procesos/crear-procesos.component';
+import { AgendaAbogadoComponent } from './../components/demandas/agenda_abogado/agenda-abogado.component';
+import { AgendarEventosComponent } from './../components/demandas/agendar_eventos/agendar-eventos.component';
+import { GestionProcesosComponent } from './../components/demandas/gestion_procesos/gestion-procesos.component';
 
 const ROUTES: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [GuardRouting] },
@@ -28,6 +32,10 @@ const ROUTES: Routes = [
   { path: 'reporte_cesantias', component: ReporteCesantiasComponent },
   { path: 'servicios_salarios', component: TiempoServiciosSalariosComponent },
   { path: 'certificados_solicitados', component: CertificadosSolicitadosComponent },
+  { path: 'crear_procesos', component: CrearProcesosComponent },
+  { path: 'agenda', component: AgendaAbogadoComponent },
+  { path: 'agendar_eventos', component: AgendarEventosComponent },
+  { path: 'gestion_procesos', component: GestionProcesosComponent },
   { path: '', component: AppRoot, canActivate: [GuardRouting] }
 ];
 @NgModule({

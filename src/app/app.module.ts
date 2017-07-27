@@ -39,6 +39,10 @@ import { CartasLaboralesComponent } from './components/solicitud_certificados/ca
 import { ReporteCesantiasComponent } from './components/solicitud_certificados/reporte_cesantias/reporte-cesantias';
 import { TiempoServiciosSalariosComponent } from './components/solicitud_certificados/tiempo_servicios_salarios/tiempo-servicios-salarios';
 import { CertificadosSolicitadosComponent } from './components/solicitud_certificados/certificados_solicitados/certificados-solicitados';
+import { CrearProcesosComponent } from './components/demandas/crear_procesos/crear-procesos.component';
+import { AgendaAbogadoComponent } from './components/demandas/agenda_abogado/agenda-abogado.component';
+import { AgendarEventosComponent } from './components/demandas/agendar_eventos/agendar-eventos.component';
+import { GestionProcesosComponent } from './components/demandas/gestion_procesos/gestion-procesos.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,11 @@ import { CertificadosSolicitadosComponent } from './components/solicitud_certifi
     CartasLaboralesComponent,
     ReporteCesantiasComponent,
     TiempoServiciosSalariosComponent,
-    CertificadosSolicitadosComponent
+    CertificadosSolicitadosComponent,
+    CrearProcesosComponent,
+    AgendaAbogadoComponent,
+    AgendarEventosComponent,
+    GestionProcesosComponent
   ],
 
   imports: [
