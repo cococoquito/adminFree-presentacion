@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { HOME, RAIZ } from './../../util/Constants';
+import { HOME, RAIZ, CAMBIO_CLAVE } from './../../util/Constants';
 import { SeguridadService } from './../../service/seguridad.service';
 import { UsuarioSessionDTO } from './../../model/seguridad/UsuarioSessionDTO';
 
@@ -44,6 +44,21 @@ export class GuardRouting implements CanActivate {
                 return false;
             }
 
+            //**************aca se comprueba los privilegios del usuario***************************
+            if (requestURL != HOME && requestURL != CAMBIO_CLAVE) {
+                let modulos = usuarioAutenticado.modulos;
+                for (let modulo of modulos) {
+                    let items = modulo.itemsModulo;
+                    for (let item of items) {
+                        if (item.urlRouter == requestURL) {
+                            return true;
+                        }
+                    }
+                }
+                // si llega a esta instancia es porque no el user no tiene privilegios para la URL
+                this.router.navigate([HOME]);
+                return false;
+            }
             //**************aca se comprueba los privilegios del usuario***************************
         }
 
