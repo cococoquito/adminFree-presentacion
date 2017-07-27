@@ -46,16 +46,28 @@ export class GuardRouting implements CanActivate {
 
             //**************aca se comprueba los privilegios del usuario***************************
             if (requestURL != HOME && requestURL != CAMBIO_CLAVE) {
+
+                // se valida que user si contenga modulos asignados
                 let modulos = usuarioAutenticado.modulos;
-                for (let modulo of modulos) {
-                    let items = modulo.itemsModulo;
-                    for (let item of items) {
-                        if (item.urlRouter == requestURL) {
-                            return true;
+                let items;
+                if (modulos) {
+                    for (let modulo of modulos) {
+
+                        // se valida que el modulo si contenga items asignados
+                        items = modulo.itemsModulo;
+                        if (items) {
+
+                            // se busca si el user tiene privilegios para esta URL
+                            for (let item of items) {
+                                if (item.urlRouter == requestURL) {
+                                    return true;
+                                }
+                            }
                         }
                     }
                 }
-                // si llega a esta instancia es porque no el user no tiene privilegios para la URL
+
+                // si llega a esta instancia es porque el user no tiene privilegios para la URL
                 this.router.navigate([HOME]);
                 return false;
             }
