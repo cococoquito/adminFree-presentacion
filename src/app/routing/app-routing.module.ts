@@ -10,6 +10,10 @@ import { ConsecutivosSolicitadosComponent } from './../components/correspondenci
 import { UsuariosComponent } from './../components/admin/usuarios/usuarios.component';
 import { ParametrizacionRegistrosComponent } from './../components/admin/parametrizacion_registros/parametrizacion-registros.component';
 import { FormatoFuenteComponent } from './../components/admin/formato_fuente/formato-fuente.component';
+import { CartasLaboralesComponent } from './../components/solicitud_certificados/cartas_laborales/cartas-laborales';
+import { ReporteCesantiasComponent } from './../components/solicitud_certificados/reporte_cesantias/reporte-cesantias';
+import { TiempoServiciosSalariosComponent } from './../components/solicitud_certificados/tiempo_servicios_salarios/tiempo-servicios-salarios';
+import { CertificadosSolicitadosComponent } from './../components/solicitud_certificados/certificados_solicitados/certificados-solicitados';
 
 const ROUTES: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [GuardRouting] },
@@ -20,6 +24,10 @@ const ROUTES: Routes = [
   { path: 'admin_usuarios', component: UsuariosComponent },
   { path: 'parametrizaciones', component: ParametrizacionRegistrosComponent },
   { path: 'formato', component: FormatoFuenteComponent },
+  { path: 'carta_laborales', component: CartasLaboralesComponent },
+  { path: 'reporte_cesantias', component: ReporteCesantiasComponent },
+  { path: 'servicios_salarios', component: TiempoServiciosSalariosComponent },
+  { path: 'certificados_solicitados', component: CertificadosSolicitadosComponent },
   { path: '', component: AppRoot, canActivate: [GuardRouting] }
 ];
 @NgModule({

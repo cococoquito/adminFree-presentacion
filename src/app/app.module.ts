@@ -35,6 +35,10 @@ import { ConsecutivosSolicitadosComponent } from './components/correspondencia/c
 import { UsuariosComponent } from './components/admin/usuarios/usuarios.component';
 import { ParametrizacionRegistrosComponent } from './components/admin/parametrizacion_registros/parametrizacion-registros.component';
 import { FormatoFuenteComponent } from './components/admin/formato_fuente/formato-fuente.component';
+import { CartasLaboralesComponent } from './components/solicitud_certificados/cartas_laborales/cartas-laborales';
+import { ReporteCesantiasComponent } from './components/solicitud_certificados/reporte_cesantias/reporte-cesantias';
+import { TiempoServiciosSalariosComponent } from './components/solicitud_certificados/tiempo_servicios_salarios/tiempo-servicios-salarios';
+import { CertificadosSolicitadosComponent } from './components/solicitud_certificados/certificados_solicitados/certificados-solicitados';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,11 @@ import { FormatoFuenteComponent } from './components/admin/formato_fuente/format
     ConsecutivosSolicitadosComponent,
     UsuariosComponent,
     ParametrizacionRegistrosComponent,
-    FormatoFuenteComponent
+    FormatoFuenteComponent,
+    CartasLaboralesComponent,
+    ReporteCesantiasComponent,
+    TiempoServiciosSalariosComponent,
+    CertificadosSolicitadosComponent
   ],
 
   imports: [
