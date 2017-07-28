@@ -20,26 +20,26 @@ import { AgendarEventosComponent } from './../components/demandas/agendar_evento
 import { GestionProcesosComponent } from './../components/demandas/gestion_procesos/gestion-procesos.component';
 
 const ROUTES: Routes = [
-  { path: '/home', component: HomeComponent, canActivate: [GuardRouting] },
-  { path: '/cambio_clave', component: CambioClaveComponent, canActivate: [GuardRouting] },
+  { path: 'home', component: HomeComponent, canActivate: [GuardRouting] },
+  { path: 'cambio_clave', component: CambioClaveComponent, canActivate: [GuardRouting] },
 
-  { path: '/solicitar_consecutivo', component: SolicitarConsecutivoComponent, canActivate: [GuardRouting] },
-  { path: '/arhivo_gestion', component: ArchivoGestionComponent, canActivate: [GuardRouting] },
-  { path: '/consecutivos_solicitados', component: ConsecutivosSolicitadosComponent, canActivate: [GuardRouting] },
+  { path: 'solicitar_consecutivo', component: SolicitarConsecutivoComponent, canActivate: [GuardRouting] },
+  { path: 'arhivo_gestion', component: ArchivoGestionComponent, canActivate: [GuardRouting] },
+  { path: 'consecutivos_solicitados', component: ConsecutivosSolicitadosComponent, canActivate: [GuardRouting] },
 
-  { path: '/servicios_salarios', component: TiempoServiciosSalariosComponent, canActivate: [GuardRouting] },
-  { path: '/carta_laborales', component: CartasLaboralesComponent, canActivate: [GuardRouting] },
-  { path: '/reporte_cesantias', component: ReporteCesantiasComponent, canActivate: [GuardRouting] },
-  { path: '/certificados_solicitados', component: CertificadosSolicitadosComponent, canActivate: [GuardRouting] },
+  { path: 'servicios_salarios', component: TiempoServiciosSalariosComponent, canActivate: [GuardRouting] },
+  { path: 'carta_laborales', component: CartasLaboralesComponent, canActivate: [GuardRouting] },
+  { path: 'reporte_cesantias', component: ReporteCesantiasComponent, canActivate: [GuardRouting] },
+  { path: 'certificados_solicitados', component: CertificadosSolicitadosComponent, canActivate: [GuardRouting] },
 
-  { path: '/crear_procesos', component: CrearProcesosComponent, canActivate: [GuardRouting] },
-  { path: '/agenda', component: AgendaAbogadoComponent, canActivate: [GuardRouting] },
-  { path: '/agendar_eventos', component: AgendarEventosComponent, canActivate: [GuardRouting] },
-  { path: '/gestion_procesos', component: GestionProcesosComponent, canActivate: [GuardRouting] },  
+  { path: 'crear_procesos', component: CrearProcesosComponent, canActivate: [GuardRouting] },
+  { path: 'agenda', component: AgendaAbogadoComponent, canActivate: [GuardRouting] },
+  { path: 'agendar_eventos', component: AgendarEventosComponent, canActivate: [GuardRouting] },
+  { path: 'gestion_procesos', component: GestionProcesosComponent, canActivate: [GuardRouting] },  
 
-  { path: '/admin_usuarios', component: UsuariosComponent, canActivate: [GuardRouting] },
-  { path: '/parametrizaciones', component: ParametrizacionRegistrosComponent, canActivate: [GuardRouting] },
-  { path: '/formato_fuente', component: FormatoFuenteComponent, canActivate: [GuardRouting] },
+  { path: 'admin_usuarios', component: UsuariosComponent, canActivate: [GuardRouting] },
+  { path: 'parametrizaciones', component: ParametrizacionRegistrosComponent, canActivate: [GuardRouting] },
+  { path: 'formato_fuente', component: FormatoFuenteComponent, canActivate: [GuardRouting] },
   { path: '', component: AppRoot, canActivate: [GuardRouting] }
 ];
 @NgModule({
