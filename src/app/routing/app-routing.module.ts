@@ -29,7 +29,7 @@ const ROUTES: Routes = [
   { path: 'cambio_clave', component: CambioClaveComponent, canActivate: [GuardRouting] },
 
   { path: 'solicitar_consecutivo', component: SolicitarConsecutivoComponent, canActivate: [GuardRouting] },
-  { path: 'arhivo_gestion', component: ArchivoGestionComponent, canActivate: [GuardRouting] },
+  { path: 'archivo_gestion', component: ArchivoGestionComponent, canActivate: [GuardRouting] },
   { path: 'consecutivos_solicitados', component: ConsecutivosSolicitadosComponent, canActivate: [GuardRouting] },
 
   { path: 'servicios_salarios', component: TiempoServiciosSalariosComponent, canActivate: [GuardRouting] },
