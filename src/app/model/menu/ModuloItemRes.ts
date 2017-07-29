@@ -1,8 +1,8 @@
 /**
- * DTO que tiene la informacion del item de cada modulo
+ * Clase que tiene la informacion del item de cada modulo
  * esto se utiliza para el menu de admin-free
  */
-export class ModuloItemDTO {
+export class ModuloItemRes {
 
     /** identificador del item */
     idItem: number;

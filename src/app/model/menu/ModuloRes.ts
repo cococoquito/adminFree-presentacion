@@ -1,10 +1,10 @@
-import { ModuloItemDTO } from './ModuloItemDTO';
+import { ModuloItemRes } from './ModuloItemRes';
 
 /**
- * DTO que contiene los datos del modulo de la aplicacion
+ * Clase que contiene los datos del modulo de la aplicacion
  * esto se utiliza para el menu de admin-free
  */
-export class ModuloDTO {
+export class ModuloRes {
 
     /** identificador del modulo, se utiliza para data-togle del menu */
     idModulo: number;
@@ -13,5 +13,5 @@ export class ModuloDTO {
     nombreModulo: string;
 
     /** son los items de este modulo, se visualiza en el menu */
-    itemsModulo: Array<ModuloItemDTO>;
+    itemsModulo: Array<ModuloItemRes>;
 }

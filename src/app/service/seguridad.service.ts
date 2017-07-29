@@ -1,7 +1,5 @@
-import { ModuloItemDTO } from './../model/menu/ModuloItemDTO';
-import { ModuloDTO } from './../model/menu/ModuloDTO';
 import { CambioClaveDTO } from './../model/seguridad/CambioClaveDTO';
-import { UsuarioSessionDTO } from './../model/seguridad/UsuarioSessionDTO';
+import { UsuarioRes } from './../model/seguridad/UsuarioRes';
 import { UsuariosVO } from './../model/seguridad/UsuariosVO';
 import { URL_BASE, KEY_LOCAL_STORE_USER } from './../util/Constants';
 import { Injectable } from '@angular/core';
@@ -16,7 +14,7 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 export class SeguridadService {
 
     /** se utiliza para las notificaciones cuando el usuario se autentica */
-    public behaviorAutenticacion: BehaviorSubject<UsuarioSessionDTO> = new BehaviorSubject<UsuarioSessionDTO>(null);
+    public behaviorAutenticacion: BehaviorSubject<UsuarioRes> = new BehaviorSubject<UsuarioRes>(null);
 
     /** URL para el recurso de autenticacion en el sistema */
     private static URL_AUTENTICACION = 'admin/iniciar_sesion';
@@ -56,30 +54,7 @@ export class SeguridadService {
      * Metodo que permite notificar a los susbcritores que el usuario esta autenticado
      * @param user, usuario autenticado en el sistema
      */
-    public notificarUserAutenticado(user: UsuarioSessionDTO): void {
-         // este codigo es para borrar - inicio
-        let modulos = new Array<ModuloDTO>();
-        let correspondecia = new ModuloDTO();
-        correspondecia.idModulo = 1;
-        correspondecia.nombreModulo = "Correspondencia";
-
-        let itemsModulo = new  Array<ModuloItemDTO>();
-        let solicitar = new ModuloItemDTO();
-        solicitar.idItem=1;
-        solicitar.nombreItem="Tiempo de servicios y salarios";
-        solicitar.urlRouter="/arhivo_gestion";
-        itemsModulo.push(solicitar);
-
-        let gestion = new ModuloItemDTO();
-        gestion.idItem=2;
-        gestion.nombreItem="Gestion Archivos";
-        gestion.urlRouter="/cambio_clave";
-        itemsModulo.push(gestion);
-
-        correspondecia.itemsModulo =  itemsModulo;
-        modulos.push(correspondecia);
-        user.modulos = modulos;
-        // este codigo es para borrar - final
+    public notificarUserAutenticado(user: UsuarioRes): void {
 
         // se almacena el usuario en el local storage
         localStorage.setItem(KEY_LOCAL_STORE_USER, JSON.stringify(user));
@@ -102,7 +77,7 @@ export class SeguridadService {
     /**
      * Metodo que permite obtener el usuario autenticado en el sistema
      */
-    public getUsuarioAutenticado(): UsuarioSessionDTO {
+    public getUsuarioAutenticado(): UsuarioRes {
         let userIn = localStorage.getItem(KEY_LOCAL_STORE_USER);
         if (userIn) {
             return JSON.parse(userIn);
