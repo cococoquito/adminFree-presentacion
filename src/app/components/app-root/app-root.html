@@ -58,7 +58,7 @@
                         </i> {{modulo.nombreModulo}} <i [ngClass]="(modulo.cerradoModulo)?'fa fa-fw fa-caret-right':'fa fa-fw fa-caret-down'"></i></a>
                     <ul [attr.id]="'modulo' + modulo.idModulo" class="collapse in">
                         <li *ngFor="let item of modulo.itemsModulo">
-                            <a class="cursor-manito" (click)="redireccionar(item.urlRouter)"><i class="fa fa-fw fa-caret-right"></i> {{item.nombreItem}}</a>
+                            <a class="cursor-manito" (click)="redireccionar(item.urlRouter)"><i class="fa fa-fw fa-angle-double-right"></i> {{item.nombreItem}}</a>
                         </li>
                     </ul>
                 </li>
