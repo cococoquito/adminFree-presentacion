@@ -25,27 +25,32 @@ import { ParametrizacionRegistrosComponent } from './../components/admin/paramet
 import { FormatoFuenteComponent } from './../components/admin/formato_fuente/formato-fuente.component';
 
 const ROUTES: Routes = [
-  { path: 'home', component: HomeComponent, canActivate: [GuardRouting] },
-  { path: 'cambio_clave', component: CambioClaveComponent, canActivate: [GuardRouting] },
+  {
+    path: '', canActivate: [GuardRouting], children: [
 
-  { path: 'solicitar_consecutivo', component: SolicitarConsecutivoComponent, canActivate: [GuardRouting] },
-  { path: 'archivo_gestion', component: ArchivoGestionComponent, canActivate: [GuardRouting] },
-  { path: 'consecutivos_solicitados', component: ConsecutivosSolicitadosComponent, canActivate: [GuardRouting] },
+      { path: '', component: AppRoot },
+      { path: 'home', component: HomeComponent },
+      { path: 'cambio_clave', component: CambioClaveComponent },
 
-  { path: 'servicios_salarios', component: TiempoServiciosSalariosComponent, canActivate: [GuardRouting] },
-  { path: 'carta_laborales', component: CartasLaboralesComponent, canActivate: [GuardRouting] },
-  { path: 'reporte_cesantias', component: ReporteCesantiasComponent, canActivate: [GuardRouting] },
-  { path: 'certificados_solicitados', component: CertificadosSolicitadosComponent, canActivate: [GuardRouting] },
+      { path: 'solicitar_consecutivo', component: SolicitarConsecutivoComponent },
+      { path: 'archivo_gestion', component: ArchivoGestionComponent },
+      { path: 'consecutivos_solicitados', component: ConsecutivosSolicitadosComponent },
 
-  { path: 'crear_procesos', component: CrearProcesosComponent, canActivate: [GuardRouting] },
-  { path: 'agenda', component: AgendaAbogadoComponent, canActivate: [GuardRouting] },
-  { path: 'agendar_eventos', component: AgendarEventosComponent, canActivate: [GuardRouting] },
-  { path: 'gestion_procesos', component: GestionProcesosComponent, canActivate: [GuardRouting] },  
+      { path: 'servicios_salarios', component: TiempoServiciosSalariosComponent },
+      { path: 'carta_laborales', component: CartasLaboralesComponent },
+      { path: 'reporte_cesantias', component: ReporteCesantiasComponent },
+      { path: 'certificados_solicitados', component: CertificadosSolicitadosComponent },
 
-  { path: 'admin_usuarios', component: UsuariosComponent, canActivate: [GuardRouting] },
-  { path: 'parametrizaciones', component: ParametrizacionRegistrosComponent, canActivate: [GuardRouting] },
-  { path: 'formato_fuente', component: FormatoFuenteComponent, canActivate: [GuardRouting] },
-  { path: '', component: AppRoot, canActivate: [GuardRouting] }
+      { path: 'crear_procesos', component: CrearProcesosComponent },
+      { path: 'agenda', component: AgendaAbogadoComponent },
+      { path: 'agendar_eventos', component: AgendarEventosComponent },
+      { path: 'gestion_procesos', component: GestionProcesosComponent },
+
+      { path: 'admin_usuarios', component: UsuariosComponent },
+      { path: 'parametrizaciones', component: ParametrizacionRegistrosComponent },
+      { path: 'formato_fuente', component: FormatoFuenteComponent }
+    ]
+  }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(ROUTES)],

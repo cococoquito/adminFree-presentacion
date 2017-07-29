@@ -1,8 +1,11 @@
 /** Constante que contiene la URL BASE donde estám los recursos a consumir */
 export var URL_BASE: string = "http://localhost:8080/AdminFreeRS/adminfree/";
 
-/** Constante que el KEY para el user autenticado */
+/** Constante para el KEY del user autenticado */
 export var KEY_LOCAL_STORE_USER: string = "adminFree-user";
+
+/** Constante para el KEY de la fecha de ingreso */
+export var KEY_FECHA_INGRESO: string = "adminFree-fecha-in";
 
 /** Constante para los PATH del routing - inicio */
 export var RAIZ: string = "/";

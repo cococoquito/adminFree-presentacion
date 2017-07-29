@@ -1,3 +1,4 @@
+<!-- titulo pagina bienvenidad -->
 <div class="text_center title-home">
   Bienvenido AdminFree
 </div>
@@ -5,12 +6,27 @@
   Diseñado para ayudarte a manejar tu información rápida y segura
 </div>
 
-<div class="center-all" style="min-height: 60vh;">
-  <img src="../../assets/img/vivook_logo.jpg" class="img-responsive img-center" />
-</div> 
+<!-- datos usuario autenticado -->
+<br/><br/>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Usuario autenticado</h3>
+  </div>
+  <div class="panel-body">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <p style="font-weight: bold">Nombre completo:</p> {{user?.usuario?.nombre}}</li>
+      <li class="list-group-item">
+        <p style="font-weight: bold">Usuario ingreso:</p> {{user?.usuario?.nombreUsuario}}</li>
+      <li class="list-group-item">
+        <p style="font-weight: bold">Rol asignado:</p> {{user?.nombreRole}}</li>
+    </ul>
+  </div>
+</div>
 
+<!-- fecha ingreso -->
 <form class="navbar-fixed-bottom">
   <div class="form-group fecha-ingreso">
-    <p class="form-control-static">Fecha ingreso:{{dateNow |date:'MM/dd/yyyy - h:mma'}}</p>
+    <p class="form-control-static">Fecha ingreso: {{dateNow}}</p>
   </div>
 </form>

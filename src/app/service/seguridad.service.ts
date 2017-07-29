@@ -1,8 +1,9 @@
 import { CambioClaveDTO } from './../model/seguridad/CambioClaveDTO';
 import { UsuarioRes } from './../model/seguridad/UsuarioRes';
 import { UsuariosVO } from './../model/seguridad/UsuariosVO';
-import { URL_BASE, KEY_LOCAL_STORE_USER } from './../util/Constants';
+import { URL_BASE, KEY_LOCAL_STORE_USER, KEY_FECHA_INGRESO } from './../util/Constants';
 import { Injectable } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
@@ -30,9 +31,10 @@ export class SeguridadService {
 
     /**
      * Constructor del service
-     * @param http, service para consumir los servicios
+     * @param http , service para consumir los servicios
+     * @param datePipe , pipe para los formatos de la fecha
      */
-    constructor(private http: Http) { }
+    constructor(private http: Http, private datePipe: DatePipe) { }
 
     /**
      * Metodo que permite iniciar sesion sobre la APP
@@ -55,9 +57,9 @@ export class SeguridadService {
      * @param user, usuario autenticado en el sistema
      */
     public notificarUserAutenticado(user: UsuarioRes): void {
-
-        // se almacena el usuario en el local storage
+        // se almacena el usuario y la fecha de ingreso en el local storage
         localStorage.setItem(KEY_LOCAL_STORE_USER, JSON.stringify(user));
+        localStorage.setItem(KEY_FECHA_INGRESO, this.datePipe.transform(new Date(), 'dd/MM/yyyy - h:mma'));
 
         // se notifica a los suscriptores que el user se encuentra autenticado
         this.behaviorAutenticacion.next(null);
@@ -67,8 +69,9 @@ export class SeguridadService {
      * Metodo que permite notificar a los susbcritores que el usuario cerro session
      */
     public notificarUserLogout() {
-        // se elimina el usuario del localStorage
+        // se elimina el usuario y la fecha de ingreso del localStorage
         localStorage.removeItem(KEY_LOCAL_STORE_USER);
+        localStorage.removeItem(KEY_FECHA_INGRESO);
 
         // se notifica a los suscriptores que el user se encuentra logout
         this.behaviorAutenticacion.next(null);

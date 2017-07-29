@@ -7,6 +7,7 @@ import { AlertService } from './service/alert.service';
 import { GuardRouting } from './routing/guards/guards-routing';
 import { AdminFreeService } from './service/admin-free.service';
 import { ConfirmationService } from 'primeng/primeng';
+import { DatePipe } from '@angular/common';
 
 /**
  * imports
@@ -85,7 +86,8 @@ import { GestionProcesosComponent } from './components/demandas/gestion_procesos
     AlertService,
     GuardRouting,
     AdminFreeService,
-    ConfirmationService
+    ConfirmationService,
+    DatePipe
   ],
   bootstrap: [AppRoot]
 })
