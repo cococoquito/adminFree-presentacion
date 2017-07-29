@@ -14,4 +14,7 @@ export class ModuloRes {
 
     /** son los items de este modulo, se visualiza en el menu */
     itemsModulo: Array<ModuloItemRes>;
+
+    /** bandera que identifica si dieron click en el modulo en el menu */
+    cerradoModulo: boolean;
 }

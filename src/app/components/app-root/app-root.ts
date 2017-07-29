@@ -1,3 +1,4 @@
+import { ModuloRes } from './../../model/menu/ModuloRes';
 import { CAMBIO_CLAVE, RAIZ, HOME } from './../../util/Constants';
 import { SeguridadService } from './../../service/seguridad.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -77,6 +78,14 @@ export class AppRoot implements OnInit, OnDestroy {
      */
     private redireccionar(urlRouter: string): void {
         this.router.navigate([urlRouter]);
+    }
+
+    /**
+     * Metodo que soporta el click para los modulos del menu
+     * @param modulo , es el menu donde se ejecuto el click
+     */
+    private clickModulo(modulo: ModuloRes): void {
+        modulo.cerradoModulo = (modulo.cerradoModulo) ? false : true;
     }
 
     /**

@@ -53,9 +53,9 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse" *ngIf="userAutenticado.modulos">
             <ul class="nav navbar-nav side-nav" style="background-color: #F1F6FA;">
                 <li *ngFor="let modulo of userAutenticado.modulos">
-                    <a class="cursor-manito" data-toggle="collapse" [attr.data-target]="'#modulo' + modulo.idModulo">
+                    <a class="cursor-manito" data-toggle="collapse" [attr.data-target]="'#modulo' + modulo.idModulo" (click)="clickModulo(modulo)">
                         <i [ngClass]="(modulo.idModulo == 1)?'fa fa-fw fa-envelope':(modulo.idModulo == 2)?'fa fa-fw fa-folder-open':(modulo.idModulo == 3)?'fa fa-fw fa-graduation-cap':(modulo.idModulo == 4)?'fa fa-fw fa-wrench':''">
-                        </i> {{modulo.nombreModulo}} <i class="fa fa-fw fa-caret-down"></i></a>
+                        </i> {{modulo.nombreModulo}} <i [ngClass]="(modulo.cerradoModulo)?'fa fa-fw fa-caret-right':'fa fa-fw fa-caret-down'"></i></a>
                     <ul [attr.id]="'modulo' + modulo.idModulo" class="collapse in">
                         <li *ngFor="let item of modulo.itemsModulo">
                             <a class="cursor-manito" (click)="redireccionar(item.urlRouter)"><i class="fa fa-fw fa-caret-right"></i> {{item.nombreItem}}</a>
