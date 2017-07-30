@@ -16,12 +16,14 @@ export class UsuariosComponent implements OnInit {
 
     /** style para el tab seleccionado */
     private style_tab_selected = {
-        'background-color': '#EEEEEE'
+        'background-color': '#EEEEEE',
+        'border': '1px solid #ddd'
     };
 
     /** style para el tab NO seleccionado */
     private style_tab_not_selected = {
-        'cursor': 'pointer'
+        'cursor': 'pointer',
+        'border': '1px solid #ddd'
     };
 
     /** indica el tipo de Item seleccionado por el user */
