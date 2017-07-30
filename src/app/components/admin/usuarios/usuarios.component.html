@@ -1,3 +1,34 @@
-<p>
-    Administracion de usuarios
-</p>
+<!-- titulo de la pagina -->
+<div class="text_center title-home back-ground-title">
+  Administración de Usuarios
+</div>
+<br/>
+
+<!-- tab items visualizar -->
+<ul class="nav nav-tabs">
+  <li role="presentation" [class.active]="ADMIN_ROLES == itemSeleccionado"><a (click)="showTabItem(ADMIN_ROLES)" [ngStyle]="(ADMIN_ROLES == itemSeleccionado) ? style_tab_selected : style_tab_not_selected">Administración Roles</a></li>
+  <li role="presentation" [class.active]="ADMIN_USER == itemSeleccionado"><a (click)="showTabItem(ADMIN_USER)" [ngStyle]="(ADMIN_USER == itemSeleccionado) ? style_tab_selected : style_tab_not_selected">Administración Usuarios</a></li>
+  <li role="presentation" [class.active]="RESTABLECER_CLAVE == itemSeleccionado"><a (click)="showTabItem(RESTABLECER_CLAVE)" [ngStyle]="(RESTABLECER_CLAVE == itemSeleccionado) ? style_tab_selected : style_tab_not_selected">Restablecer Contraseña</a></li>
+</ul>
+
+<!-- panel cuando no hay item seleccionado -->
+<div *ngIf="!itemSeleccionado" class="panel panel-default center-all" style="min-height: 300px;">
+  <p class="sub-title-home">Seleccione en la parte superior el tipo de</p>
+  <p class="sub-title-home" style="color: #C45246">&nbsp;configuración</p>
+  <p class="sub-title-home">&nbsp;que desea registrar</p>
+</div>
+
+<!-- panel para el item de admin ROLE -->
+<div class="panel panel-default" *ngIf="ADMIN_ROLES == itemSeleccionado">
+  <app-admin-roles></app-admin-roles>
+</div>
+
+<!-- panel para el item de admin USER -->
+<div class="panel panel-default" *ngIf="ADMIN_USER == itemSeleccionado">
+  <app-admin-users></app-admin-users>
+</div>
+
+<!-- panel para el item de reestablecer contrasela -->
+<div class="panel panel-default" *ngIf="RESTABLECER_CLAVE == itemSeleccionado">
+  <app-restablecer-clave></app-restablecer-clave>
+</div>

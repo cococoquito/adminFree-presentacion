@@ -1,17 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 
 /**
- * Componente para la pagina de administracion de los roles 
- * privilegios para los usuarios
+ * Componente para el submodulo de administracion>>usuarios
  */
 @Component({
-    selector: 'app-usuario',
+    selector: 'app-admin-usuario',
     templateUrl: './usuarios.component.html'
 })
 export class UsuariosComponent implements OnInit {
+
+    /** Constantes para identificar el tipo de item seleccionado */
+    private ADMIN_ROLES: number = 1;
+    private ADMIN_USER: number = 2;
+    private RESTABLECER_CLAVE: number = 3;
+
+    /** style para el tab seleccionado */
+    private style_tab_selected = {
+        'background-color': '#EEEEEE'
+    };
+
+    /** style para el tab NO seleccionado */
+    private style_tab_not_selected = {
+        'cursor': 'pointer'
+    };
+
+    /** indica el tipo de Item seleccionado por el user */
+    private itemSeleccionado: number;
 
     /**
      * PostConstructor que permite inicializar las variables del component
      */
     ngOnInit(): void { }
+
+    /**
+     * Metodo que visualiza el tab para el item seleccionado
+     * @param tipoItem , indica el tipo de item seleccionado por el usuario
+     */
+    private showTabItem(tipoItem: number): void {
+        this.itemSeleccionado = tipoItem;
+    }
 }
