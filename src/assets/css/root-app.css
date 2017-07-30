@@ -302,3 +302,8 @@ ul.alert-dropdown {
   justify-content: center;
   align-items:center;
 }
+
+.item-seleccionado{
+    color: #fff !important;
+    background-color: #000 !important;
+}
