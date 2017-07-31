@@ -1,1 +1,35 @@
-adminitracion de roles
+<p-dataGrid [value]="userAutenticado.modulos" [rows]="1">
+    <p-header>
+        <h5 class="panel-title">Modulos del sistema</h5>
+    </p-header>
+    <ng-template let-modulo pTemplate="modulo">
+        <div style="padding:3px" class="ui-g-12 ui-md-3">
+
+            <div class="panel panel-info">
+                <div class="panel-heading text_center center-all">
+                    <table>
+                        <tr>
+                            <td>
+                                <i [ngClass]="(modulo.idModulo == 1)?'fa fa-fw fa-envelope':(modulo.idModulo == 2)?'fa fa-fw fa-folder-open':(modulo.idModulo == 3)?'fa fa-fw fa-graduation-cap':(modulo.idModulo == 4)?'fa fa-fw fa-wrench':''"></i>
+                            </td>
+                            <td>
+                                <h3 class="panel-title">{{modulo.nombreModulo}}</h3>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li *ngFor="let item of modulo.itemsModulo" class="list-group-item" style="border: 1px solid #ddd">
+                            <p-checkbox name="groupname" value="val1" label="{{item.nombreItem}}"></p-checkbox>
+                        </li>
+                    </ul>
+
+                    
+
+                </div>
+            </div>
+
+        </div>
+    </ng-template>
+</p-dataGrid>

@@ -16,7 +16,7 @@ import { AppRoutingModule } from './routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { DataTableModule, ConfirmDialogModule } from 'primeng/primeng';
+import { DataTableModule, ConfirmDialogModule, CheckboxModule, DataGridModule } from 'primeng/primeng';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /**
@@ -89,7 +89,9 @@ import { FormatoFuenteComponent } from './components/admin/formato_fuente/format
     FormsModule,
     DataTableModule,
     ConfirmDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CheckboxModule,
+    DataGridModule
   ],
 
   providers: [

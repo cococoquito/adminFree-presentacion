@@ -307,3 +307,7 @@ ul.alert-dropdown {
     color: #fff !important;
     background-color: #000 !important;
 }
+
+.ui-chkbox-label{
+    font-weight: 100;
+}
