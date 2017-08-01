@@ -14,6 +14,8 @@ export class AdminRolesComponent implements OnInit, OnDestroy {
     /**Usuario autenticado en el sistema*/
     private userAutenticado: UsuarioRes;
 
+    private crearRol : boolean;
+
     constructor(
         private seguridadService: SeguridadService) { }
 
@@ -27,5 +29,9 @@ export class AdminRolesComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         console.log("se destruyo el admin-roles");
+    }
+
+    private abrirPanelCrearRol(valor:boolean) {
+        this.crearRol = valor;
     }
 }

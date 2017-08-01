@@ -1,4 +1,32 @@
-<br/>
+  
+<div class="text_center sub-title-page_conf">
+  Administración Roles
+</div>
+
+<div style="padding:4px" *ngIf="!crearRol">
+    <div style="padding:4px">
+<button type="submit" class="btn btn-primary" (click)="abrirPanelCrearRol(true)">Parametrizar nuevo ROL</button>
+</div>
+
+
+
+<p-dataTable [responsive]="true" selectionMode="single" emptyMessage="No hay roles registrados en el sistema.">
+    <p-column  header="Nombre del Rol"></p-column>
+   
+    <p-column [style]="{'width':'5%'}">
+      <ng-template pTemplate="body">
+        <button class="delete">X</button>
+      </ng-template>
+    </p-column>
+  </p-dataTable>
+</div>    
+
+
+
+
+
+
+<div style="padding:4px" *ngIf="crearRol">
 <!-- formulario para crear o editar el item-->
   <form class="form-inline" name="form" #f="ngForm" (keydown.enter)="$event.preventDefault()" novalidate>
     <div class="form-group">
@@ -13,6 +41,7 @@
 
     <!-- button guardar -->
     <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="submit" class="btn btn-primary" (click)="abrirPanelCrearRol(false)">Cancelar</button>
   </form>
 <br/>
 <p-dataGrid [value]="userAutenticado.modulos" [rows]="1">
@@ -74,3 +103,4 @@
         </div>
     </ng-template>
 </p-dataGrid>
+</div>
