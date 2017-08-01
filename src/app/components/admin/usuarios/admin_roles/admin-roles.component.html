@@ -1,12 +1,29 @@
+<br/>
+<!-- formulario para crear o editar el item-->
+  <form class="form-inline" name="form" #f="ngForm" (keydown.enter)="$event.preventDefault()" novalidate>
+    <div class="form-group">
+
+      <!-- label -->
+      <label for="tnombre">&nbsp;Nombre del Rol*:</label>
+
+      <!-- input -->
+      <input type="text" size="60" 
+      class="form-control" placeholder="Este campo es requerido" maxlength="100" required/>
+    </div>
+
+    <!-- button guardar -->
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
+<br/>
 <p-dataGrid [value]="userAutenticado.modulos" [rows]="1">
     <p-header>
-        <h5 class="panel-title">Modulos del sistema</h5>
+        <h5 class="panel-title">Seleccione los privilegios de cada modulo</h5>
     </p-header>
     <ng-template let-modulo pTemplate="modulo">
-        <div style="padding:3px" class="ui-g-12 ui-md-3">
+        <div style="padding:3px;width: 50%" class="ui-g-12 ui-md-3" >
 
-            <div class="panel panel-info">
-                <div class="panel-heading text_center center-all">
+            <div class="panel panel-info" style="margin-bottom:0%">
+                <div class="panel-heading text_center center-all" style="padding: 0px;">
                     <table>
                         <tr>
                             <td>
@@ -18,10 +35,34 @@
                         </tr>
                     </table>
                 </div>
-                <div class="panel-body">
-                    <ul class="list-group">
-                        <li *ngFor="let item of modulo.itemsModulo" class="list-group-item" style="border: 1px solid #ddd">
+                <div class="panel-body" style="padding: 2px">
+                    <ul class="list-group" style="margin-bottom:0%">
+                        <li *ngFor="let item of modulo.itemsModulo" class="list-group-item" style="border: 1px solid #ddd; padding: 3px 15px">
                             <p-checkbox name="groupname" value="val1" label="{{item.nombreItem}}"></p-checkbox>
+                               <ul class="list-group" style="margin-bottom:0%" *ngIf="item.idItem == 8">
+                                   <li class="list-group-item" style="border: 0px; padding: 3px 15px">
+                                       <p-checkbox name="groupname" value="val1" label="¿Este Rol es para funcionarios quién atiende al solicitante?"></p-checkbox>
+                                   </li>    
+                                    <li class="list-group-item" style="border: 0px; padding: 3px 15px">
+                                        <p-checkbox name="groupname" value="val1" label="¿Este Rol es para funcionarios quién elabora el certificado?"></p-checkbox>
+                                    </li> 
+                               </ul>  
+
+                                <ul class="list-group" style="margin-bottom:0%" *ngIf="item.idItem == 12">
+                                   <li class="list-group-item" style="border: 0px; padding: 3px 15px">
+                                       <p-checkbox name="groupname" value="val1" label="Permitir ANULAR, ACTIVAR abogados"></p-checkbox>
+                                   </li>    
+                                    <li class="list-group-item" style="border: 0px; padding: 3px 15px">
+                                        <p-checkbox name="groupname" value="val1" label="Permitir ELIMINAR procesos"></p-checkbox>
+                                    </li> 
+                                   <li class="list-group-item" style="border: 0px; padding: 3px 15px">
+                                       <p-checkbox name="groupname" value="val1" label="Permitir EDITAR procesos"></p-checkbox>
+                                   </li>    
+                                    <li class="list-group-item" style="border: 0px; padding: 3px 15px">
+                                        <p-checkbox name="groupname" value="val1" label="Permitir TRANSFERIR procesos"></p-checkbox>
+                                    </li>                                     
+                               </ul>
+
                         </li>
                     </ul>
 
