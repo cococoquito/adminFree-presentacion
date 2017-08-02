@@ -16,6 +16,10 @@ export class AdminRolesComponent implements OnInit, OnDestroy {
 
     private crearRol : boolean;
 
+    private probar: boolean;
+
+    private campo: boolean;
+
     constructor(
         private seguridadService: SeguridadService) { }
 
@@ -33,5 +37,11 @@ export class AdminRolesComponent implements OnInit, OnDestroy {
 
     private abrirPanelCrearRol(valor:boolean) {
         this.crearRol = valor;
+    }
+
+    private probarMt() {
+        this.probar = this.probar ? false: true;
+        console.log(this.probar);
+        
     }
 }
