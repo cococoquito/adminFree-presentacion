@@ -20,6 +20,9 @@ export class SeguridadService {
     /** URL para el recurso de autenticacion en el sistema */
     private static URL_AUTENTICACION = 'admin/iniciar_sesion';
 
+    /** URL para listar los modulos con cada items */
+    private static URL_MODULOS = 'admin/modulo_items';
+
     /** URL para el recurso de cambio de clave */
     private static URL_CAMBIO_CLAVE = 'admin/cambiar_clave';
 
@@ -50,6 +53,13 @@ export class SeguridadService {
      */
     public cambiarClave(cambioClave: CambioClaveDTO): Observable<Response> {
         return this.http.post(URL_BASE + SeguridadService.URL_CAMBIO_CLAVE, cambioClave, this.options);
+    }
+
+    /**
+     * Metodo que permite obtener todos los modulos con sus items
+     */
+    public getModulosItems(): Observable<Response> {
+        return this.http.get(URL_BASE + SeguridadService.URL_MODULOS);
     }
 
     /**

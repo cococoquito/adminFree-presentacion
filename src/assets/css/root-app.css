@@ -321,3 +321,28 @@ ul.alert-dropdown {
     letter-spacing: 0.4pt;
     word-spacing: 0.8pt;
 }
+
+.cpm_right{
+    padding:4px;
+    text-align: right;
+}
+
+.admin_modulos{
+    margin-bottom:0%; 
+    border:0px; 
+    padding:3px;
+    width: 50%;
+}
+
+.sin_padding{
+    padding: 0px;
+}
+
+.sin_margin_bottom{
+    margin-bottom:0%;
+}
+
+.items_border{
+    border: 1px solid #ddd; 
+    padding: 3px 15px;
+}
