@@ -346,3 +346,16 @@ ul.alert-dropdown {
     border: 1px solid #ddd; 
     padding: 3px 15px;
 }
+
+button.delete {
+  float:right;
+  margin-top: 2px;
+  margin-right: .8em;
+  background-color: gray !important;
+  color:white;
+  font-family: Arial;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}

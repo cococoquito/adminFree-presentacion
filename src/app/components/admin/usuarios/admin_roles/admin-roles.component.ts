@@ -1,3 +1,4 @@
+import { RolesVO } from './../../../../model/menu/RolesVO';
 import { ItemsMenuDTO } from './../../../../model/menu/ItemsMenuDTO';
 import { AlertService } from './../../../../service/alert.service';
 import { UtilitarioService } from './../../../../service/utilitario.service';
@@ -17,6 +18,9 @@ export class AdminRolesComponent implements OnInit {
     /**lista de modulos parametrizados en el sistema*/
     private modulos: Array<ModulosDTO>;
 
+    /**lista de ROLES parametrizados en el sistema*/
+    private roles: Array<RolesVO>;
+
     /**Bandera que indica si es creacion de rol*/
     private isCreacionRole: boolean;
 
@@ -34,7 +38,38 @@ export class AdminRolesComponent implements OnInit {
     /**
      * PostConstructor que permite inicializar las variables del component
      */
-    ngOnInit(): void { }
+    ngOnInit(): void {
+
+        // se lista los ROLES del sistema
+        this.getRoles();
+    }
+
+    /**
+     * Metodo que permite obtener todos los ROLES parametrizados en el sistema
+     */
+    private getRoles(): void {
+
+        // se muestra el modal de carga
+        this.utilService.displayLoading(true);
+
+        // se invoca el servicio para obtener los ROLES
+        this.seguridadService.getRoles().subscribe(
+            data => {
+                // se inicializa las variables
+                this.roles = data.json();
+
+                // se cierra el modal de carga
+                this.utilService.displayLoading(false);
+            },
+            error => {
+                // se muestra el mensaje alert danger
+                this.alertService.showAlert(error.text(), "alert alert-danger text_center", false);
+
+                // se cierra el modal de carga
+                this.utilService.displayLoading(false);
+            }
+        );
+    }
 
     /**
      * Metodo encargado de abrir el panel para la creacion del ROL

@@ -21,7 +21,10 @@ export class SeguridadService {
     private static URL_AUTENTICACION = 'admin/iniciar_sesion';
 
     /** URL para listar los modulos con cada items */
-    private static URL_MODULOS = 'admin/modulo_items';
+    private static URL_GET_MODULOS = 'admin/modulo_items';
+
+    /** URL para listar los ROLES del sistema */
+    private static URL_GET_ROLES = 'admin/listar_roles';
 
     /** URL para el recurso de cambio de clave */
     private static URL_CAMBIO_CLAVE = 'admin/cambiar_clave';
@@ -59,8 +62,15 @@ export class SeguridadService {
      * Metodo que permite obtener todos los modulos con sus items
      */
     public getModulosItems(): Observable<Response> {
-        return this.http.get(URL_BASE + SeguridadService.URL_MODULOS);
+        return this.http.get(URL_BASE + SeguridadService.URL_GET_MODULOS);
     }
+
+    /**
+     * Metodo que permite obtener todos los ROLES del sistema
+     */
+    public getRoles(): Observable<Response> {
+        return this.http.get(URL_BASE + SeguridadService.URL_GET_ROLES);
+    }    
 
     /**
      * Metodo que permite notificar a los susbcritores que el usuario esta autenticado
