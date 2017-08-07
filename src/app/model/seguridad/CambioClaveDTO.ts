@@ -2,6 +2,8 @@ import { UsuariosVO } from './UsuariosVO';
 
 /**
  * DTO que contiene los datos para el cambio de clave
+ * 
+ * @author Carlos Andres Diaz
  */
 export class CambioClaveDTO {
 

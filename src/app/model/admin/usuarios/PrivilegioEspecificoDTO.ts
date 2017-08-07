@@ -1,11 +1,13 @@
 /**
- * Clase que representa las propiedades de los privilegios especifico de cada items
+ * DTO que contiene los privilegios especificos de cada ITEM
+ * 
+ * @author Carlos Andres Diaz
  */
 export class PrivilegioEspecificoDTO {
 
     /** bandera que indica si el registro fue seleccionado **/
-    seleccionado: boolean;
+    public seleccionado: boolean;
 
     /** representa el tipo de privilegio, 1,2,3 **/
-    tipoPrivilegio: number;
+    public tipoPrivilegio: number;
 }

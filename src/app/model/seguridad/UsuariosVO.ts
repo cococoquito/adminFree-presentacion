@@ -1,5 +1,7 @@
 /**
  * VO que representa los datos de los usuario del APP
+ * 
+ * @author Carlos Andres Diaz
  */
 export class UsuariosVO {
 

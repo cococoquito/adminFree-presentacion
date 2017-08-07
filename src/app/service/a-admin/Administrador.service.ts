@@ -1,33 +1,37 @@
-import { CambioClaveDTO } from './../model/seguridad/CambioClaveDTO';
-import { UsuarioRes } from './../model/seguridad/UsuarioRes';
-import { UsuariosVO } from './../model/seguridad/UsuariosVO';
-import { URL_BASE, KEY_LOCAL_STORE_USER, KEY_FECHA_INGRESO } from './../util/Constants';
 import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 
+import { CambioClaveDTO } from './../../model/seguridad/CambioClaveDTO';
+import { UsuarioLoginDTO } from './../../model/seguridad/UsuarioLoginDTO';
+import { UsuariosVO } from './../../model/seguridad/UsuariosVO';
+import { URL_BASE, KEY_LOCAL_STORE_USER, KEY_FECHA_INGRESO } from './../../util/Constants';
+
 /**
- * Service que contiene las funciones para la seguridad del sistema
+ * Contiene los servicios para el modulo de Administrador y de Seguridad
  */
 @Injectable()
-export class SeguridadService {
+export class AdministradorService {
 
     /** se utiliza para las notificaciones cuando el usuario se autentica */
-    public behaviorAutenticacion: BehaviorSubject<UsuarioRes> = new BehaviorSubject<UsuarioRes>(null);
+    public behaviorAutenticacion: BehaviorSubject<UsuarioLoginDTO> = new BehaviorSubject<UsuarioLoginDTO>(null);
 
     /** URL para el recurso de autenticacion en el sistema */
-    private static URL_AUTENTICACION = 'admin/iniciar_sesion';
-
-    /** URL para listar los modulos con cada items */
-    private static URL_GET_MODULOS = 'admin/modulo_items';
-
-    /** URL para listar los ROLES del sistema */
-    private static URL_GET_ROLES = 'admin/listar_roles';
+    private static URL_INICIAR_SESION = 'admin/iniciar_sesion';
 
     /** URL para el recurso de cambio de clave */
-    private static URL_CAMBIO_CLAVE = 'admin/cambiar_clave';
+    private static URL_CAMBIAR_CLAVE = 'admin/cambiar_clave';
+
+    /** URL para listar los modulos del sistema */
+    private static URL_LISTAR_MODULOS = 'admin/listar_modulos';
+
+    /** URL para listar los ROLES del sistema */
+    private static URL_LISTAR_ROLES = 'admin/listar_roles';
+
+    /** URL para obtener el ROLE de acuerdo a su ID */
+    private static URL_GET_ROLE = 'admin/role/';
 
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json' });
@@ -47,7 +51,7 @@ export class SeguridadService {
      * @param user, usuario que intenta autenticarse en el sistema
      */
     public iniciarSesion(user: UsuariosVO): Observable<Response> {
-        return this.http.post(URL_BASE + SeguridadService.URL_AUTENTICACION, user, this.options);
+        return this.http.post(URL_BASE + AdministradorService.URL_INICIAR_SESION, user, this.options);
     }
 
     /**
@@ -55,28 +59,36 @@ export class SeguridadService {
      * @param cambioClave, DTO con los datos de la nueva clave a cambiar
      */
     public cambiarClave(cambioClave: CambioClaveDTO): Observable<Response> {
-        return this.http.post(URL_BASE + SeguridadService.URL_CAMBIO_CLAVE, cambioClave, this.options);
+        return this.http.post(URL_BASE + AdministradorService.URL_CAMBIAR_CLAVE, cambioClave, this.options);
     }
 
     /**
-     * Metodo que permite obtener todos los modulos con sus items
+     * Metodo que permite obtener todos los modulos del sistema
      */
     public getModulosItems(): Observable<Response> {
-        return this.http.get(URL_BASE + SeguridadService.URL_GET_MODULOS);
+        return this.http.get(URL_BASE + AdministradorService.URL_LISTAR_MODULOS);
     }
 
     /**
      * Metodo que permite obtener todos los ROLES del sistema
      */
     public getRoles(): Observable<Response> {
-        return this.http.get(URL_BASE + SeguridadService.URL_GET_ROLES);
-    }    
+        return this.http.get(URL_BASE + AdministradorService.URL_LISTAR_ROLES);
+    }
+
+    /**
+     * Metodo que permite obtener el detalle del ROLE
+     * @param idRole , identificador del ROLE
+     */
+    public getDetalleRole(idRole: number): Observable<Response> {
+        return this.http.get(URL_BASE + AdministradorService.URL_GET_ROLE + idRole);
+    }
 
     /**
      * Metodo que permite notificar a los susbcritores que el usuario esta autenticado
      * @param user, usuario autenticado en el sistema
      */
-    public notificarUserAutenticado(user: UsuarioRes): void {
+    public notificarUserAutenticado(user: UsuarioLoginDTO): void {
         // se almacena el usuario y la fecha de ingreso en el local storage
         localStorage.setItem(KEY_LOCAL_STORE_USER, JSON.stringify(user));
         localStorage.setItem(KEY_FECHA_INGRESO, this.datePipe.transform(new Date(), 'dd/MM/yyyy - h:mma'));
@@ -100,7 +112,7 @@ export class SeguridadService {
     /**
      * Metodo que permite obtener el usuario autenticado en el sistema
      */
-    public getUsuarioAutenticado(): UsuarioRes {
+    public getUsuarioAutenticado(): UsuarioLoginDTO {
         let userIn = localStorage.getItem(KEY_LOCAL_STORE_USER);
         if (userIn) {
             return JSON.parse(userIn);
