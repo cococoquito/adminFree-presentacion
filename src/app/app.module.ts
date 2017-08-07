@@ -29,7 +29,7 @@ import { HomeComponent } from './a-components/z-app-root/home/home.component';
 import { AlertComponent } from './a-components/y-directivas/alert/alert.component';
 import { LoadingComponent } from './a-components/y-directivas/loading/loading.component';
 
-import { LoginComponent } from './a-components/a-seguridad/login/login.component';
+import { LoginComponent } from './a-components/a-seguridad/cambio-clave/login/login.component';
 import { CambioClaveComponent } from './a-components/a-seguridad/cambio-clave/cambio-clave.component';
 
 import { SolicitarConsecutivoComponent } from './a-components/b-correspondencia/solicitar_consecutivo/solicitar-consecutivo.component';
