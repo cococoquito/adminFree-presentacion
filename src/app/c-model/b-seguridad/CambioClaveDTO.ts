@@ -8,14 +8,14 @@ import { UsuariosVO } from './UsuariosVO';
 export class CambioClaveDTO {
 
     /** representa el identificador del user autenticado **/
-    idUsuario: number;
+    public idUsuario: number;
 
     /** propiedad que representa la clave actual */
-    claveActual: string;
+    public claveActual: string;
 
     /** propiedad que representa la clave nueva */
-    claveNueva: string;
+    public claveNueva: string;
 
     /** propiedad que representa la clave nueva repetida */
-    repetirClaveNueva: string;
+    public repetirClaveNueva: string;
 }

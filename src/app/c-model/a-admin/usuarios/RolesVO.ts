@@ -6,8 +6,8 @@
 export class RolesVO {
 
     /** identificador del ROLE **/
-    idRole: number;
+    public idRole: number;
 
     /** Nombre del ROLE **/
-    nombre: string;
+    public nombre: string;
 }

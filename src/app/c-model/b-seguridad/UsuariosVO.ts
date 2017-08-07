@@ -6,17 +6,17 @@
 export class UsuariosVO {
 
     /** identificador del user */
-    idUsuario: number;
+    public idUsuario: number;
 
     /** propiedad que representa el nombre del user */
-    nombre: string;
+    public nombre: string;
 
     /** propiedad que representa el user para la autenticacion */
-    nombreUsuario: string;
+    public nombreUsuario: string;
 
     /** propiedad que representa la clave del user */
-    claveIngreso: string;
+    public claveIngreso: string;
 
     /** propiedad que identifica si el user es abogado, 1=true */
-    esAbogado: number;
+    public esAbogado: number;
 }

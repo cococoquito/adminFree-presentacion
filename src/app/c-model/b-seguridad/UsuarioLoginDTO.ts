@@ -9,8 +9,8 @@ import { UsuariosVO } from './UsuariosVO';
 export class UsuarioLoginDTO {
 
     /** Objecto que contiene el usuario autenticado en el sistema */
-    private usuario: UsuariosVO;
+    public usuario: UsuariosVO;
 
     /** es el ROL asociado al usuario */
-    private rol: RoleDTO;
+    public rol: RoleDTO;
 }

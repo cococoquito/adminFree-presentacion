@@ -8,11 +8,11 @@ import { ModuloDTO } from './ModuloDTO';
 export class RoleDTO {
 
     /** es el id del role **/
-    private idRole: number;
+    public idRole: number;
 
     /** es el nombre del role **/
-    private nombreRole: string;
+    public nombreRole: string;
 
     /** son los modulos asociados a este ROLE */
-    private modulos: Array<ModuloDTO>;
+    public modulos: Array<ModuloDTO>;
 }
