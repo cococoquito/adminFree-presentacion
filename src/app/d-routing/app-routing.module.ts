@@ -1,28 +1,28 @@
-import { AppRoot } from './../components/app-root/app-root';
+import { AppRoot } from './../a-components/z-app-root/app-root';
 import { GuardRouting } from './guards/guards-routing';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './../components/app-root/home/home.component';
-import { CambioClaveComponent } from './../components/seguridad/cambio-clave/cambio-clave.component';
+import { HomeComponent } from './../a-components/z-app-root/home/home.component';
+import { CambioClaveComponent } from './../a-components/a-seguridad/cambio-clave/cambio-clave.component';
 
-import { SolicitarConsecutivoComponent } from './../components/correspondencia/solicitar_consecutivo/solicitar-consecutivo.component';
-import { ArchivoGestionComponent } from './../components/correspondencia/archivo_gestion/archivo-gestion.component';
-import { ConsecutivosSolicitadosComponent } from './../components/correspondencia/consecutivos_solicitados/consecutivos-solicitados.component';
+import { SolicitarConsecutivoComponent } from './../a-components/b-correspondencia/solicitar_consecutivo/solicitar-consecutivo.component';
+import { ArchivoGestionComponent } from './../a-components/b-correspondencia/archivo_gestion/archivo-gestion.component';
+import { ConsecutivosSolicitadosComponent } from './../a-components/b-correspondencia/consecutivos_solicitados/consecutivos-solicitados.component';
 
-import { TiempoServiciosSalariosComponent } from './../components/solicitud_certificados/tiempo_servicios_salarios/tiempo-servicios-salarios';
-import { CartasLaboralesComponent } from './../components/solicitud_certificados/cartas_laborales/cartas-laborales';
-import { ReporteCesantiasComponent } from './../components/solicitud_certificados/reporte_cesantias/reporte-cesantias';
-import { CertificadosSolicitadosComponent } from './../components/solicitud_certificados/certificados_solicitados/certificados-solicitados';
+import { TiempoServiciosSalariosComponent } from './../a-components/c-solicitud_certificados/tiempo_servicios_salarios/tiempo-servicios-salarios';
+import { CartasLaboralesComponent } from './../a-components/c-solicitud_certificados/cartas_laborales/cartas-laborales';
+import { ReporteCesantiasComponent } from './../a-components/c-solicitud_certificados/reporte_cesantias/reporte-cesantias';
+import { CertificadosSolicitadosComponent } from './../a-components/c-solicitud_certificados/certificados_solicitados/certificados-solicitados';
 
-import { CrearProcesosComponent } from './../components/demandas/crear_procesos/crear-procesos.component';
-import { AgendaAbogadoComponent } from './../components/demandas/agenda_abogado/agenda-abogado.component';
-import { AgendarEventosComponent } from './../components/demandas/agendar_eventos/agendar-eventos.component';
-import { GestionProcesosComponent } from './../components/demandas/gestion_procesos/gestion-procesos.component';
+import { CrearProcesosComponent } from './../a-components/d-demandas/crear_procesos/crear-procesos.component';
+import { AgendaAbogadoComponent } from './../a-components/d-demandas/agenda_abogado/agenda-abogado.component';
+import { AgendarEventosComponent } from './../a-components/d-demandas/agendar_eventos/agendar-eventos.component';
+import { GestionProcesosComponent } from './../a-components/d-demandas/gestion_procesos/gestion-procesos.component';
 
-import { UsuariosComponent } from './../components/admin/usuarios/usuarios.component';
-import { ParametrizacionRegistrosComponent } from './../components/admin/parametrizacion_registros/parametrizacion-registros.component';
-import { FormatoFuenteComponent } from './../components/admin/formato_fuente/formato-fuente.component';
+import { UsuariosComponent } from './../a-components/a-admin/usuarios/usuarios.component';
+import { ParametrizacionRegistrosComponent } from './../a-components/a-admin/parametrizacion_registros/parametrizacion-registros.component';
+import { FormatoFuenteComponent } from './../a-components/a-admin/formato_fuente/formato-fuente.component';
 
 const ROUTES: Routes = [
   {
