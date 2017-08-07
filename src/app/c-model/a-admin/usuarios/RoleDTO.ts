@@ -1,7 +1,7 @@
 import { ModuloDTO } from './ModuloDTO';
 
 /**
- * DTO que contiene las propiedades del ROL con sus modulos asociados
+ *  DTO que contiene las propiedades del ROL con sus modulos asociados
  * 
  * @author Carlos Andres Diaz
  */

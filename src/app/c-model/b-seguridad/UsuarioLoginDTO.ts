@@ -1,8 +1,8 @@
-import { RoleDTO } from './../admin/usuarios/RoleDTO';
+import { RoleDTO } from './../a-admin/usuarios/RoleDTO';
 import { UsuariosVO } from './UsuariosVO';
 
 /**
- * DTO que contiene las propiedades del usuario para la autenticacion
+ *  DTO que contiene las propiedades del usuario para la autenticacion
  * 
  * @author Carlos Andres Diaz
  */

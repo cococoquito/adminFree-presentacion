@@ -1,8 +1,8 @@
+
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { HOME, RAIZ, CAMBIO_CLAVE } from './../../util/Constants';
-import { SeguridadService } from './../../service/seguridad.service';
-import { UsuarioRes } from './../../model/seguridad/UsuarioRes';
+import { HOME, RAIZ, CAMBIO_CLAVE } from './../../z-util/Constants';
+import { AdministradorService } from './../../b-service/a-admin/administrador.service';
 
 /**
  * Service que permite proteger los redireccionamiento de la aplicacion
@@ -13,11 +13,11 @@ export class GuardRouting implements CanActivate {
     /**
      * Constructor del Guardian del routing
      * @param router, es el router de la app para el redireccionamiento
-     * @param seguridadService, contiene los servicios de la seguridad de la app
+     * @param administradorService, contiene los servicios para el modulo administrativo
      */
     constructor(
         private router: Router,
-        private seguridadService: SeguridadService) { }
+        private administradorService: AdministradorService) { }
 
     /**
      * Metodo que se activa cuando el router tiene una solicitud de redireccionamiento
@@ -25,7 +25,7 @@ export class GuardRouting implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
         // se obtiene el usuario del localStorage
-        let usuarioAutenticado = this.seguridadService.getUsuarioAutenticado();
+        let usuarioAutenticado = this.administradorService.getUsuarioAutenticado();
 
         // se obtiene la URL de la pagina destino
         let requestURL = state.url;
@@ -48,13 +48,13 @@ export class GuardRouting implements CanActivate {
             if (requestURL != HOME && requestURL != CAMBIO_CLAVE) {
 
                 // se valida que user si contenga modulos asignados
-                let modulos = usuarioAutenticado.modulos;
+                let modulos = usuarioAutenticado.rol.modulos;
                 let items;
                 if (modulos) {
                     for (let modulo of modulos) {
 
                         // se valida que el modulo si contenga items asignados
-                        items = modulo.itemsModulo;
+                        items = modulo.itemsMenu;
                         if (items) {
 
                             // se busca si el user tiene privilegios para esta URL
