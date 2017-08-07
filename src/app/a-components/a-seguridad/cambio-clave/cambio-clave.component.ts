@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CambioClaveDTO } from './../../../model/seguridad/CambioClaveDTO';
-import { AlertService } from './../../../service/alert.service';
-import { SeguridadService } from './../../../service/seguridad.service';
-import { UtilitarioService } from './../../../service/utilitario.service';
+import { CambioClaveDTO } from './../../../c-model/b-seguridad/CambioClaveDTO';
+import { AlertService } from './../../../b-service/z-common/alert.service';
+import { AdministradorService } from './../../../b-service/a-admin/administrador.service';
+import { UtilitarioService } from './../../../b-service/z-common/utilitario.service';
 
 /**
  * Componente para el cambio de la contrasenia
@@ -22,12 +22,12 @@ export class CambioClaveComponent implements OnInit {
   /**
    * Constructor del componente para el cambio de clave
    * @param utilService, service con las funciones utilitarias
-   * @param seguridadService, service que contiene los servicioes para la seguridad 
+   * @param AdministradorService, contiene los servicios administrativo
    * @param alertService, service para la comunicacion del el mensaje de alerta
    */
   constructor(
     private utilService: UtilitarioService,
-    private seguridadService: SeguridadService,
+    private administradorService: AdministradorService,
     private alertService: AlertService) { }
 
   /**
@@ -59,7 +59,7 @@ export class CambioClaveComponent implements OnInit {
     this.utilService.displayLoading(true);
 
     // se procede a cambiar la clave del usuario
-    this.seguridadService.cambiarClave(this.cambioClave).subscribe(
+    this.administradorService.cambiarClave(this.cambioClave).subscribe(
       data => {
         // se muestra el mensaje exitoso
         this.alertService.showAlert(data.text(), "alert alert-success text_center", false);
@@ -89,6 +89,6 @@ export class CambioClaveComponent implements OnInit {
 
     // se crea la instancia para el DTO cambio de clave
     this.cambioClave = new CambioClaveDTO();
-    this.cambioClave.idUsuario = this.seguridadService.getUsuarioAutenticado().usuario.idUsuario;
+    this.cambioClave.idUsuario = this.administradorService.getUsuarioAutenticado().usuario.idUsuario;
   }
 }
