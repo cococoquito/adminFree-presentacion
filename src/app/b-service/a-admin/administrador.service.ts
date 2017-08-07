@@ -3,11 +3,10 @@ import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-
-import { CambioClaveDTO } from './../../model/seguridad/CambioClaveDTO';
-import { UsuarioLoginDTO } from './../../model/seguridad/UsuarioLoginDTO';
-import { UsuariosVO } from './../../model/seguridad/UsuariosVO';
-import { URL_BASE, KEY_LOCAL_STORE_USER, KEY_FECHA_INGRESO } from './../../util/Constants';
+import { CambioClaveDTO } from './../../c-model/b-seguridad/CambioClaveDTO';
+import { UsuarioLoginDTO } from './../../c-model/b-seguridad/UsuarioLoginDTO';
+import { UsuariosVO } from './../../c-model/b-seguridad/UsuariosVO';
+import { KEY_FECHA_INGRESO, KEY_LOCAL_STORE_USER, URL_BASE } from './../../z-util/Constants';
 
 /**
  * Contiene los servicios para el modulo de Administrador y de Seguridad
