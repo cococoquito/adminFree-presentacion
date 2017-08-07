@@ -1,10 +1,10 @@
-import { RolesVO } from './../../../../model/menu/RolesVO';
-import { ItemsMenuDTO } from './../../../../model/menu/ItemsMenuDTO';
-import { AlertService } from './../../../../service/alert.service';
-import { UtilitarioService } from './../../../../service/utilitario.service';
-import { ModulosDTO } from './../../../../model/menu/ModulosDTO';
-import { SeguridadService } from './../../../../service/seguridad.service';
 import { Component, OnInit } from '@angular/core';
+import { RolesVO } from './../../../../c-model/a-admin/usuarios/RolesVO';
+import { ModuloDTO } from './../../../../c-model/a-admin/usuarios/ModuloDTO';
+import { ModuloItemDTO } from './../../../../c-model/a-admin/usuarios/ModuloItemDTO';
+import { AlertService } from './../../../../b-service/z-common/alert.service';
+import { UtilitarioService } from './../../../../b-service/z-common/utilitario.service';
+import { AdministradorService } from './../../../../b-service/a-admin/administrador.service';
 
 /**
  * Componente para la administracion de los Roles del sistema
@@ -16,7 +16,7 @@ import { Component, OnInit } from '@angular/core';
 export class AdminRolesComponent implements OnInit {
 
     /**lista de modulos parametrizados en el sistema*/
-    private modulos: Array<ModulosDTO>;
+    private modulos: Array<ModuloDTO>;
 
     /**lista de ROLES parametrizados en el sistema*/
     private roles: Array<RolesVO>;
@@ -27,12 +27,12 @@ export class AdminRolesComponent implements OnInit {
     /**
      * Constructor del componente para el cambio de clave
      * @param utilService, service con las funciones utilitarias
-     * @param seguridadService, service que contiene los servicioes para la seguridad 
+     * @param administradorService, contiene los servicios administrativo
      * @param alertService, service para la comunicacion del el mensaje de alerta
      */
     constructor(
         private utilService: UtilitarioService,
-        private seguridadService: SeguridadService,
+        private administradorService: AdministradorService,
         private alertService: AlertService) { }
 
     /**
@@ -53,7 +53,7 @@ export class AdminRolesComponent implements OnInit {
         this.utilService.displayLoading(true);
 
         // se invoca el servicio para obtener los ROLES
-        this.seguridadService.getRoles().subscribe(
+        this.administradorService.getRoles().subscribe(
             data => {
                 // se inicializa las variables
                 this.roles = data.json();
@@ -94,7 +94,7 @@ export class AdminRolesComponent implements OnInit {
      * Metodo que soporta el evento onchange para los radios de los items del menu
      * @param item , es el item quien ejecuto el evento
      */
-    private onchangeItem(item: ItemsMenuDTO): void {
+    private onchangeItem(item: ModuloItemDTO): void {
 
         // se debe limpiar los check seleccionado, esto por si lo seleccionaron con anterioridad
         if (item && item.privilegiosEspecificosDTO) {
@@ -116,7 +116,7 @@ export class AdminRolesComponent implements OnInit {
             this.utilService.displayLoading(true);
 
             // se invoca el servicio para obtener los modulos
-            this.seguridadService.getModulosItems().subscribe(
+            this.administradorService.getModulosItems().subscribe(
                 data => {
                     // se inicializa las variables
                     this.modulos = data.json();
