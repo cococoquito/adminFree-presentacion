@@ -1,10 +1,10 @@
-import { ModuloRes } from './../../model/menu/ModuloRes';
-import { CAMBIO_CLAVE, RAIZ, HOME } from './../../util/Constants';
-import { SeguridadService } from './../../service/seguridad.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UsuarioRes } from './../../model/seguridad/UsuarioRes';
-import { Subscription } from 'rxjs/Subscription';
+import { ModuloDTO } from './../../c-model/a-admin/usuarios/ModuloDTO';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { UsuarioLoginDTO } from './../../c-model/b-seguridad/UsuarioLoginDTO';
+import { CAMBIO_CLAVE, RAIZ, HOME } from './../../z-util/Constants';
+import { AdministradorService } from './../../b-service/a-admin/administrador.service';
 
 /**
  * Componente Raiz de la app donde contiene HEADER, MENU, FOOTER, ROUTER, LOGIN
@@ -16,18 +16,18 @@ import { Router } from '@angular/router';
 export class AppRoot implements OnInit, OnDestroy {
 
     /**Usuario autenticado en el sistema*/
-    private userAutenticado: UsuarioRes;
+    private userAutenticado: UsuarioLoginDTO;
 
     /** Es la subscripción para las notificaciones cuando el user ingrese al sistema */
     private subscription: Subscription;
 
     /**
      * Constructor del componente Raiz app
-     * @param seguridadService, service de seguridad
+     * @param administradorService, contiene los servicios administrativo
      * @param router, Router de la app para redireccionar al login
      */
     constructor(
-        private seguridadService: SeguridadService,
+        private administradorService: AdministradorService,
         private router: Router) { }
 
     /**
@@ -52,7 +52,7 @@ export class AppRoot implements OnInit, OnDestroy {
      */
     private cerrarSesion(): void {
         // se notifica el cierre de sesion
-        this.seguridadService.notificarUserLogout();
+        this.administradorService.notificarUserLogout();
 
         // se procede a redireccionar a RAIZ
         this.router.navigate([RAIZ]);
@@ -84,7 +84,7 @@ export class AppRoot implements OnInit, OnDestroy {
      * Metodo que soporta el click para los modulos del menu
      * @param modulo , es el menu donde se ejecuto el click
      */
-    private clickModulo(modulo: ModuloRes): void {
+    private clickModulo(modulo: ModuloDTO): void {
         modulo.cerradoModulo = (modulo.cerradoModulo) ? false : true;
     }
 
@@ -92,9 +92,9 @@ export class AppRoot implements OnInit, OnDestroy {
      * Metodo que permite obtener la suscripcion de la autenticacion
      */
     private getSuscripcionAutenticacion(): void {
-        this.subscription = this.seguridadService.behaviorAutenticacion.subscribe(
+        this.subscription = this.administradorService.behaviorAutenticacion.subscribe(
             () => {
-                this.userAutenticado = this.seguridadService.getUsuarioAutenticado();
+                this.userAutenticado = this.administradorService.getUsuarioAutenticado();
             }
         );
     }

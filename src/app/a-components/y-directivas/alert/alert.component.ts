@@ -1,4 +1,4 @@
-import { AlertService } from './../../../service/alert.service';
+import { AlertService } from './../../../b-service/z-common/alert.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 

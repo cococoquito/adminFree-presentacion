@@ -1,7 +1,7 @@
-import { UsuarioRes } from './../../../model/seguridad/UsuarioRes';
-import { KEY_FECHA_INGRESO } from './../../../util/Constants';
-import { SeguridadService } from './../../../service/seguridad.service';
 import { Component, OnInit } from '@angular/core';
+import { UsuarioLoginDTO } from './../../../c-model/b-seguridad/UsuarioLoginDTO';
+import { KEY_FECHA_INGRESO } from './../../../z-util/Constants';
+import { AdministradorService } from './../../../b-service/a-admin/administrador.service';
 
 /**
  * Componente para la pagina HOME de la aplicacion
@@ -16,14 +16,14 @@ export class HomeComponent implements OnInit {
   private dateNow: String;
 
   /**Usuario autenticado en el sistema*/
-  private user: UsuarioRes;
+  private user: UsuarioLoginDTO;
 
   /**
    * Constructor del component de la pagina home
-   * @param seguridadService, contiene las funciones de seguridad
+   * @param AdministradorService, contiene los servicios administrativos
    */
   constructor(
-    private seguridadService: SeguridadService) { }
+    private administradorService: AdministradorService) { }
 
   /**
   * Inicializa el componente una vez Angular haya mostrado las propiedades
@@ -34,6 +34,6 @@ export class HomeComponent implements OnInit {
     this.dateNow = localStorage.getItem(KEY_FECHA_INGRESO);
 
     // se obtiene los datos del user autenticado del localstore
-    this.user = this.seguridadService.getUsuarioAutenticado();
+    this.user = this.administradorService.getUsuarioAutenticado();
   }
 }
