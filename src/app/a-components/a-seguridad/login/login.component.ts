@@ -1,10 +1,10 @@
-import { Router } from '@angular/router';
-import { AlertService } from './../../../service/alert.service';
-import { SeguridadService } from './../../../service/seguridad.service';
-import { UtilitarioService } from './../../../service/utilitario.service';
-import { HOME } from './../../../util/Constants';
-import { UsuariosVO } from './../../../model/seguridad/UsuariosVO';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AlertService } from './../../../b-service/z-common/alert.service';
+import { UtilitarioService } from './../../../b-service/z-common/utilitario.service';
+import { AdministradorService } from './../../../b-service/a-admin/administrador.service';
+import { HOME } from './../../../z-util/Constants';
+import { UsuariosVO } from './../../../c-model/b-seguridad/UsuariosVO';
 
 /**
  * Componente para la autenticacion ante el sistema 
@@ -24,13 +24,13 @@ export class LoginComponent implements OnInit {
   /**
    * Constructor del componente para la autenticacion ante el sistema
    * @param utilService, service con las funciones utilitarias
-   * @param seguridadService, service que contiene los servicioes para la seguridad 
+   * @param administradorService, contiene los servicios administrativo
    * @param alertService, service para la comunicacion del el mensaje de alerta
    * @param router, router para el manejo de redireccionamiento
    */
   constructor(
     private utilService: UtilitarioService,
-    private seguridadService: SeguridadService,
+    private administradorService: AdministradorService,
     private alertService: AlertService,
     private router: Router) { }
 
@@ -63,10 +63,10 @@ export class LoginComponent implements OnInit {
     this.utilService.displayLoading(true);
 
     // se procede a iniciar sesion ante el sistema
-    this.seguridadService.iniciarSesion(this.user).subscribe(
+    this.administradorService.iniciarSesion(this.user).subscribe(
       data => {
         // se procede a notificar a los suscriptores que el usuario se autentico ante el sistema
-        this.seguridadService.notificarUserAutenticado(data.json());
+        this.administradorService.notificarUserAutenticado(data.json());
 
         // se procede a redireccionar a HOME
         this.router.navigate([HOME]);
