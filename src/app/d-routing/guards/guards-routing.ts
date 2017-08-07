@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { HOME, RAIZ, CAMBIO_CLAVE } from './../../z-util/Constants';
@@ -47,10 +46,12 @@ export class GuardRouting implements CanActivate {
             //**************aca se comprueba los privilegios del usuario***************************
             if (requestURL != HOME && requestURL != CAMBIO_CLAVE) {
 
-                // se valida que user si contenga modulos asignados
-                let modulos = usuarioAutenticado.rol.modulos;
-                let items;
-                if (modulos) {
+                // se verifica si el usuario tiene privilegios
+                if (usuarioAutenticado.rol && usuarioAutenticado.rol.modulos) {
+
+                    // se recorre los modulos asignados del user
+                    let items;
+                    let modulos = usuarioAutenticado.rol.modulos;
                     for (let modulo of modulos) {
 
                         // se valida que el modulo si contenga items asignados
