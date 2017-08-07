@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertService } from './../../../b-service/z-common/alert.service';
-import { UtilitarioService } from './../../../b-service/z-common/utilitario.service';
-import { AdministradorService } from './../../../b-service/a-admin/administrador.service';
-import { HOME } from './../../../z-util/Constants';
-import { UsuariosVO } from './../../../c-model/b-seguridad/UsuariosVO';
+import { AlertService } from './../../../../b-service/z-common/alert.service';
+import { UtilitarioService } from './../../../../b-service/z-common/utilitario.service';
+import { AdministradorService } from './../../../../b-service/a-admin/administrador.service';
+import { HOME } from './../../../../z-util/Constants';
+import { UsuariosVO } from './../../../../c-model/b-seguridad/UsuariosVO';
 
 /**
  * Componente para la autenticacion ante el sistema 
