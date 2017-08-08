@@ -28,7 +28,10 @@
   <app-admin-users></app-admin-users>
 </div>
 
-<!-- panel para el item de reestablecer contrasela -->
+<!-- panel para el item de reestablecer contrasenia -->
 <div class="panel panel-default" *ngIf="RESTABLECER_CLAVE == itemSeleccionado">
   <app-restablecer-clave></app-restablecer-clave>
 </div>
+
+<!-- modal para la visualizacion del los privilegios para un ROLE -->
+<modal-role-privilegios></modal-role-privilegios>

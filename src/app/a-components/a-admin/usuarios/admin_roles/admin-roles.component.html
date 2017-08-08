@@ -13,7 +13,7 @@
         <p-column header="Lista de Roles parametrizados en el sistema" field="nombre" [style]="{'text-align':'center'}"></p-column>
         <p-column [style]="{'width':'3%','text-align':'center'}" header="Ver">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-share cursor-manito"></span>
+                <span class="glyphicon glyphicon-share cursor-manito" (click)="verDetalleRol(item)"></span>
             </ng-template>
         </p-column>
 

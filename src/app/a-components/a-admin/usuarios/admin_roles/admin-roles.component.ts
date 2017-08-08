@@ -134,4 +134,12 @@ export class AdminRolesComponent implements OnInit {
             );
         }
     }
+
+    /**
+     * Metodo que sorporta el ver detalle del la tabla de ROLES
+     * @param rol , identificador del ROLE seleccionado
+     */
+    private verDetalleRol(rol: RolesVO) {
+        this.utilService.displayModalRole(rol.idRole);
+    }
 }

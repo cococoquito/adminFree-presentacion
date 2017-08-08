@@ -11,7 +11,7 @@ import { DatePipe } from '@angular/common';
 /**
  * imports
  */
-import { DataTableModule, ConfirmDialogModule, CheckboxModule, DataGridModule } from 'primeng/primeng';
+import { DataTableModule, ConfirmDialogModule, CheckboxModule, DataGridModule, DialogModule } from 'primeng/primeng';
 import { AppRoutingModule } from './d-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -53,6 +53,8 @@ import { RestablecerClaveComponent } from './a-components/a-admin/usuarios/resta
 import { ParametrizacionRegistrosComponent } from './a-components/a-admin/parametrizacion_registros/parametrizacion-registros.component';
 import { FormatoFuenteComponent } from './a-components/a-admin/formato_fuente/formato-fuente.component';
 
+import { RolPrivilegioModal } from './a-components/y-directivas/modales/rol-privilegio.modal';
+
 @NgModule({
   declarations: [
     AppRoot,
@@ -78,7 +80,8 @@ import { FormatoFuenteComponent } from './a-components/a-admin/formato_fuente/fo
     GestionProcesosComponent,
     AdminRolesComponent,
     AdminUsersComponent,
-    RestablecerClaveComponent
+    RestablecerClaveComponent,
+    RolPrivilegioModal
   ],
 
   imports: [
@@ -90,7 +93,8 @@ import { FormatoFuenteComponent } from './a-components/a-admin/formato_fuente/fo
     ConfirmDialogModule,
     BrowserAnimationsModule,
     CheckboxModule,
-    DataGridModule
+    DataGridModule,
+    DialogModule
   ],
 
   providers: [
