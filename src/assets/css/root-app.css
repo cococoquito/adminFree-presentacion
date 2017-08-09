@@ -347,15 +347,10 @@ ul.alert-dropdown {
     padding: 3px 15px;
 }
 
-button.delete {
-  float:right;
-  margin-top: 2px;
-  margin-right: .8em;
-  background-color: gray !important;
-  color:white;
-  font-family: Arial;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
+#modal_role .ui-dialog-title{
+    font-family: 'palatino linotype', palatino, serif;
+    color: #404042;
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
 }

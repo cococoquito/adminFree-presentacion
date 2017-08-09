@@ -1,74 +1,50 @@
+<!-- se visualiza solo si existe el ROL-->
 <div *ngIf="role">
 
-<p-dialog id="modal_role" [(visible)]="modalVisible" modal="modal" width="1000" [responsive]="true" dismissableMask="true">
-     <div style="text-align: left">
-        Nombre del ROL: {{role?.nombreRole}}
-      </div>
-
-
-    <!-- datagrid con los roles del sistema-->
-    <p-dataGrid [value]="role?.modulos">
+    <!-- modal con los privilegios del ROL-->
+    <p-dialog id="modal_role" [(visible)]="modalVisible" modal="modal" width="1000" [responsive]="true" dismissableMask="true">
         <p-header>
-            Privilegios asignado al ROLE: {{role?.nombreRole}}
+            Privilegios asignados al ROL: {{role?.nombreRole}}
         </p-header>
 
-        <!-- se recorre los modulos-->
-        <ng-template let-modulo pTemplate="modulo">
+        <!-- datagrid con los modulos asociado al ROL-->
+        <p-dataGrid [value]="role?.modulos">
 
-            <!-- por cada modulo se muestra un panel-->
-            <div class="panel panel-info admin_modulos">
+            <!-- se recorre los modulos-->
+            <ng-template let-modulo pTemplate="modulo">
 
-                <!-- encabezado del panel-->
-                <div class="panel-heading text_center center-all sin_padding">
-                    <i [ngClass]="(modulo.idModulo == 1)?'fa fa-fw fa-envelope':(modulo.idModulo == 2)?'fa fa-fw fa-folder-open':(modulo.idModulo == 3)?'fa fa-fw fa-graduation-cap':(modulo.idModulo == 4)?'fa fa-fw fa-wrench':''"></i>{{modulo.nombreModulo}}
-                </div>
+                <!-- por cada modulo se muestra un panel-->
+                <div class="panel panel-info admin_modulos">
 
-                <!-- cuerpo del panel-->
-                <div class="panel-body sin_padding">
-                    <ul class="list-group sin_margin_bottom">
+                    <!-- encabezado del panel-->
+                    <div class="panel-heading text_center center-all sin_padding">
+                        <i [ngClass]="(modulo.idModulo == 1)?'fa fa-fw fa-envelope':(modulo.idModulo == 2)?'fa fa-fw fa-folder-open':(modulo.idModulo == 3)?'fa fa-fw fa-graduation-cap':(modulo.idModulo == 4)?'fa fa-fw fa-wrench':''"></i>{{modulo.nombreModulo}}
+                    </div>
 
-                        <!-- se recorre los items de este modulo-->
-                        <li *ngFor="let item of modulo.itemsMenu" class="list-group-item items_border">
+                    <!-- cuerpo del panel-->
+                    <div class="panel-body sin_padding">
+                        <ul class="list-group sin_margin_bottom">
 
-                            <!-- por cada items se muestra un check-->
-                            {{item.nombreItem}}
+                            <!-- se recorre los items de este modulo-->
+                            <li *ngFor="let item of modulo.itemsMenu" class="list-group-item items_border">
 
-                            <ul class="list-group sin_margin_bottom" *ngIf="item.privilegiosEspecificosDTO">
+                                <!-- nombre del item-->
+                                {{item.nombreItem}}
 
                                 <!-- se recorre los privilegios especificos de este item-->
-                                <li *ngFor="let especifico of item.privilegiosEspecificosDTO" class="list-group-item items_border" style="border: 0px">
-
-                                    <!-- por cada privilegio especifico se muestra un check-->
-                                     {{especifico.tipoPrivilegio == 1 ? 'Este Rol es para funcionarios quién atiende al solicitante' :
-                                                especifico.tipoPrivilegio == 2 ? 'Este Rol es para funcionarios quién elabora el certificado' : 
-                                                especifico.tipoPrivilegio == 3 ? 'Permitir ANULAR, ACTIVAR abogados' :
-                                                especifico.tipoPrivilegio == 4 ? 'Permitir ELIMINAR procesos' :
-                                                especifico.tipoPrivilegio == 5 ? 'Permitir EDITAR procesos' :
-                                                especifico.tipoPrivilegio == 6 ? 'Permitir TRANSFERIR procesos' : ''}}
-                                    
-
-                                   
-
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                                <ul class="list-group sin_margin_bottom" *ngIf="item.privilegiosEspecificosDTO">
+                                    <li *ngFor="let especifico of item.privilegiosEspecificosDTO" class="list-group-item items_border" style="border: 0px">
+                                        {{especifico.tipoPrivilegio == 1 ? 'Este Rol es para funcionarios quién atiende al solicitante' : especifico.tipoPrivilegio == 2 ? 'Este Rol es para funcionarios quién elabora el certificado' : especifico.tipoPrivilegio == 3 ? 'Permitir ANULAR, ACTIVAR abogados' : especifico.tipoPrivilegio == 4 ? 'Permitir ELIMINAR procesos' : especifico.tipoPrivilegio == 5 ? 'Permitir EDITAR procesos' : especifico.tipoPrivilegio == 6 ? 'Permitir TRANSFERIR procesos' : ''}}
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </ng-template>
-    </p-dataGrid>
-
-
-
-
-
-
-
-<div class="text_center" style="padding: 4px">
-    <button class="button" class="btn btn-primary" (click)="cerrarModal()">Cerrar ventana</button>
-</div> 
-
-    
-</p-dialog>
-
+            </ng-template>
+        </p-dataGrid>
+        <div class="text_center" style="padding: 4px">
+            <button class="button" class="btn btn-primary" (click)="cerrarModal()">Cerrar ventana</button>
+        </div>
+    </p-dialog>
 </div>
