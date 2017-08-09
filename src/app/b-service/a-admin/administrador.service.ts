@@ -32,6 +32,9 @@ export class AdministradorService {
     /** URL para obtener el ROLE de acuerdo a su ID */
     private static URL_GET_ROLE = 'admin/role/';
 
+    /** URL para eliminar el ROLE de acuerdo a su ID */
+    private static URL_ELIMINAR_ROLE = 'admin/role/eliminar/';
+
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json' });
 
@@ -81,6 +84,14 @@ export class AdministradorService {
      */
     public getDetalleRole(idRole: number): Observable<Response> {
         return this.http.get(URL_BASE + AdministradorService.URL_GET_ROLE + idRole);
+    }
+
+    /**
+     * Metodo que permite eliminar el ROLE del sistema
+     * @param idRole , identificador del ROLE
+     */
+    public eliminarRole(idRole: number): Observable<Response> {
+        return this.http.get(URL_BASE + AdministradorService.URL_ELIMINAR_ROLE + idRole);
     }
 
     /**
