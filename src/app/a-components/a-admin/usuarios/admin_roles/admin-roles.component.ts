@@ -5,6 +5,7 @@ import { ModuloItemDTO } from './../../../../c-model/a-admin/usuarios/ModuloItem
 import { AlertService } from './../../../../b-service/z-common/alert.service';
 import { UtilitarioService } from './../../../../b-service/z-common/utilitario.service';
 import { AdministradorService } from './../../../../b-service/a-admin/administrador.service';
+import { ConfirmationService } from 'primeng/primeng';
 
 /**
  * Componente para la administracion de los Roles del sistema
@@ -29,11 +30,13 @@ export class AdminRolesComponent implements OnInit {
      * @param utilService, service con las funciones utilitarias
      * @param administradorService, contiene los servicios administrativo
      * @param alertService, service para la comunicacion del el mensaje de alerta
+     * @param confirmationService, servicio para la visualizacion del modal de confirmacion
      */
     constructor(
         private utilService: UtilitarioService,
         private administradorService: AdministradorService,
-        private alertService: AlertService) { }
+        private alertService: AlertService,
+        private confirmationService: ConfirmationService) { }
 
     /**
      * PostConstructor que permite inicializar las variables del component
@@ -141,5 +144,42 @@ export class AdminRolesComponent implements OnInit {
      */
     private verDetalleRol(rol: RolesVO) {
         this.utilService.displayModalRole(rol.idRole);
+    }
+
+    /**
+     * Metodo que sorporta el evento click del icono eliminar ROLE
+     * @param rol , identificador del ROLE eliminar
+     */
+    private eliminarRol(rol: RolesVO) {
+
+        // se procede abrir la ventana de confirmacion
+        this.confirmationService.confirm({
+            message: '¿Está seguro de que desea eliminar el siguiente ROL? <br/> <div class="text_center">' + rol.nombre + '</div>',
+            header: 'Confirmación',
+            icon: 'fa fa-question-circle',
+            accept: () => {
+
+                // se muestra el modal de carga
+                this.utilService.displayLoading(true);
+
+                // susbripcion para la eliminacion del ROL
+                this.administradorService.eliminarRole(rol.idRole).subscribe(
+                    data => {
+                        // se configuran los roles retornados
+                        this.roles = data.json();
+
+                        // se cierra el modal de carga
+                        this.utilService.displayLoading(false);
+                    },
+                    error => {
+                        // se muestra el mensaje alert danger
+                        this.alertService.showAlert(error.json().mensaje, "alert alert-danger text_center", false);
+
+                        // se cierra el modal de carga
+                        this.utilService.displayLoading(false);
+                    }
+                );
+            }
+        });
     }
 }
