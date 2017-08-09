@@ -46,7 +46,6 @@ export class RolPrivilegioModal implements OnInit, OnDestroy {
         if (this.subscription) {
             this.subscription.unsubscribe();
         }
-        console.log("Se destruyo el modal de privilegio ROLE");
     }
 
     /**
