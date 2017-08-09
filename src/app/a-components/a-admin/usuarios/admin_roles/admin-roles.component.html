@@ -11,7 +11,7 @@
     </div>
     <p-dataTable [value]="roles" [responsive]="true" [rows]="10" [paginator]="true" emptyMessage="No hay roles registrados en el sistema.">
         <p-column header="Lista de Roles parametrizados en el sistema" field="nombre" [style]="{'text-align':'center'}"></p-column>
-        <p-column [style]="{'width':'3%','text-align':'center'}" header="Ver">
+        <p-column [style]="{'width':'8%','text-align':'center'}" header="Privilegios">
             <ng-template let-item="rowData" pTemplate="body">
                 <span class="glyphicon glyphicon-share cursor-manito" (click)="verDetalleRol(item)"></span>
             </ng-template>
@@ -43,7 +43,7 @@
         <button type="submit" class="btn btn-primary">Guardar</button> &nbsp;
         <button type="submit" class="btn btn-default" (click)="cerrarPanelRoles()">Cancelar</button>
     </form>
-    
+
     <!-- datagrid con los roles del sistema-->
     <p-dataGrid [value]="modulos">
         <p-header>
@@ -76,8 +76,7 @@
                                 <li *ngFor="let especifico of item.privilegiosEspecificosDTO" class="list-group-item items_border" style="border: 0px">
 
                                     <!-- por cada privilegio especifico se muestra un check-->
-                                    <p-checkbox name="nameEspecifico" [(ngModel)]="especifico.seleccionado" binary="true"
-                                       label="{{especifico.tipoPrivilegio == 1 ? '¿Este Rol es para funcionarios quién atiende al solicitante?' :
+                                    <p-checkbox name="nameEspecifico" [(ngModel)]="especifico.seleccionado" binary="true" label="{{especifico.tipoPrivilegio == 1 ? '¿Este Rol es para funcionarios quién atiende al solicitante?' :
                                                 especifico.tipoPrivilegio == 2 ? '¿Este Rol es para funcionarios quién elabora el certificado?' : 
                                                 especifico.tipoPrivilegio == 3 ? 'Permitir ANULAR, ACTIVAR abogados' :
                                                 especifico.tipoPrivilegio == 4 ? 'Permitir ELIMINAR procesos' :
