@@ -51,7 +51,7 @@ export class RolPrivilegioModal implements OnInit, OnDestroy {
     /**
      * Metodo para obtener la subscripcion para ser notificado
      */
-    private obtenerSubscripcion() {
+    private obtenerSubscripcion(): void {
         this.subscription = this.utilService.getSubcripcionModalRole().subscribe(
             idRole => {
                 // se obtiene los datos del ROLE
@@ -91,7 +91,7 @@ export class RolPrivilegioModal implements OnInit, OnDestroy {
     /**
      * Metodo que soporta el evento click del boton cerrar
      */
-    private cerrarModal() {
+    private cerrarModal(): void {
         this.role = null;
         this.modalVisible = false;
     }

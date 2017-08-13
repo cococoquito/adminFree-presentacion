@@ -3,7 +3,7 @@
 
     <!-- modal con los privilegios del ROL-->
     <p-dialog id="modal_role" [(visible)]="modalVisible" [responsive]="true" dismissableMask="true" modal="modal"
-     [styleClass]="role?.modulos?.length > 1 ? 'modal_role_max' : 'modal_role_min'" >
+     [styleClass]="role?.modulos?.length > 1 ? 'modal_role_max' : 'modal_role_min'" (onHide)="cerrarModal()">
         <p-header>
             Nombre del ROL: {{role?.nombreRole}}
         </p-header>
