@@ -42,7 +42,7 @@
              [ngClass]="(submitted && !nombreRol.valid) ? 'form-control input-invalido':'form-control input-valido'"
              maxlength="100" size="60" placeholder="Este campo es requerido" required/>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button> &nbsp;
+        <button type="submit" class="btn btn-primary">{{rolCrearEditar.idRole ? 'Guardar Cambios' : 'Guardar' }}</button> &nbsp;
         <button type="button" class="btn btn-default" (click)="cerrarPanelRoles()">Cancelar</button>
     </form>
 
