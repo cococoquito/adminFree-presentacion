@@ -92,6 +92,7 @@ export class RolPrivilegioModal implements OnInit, OnDestroy {
      * Metodo que soporta el evento click del boton cerrar
      */
     private cerrarModal() {
+        this.role = null;
         this.modalVisible = false;
     }
 }

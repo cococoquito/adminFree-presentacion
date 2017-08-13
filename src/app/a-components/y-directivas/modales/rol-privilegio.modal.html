@@ -2,9 +2,10 @@
 <div *ngIf="role">
 
     <!-- modal con los privilegios del ROL-->
-    <p-dialog id="modal_role" [(visible)]="modalVisible" modal="modal" width="1000" [responsive]="true" dismissableMask="true">
+    <p-dialog id="modal_role" [(visible)]="modalVisible" [responsive]="true" dismissableMask="true" modal="modal"
+     [styleClass]="role?.modulos?.length > 1 ? 'modal_role_max' : 'modal_role_min'" >
         <p-header>
-            Privilegios asignados al ROL: {{role?.nombreRole}}
+            Nombre del ROL: {{role?.nombreRole}}
         </p-header>
 
         <!-- datagrid con los modulos asociado al ROL-->
@@ -14,7 +15,7 @@
             <ng-template let-modulo pTemplate="modulo">
 
                 <!-- por cada modulo se muestra un panel-->
-                <div class="panel panel-info admin_modulos">
+                <div  [ngClass]="role?.modulos?.length > 1 ? 'panel panel-info admin_modulos' : 'panel panel-info admin_modulos_max'">
 
                     <!-- encabezado del panel-->
                     <div class="panel-heading text_center center-all sin_padding">

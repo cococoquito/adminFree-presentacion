@@ -334,6 +334,13 @@ ul.alert-dropdown {
     width: 50%;
 }
 
+.admin_modulos_max{
+    margin-bottom:0%; 
+    border:0px; 
+    padding:3px;
+    width: 100%;
+}
+
 .sin_padding{
     padding: 0px;
 }
@@ -353,4 +360,16 @@ ul.alert-dropdown {
     font-size: 17px;
     font-weight: bold;
     text-align: center;
+}
+
+.modal_role_max{
+    width:70%;
+    top: 5% !important;
+    left:15% !important;
+}
+
+.modal_role_min{
+    width:50%;
+    top: 5% !important;
+    left:25% !important;
 }
