@@ -22,8 +22,8 @@ export class AdminRolesComponent implements OnInit {
     /**lista de ROLES parametrizados en el sistema*/
     private roles: Array<RolesVO>;
 
-    /**Bandera que indica si es creacion de rol*/
-    private isCreacionRole: boolean;
+    /**Esta bandera se utiliza para visualizar el panel de creacion o edicion del ROL*/
+    private isCreacionEdicionROL: boolean;
 
     /**
      * Constructor del componente para el cambio de clave
@@ -79,18 +79,18 @@ export class AdminRolesComponent implements OnInit {
      */
     private abrirPanelCrearRol(): void {
 
-        // esta bandera permite habilitar el panel de creacion de ROL
-        this.isCreacionRole = true;
+        // esta bandera permite habilitar el panel de creacion o edicion de ROL
+        this.isCreacionEdicionROL = true;
 
         // se cargan los roles del sistema
         this.cargarModulosSistema();
     }
 
     /**
-     * Metodo que soporta el evento de cancelar del panel de roles
+     * Metodo que soporta el evento de cancelar del panel de creacion o edicion ROL
      */
     private cerrarPanelRoles(): void {
-        this.isCreacionRole = false;
+        this.isCreacionEdicionROL = false;
     }
 
     /**

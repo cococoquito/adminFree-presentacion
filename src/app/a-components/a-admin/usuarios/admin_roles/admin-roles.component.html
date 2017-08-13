@@ -5,7 +5,7 @@
 <br/>
 
 <!-- tabla con la lista de roles parametrizados -->
-<div *ngIf="!isCreacionRole">
+<div *ngIf="!isCreacionEdicionROL">
     <div class="cpm_right">
         <button type="submit" class="btn btn-primary" (click)="abrirPanelCrearRol()">Crear ROL</button>
     </div>
@@ -32,7 +32,7 @@
 </div>
 
 <!-- panel creacion ROLE -->
-<div *ngIf="isCreacionRole">
+<div *ngIf="isCreacionEdicionROL">
 
     <!-- formulario del nombre del ROL-->
     <form class="form-inline" name="form" #f="ngForm" (keydown.enter)="$event.preventDefault()" novalidate style="padding:4px">
