@@ -72,7 +72,7 @@ export class RolPrivilegioModal implements OnInit, OnDestroy {
         // se muestra el modal de carga
         this.utilService.displayLoading(true);
 
-        // se invoca el servicio para obtener los ROLES
+        // se invoca el servicio para obtener los privilegios del ROL
         this.administradorService.getDetalleRole(idRole).subscribe(
             data => {
                 // se inicializa las variables

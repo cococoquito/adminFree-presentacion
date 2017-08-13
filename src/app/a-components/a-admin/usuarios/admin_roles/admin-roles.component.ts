@@ -1,3 +1,4 @@
+import { RoleDTO } from './../../../../c-model/a-admin/usuarios/RoleDTO';
 import { Component, OnInit } from '@angular/core';
 import { RolesVO } from './../../../../c-model/a-admin/usuarios/RolesVO';
 import { ModuloDTO } from './../../../../c-model/a-admin/usuarios/ModuloDTO';
@@ -22,14 +23,17 @@ export class AdminRolesComponent implements OnInit {
     /**lista de ROLES parametrizados en el sistema*/
     private roles: Array<RolesVO>;
 
-    /**Esta bandera se utiliza para visualizar el panel de creacion o edicion del ROL*/
-    private isCreacionEdicionROL: boolean;
+    /**Esta variable se utiliza para visualizar el panel de creacion o edicion del ROL*/
+    private rolCrearEditar: RoleDTO;
+
+    /** bandera que identifica si ya se hizo submit */
+    private submitted: boolean;
 
     /**
-     * Constructor del componente para el cambio de clave
+     * Constructor del componente para la administracion del ROL
      * @param utilService, service con las funciones utilitarias
      * @param administradorService, contiene los servicios administrativo
-     * @param alertService, service para la comunicacion del el mensaje de alerta
+     * @param alertService, service para la comunicacion del componente de mensaje de alerta
      * @param confirmationService, servicio para la visualizacion del modal de confirmacion
      */
     constructor(
@@ -48,17 +52,17 @@ export class AdminRolesComponent implements OnInit {
     }
 
     /**
-     * Metodo que permite obtener todos los ROLES parametrizados en el sistema
+     * Metodo que permite obtener todos los ROLES ACTIVOS parametrizados en el sistema
      */
     private getRoles(): void {
 
         // se muestra el modal de carga
         this.utilService.displayLoading(true);
 
-        // se invoca el servicio para obtener los ROLES
+        // se invoca el servicio para obtener los ROLES ACTIVOS
         this.administradorService.getRoles().subscribe(
             data => {
-                // se inicializa las variables
+                // se construye los ROLES consultados
                 this.roles = data.json();
 
                 // se cierra el modal de carga
@@ -75,82 +79,54 @@ export class AdminRolesComponent implements OnInit {
     }
 
     /**
-     * Metodo encargado de abrir el panel para la creacion del ROL
+     * Metodo soporta el evento click del boton Crear ROL
      */
-    private abrirPanelCrearRol(): void {
+    private abrirPanelCrearROL(): void {
 
-        // esta bandera permite habilitar el panel de creacion o edicion de ROL
-        this.isCreacionEdicionROL = true;
+        // se crea el nuevo ROL para ser parametrizado en el sistema
+        this.rolCrearEditar = new RoleDTO();
 
-        // se cargan los roles del sistema
-        this.cargarModulosSistema();
+        // se configuran los modulos para este ROL
+        this.configurarROLModulos();
     }
 
     /**
-     * Metodo que soporta el evento de cancelar del panel de creacion o edicion ROL
+     * Metodo soporta el evento click del icono edicion ROL
+     * @param rol , es el ROL seleccionado desde la tabla ROLES
      */
-    private cerrarPanelRoles(): void {
-        this.isCreacionEdicionROL = false;
-    }
+    private abrirPanelEdicionROL(rol: RolesVO): void {
 
-    /**
-     * Metodo que soporta el evento onchange para los radios de los items del menu
-     * @param item , es el item quien ejecuto el evento
-     */
-    private onchangeItem(item: ModuloItemDTO): void {
+        // se muestra el modal de carga y se limpia la variable global
+        this.utilService.displayLoading(true);
+        this.rolCrearEditar = null;
 
-        // se debe limpiar los check seleccionado, esto por si lo seleccionaron con anterioridad
-        if (item && item.privilegiosEspecificosDTO) {
-            for (let especifico of item.privilegiosEspecificosDTO) {
-                especifico.seleccionado = false;
+        // se invoca el servicio para obtener los privilegios del ROL a editar
+        this.administradorService.getDetalleRole(rol.idRole).subscribe(
+            data => {
+                // se configura los privilegios del ROL
+                this.rolCrearEditar = data.json();
+
+                // se configura los privilegios a este ROL
+                this.configurarROLModulos();
+
+                // se cierra el modal de carga
+                this.utilService.displayLoading(false);
+            },
+            error => {
+                // se muestra el mensaje alert danger
+                this.alertService.showAlert(error.text(), "alert alert-danger text_center", false);
+
+                // se cierra el modal de carga
+                this.utilService.displayLoading(false);
             }
-        }
-    }
-
-    /**
-     * Metodo que permite cargar los modulos del sistema
-     */
-    private cargarModulosSistema(): void {
-
-        // solo se cargan los modulos si la lista es nula
-        if (!this.modulos) {
-
-            // se muestra el modal de carga
-            this.utilService.displayLoading(true);
-
-            // se invoca el servicio para obtener los modulos
-            this.administradorService.getModulosItems().subscribe(
-                data => {
-                    // se inicializa las variables
-                    this.modulos = data.json();
-
-                    // se cierra el modal de carga
-                    this.utilService.displayLoading(false);
-                },
-                error => {
-                    // se muestra el mensaje alert danger
-                    this.alertService.showAlert(error.text(), "alert alert-danger text_center", false);
-
-                    // se cierra el modal de carga
-                    this.utilService.displayLoading(false);
-                }
-            );
-        }
-    }
-
-    /**
-     * Metodo que sorporta el ver detalle del la tabla de ROLES
-     * @param rol , identificador del ROLE seleccionado
-     */
-    private verDetalleRol(rol: RolesVO) {
-        this.utilService.displayModalRole(rol.idRole);
+        );
     }
 
     /**
      * Metodo que sorporta el evento click del icono eliminar ROLE
-     * @param rol , identificador del ROLE eliminar
+     * @param rol , es el ROL seleccionado desde la tabla ROLES
      */
-    private eliminarRol(rol: RolesVO) {
+    private eliminarRol(rol: RolesVO): void {
 
         // se procede abrir la ventana de confirmacion
         this.confirmationService.confirm({
@@ -181,5 +157,156 @@ export class AdminRolesComponent implements OnInit {
                 );
             }
         });
+    }
+
+    /**
+     * Metodo que sorporta el evento click del ver privilegios del ROL
+     * @param rol , ROL seleccionado desde la tabla de ROLES
+     */
+    private verDetalleRol(rol: RolesVO): void {
+        this.utilService.displayModalRole(rol.idRole);
+    }
+
+    /**
+     * Metodo que soporta el evento click del boton cancelar del panel de creacion o edicion ROL
+     */
+    private cerrarPanelRoles(): void {
+        this.rolCrearEditar = null;
+    }
+
+    /**
+     * Metodo que soporta el evento onchange para los radios de los items del menu
+     * @param item , es el item quien ejecuto el evento
+     */
+    private onchangeItem(item: ModuloItemDTO): void {
+
+        // se debe limpiar los check seleccionado, esto por si lo seleccionaron con anterioridad
+        if (item && item.privilegiosEspecificosDTO) {
+            for (let especifico of item.privilegiosEspecificosDTO) {
+                especifico.seleccionado = false;
+            }
+        }
+    }
+
+    /**
+     * Metodo que permite establecer que el user ya hizo submitted
+     */
+    private onSubmit(): boolean {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
+
+        // se notifica que el user hizo submitted
+        this.submitted = true;
+        return this.submitted;
+    }
+
+    /**
+     * Metodo que permite configurar los modulos al ROL, aplica para edicion o creacion
+     */
+    private configurarROLModulos(): void {
+
+        // solo se cargan los modulos si la lista es nula
+        if (!this.modulos) {
+
+            // se muestra el modal de carga
+            this.utilService.displayLoading(true);
+
+            // se invoca el servicio para obtener los modulos
+            this.administradorService.getModulosItems().subscribe(
+                data => {
+                    // se inicializa las variables
+                    this.modulos = data.json();
+
+                    // se asigna los modulos al ROL
+                    this.asignarModulosROL();
+
+                    // se cierra el modal de carga
+                    this.utilService.displayLoading(false);
+                },
+                error => {
+                    // se muestra el mensaje alert danger
+                    this.alertService.showAlert(error.text(), "alert alert-danger text_center", false);
+
+                    // se cierra el modal de carga
+                    this.utilService.displayLoading(false);
+                }
+            );
+        } else {
+            // se debe limpiar los check seleccionado, esto por si lo seleccionaron con anterioridad
+            for (let modulo of this.modulos) {
+                for (let item of modulo.itemsMenu) {
+                    item.seleccionado = false;
+                    if (item.privilegiosEspecificosDTO) {
+                        for (let especifico of item.privilegiosEspecificosDTO) {
+                            especifico.seleccionado = false;
+                        }
+                    }
+                }
+            }
+
+            // se asigna los modulos al ROL
+            this.asignarModulosROL();
+        }
+    }
+
+    /**
+     * Metodo que permite asignar los modulos al ROL para editar o creacion
+     */
+    private asignarModulosROL(): void {
+
+        // para edicion, se debe configurar los items seleccionados del ROL
+        if (this.rolCrearEditar.idRole && this.rolCrearEditar.modulos) {
+
+            // se recorre los modulos del ROL a editar
+            for (let moduloROL of this.rolCrearEditar.modulos) {
+
+                // se recorre los items de este modulo
+                for (let itemROL of moduloROL.itemsMenu) {
+
+                    // se busca el item de los modulos del sistema
+                    let itemSistema = this.buscarModuloItemSistema(itemROL.idItem);
+                    itemSistema.seleccionado = true;
+
+                    // se valida si este item tiene privilegios especifico
+                    if (itemROL.privilegiosEspecificosDTO && itemSistema.privilegiosEspecificosDTO) {
+
+                        // se recorre los privilegios especificos de este ITEM
+                        for (let especificoROL of itemROL.privilegiosEspecificosDTO) {
+
+                            // se recorre los privilegios especifico del item del sistema
+                            for (let especificoSistema of itemSistema.privilegiosEspecificosDTO) {
+
+                                // si es el mismo tipo de privilegio especifico se marca como seleccionado
+                                if (especificoROL.tipoPrivilegio == especificoSistema.tipoPrivilegio) {
+                                    especificoSistema.seleccionado = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // se asigna los modulos al ROL
+        this.rolCrearEditar.modulos = this.modulos;
+
+        // se indica que el usuario no ha dado commit
+        this.submitted = false;
+    }
+
+    /**
+     * Metodo que permite buscar un item del modulo a partir de su ID
+     * @param idItem , identificador del ITEM
+     */
+    private buscarModuloItemSistema(idItem: number): ModuloItemDTO {
+        for (let modulo of this.modulos) {
+            for (let item of modulo.itemsMenu) {
+                if (item.idItem == idItem) {
+                    return item;
+                }
+            }
+        }
     }
 }
