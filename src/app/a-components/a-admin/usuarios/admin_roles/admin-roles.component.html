@@ -2,6 +2,7 @@
 <div class="text_center sub-title-page_conf">
     Administración Roles
 </div>
+<alert></alert>
 <br/>
 
 <!-- tabla con la lista de roles parametrizados -->
@@ -35,7 +36,7 @@
 <div *ngIf="rolCrearEditar">
 
     <!-- formulario del nombre del ROL-->
-    <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && crearEditarROL()" (keydown.enter)="$event.preventDefault()" novalidate class="form-inline" style="padding:4px">
+    <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && crearEditarROLsistema()" (keydown.enter)="$event.preventDefault()" novalidate class="form-inline" style="padding:4px">
         <div class="form-group">
             <label for="nombreRol">Nombre del Rol*:</label>
             <input type="text" [(ngModel)]="rolCrearEditar.nombreRole" name="nombreRol" #nombreRol="ngModel" 

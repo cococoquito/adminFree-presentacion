@@ -1,3 +1,4 @@
+import { ERROR_MSJ_PRIVILEGIOS_SELECCIONADO } from './../../../../z-util/Constants';
 import { RoleDTO } from './../../../../c-model/a-admin/usuarios/RoleDTO';
 import { Component, OnInit } from '@angular/core';
 import { RolesVO } from './../../../../c-model/a-admin/usuarios/RolesVO';
@@ -215,7 +216,7 @@ export class AdminRolesComponent implements OnInit {
             // se invoca el servicio para obtener los modulos
             this.administradorService.getModulosItems().subscribe(
                 data => {
-                    // se inicializa las variables
+                    // se configura los modulos consultados
                     this.modulos = data.json();
 
                     // se asigna los modulos al ROL
@@ -305,6 +306,29 @@ export class AdminRolesComponent implements OnInit {
             for (let item of modulo.itemsMenu) {
                 if (item.idItem == idItem) {
                     return item;
+                }
+            }
+        }
+    }
+
+    /**
+     * Metodo que permite crear o editar el ROL en el sistema
+     */
+    private crearEditarROLsistema(): void {
+
+        // se valida que almenos seleccionaron un privilegio
+        if (this.verificarItemSeleccionado()) {
+
+        } else {
+            this.alertService.showAlert(ERROR_MSJ_PRIVILEGIOS_SELECCIONADO, "alert alert-danger text_center", false);
+        }
+    }
+
+    private verificarItemSeleccionado(): boolean {
+        for (let modulo of this.rolCrearEditar.modulos) {
+            for (let item of modulo.itemsMenu) {
+                if (item.seleccionado) {
+                    return true;
                 }
             }
         }

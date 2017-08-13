@@ -17,3 +17,6 @@ export var CAMBIO_CLAVE: string = "/cambio_clave";
 export var ESTADO_ACTIVO: number = 1;
 export var ESTADO_BORRRADO: number = 2;
 /** Constantes para los estados - final*/
+
+/** modulo Adminstracion>>usuario>>admin-role, no hay privilegios seleccionados*/
+export var ERROR_MSJ_PRIVILEGIOS_SELECCIONADO: string = "Debe seleccionar al menos un privilegio para crear el role.";
