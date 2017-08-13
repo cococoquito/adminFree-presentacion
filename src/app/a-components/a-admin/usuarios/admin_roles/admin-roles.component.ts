@@ -1,4 +1,4 @@
-import { ERROR_MSJ_PRIVILEGIOS_SELECCIONADO, EXITOSO_MSJ_ROL_ELIMINADO } from './../../../../z-util/Constants';
+import { ERROR_MSJ_PRIVILEGIOS_SELECCIONADO, EXITOSO_MSJ_ROL_ELIMINADO, EXITOSO_MSJ_ROL_EDITADO, EXITOSO_MSJ_ROL_CREADO } from './../../../../z-util/Constants';
 import { RoleDTO } from './../../../../c-model/a-admin/usuarios/RoleDTO';
 import { Component, OnInit } from '@angular/core';
 import { RolesVO } from './../../../../c-model/a-admin/usuarios/RolesVO';
@@ -85,8 +85,8 @@ export class AdminRolesComponent implements OnInit {
     private abrirPanelCrearROL(): void {
 
         // se oculta el alert esto por si hay errores con el submit anterior
-        this.alertService.hiddenAlert();                
-        
+        this.alertService.hiddenAlert();
+
         // se crea el nuevo ROL para ser parametrizado en el sistema
         this.rolCrearEditar = new RoleDTO();
 
@@ -101,7 +101,7 @@ export class AdminRolesComponent implements OnInit {
     private abrirPanelEdicionROL(rol: RolesVO): void {
 
         // se oculta el alert esto por si hay errores con el submit anterior
-        this.alertService.hiddenAlert(); 
+        this.alertService.hiddenAlert();
 
         // se muestra el modal de carga y se limpia la variable global
         this.utilService.displayLoading(true);
@@ -136,7 +136,7 @@ export class AdminRolesComponent implements OnInit {
     private eliminarRol(rol: RolesVO): void {
 
         // se oculta el alert esto por si hay errores con el submit anterior
-        this.alertService.hiddenAlert();         
+        this.alertService.hiddenAlert();
 
         // se procede abrir la ventana de confirmacion
         this.confirmationService.confirm({
@@ -179,7 +179,7 @@ export class AdminRolesComponent implements OnInit {
     private verDetalleRol(rol: RolesVO): void {
 
         // se oculta el alert esto por si hay errores con el submit anterior
-        this.alertService.hiddenAlert(); 
+        this.alertService.hiddenAlert();
 
         // se muestra el modal para de ROL con sus privilegios
         this.utilService.displayModalRole(rol.idRole);
@@ -191,7 +191,7 @@ export class AdminRolesComponent implements OnInit {
     private cerrarPanelRoles(): void {
 
         // se oculta el alert esto por si hay errores con el submit anterior
-        this.alertService.hiddenAlert(); 
+        this.alertService.hiddenAlert();
 
         // se limpia esta variable para retornar a la lista de ROLES
         this.rolCrearEditar = null;
@@ -339,11 +339,37 @@ export class AdminRolesComponent implements OnInit {
     private crearEditarROLsistema(): void {
 
         // se oculta el alert esto por si hay errores con el submit anterior
-        this.alertService.hiddenAlert(); 
+        this.alertService.hiddenAlert();
 
         // se valida que almenos seleccionaron un privilegio
         if (this.verificarItemSeleccionado()) {
 
+            // se muestra el modal de carga
+            this.utilService.displayLoading(true);
+
+            // se invoca el servicio para crear o editar el ROL
+            this.administradorService.crearEditarRole(this.rolCrearEditar).subscribe(
+                data => {
+                    // se configura los roles retornado por el servicio
+                    this.roles = data.json();
+
+                    // se muestra el mensaje exitoso en pantalla
+                    this.alertService.showAlert(this.rolCrearEditar.idRole ? EXITOSO_MSJ_ROL_EDITADO : EXITOSO_MSJ_ROL_CREADO, "alert alert-success text_center", false);
+
+                    // se limpia la variable del ROL para retornar a la lista de ROLES ACTIVO
+                    this.rolCrearEditar = null;
+
+                    // se cierra el modal de carga
+                    this.utilService.displayLoading(false);
+                },
+                error => {
+                    // se muestra el mensaje alert danger
+                    this.alertService.showAlert(error.text(), "alert alert-danger text_center", false);
+
+                    // se cierra el modal de carga
+                    this.utilService.displayLoading(false);
+                }
+            );
         } else {
             this.alertService.showAlert(ERROR_MSJ_PRIVILEGIOS_SELECCIONADO, "alert alert-danger text_center", false);
         }

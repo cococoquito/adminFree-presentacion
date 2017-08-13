@@ -19,6 +19,8 @@ export var ESTADO_BORRRADO: number = 2;
 /** Constantes para los estados - final*/
 
 /** mensajes para el modulo Adminstracion>>usuario>>admin-role - inicio*/
-export var EXITOSO_MSJ_ROL_ELIMINADO: string = "El ROL fue eliminado satisfactoriamente del sistema.";
+export var EXITOSO_MSJ_ROL_CREADO: string = "El ROL fue creado exitosamente en el sistema.";
+export var EXITOSO_MSJ_ROL_EDITADO: string = "El ROL fue actualizado exitosamente en el sistema.";
+export var EXITOSO_MSJ_ROL_ELIMINADO: string = "El ROL fue eliminado exitosamente del sistema.";
 export var ERROR_MSJ_PRIVILEGIOS_SELECCIONADO: string = "Debe seleccionar al menos un privilegio para crear el role.";
 /** mensajes para el modulo Adminstracion>>usuario>>admin-role - final*/
