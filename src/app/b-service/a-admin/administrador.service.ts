@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { CambioClaveDTO } from './../../c-model/b-seguridad/CambioClaveDTO';
 import { UsuarioLoginDTO } from './../../c-model/b-seguridad/UsuarioLoginDTO';
+import { RoleDTO } from './../../c-model/a-admin/usuarios/RoleDTO';
 import { UsuariosVO } from './../../c-model/b-seguridad/UsuariosVO';
 import { KEY_FECHA_INGRESO, KEY_LOCAL_STORE_USER, URL_BASE } from './../../z-util/Constants';
 
@@ -34,6 +35,9 @@ export class AdministradorService {
 
     /** URL para eliminar el ROLE de acuerdo a su ID */
     private static URL_ELIMINAR_ROLE = 'admin/role/eliminar/';
+
+    /** URL para crear o editar un ROLE */
+    private static URL_CREAR_EDITAR_ROLE = 'admin/crear_editar_role';
 
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json' });
@@ -92,6 +96,14 @@ export class AdministradorService {
      */
     public eliminarRole(idRole: number): Observable<Response> {
         return this.http.get(URL_BASE + AdministradorService.URL_ELIMINAR_ROLE + idRole);
+    }
+
+    /**
+     * Metodo que permite crear o editar un ROL en el sistema
+     * @param role , DTO con los datos del ROL a editar o crear
+     */
+    public crearEditarRole(role: RoleDTO): Observable<Response> {
+        return this.http.post(URL_BASE + AdministradorService.URL_CREAR_EDITAR_ROLE, role, this.options);
     }
 
     /**
