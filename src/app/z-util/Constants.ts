@@ -18,5 +18,7 @@ export var ESTADO_ACTIVO: number = 1;
 export var ESTADO_BORRRADO: number = 2;
 /** Constantes para los estados - final*/
 
-/** modulo Adminstracion>>usuario>>admin-role, no hay privilegios seleccionados*/
+/** mensajes para el modulo Adminstracion>>usuario>>admin-role - inicio*/
+export var EXITOSO_MSJ_ROL_ELIMINADO: string = "El ROL fue eliminado satisfactoriamente del sistema.";
 export var ERROR_MSJ_PRIVILEGIOS_SELECCIONADO: string = "Debe seleccionar al menos un privilegio para crear el role.";
+/** mensajes para el modulo Adminstracion>>usuario>>admin-role - final*/

@@ -1,4 +1,4 @@
-import { ERROR_MSJ_PRIVILEGIOS_SELECCIONADO } from './../../../../z-util/Constants';
+import { ERROR_MSJ_PRIVILEGIOS_SELECCIONADO, EXITOSO_MSJ_ROL_ELIMINADO } from './../../../../z-util/Constants';
 import { RoleDTO } from './../../../../c-model/a-admin/usuarios/RoleDTO';
 import { Component, OnInit } from '@angular/core';
 import { RolesVO } from './../../../../c-model/a-admin/usuarios/RolesVO';
@@ -84,6 +84,9 @@ export class AdminRolesComponent implements OnInit {
      */
     private abrirPanelCrearROL(): void {
 
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();                
+        
         // se crea el nuevo ROL para ser parametrizado en el sistema
         this.rolCrearEditar = new RoleDTO();
 
@@ -96,6 +99,9 @@ export class AdminRolesComponent implements OnInit {
      * @param rol , es el ROL seleccionado desde la tabla ROLES
      */
     private abrirPanelEdicionROL(rol: RolesVO): void {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert(); 
 
         // se muestra el modal de carga y se limpia la variable global
         this.utilService.displayLoading(true);
@@ -129,6 +135,9 @@ export class AdminRolesComponent implements OnInit {
      */
     private eliminarRol(rol: RolesVO): void {
 
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();         
+
         // se procede abrir la ventana de confirmacion
         this.confirmationService.confirm({
             message: '¿Está seguro de que desea eliminar el siguiente ROL? <br/> <div class="text_center">' + rol.nombre + '</div>',
@@ -144,6 +153,9 @@ export class AdminRolesComponent implements OnInit {
                     data => {
                         // se configuran los roles retornados
                         this.roles = data.json();
+
+                        // se muestra el mensaje exitoso en pantalla
+                        this.alertService.showAlert(EXITOSO_MSJ_ROL_ELIMINADO, "alert alert-success text_center", false);
 
                         // se cierra el modal de carga
                         this.utilService.displayLoading(false);
@@ -165,6 +177,11 @@ export class AdminRolesComponent implements OnInit {
      * @param rol , ROL seleccionado desde la tabla de ROLES
      */
     private verDetalleRol(rol: RolesVO): void {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert(); 
+
+        // se muestra el modal para de ROL con sus privilegios
         this.utilService.displayModalRole(rol.idRole);
     }
 
@@ -172,6 +189,11 @@ export class AdminRolesComponent implements OnInit {
      * Metodo que soporta el evento click del boton cancelar del panel de creacion o edicion ROL
      */
     private cerrarPanelRoles(): void {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert(); 
+
+        // se limpia esta variable para retornar a la lista de ROLES
         this.rolCrearEditar = null;
     }
 
@@ -316,6 +338,9 @@ export class AdminRolesComponent implements OnInit {
      */
     private crearEditarROLsistema(): void {
 
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert(); 
+
         // se valida que almenos seleccionaron un privilegio
         if (this.verificarItemSeleccionado()) {
 
@@ -324,6 +349,9 @@ export class AdminRolesComponent implements OnInit {
         }
     }
 
+    /**
+     * Metodo que retorna true si almenos un item fue selecionado por el usuario
+     */
     private verificarItemSeleccionado(): boolean {
         for (let modulo of this.rolCrearEditar.modulos) {
             for (let item of modulo.itemsMenu) {
