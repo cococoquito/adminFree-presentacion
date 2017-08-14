@@ -1,4 +1,4 @@
-import { ERROR_MSJ_PRIVILEGIOS_SELECCIONADO, EXITOSO_MSJ_ROL_ELIMINADO, EXITOSO_MSJ_ROL_EDITADO, EXITOSO_MSJ_ROL_CREADO } from './../../../../z-util/Constants';
+import { ERROR_MSJ_PRIVILEGIOS_SELECCIONADO, EXITOSO_MSJ_ROL_ELIMINADO, EXITOSO_MSJ_ROL_EDITADO, EXITOSO_MSJ_ROL_CREADO, STYLE_SUCCESS_CENTER, STYLE_ERROR_CENTER } from './../../../../z-util/Constants';
 import { RoleDTO } from './../../../../c-model/a-admin/usuarios/RoleDTO';
 import { Component, OnInit } from '@angular/core';
 import { RolesVO } from './../../../../c-model/a-admin/usuarios/RolesVO';
@@ -70,11 +70,7 @@ export class AdminRolesComponent implements OnInit {
                 this.utilService.displayLoading(false);
             },
             error => {
-                // se muestra el mensaje alert danger
-                this.alertService.showAlert(error.text(), "alert alert-danger text_center", false);
-
-                // se cierra el modal de carga
-                this.utilService.displayLoading(false);
+               this.utilService.showErrorSistema(error, this.alertService);
             }
         );
     }
@@ -120,11 +116,7 @@ export class AdminRolesComponent implements OnInit {
                 this.utilService.displayLoading(false);
             },
             error => {
-                // se muestra el mensaje alert danger
-                this.alertService.showAlert(error.text(), "alert alert-danger text_center", false);
-
-                // se cierra el modal de carga
-                this.utilService.displayLoading(false);
+                this.utilService.showErrorSistema(error, this.alertService);
             }
         );
     }
@@ -155,17 +147,13 @@ export class AdminRolesComponent implements OnInit {
                         this.roles = data.json();
 
                         // se muestra el mensaje exitoso en pantalla
-                        this.alertService.showAlert(EXITOSO_MSJ_ROL_ELIMINADO, "alert alert-success text_center", false);
+                        this.alertService.showAlert(EXITOSO_MSJ_ROL_ELIMINADO, STYLE_SUCCESS_CENTER, false);
 
                         // se cierra el modal de carga
                         this.utilService.displayLoading(false);
                     },
                     error => {
-                        // se muestra el mensaje alert danger
-                        this.alertService.showAlert(error.json().mensaje, "alert alert-danger text_center", false);
-
-                        // se cierra el modal de carga
-                        this.utilService.displayLoading(false);
+                       this.utilService.showErrorSistema(error, this.alertService);
                     }
                 );
             }
@@ -248,11 +236,7 @@ export class AdminRolesComponent implements OnInit {
                     this.utilService.displayLoading(false);
                 },
                 error => {
-                    // se muestra el mensaje alert danger
-                    this.alertService.showAlert(error.text(), "alert alert-danger text_center", false);
-
-                    // se cierra el modal de carga
-                    this.utilService.displayLoading(false);
+                   this.utilService.showErrorSistema(error, this.alertService);
                 }
             );
         } else {
@@ -354,7 +338,7 @@ export class AdminRolesComponent implements OnInit {
                     this.roles = data.json();
 
                     // se muestra el mensaje exitoso en pantalla
-                    this.alertService.showAlert(this.rolCrearEditar.idRole ? EXITOSO_MSJ_ROL_EDITADO : EXITOSO_MSJ_ROL_CREADO, "alert alert-success text_center", false);
+                    this.alertService.showAlert(this.rolCrearEditar.idRole ? EXITOSO_MSJ_ROL_EDITADO : EXITOSO_MSJ_ROL_CREADO, STYLE_SUCCESS_CENTER, false);
 
                     // se limpia la variable del ROL para retornar a la lista de ROLES ACTIVO
                     this.rolCrearEditar = null;
@@ -363,15 +347,11 @@ export class AdminRolesComponent implements OnInit {
                     this.utilService.displayLoading(false);
                 },
                 error => {
-                    // se muestra el mensaje alert danger
-                    this.alertService.showAlert(error.text(), "alert alert-danger text_center", false);
-
-                    // se cierra el modal de carga
-                    this.utilService.displayLoading(false);
+                    this.utilService.showErrorSistema(error, this.alertService);
                 }
             );
         } else {
-            this.alertService.showAlert(ERROR_MSJ_PRIVILEGIOS_SELECCIONADO, "alert alert-danger text_center", false);
+            this.alertService.showAlert(ERROR_MSJ_PRIVILEGIOS_SELECCIONADO, STYLE_ERROR_CENTER, false);
         }
     }
 

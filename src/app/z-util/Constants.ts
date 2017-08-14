@@ -18,6 +18,13 @@ export var ESTADO_ACTIVO: number = 1;
 export var ESTADO_BORRRADO: number = 2;
 /** Constantes para los estados - final*/
 
+/** Error general del sistem*/
+export var ERROR_SISTEMA: string = "Se presento el siguiente error: ";
+
+/** estilos para el mensaje de ALERT*/
+export var STYLE_ERROR_CENTER: string = "alert alert-danger text_center";
+export var STYLE_SUCCESS_CENTER: string = "alert alert-success text_center";
+
 /** mensajes para el modulo Adminstracion>>usuario>>admin-role - inicio*/
 export var EXITOSO_MSJ_ROL_CREADO: string = "El ROL fue creado exitosamente en el sistema.";
 export var EXITOSO_MSJ_ROL_EDITADO: string = "El ROL fue actualizado exitosamente en el sistema.";

@@ -41,7 +41,7 @@ export class AlertService {
     /**
      * Metodo que permite ocultar el componente del Alert
      */
-    public hiddenAlert(){
+    public hiddenAlert(): void {
         this.subject.next();
     }
 
