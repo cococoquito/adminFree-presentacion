@@ -13,19 +13,22 @@
         <p-column header="Lista de Roles parametrizados en el sistema" field="nombre" [style]="{'text-align':'center'}"></p-column>
         <p-column [style]="{'width':'8%','text-align':'center'}" header="Privilegios">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-share cursor-manito" (click)="verDetalleRol(item)"></span>
+                <span class="glyphicon glyphicon-share cursor-manito" (click)="verDetalleRol(item)" 
+                 title="Click aqui para ver los privilegios de este ROL"></span>
             </ng-template>
         </p-column>
 
         <p-column [style]="{'width':'5%','text-align':'center'}" header="Editar">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-edit cursor-manito" (click)="abrirPanelEdicionROL(item)"></span>
+                <span class="glyphicon glyphicon-edit cursor-manito" (click)="abrirPanelEdicionROL(item)"
+                 title="Click aqui para editar los valores de este ROL"></span>
             </ng-template>
         </p-column>
 
         <p-column [style]="{'width':'6%','text-align':'center'}" header="Eliminar">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-trash cursor-manito" (click)="eliminarRol(item)"></span>
+                <span class="glyphicon glyphicon-trash cursor-manito" (click)="eliminarRol(item)"
+                title="Click aqui para eliminar este ROL del sistema"></span>
             </ng-template>
         </p-column>
     </p-dataTable>
