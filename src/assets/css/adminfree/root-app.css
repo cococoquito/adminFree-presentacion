@@ -315,11 +315,12 @@ ul.alert-dropdown {
 .sub-title-page_conf{
     font-family: 'palatino linotype', palatino, serif;
     color: #404042;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
     font-style: italic;
     letter-spacing: 0.4pt;
     word-spacing: 0.8pt;
+    padding:3px;
 }
 
 .cpm_right{
