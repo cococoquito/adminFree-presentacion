@@ -39,6 +39,9 @@ export class AdministradorService {
     /** URL para crear o editar un ROLE */
     private static URL_CREAR_EDITAR_ROLE = 'admin/crear_editar_role';
 
+    /** URL para listar los usuarios activos del sistema */
+    private static URL_LISTAR_USUARIOS = 'admin/listar_usuarios';    
+
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json' });
 
@@ -104,6 +107,13 @@ export class AdministradorService {
      */
     public crearEditarRole(role: RoleDTO): Observable<Response> {
         return this.http.post(URL_BASE + AdministradorService.URL_CREAR_EDITAR_ROLE, role, this.options);
+    }
+
+    /**
+     * Metodo que permite listar los usuarios activos en el sistema
+     */
+    public listarUsuariosActivos(): Observable<Response> {
+        return this.http.get(URL_BASE + AdministradorService.URL_LISTAR_USUARIOS);
     }
 
     /**
