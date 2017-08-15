@@ -7,7 +7,7 @@
 <!-- tabla con la lista de roles parametrizados -->
 <div *ngIf="!rolCrearEditar">
     <div class="cpm_right">
-        <button type="submit" class="btn btn-primary" (click)="abrirPanelCrearROL()">Crear ROL</button>
+        <button type="button" class="btn btn-primary" (click)="abrirPanelCrearROL()">Crear ROL</button>
     </div>
     <p-dataTable [value]="roles" [responsive]="true" [rows]="10" [paginator]="true" emptyMessage="No hay roles registrados en el sistema.">
         <p-column header="Lista de Roles parametrizados en el sistema" field="nombre" [style]="{'text-align':'center'}"></p-column>
