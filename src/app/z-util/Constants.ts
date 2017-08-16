@@ -31,3 +31,7 @@ export var EXITOSO_MSJ_ROL_EDITADO: string = "El ROL fue actualizado exitosament
 export var EXITOSO_MSJ_ROL_ELIMINADO: string = "El ROL fue eliminado exitosamente del sistema.";
 export var ERROR_MSJ_PRIVILEGIOS_SELECCIONADO: string = "Debe seleccionar al menos un privilegio para crear el role.";
 /** mensajes para el modulo Adminstracion>>usuario>>admin-role - final*/
+
+/** mensajes para el modulo Adminstracion>>usuario>>admin-usuario - inicio*/
+export var EXITOSO_MSJ_USER_ELIMINADO: string = "El Usuario fue eliminado exitosamente del sistema.";
+/** mensajes para el modulo Adminstracion>>usuario>>admin-usuario - final*/

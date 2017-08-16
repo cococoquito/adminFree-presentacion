@@ -689,9 +689,9 @@ p-togglebutton.ng-dirty.ng-invalid .ui-button {
 .ui-widget-content .ui-button,
 .ui-widget.ui-button,
 .ui-button {
-  border: 1px solid #2399e5;
+  border: 1px solid #186ba0;
   color: #FFFFFF;
-  background: #2399e5;
+  background: #186ba0;
   -webkit-transition: background-color .2s;
   -moz-transition: background-color .2s;
   transition: background-color .2s; }

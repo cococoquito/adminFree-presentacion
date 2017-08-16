@@ -1,3 +1,4 @@
+import { STYLE_SUCCESS_CENTER, EXITOSO_MSJ_USER_ELIMINADO } from './../../../../z-util/Constants';
 import { UsuariosDTO } from './../../../../c-model/a-admin/usuarios/UsuariosDTO';
 import { ConfirmationService } from 'primeng/primeng';
 import { AlertService } from './../../../../b-service/z-common/alert.service';
@@ -74,4 +75,43 @@ export class AdminUsersComponent implements OnInit {
         // se muestra el modal para de ROL con sus privilegios
         this.utilService.displayModalRole(user.roles);
     }
+
+    /**
+     * Metodo que sorporta el evento click del icono eliminar USER
+     * @param user , Usuario seleccionado desde la tabla de usuarios
+     */
+    private eliminarUser(user: UsuariosDTO): void {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
+
+        // se procede abrir la ventana de confirmacion
+        this.confirmationService.confirm({
+            message: '¿Está seguro de que desea eliminar el siguiente USUARIO? <br/> <div class="text_center">' + user.nombre + '</div>',
+            header: 'Confirmación',
+            icon: 'fa fa-question-circle',
+            accept: () => {
+
+                // se muestra el modal de carga
+                this.utilService.displayLoading(true);
+
+                // susbripcion para la eliminacion del Usuario
+                this.administradorService.eliminarUsuario(user).subscribe(
+                    data => {
+                        // se configuran los usuarios retornados
+                        this.usuarios = data.json();
+
+                        // se muestra el mensaje exitoso en pantalla
+                        this.alertService.showAlert(EXITOSO_MSJ_USER_ELIMINADO, STYLE_SUCCESS_CENTER, false);
+
+                        // se cierra el modal de carga
+                        this.utilService.displayLoading(false);
+                    },
+                    error => {
+                       this.utilService.showErrorSistema(error, this.alertService);
+                    }
+                );
+            }
+        });
+    }    
 }

@@ -29,7 +29,7 @@
         </p-column>
         <p-column [style]="{'width':'6%','text-align':'center'}" header="Eliminar">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-trash cursor-manito" title="Click aqui para eliminar este usuario del sistema"></span>
+                <span class="glyphicon glyphicon-trash cursor-manito" (click)="eliminarUser(item)" title="Click aqui para eliminar este usuario del sistema"></span>
             </ng-template>
         </p-column>
     </p-dataTable>
