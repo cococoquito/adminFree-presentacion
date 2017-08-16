@@ -12,18 +12,24 @@
     <p-dataTable [value]="usuarios" [responsive]="true" [rows]="10" [paginator]="true" emptyMessage="No hay usuarios registrados en el sistema.">
         <p-column header="Nombre completo" field="nombre" [style]="{'text-align':'center'}"></p-column>
         <p-column header="Usuario de ingreso" field="nombreUsuario" [style]="{'text-align':'center'}"></p-column>
-        <p-column header="¿Es abogado?" field="esAbogado" [style]="{'text-align':'center'}"></p-column>
-        <p-column header="Rol asignado" field="nombreRole" [style]="{'text-align':'center'}"></p-column>
+        <p-column header="¿Es abogado?" field="esAbogado" [style]="{'text-align':'center'}">
+            <ng-template let-item="rowData" pTemplate="body">
+                {{item.esAbogado == 1 ? "Si" : "No"}}
+            </ng-template>
+        </p-column>
+        <p-column header="Rol asignado" field="nombreRole" [style]="{'text-align':'center'}">
+            <ng-template let-item="rowData" pTemplate="body">
+                <a class="link_css">{{item.nombreRole}}</a>
+            </ng-template>
+        </p-column>
         <p-column [style]="{'width':'5%','text-align':'center'}" header="Editar">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-edit cursor-manito"
-                 title="Click aqui para editar los valores de este Usuario"></span>
+                <span class="glyphicon glyphicon-edit cursor-manito" title="Click aqui para editar los valores de este usuario"></span>
             </ng-template>
         </p-column>
         <p-column [style]="{'width':'6%','text-align':'center'}" header="Eliminar">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-trash cursor-manito"
-                title="Click aqui para eliminar este Usuario del sistema"></span>
+                <span class="glyphicon glyphicon-trash cursor-manito" title="Click aqui para eliminar este usuario del sistema"></span>
             </ng-template>
         </p-column>
     </p-dataTable>
