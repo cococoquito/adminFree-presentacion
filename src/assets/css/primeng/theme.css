@@ -951,10 +951,6 @@ p-togglebutton.ng-dirty.ng-invalid .ui-button {
 .ui-steps .ui-steps-item.ui-state-highlight .ui-menuitem-link {
   color: #ffffff; }
 
-/* Dialog */
-.ui-dialog.ui-widget .ui-dialog-titlebar {
-  padding: 1em 1.5em; }
-
 .ui-dialog.ui-widget .ui-dialog-titlebar .ui-dialog-title {
   font-size: 1.25em; }
 

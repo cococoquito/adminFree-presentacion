@@ -61,4 +61,17 @@ export class AdminUsersComponent implements OnInit {
             }
         );
     }
+
+    /**
+     * Metodo que sorporta el evento click del ver privilegios del ROL del user
+     * @param user , Usuario seleccionado desde la tabla de usuarios
+     */
+    private verDetalleRol(user: UsuariosDTO): void {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
+
+        // se muestra el modal para de ROL con sus privilegios
+        this.utilService.displayModalRole(user.roles);
+    }
 }

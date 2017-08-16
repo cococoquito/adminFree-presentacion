@@ -19,7 +19,7 @@
         </p-column>
         <p-column header="Rol asignado" field="nombreRole" [style]="{'text-align':'center'}">
             <ng-template let-item="rowData" pTemplate="body">
-                <a class="link_css">{{item.nombreRole}}</a>
+                <a class="link_css" (click)="verDetalleRol(item)">{{item.nombreRole}}</a>
             </ng-template>
         </p-column>
         <p-column [style]="{'width':'5%','text-align':'center'}" header="Editar">
