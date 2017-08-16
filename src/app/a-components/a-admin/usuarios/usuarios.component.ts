@@ -16,8 +16,9 @@ export class UsuariosComponent implements OnInit {
 
     /** style para el tab seleccionado */
     private style_tab_selected = {
-        'background-color': '#EEEEEE',
-        'border': '1px solid #ddd'
+        'background-color': '#186ba0',
+        'border': '1px solid #156090',
+        'color': '#FFFFFF'
     };
 
     /** style para el tab NO seleccionado */
