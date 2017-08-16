@@ -1,3 +1,4 @@
+import { UsuariosDTO } from './../../c-model/a-admin/usuarios/UsuariosDTO';
 import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
@@ -40,7 +41,16 @@ export class AdministradorService {
     private static URL_CREAR_EDITAR_ROLE = 'admin/crear_editar_role';
 
     /** URL para listar los usuarios activos del sistema */
-    private static URL_LISTAR_USUARIOS = 'admin/listar_usuarios';    
+    private static URL_LISTAR_USUARIOS = 'admin/listar_usuarios';
+
+    /** URL para crear o editar usuario */
+    private static URL_CREAR_EDITAR_USER = 'admin/crear_editar_user';
+
+    /** URL para eliminar el user */
+    private static URL_ELIMINAR_USER = 'admin/eliminar_user';
+
+    /** URL para restablecer la clave del user */
+    private static URL_RESTABLECER_CLAVE = 'admin/restablecer_clave';
 
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json' });
@@ -115,6 +125,30 @@ export class AdministradorService {
     public listarUsuariosActivos(): Observable<Response> {
         return this.http.get(URL_BASE + AdministradorService.URL_LISTAR_USUARIOS);
     }
+
+    /**
+     * Metodo que permite crear o editar un USER en el sistema
+     * @param user , DTO con los datos del USER a editar o crear
+     */
+    public crearEditarUsuario(user: UsuariosDTO): Observable<Response> {
+        return this.http.post(URL_BASE + AdministradorService.URL_CREAR_EDITAR_USER, user, this.options);
+    }
+
+    /**
+     * Metodo que permite eliminar un usuario en el sistema
+     * @param usuario, DTO con los datos del usuario a eliminar
+     */
+    public eliminarUsuario(user: UsuariosDTO): Observable<Response> {
+        return this.http.post(URL_BASE + AdministradorService.URL_ELIMINAR_USER, user, this.options);
+    }
+
+    /**
+     * Metodo que permite restablecer la clave a un usuario
+     * @param usuario, DTO con los datos del usuario a restablecer la clave
+     */
+    public restablecerClaveUsuario(user: UsuariosDTO): Observable<Response> {
+        return this.http.post(URL_BASE + AdministradorService.URL_RESTABLECER_CLAVE, user, this.options);
+    }    
 
     /**
      * Metodo que permite notificar a los susbcritores que el usuario esta autenticado
