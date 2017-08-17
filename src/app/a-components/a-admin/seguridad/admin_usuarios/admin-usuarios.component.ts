@@ -102,7 +102,7 @@ export class AdminUsersComponent implements OnInit {
 
         // se procede abrir la ventana de confirmacion
         this.confirmationService.confirm({
-            message: '¿Está seguro de que desea eliminar el siguiente USUARIO? <br/> <div class="text_center"><strong>' + user.nombre + '</strong></div>',
+            message: '¿Está seguro de que desea eliminar el siguiente USUARIO? <br/><strong>' + user.nombre + '</strong>',
             header: 'Confirmación',
             icon: 'fa fa-trash',
             accept: () => {
@@ -141,7 +141,7 @@ export class AdminUsersComponent implements OnInit {
 
         // se procede abrir la ventana de confirmacion
         this.confirmationService.confirm({
-            message: '¿Está Seguro de restablecer la contraseña del usuario? <br/><div class="text_center"><strong>' + user.nombre + '</strong><br/><br/> El sistema restablecerá el valor por la contraseña por defecto.</div>',
+            message: '¿Está Seguro de restablecer la contraseña del usuario? <br/><strong>' + user.nombre + '</strong><br/><br/> El sistema restablecerá el valor por la contraseña por defecto.',
             header: 'Confirmación',
             icon: 'fa fa-lock',
             accept: () => {

@@ -132,7 +132,7 @@ export class AdminRolesComponent implements OnInit {
 
         // se procede abrir la ventana de confirmacion
         this.confirmationService.confirm({
-            message: '¿Está seguro de que desea eliminar el siguiente ROL? <br/> <div class="text_center"><strong>' + rol.nombre + '</strong></div>',
+            message: '¿Está seguro de que desea eliminar el siguiente ROL? <br/><strong>' + rol.nombre + '</strong>',
             header: 'Confirmación',
             icon: 'fa fa-trash',
             accept: () => {
