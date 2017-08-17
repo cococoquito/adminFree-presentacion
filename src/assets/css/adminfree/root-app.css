@@ -390,3 +390,7 @@ ul.alert-dropdown {
     letter-spacing: 0.4pt;
     word-spacing: 0.8pt;
 }
+
+#mdl_confirm_seguridad .ui-dialog-content{
+    text-align: center;
+}
