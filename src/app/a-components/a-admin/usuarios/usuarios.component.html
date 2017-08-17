@@ -1,14 +1,13 @@
 <!-- titulo de la pagina -->
 <div class="text_center title-page back-ground-title">
-  Administración de Usuarios
+  Seguridad del Sistema
 </div>
 <br/>
 
 <!-- tab items visualizar -->
 <ul class="nav nav-tabs">
-  <li role="presentation" [class.active]="ADMIN_ROLES == itemSeleccionado"><a (click)="showTabItem(ADMIN_ROLES)" [ngStyle]="(ADMIN_ROLES == itemSeleccionado) ? style_tab_selected : style_tab_not_selected">Administración Roles</a></li>
-  <li role="presentation" [class.active]="ADMIN_USER == itemSeleccionado"><a (click)="showTabItem(ADMIN_USER)" [ngStyle]="(ADMIN_USER == itemSeleccionado) ? style_tab_selected : style_tab_not_selected">Administración Usuarios</a></li>
-  <li role="presentation" [class.active]="RESTABLECER_CLAVE == itemSeleccionado"><a (click)="showTabItem(RESTABLECER_CLAVE)" [ngStyle]="(RESTABLECER_CLAVE == itemSeleccionado) ? style_tab_selected : style_tab_not_selected">Restablecer Contraseña</a></li>
+  <li role="presentation" [class.active]="ADMIN_ROLES == itemSeleccionado"><a (click)="showTabItem(ADMIN_ROLES)" [ngStyle]="(ADMIN_ROLES == itemSeleccionado) ? style_tab_selected : style_tab_not_selected">Administración de Roles</a></li>
+  <li role="presentation" [class.active]="ADMIN_USER == itemSeleccionado"><a (click)="showTabItem(ADMIN_USER)" [ngStyle]="(ADMIN_USER == itemSeleccionado) ? style_tab_selected : style_tab_not_selected">Administración de Usuarios</a></li>
 </ul>
 
 <!-- panel cuando no hay item seleccionado -->
@@ -26,11 +25,6 @@
 <!-- panel para el item de admin USER -->
 <div class="panel panel-default" *ngIf="ADMIN_USER == itemSeleccionado">
   <app-admin-users></app-admin-users>
-</div>
-
-<!-- panel para el item de reestablecer contrasenia -->
-<div class="panel panel-default" *ngIf="RESTABLECER_CLAVE == itemSeleccionado">
-  <app-restablecer-clave></app-restablecer-clave>
 </div>
 
 <!-- modal para la visualizacion del los privilegios para un ROLE -->

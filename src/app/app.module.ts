@@ -49,7 +49,6 @@ import { GestionProcesosComponent } from './a-components/d-demandas/gestion_proc
 import { UsuariosComponent } from './a-components/a-admin/usuarios/usuarios.component';
 import { AdminRolesComponent } from './a-components/a-admin/usuarios/admin_roles/admin-roles.component';
 import { AdminUsersComponent } from './a-components/a-admin/usuarios/admin_usuarios/admin-usuarios.component';
-import { RestablecerClaveComponent } from './a-components/a-admin/usuarios/restablecer_clave/restablecer-clave.component';
 import { ParametrizacionRegistrosComponent } from './a-components/a-admin/parametrizacion_registros/parametrizacion-registros.component';
 import { FormatoFuenteComponent } from './a-components/a-admin/formato_fuente/formato-fuente.component';
 
@@ -80,7 +79,6 @@ import { RolPrivilegioModal } from './a-components/y-directivas/modales/rol-priv
     GestionProcesosComponent,
     AdminRolesComponent,
     AdminUsersComponent,
-    RestablecerClaveComponent,
     RolPrivilegioModal
   ],
 

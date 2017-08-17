@@ -12,7 +12,6 @@ export class UsuariosComponent implements OnInit {
     /** Constantes para identificar el tipo de item seleccionado */
     private ADMIN_ROLES: number = 1;
     private ADMIN_USER: number = 2;
-    private RESTABLECER_CLAVE: number = 3;
 
     /** style para el tab seleccionado */
     private style_tab_selected = {
