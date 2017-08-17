@@ -9,7 +9,7 @@
     <div class="cpm_right">
         <button type="button" class="btn btn-primary" (click)="abrirPanelCrearROL()">Crear ROL</button>
     </div>
-    <p-dataTable [value]="roles" [responsive]="true" [rows]="10" [paginator]="true" emptyMessage="No hay roles registrados en el sistema.">
+    <p-dataTable [value]="roles" [responsive]="true" [rows]="10" [paginator]="true" emptyMessage="No hay roles registrados en el sistema." selectionMode="single">
         <p-column header="Lista de Roles parametrizados en el sistema" field="nombre" [style]="{'text-align':'center'}"></p-column>
         <p-column [style]="{'width':'8%','text-align':'center'}" header="Privilegios">
             <ng-template let-item="rowData" pTemplate="body">
@@ -34,7 +34,7 @@
     </p-dataTable>
 </div>
 
-<!-- panel creacion ROLE -->
+<!-- panel creacion, edicion ROL -->
 <div *ngIf="rolCrearEditar">
 
     <!-- formulario del nombre del ROL-->

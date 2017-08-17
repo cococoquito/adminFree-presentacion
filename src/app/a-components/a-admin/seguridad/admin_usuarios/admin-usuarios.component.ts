@@ -18,6 +18,9 @@ export class AdminUsersComponent implements OnInit {
     /**lista de usuarios parametrizados en el sistema*/
     private usuarios: Array<UsuariosDTO>;
 
+    /**Esta variable se utiliza para visualizar el panel de creacion o edicion del USER*/
+    private crearEditarUser: UsuariosDTO;
+
     /**
     * Constructor del componente para la administracion del ROL
     * @param utilService, service con las funciones utilitarias
@@ -64,6 +67,18 @@ export class AdminUsersComponent implements OnInit {
     }
 
     /**
+     * Metodo soporta el evento click del boton Crear USER
+     */
+    private abrirPanelCrearUser(): void {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
+
+        // se crea el nuevo USER para ser parametrizado en el sistema
+        this.crearEditarUser = new UsuariosDTO();
+    }
+
+    /**
      * Metodo que sorporta el evento click del ver privilegios del ROL del user
      * @param user , Usuario seleccionado desde la tabla de usuarios
      */
@@ -89,7 +104,7 @@ export class AdminUsersComponent implements OnInit {
         this.confirmationService.confirm({
             message: '¿Está seguro de que desea eliminar el siguiente USUARIO? <br/> <div class="text_center"><strong>' + user.nombre + '</strong></div>',
             header: 'Confirmación',
-            icon: 'fa fa-question-circle',
+            icon: 'fa fa-trash',
             accept: () => {
 
                 // se muestra el modal de carga
@@ -108,13 +123,13 @@ export class AdminUsersComponent implements OnInit {
                         this.utilService.displayLoading(false);
                     },
                     error => {
-                       this.utilService.showErrorSistema(error, this.alertService);
+                        this.utilService.showErrorSistema(error, this.alertService);
                     }
                 );
             }
         });
     }
-    
+
     /**
      * Metodo que sorporta el evento click del icono restablecer contraseña
      * @param user  , Usuario seleccionado desde la tabla de usuarios
@@ -128,7 +143,7 @@ export class AdminUsersComponent implements OnInit {
         this.confirmationService.confirm({
             message: '¿Está Seguro de restablecer la contraseña del usuario? <br/><div class="text_center"><strong>' + user.nombre + '</strong><br/><br/> El sistema restablecerá el valor por la contraseña por defecto.</div>',
             header: 'Confirmación',
-            icon: 'fa fa-question-circle',
+            icon: 'fa fa-lock',
             accept: () => {
 
                 // se muestra el modal de carga
@@ -149,5 +164,17 @@ export class AdminUsersComponent implements OnInit {
                 );
             }
         });
+    }
+
+    /**
+     * Metodo que soporta el evento click del boton cancelar del panel de creacion o edicion USUARIO
+     */
+    private cerrarPanelUser(): void {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
+
+        // se limpia esta variable para retornar a la lista de USUARIOS
+        this.crearEditarUser = null;
     }
 }

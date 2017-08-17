@@ -134,7 +134,7 @@ export class AdminRolesComponent implements OnInit {
         this.confirmationService.confirm({
             message: '¿Está seguro de que desea eliminar el siguiente ROL? <br/> <div class="text_center"><strong>' + rol.nombre + '</strong></div>',
             header: 'Confirmación',
-            icon: 'fa fa-question-circle',
+            icon: 'fa fa-trash',
             accept: () => {
 
                 // se muestra el modal de carga

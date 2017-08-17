@@ -1,15 +1,15 @@
 <!-- titulo de la pagina -->
 <div class="text_center sub-title-page_conf">
-    Administración de Usuarios
+    {{crearEditarUser ? crearEditarUser.idUsuario ? 'Administración de Usuarios / Editar Usuario' : 'Administración de Usuarios / Crear Usuario' : 'Administración de Usuarios'}}
 </div>
 <alert></alert>
 
 <!-- tabla con la lista de usuarios parametrizados -->
-<div>
+<div *ngIf="!crearEditarUser">
     <div class="cpm_right">
-        <button type="button" class="btn btn-primary">Crear Usuario</button>
+        <button type="button" class="btn btn-primary" (click)="abrirPanelCrearUser()">Crear Usuario</button>
     </div>
-    <p-dataTable [value]="usuarios" [responsive]="true" [rows]="10" [paginator]="true" emptyMessage="No hay usuarios registrados en el sistema.">
+    <p-dataTable [value]="usuarios" [responsive]="true" [rows]="10" [paginator]="true" emptyMessage="No hay usuarios registrados en el sistema." selectionMode="single">
         <p-column header="Nombre completo" field="nombre" [style]="{'text-align':'center'}"></p-column>
         <p-column header="Usuario de ingreso" field="nombreUsuario" [style]="{'text-align':'center'}"></p-column>
         <p-column header="Rol asignado" field="nombreRole" [style]="{'text-align':'center'}">
@@ -26,7 +26,7 @@
             <ng-template let-item="rowData" pTemplate="body">
                 <span class="glyphicon glyphicon-edit cursor-manito" title="Click aqui para editar los valores de este usuario"></span>
             </ng-template>
-        </p-column>    
+        </p-column>
         <p-column [style]="{'width':'6%','text-align':'center'}" header="Eliminar">
             <ng-template let-item="rowData" pTemplate="body">
                 <span class="glyphicon glyphicon-trash cursor-manito" (click)="eliminarUser(item)" title="Click aqui para eliminar este usuario del sistema"></span>
@@ -36,6 +36,17 @@
             <ng-template let-item="rowData" pTemplate="body">
                 <span class="glyphicon glyphicon-lock cursor-manito" (click)="restablecerClave(item)" title="Click aqui para restablecer la contraseña de este usuario"></span>
             </ng-template>
-        </p-column>        
+        </p-column>
     </p-dataTable>
+</div>
+
+<!-- panel creacion, edicion USER -->
+<div *ngIf="crearEditarUser">
+
+    <!-- formulario de los atributos del USER-->
+    <form name="form" #f="ngForm" (keydown.enter)="$event.preventDefault()" novalidate class="form-inline" style="padding:4px">
+        <button type="submit" class="btn btn-primary">{{crearEditarUser.idUsuario ? 'Guardar Cambios' : 'Guardar' }}</button>        &nbsp;
+        <button type="button" class="btn btn-default" (click)="cerrarPanelUser()">Cancelar</button>
+    </form>
+
 </div>
