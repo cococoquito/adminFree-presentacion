@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 /**
- * Componente para el submodulo de administracion>>usuarios
+ * Componente para el submodulo de administracion>>seguridad
  */
 @Component({
-    selector: 'app-admin-usuario',
-    templateUrl: './usuarios.component.html'
+    selector: 'app-seguridad',
+    templateUrl: './seguridad.component.html'
 })
-export class UsuariosComponent implements OnInit {
+export class SeguridadComponent implements OnInit {
 
     /** Constantes para identificar el tipo de item seleccionado */
     private ADMIN_ROLES: number = 1;

@@ -20,7 +20,7 @@ import { AgendaAbogadoComponent } from './../a-components/d-demandas/agenda_abog
 import { AgendarEventosComponent } from './../a-components/d-demandas/agendar_eventos/agendar-eventos.component';
 import { GestionProcesosComponent } from './../a-components/d-demandas/gestion_procesos/gestion-procesos.component';
 
-import { UsuariosComponent } from './../a-components/a-admin/usuarios/usuarios.component';
+import { SeguridadComponent } from './../a-components/a-admin/seguridad/seguridad.component';
 import { ParametrizacionRegistrosComponent } from './../a-components/a-admin/parametrizacion_registros/parametrizacion-registros.component';
 import { FormatoFuenteComponent } from './../a-components/a-admin/formato_fuente/formato-fuente.component';
 
@@ -46,7 +46,7 @@ const ROUTES: Routes = [
       { path: 'agendar_eventos', component: AgendarEventosComponent },
       { path: 'gestion_procesos', component: GestionProcesosComponent },
 
-      { path: 'admin_usuarios', component: UsuariosComponent },
+      { path: 'seguridad', component: SeguridadComponent },
       { path: 'parametrizaciones', component: ParametrizacionRegistrosComponent },
       { path: 'formato_fuente', component: FormatoFuenteComponent }
     ]

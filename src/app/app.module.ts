@@ -46,9 +46,9 @@ import { AgendaAbogadoComponent } from './a-components/d-demandas/agenda_abogado
 import { AgendarEventosComponent } from './a-components/d-demandas/agendar_eventos/agendar-eventos.component';
 import { GestionProcesosComponent } from './a-components/d-demandas/gestion_procesos/gestion-procesos.component';
 
-import { UsuariosComponent } from './a-components/a-admin/usuarios/usuarios.component';
-import { AdminRolesComponent } from './a-components/a-admin/usuarios/admin_roles/admin-roles.component';
-import { AdminUsersComponent } from './a-components/a-admin/usuarios/admin_usuarios/admin-usuarios.component';
+import { SeguridadComponent } from './a-components/a-admin/seguridad/seguridad.component';
+import { AdminRolesComponent } from './a-components/a-admin/seguridad/admin_roles/admin-roles.component';
+import { AdminUsersComponent } from './a-components/a-admin/seguridad/admin_usuarios/admin-usuarios.component';
 import { ParametrizacionRegistrosComponent } from './a-components/a-admin/parametrizacion_registros/parametrizacion-registros.component';
 import { FormatoFuenteComponent } from './a-components/a-admin/formato_fuente/formato-fuente.component';
 
@@ -66,7 +66,7 @@ import { RolPrivilegioModal } from './a-components/y-directivas/modales/rol-priv
     SolicitarConsecutivoComponent,
     ArchivoGestionComponent,
     ConsecutivosSolicitadosComponent,
-    UsuariosComponent,
+    SeguridadComponent,
     ParametrizacionRegistrosComponent,
     FormatoFuenteComponent,
     CartasLaboralesComponent,
