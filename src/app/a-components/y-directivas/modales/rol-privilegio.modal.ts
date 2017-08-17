@@ -1,4 +1,4 @@
-import { RoleDTO } from './../../../c-model/a-admin/usuarios/RoleDTO';
+import { RoleDTO } from './../../../c-model/a-admin/seguridad/RoleDTO';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UtilitarioService } from './../../../b-service/z-common/utilitario.service';
 import { AdministradorService } from './../../../b-service/a-admin/administrador.service';

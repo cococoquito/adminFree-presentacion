@@ -1,4 +1,4 @@
-import { UsuariosDTO } from './../../c-model/a-admin/usuarios/UsuariosDTO';
+import { UsuariosDTO } from './../../c-model/a-admin/seguridad/UsuariosDTO';
 import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { CambioClaveDTO } from './../../c-model/b-seguridad/CambioClaveDTO';
 import { UsuarioLoginDTO } from './../../c-model/b-seguridad/UsuarioLoginDTO';
-import { RoleDTO } from './../../c-model/a-admin/usuarios/RoleDTO';
+import { RoleDTO } from './../../c-model/a-admin/seguridad/RoleDTO';
 import { UsuariosVO } from './../../c-model/b-seguridad/UsuariosVO';
 import { KEY_FECHA_INGRESO, KEY_LOCAL_STORE_USER, URL_BASE } from './../../z-util/Constants';
 

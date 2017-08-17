@@ -1,5 +1,5 @@
 import { STYLE_SUCCESS_CENTER, EXITOSO_MSJ_USER_ELIMINADO } from './../../../../z-util/Constants';
-import { UsuariosDTO } from './../../../../c-model/a-admin/usuarios/UsuariosDTO';
+import { UsuariosDTO } from './../../../../c-model/a-admin/seguridad/UsuariosDTO';
 import { ConfirmationService } from 'primeng/primeng';
 import { AlertService } from './../../../../b-service/z-common/alert.service';
 import { AdministradorService } from './../../../../b-service/a-admin/administrador.service';

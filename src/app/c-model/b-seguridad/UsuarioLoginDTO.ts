@@ -1,4 +1,4 @@
-import { RoleDTO } from './../a-admin/usuarios/RoleDTO';
+import { RoleDTO } from './../a-admin/seguridad/RoleDTO';
 import { UsuariosVO } from './UsuariosVO';
 
 /**

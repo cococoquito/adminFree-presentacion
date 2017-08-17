@@ -1,4 +1,4 @@
-import { ModuloDTO } from './../../c-model/a-admin/usuarios/ModuloDTO';
+import { ModuloDTO } from './../../c-model/a-admin/seguridad/ModuloDTO';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Component, OnInit, OnDestroy } from '@angular/core';

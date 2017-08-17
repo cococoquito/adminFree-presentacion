@@ -1,9 +1,9 @@
 import { ERROR_MSJ_PRIVILEGIOS_SELECCIONADO, EXITOSO_MSJ_ROL_ELIMINADO, EXITOSO_MSJ_ROL_EDITADO, EXITOSO_MSJ_ROL_CREADO, STYLE_SUCCESS_CENTER, STYLE_ERROR_CENTER } from './../../../../z-util/Constants';
-import { RoleDTO } from './../../../../c-model/a-admin/usuarios/RoleDTO';
+import { RoleDTO } from './../../../../c-model/a-admin/seguridad/RoleDTO';
 import { Component, OnInit } from '@angular/core';
-import { RolesVO } from './../../../../c-model/a-admin/usuarios/RolesVO';
-import { ModuloDTO } from './../../../../c-model/a-admin/usuarios/ModuloDTO';
-import { ModuloItemDTO } from './../../../../c-model/a-admin/usuarios/ModuloItemDTO';
+import { RolesVO } from './../../../../c-model/a-admin/seguridad/RolesVO';
+import { ModuloDTO } from './../../../../c-model/a-admin/seguridad/ModuloDTO';
+import { ModuloItemDTO } from './../../../../c-model/a-admin/seguridad/ModuloItemDTO';
 import { AlertService } from './../../../../b-service/z-common/alert.service';
 import { UtilitarioService } from './../../../../b-service/z-common/utilitario.service';
 import { AdministradorService } from './../../../../b-service/a-admin/administrador.service';
