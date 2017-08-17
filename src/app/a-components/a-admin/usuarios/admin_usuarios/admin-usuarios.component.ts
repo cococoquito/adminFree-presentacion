@@ -87,7 +87,7 @@ export class AdminUsersComponent implements OnInit {
 
         // se procede abrir la ventana de confirmacion
         this.confirmationService.confirm({
-            message: '¿Está seguro de que desea eliminar el siguiente USUARIO? <br/> <div class="text_center">' + user.nombre + '</div>',
+            message: '¿Está seguro de que desea eliminar el siguiente USUARIO? <br/> <div class="text_center"><strong>' + user.nombre + '</strong></div>',
             header: 'Confirmación',
             icon: 'fa fa-question-circle',
             accept: () => {
@@ -113,5 +113,41 @@ export class AdminUsersComponent implements OnInit {
                 );
             }
         });
-    }    
+    }
+    
+    /**
+     * Metodo que sorporta el evento click del icono restablecer contraseña
+     * @param user  , Usuario seleccionado desde la tabla de usuarios
+     */
+    private restablecerClave(user: UsuariosDTO): void {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
+
+        // se procede abrir la ventana de confirmacion
+        this.confirmationService.confirm({
+            message: '¿Está Seguro de restablecer la contraseña del usuario? <br/><div class="text_center"><strong>' + user.nombre + '</strong><br/><br/> El sistema restablecerá el valor por la contraseña por defecto.</div>',
+            header: 'Confirmación',
+            icon: 'fa fa-question-circle',
+            accept: () => {
+
+                // se muestra el modal de carga
+                this.utilService.displayLoading(true);
+
+                // susbripcion para restablecer la clave
+                this.administradorService.restablecerClaveUsuario(user).subscribe(
+                    data => {
+                        // se muestra el mensaje exitoso en pantalla
+                        this.alertService.showAlert(data.text(), STYLE_SUCCESS_CENTER, false);
+
+                        // se cierra el modal de carga
+                        this.utilService.displayLoading(false);
+                    },
+                    error => {
+                        this.utilService.showErrorSistema(error, this.alertService);
+                    }
+                );
+            }
+        });
+    }
 }

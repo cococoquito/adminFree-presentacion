@@ -34,7 +34,7 @@
         </p-column>
         <p-column [style]="{'width':'9%','text-align':'center'}" header="Restablecer contraseña">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-edit cursor-manito" title="Click aqui para restablecer la contraseña de este usuario"></span>
+                <span class="glyphicon glyphicon-lock cursor-manito" (click)="restablecerClave(item)" title="Click aqui para restablecer la contraseña de este usuario"></span>
             </ng-template>
         </p-column>        
     </p-dataTable>
