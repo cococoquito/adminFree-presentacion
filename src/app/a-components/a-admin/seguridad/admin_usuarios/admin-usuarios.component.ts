@@ -141,7 +141,7 @@ export class AdminUsersComponent implements OnInit {
 
         // se procede abrir la ventana de confirmacion
         this.confirmationService.confirm({
-            message: '¿Está Seguro de restablecer la contraseña del usuario? <br/><strong>' + user.nombre + '</strong><br/><br/> El sistema restablecerá el valor por la contraseña por defecto.',
+            message: '¿Está seguro de restablecer la contraseña del usuario? <br/><strong>' + user.nombre + '</strong><br/><br/> El sistema restablecerá el valor por la contraseña por defecto.',
             header: 'Confirmación',
             icon: 'fa fa-lock',
             accept: () => {
