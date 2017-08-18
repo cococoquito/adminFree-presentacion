@@ -41,12 +41,73 @@
 </div>
 
 <!-- panel creacion, edicion USER -->
+<br *ngIf="crearEditarUser"/>
 <div *ngIf="crearEditarUser">
 
     <!-- formulario de los atributos del USER-->
     <form name="form" #f="ngForm" (keydown.enter)="$event.preventDefault()" novalidate class="form-inline" style="padding:4px">
-        <button type="submit" class="btn btn-primary">{{crearEditarUser.idUsuario ? 'Guardar Cambios' : 'Guardar' }}</button>        &nbsp;
+
+        <div class="panel panel-info">
+
+  <div class="panel-heading">
+    <h3 class="panel-title">Datos de entrada</h3>
+  </div>
+
+  <div class="panel-body">
+
+       <div class="row">
+
+        <div class="form-group col-md-6">
+          <label for="nombreUser">Nombre completo: *</label>
+          <input type="text" [(ngModel)]="crearEditarUser.nombre" name="nombreUser" #nombreUser="ngModel" 
+           [ngClass]="(submitted && !nombreUser.valid) ? 'form-control input-invalido':'form-control input-valido'"
+            maxlength="100" size="60" placeholder="Este campo es requerido" required/>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="userIngreso">Usuario de ingreso: *</label>
+          <input type="text" [(ngModel)]="crearEditarUser.nombreUsuario" name="userIngreso" #userIngreso="ngModel" 
+           [ngClass]="(submitted && !userIngreso.valid) ? 'form-control input-invalido':'form-control input-valido'"
+            maxlength="100" size="60" placeholder="Este campo es requerido" required/>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="rol">ROL: *</label>
+          <br/>
+          <select id="rol" name="rol" [(ngModel)]="crearEditarUser.roles"  #rol="ngModel"
+            [ngClass]="(submitted && !rol.valid) ? 'form-control input-invalido':'form-control input-valido'"
+            required placeholder="Este campo es requerido">
+            <option value="0">Seleccione el tipo de contrato</option>
+            <option value="Contrato Inicial">Contrato Inicial</option>
+            <option value="Adicion">Adición</option>
+          </select>
+        </div>         
+        
+        
+        <div class="form-group col-md-6">
+          <label for="abogado">¿Es un abogado? </label>
+<p-checkbox name="abogado" [(ngModel)]="crearEditarUser.esAbogado" binary="true"></p-checkbox>
+        </div>
+
+       </div>   
+
+
+
+        </div>    
+
+
+  </div>
+
+
+
+
+        <button type="submit" class="btn btn-primary">{{crearEditarUser.idUsuario ? 'Editar Usuario' : 'Crear Usuario' }}</button>        &nbsp;
         <button type="button" class="btn btn-default" (click)="cerrarPanelUser()">Cancelar</button>
+
+
+
+
+
     </form>
 
 </div>
