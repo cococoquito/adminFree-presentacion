@@ -1,5 +1,3 @@
-import { AlertService } from './alert.service';
-import { ERROR_SISTEMA, STYLE_ERROR_CENTER } from './../../z-util/Constants';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -44,19 +42,5 @@ export class UtilitarioService {
             this.subModalRolePrivilegios = new Subject<any>();
         }
         return this.subModalRolePrivilegios.asObservable();
-    }
-
-    /**
-     * metodo que permite mostrar el error ocacionado por el sistema
-     * @param error, es el error a mostrar en el alert
-     * @param alertService, service para la comunicacion del componente de mensaje de alerta
-     */
-    public showErrorSistema(error, alertService: AlertService): void {
-
-        // se muestra el mensaje alert danger
-        alertService.showAlert(ERROR_SISTEMA + error.text(), STYLE_ERROR_CENTER, false);
-
-        // se cierra el modal de carga
-        this.displayLoading(false);
     }
 }

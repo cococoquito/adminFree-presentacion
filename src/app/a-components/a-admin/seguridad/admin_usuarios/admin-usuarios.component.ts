@@ -64,7 +64,7 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
                 this.utilService.displayLoading(false);
             },
             error => {
-                this.utilService.showErrorSistema(error, this.alertService);
+                this.showErrorSistema(error);
             }
         );
     }
@@ -127,7 +127,7 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
                         this.utilService.displayLoading(false);
                     },
                     error => {
-                        this.utilService.showErrorSistema(error, this.alertService);
+                        this.showErrorSistema(error);
                     }
                 );
             }
@@ -163,7 +163,7 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
                         this.utilService.displayLoading(false);
                     },
                     error => {
-                        this.utilService.showErrorSistema(error, this.alertService);
+                        this.showErrorSistema(error);
                     }
                 );
             }

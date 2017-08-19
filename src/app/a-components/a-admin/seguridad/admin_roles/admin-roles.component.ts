@@ -1,3 +1,4 @@
+import { ComponentCommon } from './../../../../z-util/Component-common';
 import { ERROR_MSJ_PRIVILEGIOS_SELECCIONADO, EXITOSO_MSJ_ROL_ELIMINADO, EXITOSO_MSJ_ROL_EDITADO, EXITOSO_MSJ_ROL_CREADO, STYLE_SUCCESS_CENTER, STYLE_ERROR_CENTER } from './../../../../z-util/Constants';
 import { RoleDTO } from './../../../../c-model/a-admin/seguridad/RoleDTO';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +17,7 @@ import { ConfirmationService } from 'primeng/primeng';
     selector: 'app-admin-roles',
     templateUrl: './admin-roles.component.html'
 })
-export class AdminRolesComponent implements OnInit {
+export class AdminRolesComponent extends ComponentCommon implements OnInit {
 
     /**lista de modulos parametrizados en el sistema*/
     private modulos: Array<ModuloDTO>;
@@ -27,21 +28,20 @@ export class AdminRolesComponent implements OnInit {
     /**Esta variable se utiliza para visualizar el panel de creacion o edicion del ROL*/
     private rolCrearEditar: RoleDTO;
 
-    /** bandera que identifica si ya se hizo submit */
-    private submitted: boolean;
-
     /**
-     * Constructor del componente para la administracion del ROL
-     * @param utilService, service con las funciones utilitarias
-     * @param administradorService, contiene los servicios administrativo
-     * @param alertService, service para la comunicacion del componente de mensaje de alerta
-     * @param confirmationService, servicio para la visualizacion del modal de confirmacion
-     */
+    * Constructor del componente para la administracion de los USUARIOS
+    * @param utilService, service con las funciones utilitarias
+    * @param alertService, service para la comunicacion del componente de mensaje de alerta
+    * @param confirmationService, servicio para la visualizacion del modal de confirmacion
+    * @param administradorService, contiene los servicios administrativo
+    */
     constructor(
-        private utilService: UtilitarioService,
-        private administradorService: AdministradorService,
-        private alertService: AlertService,
-        private confirmationService: ConfirmationService) { }
+        protected utilService: UtilitarioService,
+        protected alertService: AlertService,
+        private confirmationService: ConfirmationService,
+        private administradorService: AdministradorService) { 
+        super(utilService, alertService);
+    }
 
     /**
      * PostConstructor que permite inicializar las variables del component
@@ -70,7 +70,7 @@ export class AdminRolesComponent implements OnInit {
                 this.utilService.displayLoading(false);
             },
             error => {
-               this.utilService.showErrorSistema(error, this.alertService);
+               this.showErrorSistema(error);
             }
         );
     }
@@ -116,7 +116,7 @@ export class AdminRolesComponent implements OnInit {
                 this.utilService.displayLoading(false);
             },
             error => {
-                this.utilService.showErrorSistema(error, this.alertService);
+                this.showErrorSistema(error);
             }
         );
     }
@@ -153,7 +153,7 @@ export class AdminRolesComponent implements OnInit {
                         this.utilService.displayLoading(false);
                     },
                     error => {
-                       this.utilService.showErrorSistema(error, this.alertService);
+                       this.showErrorSistema(error);
                     }
                 );
             }
@@ -200,19 +200,6 @@ export class AdminRolesComponent implements OnInit {
     }
 
     /**
-     * Metodo que permite establecer que el user ya hizo submitted
-     */
-    private onSubmit(): boolean {
-
-        // se oculta el alert esto por si hay errores con el submit anterior
-        this.alertService.hiddenAlert();
-
-        // se notifica que el user hizo submitted
-        this.submitted = true;
-        return this.submitted;
-    }
-
-    /**
      * Metodo que permite configurar los modulos al ROL, aplica para edicion o creacion
      */
     private configurarROLModulos(): void {
@@ -236,7 +223,7 @@ export class AdminRolesComponent implements OnInit {
                     this.utilService.displayLoading(false);
                 },
                 error => {
-                   this.utilService.showErrorSistema(error, this.alertService);
+                   this.showErrorSistema(error);
                 }
             );
         } else {
@@ -347,7 +334,7 @@ export class AdminRolesComponent implements OnInit {
                     this.utilService.displayLoading(false);
                 },
                 error => {
-                    this.utilService.showErrorSistema(error, this.alertService);
+                    this.showErrorSistema(error);
                 }
             );
         } else {

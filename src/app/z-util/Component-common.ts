@@ -1,6 +1,6 @@
 import { AlertService } from './../b-service/z-common/alert.service';
 import { UtilitarioService } from './../b-service/z-common/utilitario.service';
-import { SELECT_VALUE_DEFAULT_NUMBER } from './Constants';
+import { SELECT_VALUE_DEFAULT_NUMBER, ERROR_SISTEMA, STYLE_ERROR_CENTER } from './Constants';
 
 /**
  * Todos los componentes del sistema heredan de esta clase, donde contiene las funcionalidades comunes
@@ -37,5 +37,18 @@ export class ComponentCommon {
         // se notifica que el user hizo submitted
         this.submitted = true;
         return this.submitted;
+    }
+
+    /**
+     * metodo que permite mostrar el error ocacionado por el sistema
+     * @param error, es el error a mostrar en el alert
+     */
+    public showErrorSistema(error): void {
+
+        // se muestra el mensaje alert danger
+        this.alertService.showAlert(ERROR_SISTEMA + error.text(), STYLE_ERROR_CENTER, false);
+
+        // se cierra el modal de carga
+        this.utilService.displayLoading(false);
     }
 }
