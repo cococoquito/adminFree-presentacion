@@ -24,7 +24,7 @@
         </p-column>
         <p-column [style]="{'width':'5%','text-align':'center'}" header="Editar">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-edit cursor-manito" title="Click aqui para editar los valores de este usuario"></span>
+                <span class="glyphicon glyphicon-edit cursor-manito" (click)="abrirPanelEditarUser(item)" title="Click aqui para editar los valores de este usuario"></span>
             </ng-template>
         </p-column>
         <p-column [style]="{'width':'6%','text-align':'center'}" header="Eliminar">
@@ -76,8 +76,7 @@
                         <select name="rol" [(ngModel)]="crearEditarUser.roles"
                          [ngClass]="(submitted && crearEditarUser.roles == selectValueDefaultNumber) ? 'form-control input-invalido':'form-control input-valido'" required>
                             <option value="{{selectValueDefaultNumber}}" disabled>Este campo es requerido</option>
-                            <option value="Contrato Inicial">Contrato Inicial</option>
-                            <option value="Adicion">Adición</option>
+                            <option *ngFor="let rol of roles" value="{{rol.idRole}}">{{rol.nombre}}</option>
                         </select>
                     </div>
 
@@ -95,7 +94,10 @@
         <p *ngIf="!crearEditarUser.idUsuario" class="title_center">El valor de la contraseña del nuevo usuario es la <strong>contraseña por defecto</strong>, el usuario deberá cambiar esta contraseña por un nuevo valor que cumpla con las políticas del sistema.</p>
 
         <!-- buttons crear o editar usuario y cancelar-->
-        <button type="submit" class="btn btn-primary">{{crearEditarUser.idUsuario ? 'Editar Usuario' : 'Crear Usuario' }}</button>&nbsp;
-        <button type="button" class="btn btn-default" (click)="cerrarPanelUser()" style="width: 115px">Cancelar</button>
+        <br *ngIf="!crearEditarUser.idUsuario"/>
+        <div style="text-align: center;">
+            <button type="submit" class="btn btn-primary">{{crearEditarUser.idUsuario ? 'Editar Usuario' : 'Crear Usuario' }}</button>&nbsp;&nbsp;
+            <button type="button" class="btn btn-default" (click)="cerrarPanelUser()" style="width: 115px">Cancelar</button>
+        </div>
     </form>
 </div>

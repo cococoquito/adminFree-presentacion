@@ -1,3 +1,4 @@
+import { RolesVO } from './../../../../c-model/a-admin/seguridad/RolesVO';
 import { ComponentCommon } from './../../../../z-util/Component-common';
 import { STYLE_SUCCESS_CENTER, EXITOSO_MSJ_USER_ELIMINADO } from './../../../../z-util/Constants';
 import { UsuariosDTO } from './../../../../c-model/a-admin/seguridad/UsuariosDTO';
@@ -19,6 +20,9 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
     /**lista de usuarios parametrizados en el sistema*/
     private usuarios: Array<UsuariosDTO>;
 
+    /**lista de ROLES parametrizados en el sistema, se utiliza para el <select>*/
+    private roles: Array<RolesVO>;
+
     /**Esta variable se utiliza para visualizar el panel de creacion o edicion del USER*/
     private crearEditarUser: UsuariosDTO;
 
@@ -33,7 +37,7 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
         protected utilService: UtilitarioService,
         protected alertService: AlertService,
         private confirmationService: ConfirmationService,
-        private administradorService: AdministradorService) { 
+        private administradorService: AdministradorService) {
         super(utilService, alertService);
     }
 
@@ -80,7 +84,36 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
         // se crea el nuevo USER para ser parametrizado en el sistema
         this.crearEditarUser = new UsuariosDTO();
         this.crearEditarUser.roles = this.selectValueDefaultNumber;
+
+        // se indica que el usuario no ha dado commit
+        this.submitted = false;
+
+        // se carga los roles activos del sistema
+        if (!this.roles) {
+            this.getRoles();
+        }
     }
+
+    /**
+     * Metodo soporta el evento click del boton Editar USER
+     * @param userEditar, es el usuario seleccionado desde la tabla 
+     */
+    private abrirPanelEditarUser(userEditar : UsuariosDTO): void {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
+
+        // se configura el usuario para se editado
+        this.crearEditarUser = userEditar;
+        
+        // se indica que el usuario no ha dado commit
+        this.submitted = false;
+
+        // se carga los roles activos del sistema
+        if (!this.roles) {
+            this.getRoles();
+        }
+    }    
 
     /**
      * Metodo que sorporta el evento click del ver privilegios del ROL del user
@@ -180,5 +213,28 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
 
         // se limpia esta variable para retornar a la lista de USUARIOS
         this.crearEditarUser = null;
+    }
+
+    /**
+     * Metodo que permite obtener todos los ROLES ACTIVOS parametrizados en el sistema
+     */
+    private getRoles(): void {
+
+        // se muestra el modal de carga
+        this.utilService.displayLoading(true);
+
+        // se invoca el servicio para obtener los ROLES ACTIVOS
+        this.administradorService.getRoles().subscribe(
+            data => {
+                // se construye los ROLES consultados
+                this.roles = data.json();
+
+                // se cierra el modal de carga
+                this.utilService.displayLoading(false);
+            },
+            error => {
+                this.showErrorSistema(error);
+            }
+        );
     }
 }
