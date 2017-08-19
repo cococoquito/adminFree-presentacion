@@ -45,7 +45,7 @@
 <div *ngIf="crearEditarUser">
 
     <!-- formulario de los atributos del USER-->
-    <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid" (keydown.enter)="$event.preventDefault()" novalidate>
+    <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && crearEditarUser.roles != selectValueDefaultNumber && f.form.valid && crearEditarUsuarioSistema()" (keydown.enter)="$event.preventDefault()" novalidate>
 
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -95,7 +95,7 @@
 
         <!-- buttons crear o editar usuario y cancelar-->
         <br *ngIf="!crearEditarUser.idUsuario"/>
-        <div style="text-align: center;">
+        <div class="button_center_user">
             <button type="submit" class="btn btn-primary">{{crearEditarUser.idUsuario ? 'Editar Usuario' : 'Crear Usuario' }}</button>&nbsp;&nbsp;
             <button type="button" class="btn btn-default" (click)="cerrarPanelUser()" style="width: 115px">Cancelar</button>
         </div>

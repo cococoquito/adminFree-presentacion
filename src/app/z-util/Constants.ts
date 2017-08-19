@@ -37,4 +37,6 @@ export var ERROR_MSJ_PRIVILEGIOS_SELECCIONADO: string = "Debe seleccionar al men
 
 /** mensajes para el modulo Adminstracion>>usuario>>admin-usuario - inicio*/
 export var EXITOSO_MSJ_USER_ELIMINADO: string = "El Usuario fue eliminado exitosamente del sistema.";
+export var EXITOSO_MSJ_USUARIO_EDITADO: string = "El USUARIO fue actualizado exitosamente en el sistema.";
+export var EXITOSO_MSJ_USUARIO_CREADO: string = "El USUARIO fue creado exitosamente en el sistema.";
 /** mensajes para el modulo Adminstracion>>usuario>>admin-usuario - final*/

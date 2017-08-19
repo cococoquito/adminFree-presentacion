@@ -400,3 +400,8 @@ ul.alert-dropdown {
     margin: auto; 
     width: 70%;
 }
+
+.button_center_user{
+    text-align: center; 
+    padding:4px;
+}

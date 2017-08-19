@@ -1,6 +1,6 @@
 import { RolesVO } from './../../../../c-model/a-admin/seguridad/RolesVO';
 import { ComponentCommon } from './../../../../z-util/Component-common';
-import { STYLE_SUCCESS_CENTER, EXITOSO_MSJ_USER_ELIMINADO } from './../../../../z-util/Constants';
+import { STYLE_SUCCESS_CENTER, EXITOSO_MSJ_USER_ELIMINADO, EXITOSO_MSJ_USUARIO_EDITADO, EXITOSO_MSJ_USUARIO_CREADO } from './../../../../z-util/Constants';
 import { UsuariosDTO } from './../../../../c-model/a-admin/seguridad/UsuariosDTO';
 import { ConfirmationService } from 'primeng/primeng';
 import { AlertService } from './../../../../b-service/z-common/alert.service';
@@ -98,14 +98,14 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
      * Metodo soporta el evento click del boton Editar USER
      * @param userEditar, es el usuario seleccionado desde la tabla 
      */
-    private abrirPanelEditarUser(userEditar : UsuariosDTO): void {
+    private abrirPanelEditarUser(userEditar: UsuariosDTO): void {
 
         // se oculta el alert esto por si hay errores con el submit anterior
         this.alertService.hiddenAlert();
 
         // se configura el usuario para se editado
         this.crearEditarUser = userEditar;
-        
+
         // se indica que el usuario no ha dado commit
         this.submitted = false;
 
@@ -113,7 +113,7 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
         if (!this.roles) {
             this.getRoles();
         }
-    }    
+    }
 
     /**
      * Metodo que sorporta el evento click del ver privilegios del ROL del user
@@ -228,6 +228,38 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
             data => {
                 // se construye los ROLES consultados
                 this.roles = data.json();
+
+                // se cierra el modal de carga
+                this.utilService.displayLoading(false);
+            },
+            error => {
+                this.showErrorSistema(error);
+            }
+        );
+    }
+
+    /**
+     * Metodo que permite crear o editar el Usuario en el sistema
+     */
+    public crearEditarUsuarioSistema(): void {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
+
+        // se muestra el modal de carga
+        this.utilService.displayLoading(true);
+
+        // se invoca el servicio para crear o editar el USUARIO
+        this.administradorService.crearEditarUsuario(this.crearEditarUser).subscribe(
+            data => {
+                // se configura los usuarios retornado por el servicio
+                this.usuarios = data.json();
+
+                // se muestra el mensaje exitoso en pantalla
+                this.alertService.showAlert(this.crearEditarUser.idUsuario ? EXITOSO_MSJ_USUARIO_EDITADO : EXITOSO_MSJ_USUARIO_CREADO, STYLE_SUCCESS_CENTER, false);
+
+                // se limpia la variable del USER para retornar a la lista de USUARIOS ACTIVO
+                this.crearEditarUser = null;
 
                 // se cierra el modal de carga
                 this.utilService.displayLoading(false);
