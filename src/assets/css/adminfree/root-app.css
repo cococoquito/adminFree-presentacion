@@ -375,9 +375,8 @@ ul.alert-dropdown {
     left:25% !important;
 }
 
-.link_css{
+.link_role{
     cursor:pointer !important;
-    color: blue !important;
     text-decoration: underline !important;
 }
 

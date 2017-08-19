@@ -1,6 +1,6 @@
 import { RolesVO } from './../../../../c-model/a-admin/seguridad/RolesVO';
 import { ComponentCommon } from './../../../../z-util/Component-common';
-import { STYLE_SUCCESS_CENTER, EXITOSO_MSJ_USER_ELIMINADO, EXITOSO_MSJ_USUARIO_EDITADO, EXITOSO_MSJ_USUARIO_CREADO } from './../../../../z-util/Constants';
+import { STYLE_SUCCESS_CENTER, EXITOSO_MSJ_USER_ELIMINADO, EXITOSO_MSJ_USUARIO_EDITADO, EXITOSO_MSJ_USUARIO_CREADO, SI, NO } from './../../../../z-util/Constants';
 import { UsuariosDTO } from './../../../../c-model/a-admin/seguridad/UsuariosDTO';
 import { ConfirmationService } from 'primeng/primeng';
 import { AlertService } from './../../../../b-service/z-common/alert.service';
@@ -25,6 +25,9 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
 
     /**Esta variable se utiliza para visualizar el panel de creacion o edicion del USER*/
     private crearEditarUser: UsuariosDTO;
+
+    /**bandera que identifica si el usuario es abogado, se utiliza para la creacion o edicion del user*/
+    private esUsuarioAbogado: boolean;
 
     /**
     * Constructor del componente para la administracion de los USUARIOS
@@ -84,6 +87,7 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
         // se crea el nuevo USER para ser parametrizado en el sistema
         this.crearEditarUser = new UsuariosDTO();
         this.crearEditarUser.roles = this.selectValueDefaultNumber;
+        this.esUsuarioAbogado = false;
 
         // se indica que el usuario no ha dado commit
         this.submitted = false;
@@ -105,6 +109,7 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
 
         // se configura el usuario para se editado
         this.crearEditarUser = userEditar;
+        this.esUsuarioAbogado = (userEditar.esAbogado == SI);
 
         // se indica que el usuario no ha dado commit
         this.submitted = false;
@@ -248,6 +253,9 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
 
         // se muestra el modal de carga
         this.utilService.displayLoading(true);
+
+        // se configura la bandera que determina si el user es un abogado
+        this.crearEditarUser.esAbogado = (this.esUsuarioAbogado) ? SI : NO;
 
         // se invoca el servicio para crear o editar el USUARIO
         this.administradorService.crearEditarUsuario(this.crearEditarUser).subscribe(

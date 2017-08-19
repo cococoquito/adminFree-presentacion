@@ -14,7 +14,7 @@
         <p-column header="Usuario de ingreso" field="nombreUsuario" [style]="{'text-align':'center'}"></p-column>
         <p-column header="Rol asignado" field="nombreRole" [style]="{'text-align':'center'}">
             <ng-template let-item="rowData" pTemplate="body">
-                <a class="link_css" (click)="verDetalleRol(item)">{{item.nombreRole}}</a>
+                <a class="link_role" (click)="verDetalleRol(item)">{{item.nombreRole}}</a>
             </ng-template>
         </p-column>
         <p-column header="¿Es abogado?" field="esAbogado" [style]="{'width':'10%','text-align':'center'}">
@@ -83,7 +83,7 @@
                     <!-- El usuario es un abogado-->
                     <div class="form-group col-md-6">
                         <br/>
-                        <p-checkbox name="abogado" [(ngModel)]="crearEditarUser.esAbogado" binary="true"></p-checkbox>
+                        <p-checkbox name="abogado" [(ngModel)]="esUsuarioAbogado" binary="true"></p-checkbox>
                         <label for="abogado">¿El usuario es un abogado? </label>
                     </div>
                 </div>

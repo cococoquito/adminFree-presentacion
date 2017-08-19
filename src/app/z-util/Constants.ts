@@ -4,6 +4,10 @@ export var URL_BASE: string = "http://localhost:8080/AdminFreeRS/adminfree/";
 /** Constante para configurar el valor por default de los select items numerico */
 export var SELECT_VALUE_DEFAULT_NUMBER: number = -1;
 
+/** Constantes para el binario de true y false */
+export var SI: number = 1;
+export var NO: number = 0;
+
 /** Constante para el KEY del user autenticado */
 export var KEY_LOCAL_STORE_USER: string = "adminFree-user";
 
@@ -37,6 +41,6 @@ export var ERROR_MSJ_PRIVILEGIOS_SELECCIONADO: string = "Debe seleccionar al men
 
 /** mensajes para el modulo Adminstracion>>usuario>>admin-usuario - inicio*/
 export var EXITOSO_MSJ_USER_ELIMINADO: string = "El Usuario fue eliminado exitosamente del sistema.";
-export var EXITOSO_MSJ_USUARIO_EDITADO: string = "El USUARIO fue actualizado exitosamente en el sistema.";
-export var EXITOSO_MSJ_USUARIO_CREADO: string = "El USUARIO fue creado exitosamente en el sistema.";
+export var EXITOSO_MSJ_USUARIO_EDITADO: string = "El usuario fue actualizado exitosamente en el sistema.";
+export var EXITOSO_MSJ_USUARIO_CREADO: string = "El usuario fue creado exitosamente en el sistema.";
 /** mensajes para el modulo Adminstracion>>usuario>>admin-usuario - final*/
