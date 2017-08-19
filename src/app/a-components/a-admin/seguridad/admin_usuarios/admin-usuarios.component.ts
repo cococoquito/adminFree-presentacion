@@ -81,21 +81,13 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
      */
     private abrirPanelCrearUser(): void {
 
-        // se oculta el alert esto por si hay errores con el submit anterior
-        this.alertService.hiddenAlert();
-
         // se crea el nuevo USER para ser parametrizado en el sistema
         this.crearEditarUser = new UsuariosDTO();
         this.crearEditarUser.roles = this.selectValueDefaultNumber;
         this.esUsuarioAbogado = false;
 
-        // se indica que el usuario no ha dado commit
-        this.submitted = false;
-
-        // se carga los roles activos del sistema
-        if (!this.roles) {
-            this.getRoles();
-        }
+        // se configura los datos para la visualizacion del panel
+        this.abrirPanel();
     }
 
     /**
@@ -104,20 +96,12 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
      */
     private abrirPanelEditarUser(userEditar: UsuariosDTO): void {
 
-        // se oculta el alert esto por si hay errores con el submit anterior
-        this.alertService.hiddenAlert();
-
-        // se configura el usuario para se editado
+        // se configura el usuario para ser editado
         this.crearEditarUser = userEditar;
         this.esUsuarioAbogado = (userEditar.esAbogado == SI);
 
-        // se indica que el usuario no ha dado commit
-        this.submitted = false;
-
-        // se carga los roles activos del sistema
-        if (!this.roles) {
-            this.getRoles();
-        }
+        // se configura los datos para la visualizacion del panel
+        this.abrirPanel();
     }
 
     /**
@@ -276,5 +260,22 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
                 this.showErrorSistema(error);
             }
         );
+    }
+
+    /**
+     * Metodo que es invocado por lo metodos para visualizar el panel de creacion o edicio USER
+     */
+    private abrirPanel() {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
+
+        // se indica que el usuario no ha dado commit
+        this.submitted = false;
+
+        // se carga los roles activos del sistema
+        if (!this.roles) {
+            this.getRoles();
+        }
     }
 }
