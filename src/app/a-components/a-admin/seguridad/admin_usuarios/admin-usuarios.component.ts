@@ -1,3 +1,4 @@
+import { ComponentCommon } from './../../../../z-util/Component-common';
 import { STYLE_SUCCESS_CENTER, EXITOSO_MSJ_USER_ELIMINADO } from './../../../../z-util/Constants';
 import { UsuariosDTO } from './../../../../c-model/a-admin/seguridad/UsuariosDTO';
 import { ConfirmationService } from 'primeng/primeng';
@@ -13,7 +14,7 @@ import { Component, OnInit } from '@angular/core';
     selector: 'app-admin-users',
     templateUrl: './admin-usuarios.component.html'
 })
-export class AdminUsersComponent implements OnInit {
+export class AdminUsersComponent extends ComponentCommon implements OnInit {
 
     /**lista de usuarios parametrizados en el sistema*/
     private usuarios: Array<UsuariosDTO>;
@@ -22,17 +23,19 @@ export class AdminUsersComponent implements OnInit {
     private crearEditarUser: UsuariosDTO;
 
     /**
-    * Constructor del componente para la administracion del ROL
+    * Constructor del componente para la administracion de los USUARIOS
     * @param utilService, service con las funciones utilitarias
-    * @param administradorService, contiene los servicios administrativo
     * @param alertService, service para la comunicacion del componente de mensaje de alerta
     * @param confirmationService, servicio para la visualizacion del modal de confirmacion
+    * @param administradorService, contiene los servicios administrativo
     */
     constructor(
-        private utilService: UtilitarioService,
-        private administradorService: AdministradorService,
-        private alertService: AlertService,
-        private confirmationService: ConfirmationService) { }
+        protected utilService: UtilitarioService,
+        protected alertService: AlertService,
+        private confirmationService: ConfirmationService,
+        private administradorService: AdministradorService) { 
+        super(utilService, alertService);
+    }
 
     /**
      * PostConstructor que permite inicializar las variables del component
@@ -76,6 +79,7 @@ export class AdminUsersComponent implements OnInit {
 
         // se crea el nuevo USER para ser parametrizado en el sistema
         this.crearEditarUser = new UsuariosDTO();
+        this.crearEditarUser.roles = this.selectValueDefaultNumber;
     }
 
     /**

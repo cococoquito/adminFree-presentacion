@@ -1,6 +1,9 @@
 /** Constante que contiene la URL BASE donde estám los recursos a consumir */
 export var URL_BASE: string = "http://localhost:8080/AdminFreeRS/adminfree/";
 
+/** Constante para configurar el valor por default de los select items numerico */
+export var SELECT_VALUE_DEFAULT_NUMBER: number = -1;
+
 /** Constante para el KEY del user autenticado */
 export var KEY_LOCAL_STORE_USER: string = "adminFree-user";
 

@@ -394,3 +394,9 @@ ul.alert-dropdown {
 #mdl_confirm_seguridad .ui-dialog-content{
     text-align: center;
 }
+
+.title_center{
+    text-align: center; 
+    margin: auto; 
+    width: 70%;
+}
