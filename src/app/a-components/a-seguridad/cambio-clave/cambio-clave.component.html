@@ -16,7 +16,7 @@
       <label for="claveActual">Contraseña actual*</label>
       <input type="password" [(ngModel)]="cambioClave.claveActual" name="claveActual" #claveActual="ngModel" 
        [ngClass]="(submitted && !claveActual.valid) ? 'form-control input-invalido':'form-control input-valido'"
-       maxlength="100" required/>
+       maxlength="100" placeholder="Este campo es requerido" myNoSpaces/>
     </div>
 
     <!-- clave nueva -->
@@ -24,15 +24,15 @@
       <label for="claveNueva">Contraseña nueva*</label>
       <input type="password" [(ngModel)]="cambioClave.claveNueva" name="claveNueva" #claveNueva="ngModel" 
        [ngClass]="(submitted && !claveNueva.valid) ? 'form-control input-invalido':'form-control input-valido'"
-       maxlength="100" required/>
+       maxlength="100" placeholder="Este campo es requerido" myNoSpaces/>
     </div>
 
     <!-- repetir clave nueva -->
     <div class="form-group">
-      <label for="repetirClaveNueva">Repetir nueva contraseña*</label>
+      <label for="repetirClaveNueva">Confirmar nueva contraseña*</label>
       <input type="password" [(ngModel)]="cambioClave.repetirClaveNueva" name="repetirClaveNueva" #repetirClaveNueva="ngModel" 
        [ngClass]="(submitted && !repetirClaveNueva.valid) ? 'form-control input-invalido':'form-control input-valido'"
-       maxlength="100" required/>
+       maxlength="100" placeholder="Este campo es requerido" myNoSpaces/>
     </div>
 
     <!-- button guardar cambios -->
