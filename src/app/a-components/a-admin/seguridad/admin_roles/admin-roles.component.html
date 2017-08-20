@@ -7,28 +7,28 @@
 <!-- tabla con la lista de roles parametrizados -->
 <div *ngIf="!rolCrearEditar">
     <div class="cpm_right">
-        <button type="button" class="btn btn-primary" (click)="abrirPanelCrearROL()">Crear ROL</button>
+        <button type="button" class="btn btn-primary" (click)="abrirPanelCrearROL()" title="Clic aquí para abrir el panel de creación del ROL">Crear ROL</button>
     </div>
     <p-dataTable [value]="roles" [responsive]="true" [rows]="10" [paginator]="true" emptyMessage="No hay roles registrados en el sistema." selectionMode="single">
         <p-column header="Lista de Roles parametrizados en el sistema" field="nombre" [style]="{'text-align':'center'}"></p-column>
         <p-column [style]="{'width':'8%','text-align':'center'}" header="Privilegios">
             <ng-template let-item="rowData" pTemplate="body">
                 <span class="glyphicon glyphicon-share cursor-manito" (click)="verDetalleRol(item)" 
-                 title="Click aqui para ver los privilegios de este ROL"></span>
+                 title="Clic aquí para ver los privilegios de este ROL"></span>
             </ng-template>
         </p-column>
 
         <p-column [style]="{'width':'5%','text-align':'center'}" header="Editar">
             <ng-template let-item="rowData" pTemplate="body">
                 <span class="glyphicon glyphicon-edit cursor-manito" (click)="abrirPanelEdicionROL(item)"
-                 title="Click aqui para editar los valores de este ROL"></span>
+                 title="Clic aquí para editar los valores de este ROL"></span>
             </ng-template>
         </p-column>
 
         <p-column [style]="{'width':'6%','text-align':'center'}" header="Eliminar">
             <ng-template let-item="rowData" pTemplate="body">
                 <span class="glyphicon glyphicon-trash cursor-manito" (click)="eliminarRol(item)"
-                title="Click aqui para eliminar este ROL del sistema"></span>
+                title="Clic aquí para eliminar este ROL del sistema"></span>
             </ng-template>
         </p-column>
     </p-dataTable>
@@ -46,8 +46,8 @@
              [ngClass]="(submitted && !nombreRol.valid) ? 'form-control input-invalido':'form-control input-valido'"
              maxlength="100" size="60" placeholder="Este campo es requerido" myNoSpaces/>
         </div>
-        <button type="submit" class="btn btn-primary">{{rolCrearEditar.idRole ? 'Editar ROL' : 'Crear ROL' }}</button> &nbsp;
-        <button type="button" class="btn btn-default" (click)="cerrarPanelRoles()">Cancelar</button>
+        <button type="submit" class="btn btn-primary" title="Clic aquí para guardar los cambios en el sistema">{{rolCrearEditar.idRole ? 'Editar ROL' : 'Crear ROL' }}</button> &nbsp;
+        <button type="button" class="btn btn-default" (click)="cerrarPanelRoles()" title="Clic aquí para regresar a la lista de ROLES">Cancelar</button>
     </form>
 
     <!-- datagrid con los roles del sistema-->
