@@ -318,6 +318,9 @@ export class AdminRolesComponent extends ComponentCommon implements OnInit {
             // se muestra el modal de carga
             this.utilService.displayLoading(true);
 
+            // se eliminan los espacios en blanco del nombre del ROL
+            this.rolCrearEditar.nombreRole = this.rolCrearEditar.nombreRole.trim();
+
             // se invoca el servicio para crear o editar el ROL
             this.administradorService.crearEditarRole(this.rolCrearEditar).subscribe(
                 data => {

@@ -237,15 +237,15 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
      * Metodo que permite crear o editar el Usuario en el sistema
      */
     public crearEditarUsuarioSistema(): void {
-        
+
         // se oculta el alert esto por si hay errores con el submit anterior
         this.alertService.hiddenAlert();
 
         // se muestra el modal de carga
         this.utilService.displayLoading(true);
 
-        // se configura la bandera que determina si el user es un abogado
-        this.crearEditarUser.esAbogado = (this.esUsuarioAbogado) ? SI : NO;
+        // se organiza los datos del usuario antes de persistir
+        this.organizarDatosUsuario();
 
         // se invoca el servicio para crear o editar el USUARIO
         this.administradorService.crearEditarUsuario(this.crearEditarUser).subscribe(
@@ -283,5 +283,18 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
         if (!this.roles) {
             this.getRoles();
         }
+    }
+
+    /**
+     * Metodo que permite organizar los datos del usuario antes de persistir
+     */
+    private organizarDatosUsuario(): void {
+
+        // se configura la bandera que determina si el user es un abogado
+        this.crearEditarUser.esAbogado = (this.esUsuarioAbogado) ? SI : NO;
+
+        // se eliminan los espacios en blanco
+        this.crearEditarUser.nombre = this.crearEditarUser.nombre.trim();
+        this.crearEditarUser.nombreUsuario = this.crearEditarUser.nombreUsuario.trim();
     }
 }

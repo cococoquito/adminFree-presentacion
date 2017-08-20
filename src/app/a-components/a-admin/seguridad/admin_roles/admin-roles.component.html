@@ -44,7 +44,7 @@
             <label for="nombreRol">Nombre del Rol*:</label>
             <input type="text" [(ngModel)]="rolCrearEditar.nombreRole" name="nombreRol" #nombreRol="ngModel" 
              [ngClass]="(submitted && !nombreRol.valid) ? 'form-control input-invalido':'form-control input-valido'"
-             maxlength="100" size="60" placeholder="Este campo es requerido" required/>
+             maxlength="100" size="60" placeholder="Este campo es requerido" myNoSpaces/>
         </div>
         <button type="submit" class="btn btn-primary">{{rolCrearEditar.idRole ? 'Editar ROL' : 'Crear ROL' }}</button> &nbsp;
         <button type="button" class="btn btn-default" (click)="cerrarPanelRoles()">Cancelar</button>
