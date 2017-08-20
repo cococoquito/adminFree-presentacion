@@ -13,7 +13,7 @@ export class UsuariosDTO {
     public nombre: string;
 
 	/** representa el nombre Usuario del para seguridad del user **/
-	private nombreUsuario: string;    
+	public nombreUsuario: string;    
 
     /** representa el identificador del ROL del usuario **/
     public roles: number;

@@ -96,8 +96,14 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
      */
     private abrirPanelEditarUser(userEditar: UsuariosDTO): void {
 
-        // se configura el usuario para ser editado
-        this.crearEditarUser = userEditar;
+        // se configura los datos del usuario seleccionado
+        this.crearEditarUser = new UsuariosDTO();
+        this.crearEditarUser.idUsuario = userEditar.idUsuario;
+        this.crearEditarUser.nombre = userEditar.nombre;
+        this.crearEditarUser.nombreUsuario = userEditar.nombreUsuario;
+        this.crearEditarUser.roles = userEditar.roles;
+        this.crearEditarUser.esAbogado = userEditar.esAbogado;
+        this.crearEditarUser.nombreRole = userEditar.nombreRole;
         this.esUsuarioAbogado = (userEditar.esAbogado == SI);
 
         // se configura los datos para la visualizacion del panel
@@ -231,7 +237,7 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
      * Metodo que permite crear o editar el Usuario en el sistema
      */
     public crearEditarUsuarioSistema(): void {
-
+        
         // se oculta el alert esto por si hay errores con el submit anterior
         this.alertService.hiddenAlert();
 
@@ -265,7 +271,7 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
     /**
      * Metodo que es invocado por lo metodos para visualizar el panel de creacion o edicio USER
      */
-    private abrirPanel() {
+    private abrirPanel(): void {
 
         // se oculta el alert esto por si hay errores con el submit anterior
         this.alertService.hiddenAlert();
