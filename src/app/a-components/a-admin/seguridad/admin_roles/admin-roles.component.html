@@ -9,8 +9,10 @@
     <div class="cpm_right">
         <button type="button" class="btn btn-primary" (click)="abrirPanelCrearROL()" title="Clic aquí para abrir el panel de creación del ROL">Crear ROL</button>
     </div>
-    <p-dataTable [value]="roles" [responsive]="true" [rows]="10" [paginator]="true" emptyMessage="No hay roles registrados en el sistema." selectionMode="single">
-        <p-column header="Lista de Roles parametrizados en el sistema" field="nombre" [style]="{'text-align':'center'}"></p-column>
+    <p-dataTable [value]="roles" [responsive]="true" [rows]="10" [paginator]="true" emptyMessage="No se encontraron roles en el sistema." selectionMode="single">
+        <p-column header="Lista de Roles parametrizados en el sistema" field="nombre" [style]="{'text-align':'center'}" 
+           [filter]="true" filterPlaceholder="Filtro de búsqueda por nombre del ROL">
+        </p-column>
         <p-column [style]="{'width':'8%','text-align':'center'}" header="Privilegios">
             <ng-template let-item="rowData" pTemplate="body">
                 <span class="glyphicon glyphicon-share cursor-manito" (click)="verDetalleRol(item)" 
