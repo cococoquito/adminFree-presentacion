@@ -45,7 +45,7 @@
 <div *ngIf="crearEditarUser">
 
     <!-- formulario de los atributos del USER-->
-    <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && crearEditarUser.roles != selectValueDefaultNumber && f.form.valid && crearEditarUsuarioSistema()" (keydown.enter)="$event.preventDefault()" novalidate>
+    <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && crearEditarUser.roles != selectValueDefaultNumber && crearEditarUsuarioSistema()" (keydown.enter)="$event.preventDefault()" novalidate>
 
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -59,7 +59,7 @@
                         <label for="nombreUser">Nombre completo: *</label>
                         <input type="text" [(ngModel)]="crearEditarUser.nombre" name="nombreUser" #nombreUser="ngModel" 
                          [ngClass]="(submitted && !nombreUser.valid) ? 'form-control input-invalido':'form-control input-valido'"
-                         maxlength="100" placeholder="Este campo es requerido" required/>                          
+                         maxlength="100" placeholder="Este campo es requerido" myNoSpaces/>                          
                     </div>
 
                     <!-- usuario de ingreso-->
@@ -67,14 +67,14 @@
                         <label for="userIngreso">Usuario de ingreso: *</label>
                         <input type="text" [(ngModel)]="crearEditarUser.nombreUsuario" name="userIngreso" #userIngreso="ngModel" 
                          [ngClass]="(submitted && !userIngreso.valid) ? 'form-control input-invalido':'form-control input-valido'"
-                         maxlength="30" placeholder="Este campo es requerido" required/>                          
+                         maxlength="30" placeholder="Este campo es requerido" myNoSpaces/>                          
                     </div>
 
                     <!-- rol asignado-->
                     <div class="form-group col-md-6">
                         <label for="rol">ROL: *</label>
                         <select name="rol" [(ngModel)]="crearEditarUser.roles"
-                         [ngClass]="(submitted && crearEditarUser.roles == selectValueDefaultNumber) ? 'form-control input-invalido':'form-control input-valido'" required>
+                         [ngClass]="(submitted && crearEditarUser.roles == selectValueDefaultNumber) ? 'form-control input-invalido':'form-control input-valido'">
                             <option value="{{selectValueDefaultNumber}}" disabled>Este campo es requerido</option>
                             <option *ngFor="let rol of roles" value="{{rol.idRole}}">{{rol.nombre}}</option>
                         </select>

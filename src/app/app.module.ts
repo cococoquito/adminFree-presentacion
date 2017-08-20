@@ -53,6 +53,7 @@ import { ParametrizacionRegistrosComponent } from './a-components/a-admin/parame
 import { FormatoFuenteComponent } from './a-components/a-admin/formato_fuente/formato-fuente.component';
 
 import { RolPrivilegioModal } from './a-components/y-directivas/modales/rol-privilegio.modal';
+import { NoWhitespaceDirective } from './a-components/y-directivas/validadores/whitespace/no-whitespace.directive';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { RolPrivilegioModal } from './a-components/y-directivas/modales/rol-priv
     GestionProcesosComponent,
     AdminRolesComponent,
     AdminUsersComponent,
-    RolPrivilegioModal
+    RolPrivilegioModal,
+    NoWhitespaceDirective
   ],
 
   imports: [
