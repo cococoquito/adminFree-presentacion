@@ -25,9 +25,6 @@ export var ESTADO_ACTIVO: number = 1;
 export var ESTADO_BORRRADO: number = 2;
 /** Constantes para los estados - final*/
 
-/** Error general del sistem*/
-export var ERROR_SISTEMA: string = "Se presento el siguiente error: ";
-
 /** estilos para el mensaje de ALERT*/
 export var STYLE_ERROR_CENTER: string = "alert alert-danger text_center";
 export var STYLE_SUCCESS_CENTER: string = "alert alert-success text_center";
