@@ -11,10 +11,18 @@
 </ul>
 
 <!-- panel cuando no hay item seleccionado -->
-<div *ngIf="!itemSeleccionado" class="panel panel-default center-all" style="min-height: 300px;">
-  <p class="sub-title-home">Seleccione en la parte superior el tipo de</p>
-  <p class="sub-title-home" style="color: #C45246">&nbsp;configuración</p>
-  <p class="sub-title-home">&nbsp;que desea registrar</p>
+<div *ngIf="!itemSeleccionado" class="panel panel-default center-all" style="min-height: 250px;">
+  <div style="width: 90%">
+    <p class="sub-title-page" style="background-color: #FFF;">
+      <strong>Administración de Roles:</strong> Este ítem permite la creación, edición o eliminación de los <strong>ROLES</strong>      del sistema, cada ROL se le debe asignar sus propios privilegios, cada privilegio es permitir que el usuario pueda
+      ingresar a un módulo o submodulo específico.
+
+      <br/><br/><br/>
+      <strong>Administración de Usuarios:</strong> Este ítem permite la creación, edición, eliminación, restauración de contraseña
+      de los <strong>USUARIOS</strong> del sistema, para la creación de los usuarios se debe tener definido el ROL que se les
+      asignará.
+    </p>
+  </div>
 </div>
 
 <!-- panel para el item de admin ROLE -->
