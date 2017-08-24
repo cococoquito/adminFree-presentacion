@@ -241,31 +241,38 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
         // se oculta el alert esto por si hay errores con el submit anterior
         this.alertService.hiddenAlert();
 
-        // se muestra el modal de carga
-        this.utilService.displayLoading(true);
-
         // se organiza los datos del usuario antes de persistir
         this.organizarDatosUsuario();
 
-        // se invoca el servicio para crear o editar el USUARIO
-        this.administradorService.crearEditarUsuario(this.crearEditarUser).subscribe(
-            data => {
-                // se configura los usuarios retornado por el servicio
-                this.usuarios = data.json();
+        // se verifica si es valido para persistir el usuario
+        if (this.isPersistirUsuario()) {
 
-                // se muestra el mensaje exitoso en pantalla
-                this.alertService.showAlert(this.crearEditarUser.idUsuario ? EXITOSO_MSJ_USUARIO_EDITADO : EXITOSO_MSJ_USUARIO_CREADO, STYLE_SUCCESS_CENTER, false);
+            // se muestra el modal de carga
+            this.utilService.displayLoading(true);
 
-                // se limpia la variable del USER para retornar a la lista de USUARIOS ACTIVO
-                this.crearEditarUser = null;
+            // se invoca el servicio para crear o editar el USUARIO
+            this.administradorService.crearEditarUsuario(this.crearEditarUser).subscribe(
+                data => {
+                    // se configura los usuarios retornado por el servicio
+                    this.usuarios = data.json();
 
-                // se cierra el modal de carga
-                this.utilService.displayLoading(false);
-            },
-            error => {
-                this.showErrorSistema(error);
-            }
-        );
+                    // se muestra el mensaje exitoso en pantalla
+                    this.alertService.showAlert(this.crearEditarUser.idUsuario ? EXITOSO_MSJ_USUARIO_EDITADO : EXITOSO_MSJ_USUARIO_CREADO, STYLE_SUCCESS_CENTER, false);
+
+                    // se limpia la variable del USER para retornar a la lista de USUARIOS ACTIVO
+                    this.crearEditarUser = null;
+
+                    // se cierra el modal de carga
+                    this.utilService.displayLoading(false);
+                },
+                error => {
+                    this.showErrorSistema(error);
+                }
+            );
+        } else {
+            // si no es para persistir el usuario se retorna a la lista de USUARIOS ACTIVO
+            this.crearEditarUser = null;
+        }
     }
 
     /**
@@ -296,5 +303,45 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
         // se eliminan los espacios en blanco
         this.crearEditarUser.nombre = this.crearEditarUser.nombre.trim();
         this.crearEditarUser.nombreUsuario = this.crearEditarUser.nombreUsuario.trim();
+    }
+
+    /**
+     * Metodo que permite identificar si hay alguna modificacion o si el usuario es nuevo 
+     * para proceder a invocar el servicio de actualizacion o creacion de usuarios
+     */
+    private isPersistirUsuario(): boolean {
+
+        // es valido si es creacion de usuario
+        if (this.crearEditarUser.idUsuario == null) {
+            return true;
+        }
+
+        // se busca el usuario que se prentende a editar
+        for (let user of this.usuarios) {
+            if (user.idUsuario == this.crearEditarUser.idUsuario) {
+
+                // se valida si se modifico el nombre del usuario
+                if (this.crearEditarUser.nombre != user.nombre) {
+                    return true;
+                }
+
+                // se valida si se modifico el usuario de ingreso
+                if (this.crearEditarUser.nombreUsuario != user.nombreUsuario) {
+                    return true;
+                }
+
+                // se valida si se modifico el rol
+                if (this.crearEditarUser.roles != user.roles) {
+                    return true;
+                }
+
+                // se valida si se modifico la bandera que lo identifica como abogado
+                if (this.crearEditarUser.esAbogado != user.esAbogado) {
+                    return true;
+                }
+                break;
+            }
+        }
+        return false;
     }
 }
