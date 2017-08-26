@@ -4,19 +4,18 @@
 </div>
 <br/>
 
-<!-- tab items visualizar -->
+<!-- lista de modulos -->
 <ul class="nav nav-tabs">
 
   <!-- correspondencia -->
   <li role="presentation" [class.active]="CORRESPONDENCIA == moduloSeleccionado">
     <a (click)="showTabModulo(CORRESPONDENCIA)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-      [ngStyle]="(CORRESPONDENCIA == moduloSeleccionado) ? style_tab_selected : style_tab_not_selected" aria-expanded="false">
-          <i class="fa fa-fw fa-envelope"></i> 
-          Correspondencia <span class="caret"></span>
+      aria-expanded="false" [ngStyle]="(CORRESPONDENCIA == moduloSeleccionado) ? style_tab_selected : style_tab_not_selected">
+          <i class="fa fa-fw fa-envelope"></i> Correspondencia <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Tipos de Consecutivos</a>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Tipos de Consecutivo de Correspondencia</a>
       </li>
       <li class="divider"></li>
       <li>
@@ -28,7 +27,7 @@
       </li>
       <li class="divider"></li>
       <li>
-        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Cargue de Consecutivos</a>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Cargue de Consecutivos de Correspondencia</a>
       </li>
       <li class="divider"></li>
       <li>
@@ -38,14 +37,59 @@
   </li>
 
   <!-- solicitud certificados -->
-  <li role="presentation" [class.active]="SOLICITUD_CERTIFICADOS == moduloSeleccionado"><a (click)="showTabModulo(SOLICITUD_CERTIFICADOS)" [ngStyle]="(SOLICITUD_CERTIFICADOS == moduloSeleccionado) ? style_tab_selected : style_tab_not_selected"><i class="fa fa-fw fa-folder-open"></i> Solicitud Certificados</a></li>
+  <li role="presentation" [class.active]="SOLICITUD_CERTIFICADOS == moduloSeleccionado">
+    <a (click)="showTabModulo(SOLICITUD_CERTIFICADOS)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+      aria-expanded="false" [ngStyle]="(SOLICITUD_CERTIFICADOS == moduloSeleccionado) ? style_tab_selected : style_tab_not_selected">
+      <i class="fa fa-fw fa-folder-open"></i> Solicitud Certificados <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Destinos para Certificados Tiempo Servicios y Salarios</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Destinos para Certificados Carta Laboral</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Tipos de Solicitud para Certificados Tiempo Servicios y Salarios</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Grados de Escalafón del Docente</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Tipos de Vinculación del Docente</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Tipos de Cargo del Docente</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Instituciones Educativas</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Configuración de Impresión para Certificados Solicitados</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Cargue de Certificados Solicitados</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Cierre de Año</a>
+      </li>
+    </ul>
+  </li>
 
   <!-- Demandas -->
   <li role="presentation" [class.active]="DEMANDA == moduloSeleccionado">
-    <a (click)="showTabModulo(DEMANDA)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" [ngStyle]="(DEMANDA == moduloSeleccionado) ? style_tab_selected : style_tab_not_selected"
-      aria-expanded="false">
-      <i class="fa fa-fw fa-graduation-cap"></i> 
-       Demandas <span class="caret"></span>
+    <a (click)="showTabModulo(DEMANDA)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+      [ngStyle]="(DEMANDA == moduloSeleccionado) ? style_tab_selected : style_tab_not_selected">
+      <i class="fa fa-fw fa-graduation-cap"></i> Demandas <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
       <li>
@@ -53,7 +97,7 @@
       </li>
       <li class="divider"></li>
       <li>
-        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Tipo de Procesos</a>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Tipos de Proceso</a>
       </li>
       <li class="divider"></li>
       <li>
