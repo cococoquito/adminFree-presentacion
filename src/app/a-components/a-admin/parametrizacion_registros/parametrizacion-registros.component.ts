@@ -19,7 +19,8 @@ export class ParametrizacionRegistrosComponent implements OnInit {
     private style_tab_selected = {
         'background-color': '#186ba0',
         'border': '1px solid #156090',
-        'color': '#FFFFFF'
+        'color': '#FFFFFF',
+        'cursor': 'pointer'
     };
 
     /** style para el tab NO seleccionado */

@@ -6,7 +6,63 @@
 
 <!-- tab items visualizar -->
 <ul class="nav nav-tabs">
-  <li role="presentation" [class.active]="CORRESPONDENCIA == moduloSeleccionado"><a (click)="showTabModulo(CORRESPONDENCIA)" [ngStyle]="(CORRESPONDENCIA == moduloSeleccionado) ? style_tab_selected : style_tab_not_selected"><i class="fa fa-fw fa-envelope"></i> Correspondencia</a></li>
+
+  <!-- correspondencia -->
+  <li role="presentation" [class.active]="CORRESPONDENCIA == moduloSeleccionado">
+    <a (click)="showTabModulo(CORRESPONDENCIA)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+      [ngStyle]="(CORRESPONDENCIA == moduloSeleccionado) ? style_tab_selected : style_tab_not_selected" aria-expanded="false">
+          <i class="fa fa-fw fa-envelope"></i> 
+          Correspondencia <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Tipos de Consecutivos</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Series Documentales</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Funcionarios</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Cargue de Consecutivos</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Cierre de Año</a>
+      </li>
+    </ul>
+  </li>
+
+  <!-- solicitud certificados -->
   <li role="presentation" [class.active]="SOLICITUD_CERTIFICADOS == moduloSeleccionado"><a (click)="showTabModulo(SOLICITUD_CERTIFICADOS)" [ngStyle]="(SOLICITUD_CERTIFICADOS == moduloSeleccionado) ? style_tab_selected : style_tab_not_selected"><i class="fa fa-fw fa-folder-open"></i> Solicitud Certificados</a></li>
-  <li role="presentation" [class.active]="DEMANDA == moduloSeleccionado"><a (click)="showTabModulo(DEMANDA)" [ngStyle]="(DEMANDA == moduloSeleccionado) ? style_tab_selected : style_tab_not_selected"><i class="fa fa-fw fa-graduation-cap"></i> Demandas</a></li>
+
+  <!-- Demandas -->
+  <li role="presentation" [class.active]="DEMANDA == moduloSeleccionado">
+    <a (click)="showTabModulo(DEMANDA)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" [ngStyle]="(DEMANDA == moduloSeleccionado) ? style_tab_selected : style_tab_not_selected"
+      aria-expanded="false">
+      <i class="fa fa-fw fa-graduation-cap"></i> 
+       Demandas <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Demandados</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Tipo de Procesos</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Despachos Judiciales</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a class="cursor-manito"><i class="fa fa-fw fa-angle-double-right"></i> Tipos del Caso</a>
+      </li>
+    </ul>
+  </li>
 </ul>
