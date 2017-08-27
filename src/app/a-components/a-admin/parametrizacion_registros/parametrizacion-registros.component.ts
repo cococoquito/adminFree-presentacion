@@ -35,8 +35,8 @@ export class ParametrizacionRegistrosComponent implements OnInit {
 
     /**
      * Metodo que permite soportar el evento clic de un item del menu
-     * @param item , es el ITEM que selecciono el usuario
-     * @param modulo , es el MODULO que selecciono el usuario
+     * @param item , es el ITEM seleccionado por el usuario
+     * @param modulo , es el MODULO asociado al item seleccionado por el usuario
      */
     private clicItem(item: ModuloItemDTO, modulo: ModuloDTO): void {
 
