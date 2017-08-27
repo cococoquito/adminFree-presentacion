@@ -420,7 +420,8 @@ ul.alert-dropdown {
 .pa_item_seleccionado{
     background-color: #186ba0 !important;
     color: #FFFFFF !important;
-    cursor: default!important
+    cursor: default!important;
+    pointer-events:none
 }
 
 .color_white{
