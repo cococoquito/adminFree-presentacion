@@ -8,7 +8,7 @@
 <ul class="nav nav-tabs">
 
   <li role="presentation" *ngFor="let modulo of modulos">
-    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" [ngClass]="(modulo.cerradoModulo) ? 'tab_seleccionado' : 'tab_no_seleccionado'">
+    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" [ngClass]="(modulo.cerradoModulo) ? 'pa_tab_seleccionado' : 'pa_tab_no_seleccionado'">
        <i [ngClass]="(modulo.idModulo == 1)?'fa fa-fw fa-envelope':(modulo.idModulo == 2)?'fa fa-fw fa-folder-open':(modulo.idModulo == 3)?'fa fa-fw fa-graduation-cap':''"></i> {{modulo.nombreModulo}} <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">

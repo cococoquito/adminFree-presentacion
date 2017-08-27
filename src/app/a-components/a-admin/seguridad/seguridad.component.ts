@@ -13,19 +13,6 @@ export class SeguridadComponent implements OnInit {
     private ADMIN_ROLES: number = 1;
     private ADMIN_USER: number = 2;
 
-    /** style para el tab seleccionado */
-    private style_tab_selected = {
-        'background-color': '#186ba0',
-        'border': '1px solid #156090',
-        'color': '#FFFFFF'
-    };
-
-    /** style para el tab NO seleccionado */
-    private style_tab_not_selected = {
-        'cursor': 'pointer',
-        'border': '1px solid #ddd'
-    };
-
     /** indica el tipo de Item seleccionado por el user */
     private itemSeleccionado: number;
 

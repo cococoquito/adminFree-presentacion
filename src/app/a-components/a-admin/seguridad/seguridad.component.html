@@ -6,8 +6,8 @@
 
 <!-- tab items visualizar -->
 <ul class="nav nav-tabs">
-  <li role="presentation" [class.active]="ADMIN_ROLES == itemSeleccionado"><a (click)="showTabItem(ADMIN_ROLES)" [ngStyle]="(ADMIN_ROLES == itemSeleccionado) ? style_tab_selected : style_tab_not_selected"><i class="fa fa-fw fa-wrench"></i> Administración de Roles</a></li>
-  <li role="presentation" [class.active]="ADMIN_USER == itemSeleccionado"><a (click)="showTabItem(ADMIN_USER)" [ngStyle]="(ADMIN_USER == itemSeleccionado) ? style_tab_selected : style_tab_not_selected"><i class="fa fa-user"></i> Administración de Usuarios</a></li>
+  <li role="presentation"><a (click)="showTabItem(ADMIN_ROLES)" [ngClass]="(ADMIN_ROLES == itemSeleccionado) ? 'tab_seleccionado' : 'tab_no_seleccionado'"><i class="fa fa-fw fa-wrench"></i> Administración de Roles</a></li>
+  <li role="presentation"><a (click)="showTabItem(ADMIN_USER)" [ngClass]="(ADMIN_USER == itemSeleccionado) ? 'tab_seleccionado' : 'tab_no_seleccionado'"><i class="fa fa-user"></i> Administración de Usuarios</a></li>
 </ul>
 
 <!-- panel cuando no hay item seleccionado -->

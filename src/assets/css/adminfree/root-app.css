@@ -405,14 +405,14 @@ ul.alert-dropdown {
     padding:4px
 }
 
-.tab_seleccionado{
+.pa_tab_seleccionado{
     background-color: #186ba0 !important;
     border: 1px solid #156090 !important;
     color: #FFFFFF !important;
     cursor: pointer
 }
 
-.tab_no_seleccionado{
+.pa_tab_no_seleccionado{
     border: 1px solid #ddd !important;
     cursor: pointer;
 }
@@ -449,4 +449,15 @@ ul.alert-dropdown {
 
 .sin_border_divisor{
     border-bottom: 0px
+}
+
+.tab_seleccionado{
+    background-color: #186ba0!important;
+    border: 1px solid #156090!important;
+    color: #FFFFFF!important
+}
+
+.tab_no_seleccionado{
+    cursor: pointer;
+    border: 1px solid #ddd!important
 }
