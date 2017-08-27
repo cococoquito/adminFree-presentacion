@@ -8,7 +8,7 @@ import { ModuloItemDTO } from './ModuloItemDTO';
 export class ModuloDTO {
 
     /** Identificador del modulo */
-    public idModulo: string;
+    public idModulo: number;
 
     /** nombre del modulo */
     public nombreModulo: string;

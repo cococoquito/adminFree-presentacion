@@ -397,10 +397,55 @@ ul.alert-dropdown {
 .title_center{
     text-align: center; 
     margin: auto; 
-    width: 70%;
+    width: 70%
 }
 
 .button_center_user{
     text-align: center; 
-    padding:4px;
+    padding:4px
+}
+
+.tab_seleccionado{
+    background-color: #186ba0 !important;
+    border: 1px solid #156090 !important;
+    color: #FFFFFF !important;
+    cursor: pointer
+}
+
+.tab_no_seleccionado{
+    border: 1px solid #ddd !important;
+    cursor: pointer;
+}
+
+.item_seleccionado{
+    background-color: #186ba0 !important;
+    color: #FFFFFF !important;
+    cursor: default!important
+}
+
+.color_white{
+    color: #FFFFFF !important
+}
+
+.pa_first{
+    margin: 11px 0;
+    cursor: pointer
+}
+
+.pa_last{
+    margin-bottom: -4px;
+    cursor: pointer
+}
+
+.pa_other{
+    margin: 15px 0;
+    cursor: pointer
+}
+
+.border_divisor{
+    border-bottom: 1px solid #e5e5e5
+}
+
+.sin_border_divisor{
+    border-bottom: 0px
 }
