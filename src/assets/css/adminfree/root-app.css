@@ -417,7 +417,7 @@ ul.alert-dropdown {
     cursor: pointer;
 }
 
-.item_seleccionado{
+.pa_item_seleccionado{
     background-color: #186ba0 !important;
     color: #FFFFFF !important;
     cursor: default!important
