@@ -12,9 +12,8 @@
        <i [ngClass]="(modulo.idModulo == 1)?'fa fa-fw fa-envelope':(modulo.idModulo == 2)?'fa fa-fw fa-folder-open':(modulo.idModulo == 3)?'fa fa-fw fa-graduation-cap':''"></i> {{modulo.nombreModulo}} <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-      <li *ngFor="let item of modulo.itemsMenu; let first = first; let last = last" 
-        [ngClass]="(item.seleccionado) ? (first) ? 'pa_item_seleccionado pa_first' : (last) ? 'pa_item_seleccionado pa_last' : 'pa_item_seleccionado pa_other' : (first) ? 'pa_first' : (last) ? 'pa_last': 'pa_other'">
-        <a [ngClass]="(item.seleccionado) ? (last) ? 'sin_border_divisor color_white' : 'border_divisor color_white' : (last) ? 'sin_border_divisor' : 'border_divisor'" (click)="clicItem(item,modulo)">
+      <li *ngFor="let item of modulo.itemsMenu; let first = first; let last = last" [ngClass]="(item.seleccionado) ? (first) ? 'pa_item_seleccionado pa_first' : (last) ? 'pa_item_seleccionado pa_last' : 'pa_item_seleccionado pa_other' : (first) ? 'pa_first' : (last) ? 'pa_last': 'pa_other'">
+        <a (click)="clicItem(item,modulo)" [ngClass]="(item.seleccionado) ? (last) ? 'sin_border_divisor color_white' : 'border_divisor color_white' : (last) ? 'sin_border_divisor' : 'border_divisor'">
           <i class="fa fa-fw fa-angle-double-right"></i> {{item.nombreItem}}
         </a>
       </li>

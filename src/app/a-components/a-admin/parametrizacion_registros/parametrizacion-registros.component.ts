@@ -38,17 +38,19 @@ export class ParametrizacionRegistrosComponent implements OnInit {
      * @param item , es el ITEM que selecciono el usuario
      * @param modulo , es el MODULO que selecciono el usuario
      */
-    private clicItem(item: ModuloItemDTO, modulo : ModuloDTO): void {
-          for(let modulo of this.modulos){
-              modulo.cerradoModulo = false;
-              for(let item of modulo.itemsMenu){
-                 item.seleccionado =false;
-              }
-          }
+    private clicItem(item: ModuloItemDTO, modulo: ModuloDTO): void {
 
-          item.seleccionado = true;
-          modulo.cerradoModulo = true;
+        // se recorre todos los modulos para habilitar el item seleccionado con anterioridad        
+        for (let modulo of this.modulos) {
+            modulo.cerradoModulo = false;
+            for (let item of modulo.itemsMenu) {
+                item.seleccionado = false;
+            }
+        }
 
+        // se configura el modulo e item como seleccionado
+        item.seleccionado = true;
+        modulo.cerradoModulo = true;
     }
 
     /**
