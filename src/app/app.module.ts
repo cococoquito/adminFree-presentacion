@@ -50,6 +50,7 @@ import { SeguridadComponent } from './a-components/a-admin/seguridad/seguridad.c
 import { AdminRolesComponent } from './a-components/a-admin/seguridad/admin_roles/admin-roles.component';
 import { AdminUsersComponent } from './a-components/a-admin/seguridad/admin_usuarios/admin-usuarios.component';
 import { ParametrizacionRegistrosComponent } from './a-components/a-admin/parametrizacion_registros/parametrizacion-registros.component';
+import { PaCommonItemsComponent } from './a-components/a-admin/parametrizacion_registros/common-items/pa-common-items.component';
 import { FormatoFuenteComponent } from './a-components/a-admin/formato_fuente/formato-fuente.component';
 
 import { RolPrivilegioModal } from './a-components/y-directivas/modales/rol-privilegio.modal';
@@ -69,6 +70,7 @@ import { NoWhitespaceDirective } from './a-components/y-directivas/validadores/w
     ConsecutivosSolicitadosComponent,
     SeguridadComponent,
     ParametrizacionRegistrosComponent,
+    PaCommonItemsComponent,
     FormatoFuenteComponent,
     CartasLaboralesComponent,
     ReporteCesantiasComponent,
