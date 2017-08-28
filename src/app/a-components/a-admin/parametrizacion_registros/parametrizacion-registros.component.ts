@@ -12,8 +12,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParametrizacionRegistrosComponent implements OnInit {
 
+    /** Constantes para los identificadores de los items de correspondencia */
+    private CORRESPONDENCIA_ITEM1: number = 1;
+    private CORRESPONDENCIA_ITEM2: number = 2;
+    private CORRESPONDENCIA_ITEM3: number = 3;
+    private CORRESPONDENCIA_ITEM4: number = 4;
+    private CORRESPONDENCIA_ITEM5: number = 5;
+
+    /** Constantes para los identificadores de los items de solicitud certificados */
+    private SOLICITUD_CERTIFICADO_ITEM1: number = 6;
+    private SOLICITUD_CERTIFICADO_ITEM2: number = 7;
+    private SOLICITUD_CERTIFICADO_ITEM3: number = 8;
+    private SOLICITUD_CERTIFICADO_ITEM4: number = 9;
+    private SOLICITUD_CERTIFICADO_ITEM5: number = 10;
+    private SOLICITUD_CERTIFICADO_ITEM6: number = 11;
+    private SOLICITUD_CERTIFICADO_ITEM7: number = 12;
+    private SOLICITUD_CERTIFICADO_ITEM8: number = 13;
+    private SOLICITUD_CERTIFICADO_ITEM9: number = 14;
+    private SOLICITUD_CERTIFICADO_ITEM10: number = 15;
+
+    /** Constantes para los identificadores de los items DEMANDAS */
+    private DEMANDAS_ITEM1: number = 16;
+    private DEMANDAS_ITEM2: number = 17;
+    private DEMANDAS_ITEM3: number = 18;
+    private DEMANDAS_ITEM4: number = 19;
+
     /**Esta variable contiene los modulos a mostrar en el menu de parametrizacion*/
-    public modulos: Array<ModuloDTO>;
+    private modulos: Array<ModuloDTO>;
+
+    /**Representa el item seleccionado por el usuario*/
+    private itemSeleccionado: ModuloItemDTO;
 
     /**
      * PostConstructor que permite inicializar las variables del component
@@ -51,6 +79,9 @@ export class ParametrizacionRegistrosComponent implements OnInit {
         // se configura el modulo e item como seleccionado
         item.seleccionado = true;
         modulo.cerradoModulo = true;
+
+        // se configura el item seleccionado
+        this.itemSeleccionado = item;
     }
 
     /**
@@ -70,26 +101,31 @@ export class ParametrizacionRegistrosComponent implements OnInit {
         // primer item para tipos de consecutivos correspondencia
         let item1 = new ModuloItemDTO();
         item1.nombreItem = "Tipos de Consecutivo de Correspondencia";
+        item1.idItem = this.CORRESPONDENCIA_ITEM1;
         items.push(item1);
 
         // segundo item para Series Documentales
         let item2 = new ModuloItemDTO();
         item2.nombreItem = "Series Documentales";
+        item2.idItem = this.CORRESPONDENCIA_ITEM2;
         items.push(item2);
 
         // tercer item para Funcionarios
         let item3 = new ModuloItemDTO();
         item3.nombreItem = "Funcionarios";
+        item3.idItem = this.CORRESPONDENCIA_ITEM3;
         items.push(item3);
 
         // cuarto item para Cargue de Consecutivos de Correspondencia
         let item4 = new ModuloItemDTO();
         item4.nombreItem = "Cargue de Consecutivos de Correspondencia";
+        item4.idItem = this.CORRESPONDENCIA_ITEM4;
         items.push(item4);
 
         // quinto item para Cierre de Anio
         let item5 = new ModuloItemDTO();
         item5.nombreItem = "Cierre de Año";
+        item5.idItem = this.CORRESPONDENCIA_ITEM5;
         items.push(item5);
         return modulo;
     }
@@ -111,51 +147,61 @@ export class ParametrizacionRegistrosComponent implements OnInit {
         // item 1 para Tipos de Solicitud para Certificados Tiempo Servicios y Salarios
         let item1 = new ModuloItemDTO();
         item1.nombreItem = "Tipos de Solicitud para Certificados Tiempo Servicios y Salarios";
+        item1.idItem = this.SOLICITUD_CERTIFICADO_ITEM1;
         items.push(item1);
 
         // item 2 para Destinos para Certificados Tiempo Servicios y Salarios
         let item2 = new ModuloItemDTO();
         item2.nombreItem = "Destinos para Certificados Tiempo Servicios y Salarios";
+        item2.idItem = this.SOLICITUD_CERTIFICADO_ITEM2;
         items.push(item2);
 
         // item 3 para Destinos para Certificados Carta Laboral
         let item3 = new ModuloItemDTO();
         item3.nombreItem = "Destinos para Certificados Carta Laboral";
+        item3.idItem = this.SOLICITUD_CERTIFICADO_ITEM3;
         items.push(item3);
 
         // item 4 para Grados de Escalafón del Docente
         let item4 = new ModuloItemDTO();
         item4.nombreItem = "Grados de Escalafón del Docente";
+        item4.idItem = this.SOLICITUD_CERTIFICADO_ITEM4;
         items.push(item4);
 
         // item 5 para Tipos de Vinculación del Docente
         let item5 = new ModuloItemDTO();
         item5.nombreItem = "Tipos de Vinculación del Docente";
+        item5.idItem = this.SOLICITUD_CERTIFICADO_ITEM5;
         items.push(item5);
 
         // item 6 para Tipos de Cargo del Docente
         let item6 = new ModuloItemDTO();
         item6.nombreItem = "Tipos de Cargo del Docente";
+        item6.idItem = this.SOLICITUD_CERTIFICADO_ITEM6;
         items.push(item6);
 
         // item 7 para Instituciones Educativas
         let item7 = new ModuloItemDTO();
         item7.nombreItem = "Instituciones Educativas";
+        item7.idItem = this.SOLICITUD_CERTIFICADO_ITEM7;
         items.push(item7);
 
         // item 8 para Configuración de Impresión para Certificados Solicitados
         let item8 = new ModuloItemDTO();
         item8.nombreItem = "Configuración de Impresión para Certificados Solicitados";
+        item8.idItem = this.SOLICITUD_CERTIFICADO_ITEM8;
         items.push(item8);
 
         // item 9 para Cargue de Certificados Solicitados
         let item9 = new ModuloItemDTO();
         item9.nombreItem = "Cargue de Certificados Solicitados";
+        item9.idItem = this.SOLICITUD_CERTIFICADO_ITEM9;
         items.push(item9);
 
         // item 10 para Cierre de Año
         let item10 = new ModuloItemDTO();
         item10.nombreItem = "Cierre de Año";
+        item10.idItem = this.SOLICITUD_CERTIFICADO_ITEM10;
         items.push(item10);
         return modulo;
     }
@@ -177,21 +223,25 @@ export class ParametrizacionRegistrosComponent implements OnInit {
         // primer item para demandados
         let item1 = new ModuloItemDTO();
         item1.nombreItem = "Demandados";
+        item1.idItem = this.DEMANDAS_ITEM1;
         items.push(item1);
 
         // segundo item para Tipos de Proceso
         let item2 = new ModuloItemDTO();
         item2.nombreItem = "Tipos de Proceso";
+        item2.idItem = this.DEMANDAS_ITEM2;
         items.push(item2);
 
         // tercer item para Despachos Judiciales
         let item3 = new ModuloItemDTO();
         item3.nombreItem = "Despachos Judiciales";
+        item3.idItem = this.DEMANDAS_ITEM3;
         items.push(item3);
 
         // cuarto item para Tipos del Caso
         let item4 = new ModuloItemDTO();
         item4.nombreItem = "Tipos del Caso";
+        item4.idItem = this.DEMANDAS_ITEM4;
         items.push(item4);
         return modulo;
     }
