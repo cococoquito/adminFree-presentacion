@@ -20,8 +20,8 @@
 </form>
 
 <!-- tabla con la lista de items -->
-<p-dataTable [responsive]="true" [rows]="10" [paginator]="true" emptyMessage="No se encontraron registros en el sistema." selectionMode="single">
-    <p-column header="{{item.nombreItem}}" [style]="{'text-align':'center'}"></p-column>
+<p-dataTable [value]="items" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No se encontraron registros en el sistema." selectionMode="single">
+    <p-column header="{{item.nombreItem}}" field="nombre" [style]="{'text-align':'center'}" [filter]="true" filterPlaceholder="Filtro de búsqueda"></p-column>
     <p-column [style]="{'width':'5%','text-align':'center'}" header="Editar">
         <ng-template let-item="rowData" pTemplate="body">
             <span class="glyphicon glyphicon-edit cursor-manito" title="Clic aquí para editar este registro"></span>

@@ -52,6 +52,9 @@ export class AdministradorService {
     /** URL para restablecer la clave del user */
     private static URL_RESTABLECER_CLAVE = 'admin/restablecer_clave';
 
+    /** URL para listar los items parametricos de una tabla especifica */
+    private static URL_LISTAR_ITEMS = 'admin/listar_items/';
+
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json' });
 
@@ -148,7 +151,16 @@ export class AdministradorService {
      */
     public restablecerClaveUsuario(user: UsuariosDTO): Observable<Response> {
         return this.http.post(URL_BASE + AdministradorService.URL_RESTABLECER_CLAVE, user, this.options);
-    }    
+    }
+
+    /**
+     * Metodo que permite listar los items parametricos de una tabla 
+     * especifica de acuerdo al identificador del item
+     * @param idItem, identificador del item parametrico
+     */
+    public getItemsParametricos(idItem: number): Observable<Response> {
+        return this.http.get(URL_BASE + AdministradorService.URL_LISTAR_ITEMS + idItem);
+    }
 
     /**
      * Metodo que permite notificar a los susbcritores que el usuario esta autenticado

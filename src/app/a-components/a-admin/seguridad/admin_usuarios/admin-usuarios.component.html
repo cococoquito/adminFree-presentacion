@@ -9,7 +9,7 @@
     <div class="cpm_right">
         <button type="button" class="btn btn-primary" (click)="abrirPanelCrearUser()" title="Clic aquí para abrir el panel de creación de USUARIO">Crear Usuario</button>
     </div>
-    <p-dataTable [value]="usuarios" [responsive]="true" [rows]="10" [paginator]="true" emptyMessage="No se encontraron usuarios en el sistema." selectionMode="single">
+    <p-dataTable [value]="usuarios" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No se encontraron usuarios en el sistema." selectionMode="single">
         <p-column header="Nombre completo" field="nombre" [style]="{'text-align':'center'}" [filter]="true" filterPlaceholder="Filtro de búsqueda"></p-column>
         <p-column header="Usuario de ingreso" field="nombreUsuario" [style]="{'text-align':'center'}" [filter]="true" filterPlaceholder="Filtro de búsqueda"></p-column>
         <p-column header="Rol asignado" field="nombreRole" [style]="{'text-align':'center'}">
