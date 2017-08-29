@@ -1,4 +1,35 @@
-<p>
-    {{item.nombreItem}}
-    {{item.idItem}}
-</p>
+<!-- titulo de la pagina -->
+<div class="text_center sub-title-page_conf">
+    {{modulo.nombreModulo+' / '+item.nombreItem}}
+</div>
+<alert></alert>
+
+<br/>
+<!-- formulario del nombre del ROL-->
+<form name="form" #f="ngForm" (keydown.enter)="$event.preventDefault()" novalidate class="form-inline" style="padding-bottom:4px;padding-top:4px">
+    <div class="row" style="width: 100%; margin-left:0px;">
+        <div class="form-group col-md-6" style="padding-left:0px;">
+            <input type="text" class="form-control input-valido" maxlength="100" placeholder="Este campo es requerido" myNoSpaces style="width: 75%"/>
+            <button type="submit" class="btn btn-primary" title="Clic aquí para agregar un nuevo registro" style="width: 110px">Agregar</button>
+        </div>
+        <div class="form-group col-md-6" style="text-align: right; padding-right:0px;">
+            <button type="submit" class="btn btn-primary" title="Clic aquí para agregar un nuevo registro" style="width: 130px">Aplicar Cambios</button>&nbsp;&nbsp;
+            <button type="submit" class="btn btn-default" title="Clic aquí para agregar un nuevo registro" style="width: 130px">Cancelar Edición</button>
+        </div>
+    </div>
+</form>
+
+<!-- tabla con la lista de items -->
+<p-dataTable [responsive]="true" [rows]="10" [paginator]="true" emptyMessage="No se encontraron registros en el sistema." selectionMode="single">
+    <p-column header="{{item.nombreItem}}" [style]="{'text-align':'center'}"></p-column>
+    <p-column [style]="{'width':'5%','text-align':'center'}" header="Editar">
+        <ng-template let-item="rowData" pTemplate="body">
+            <span class="glyphicon glyphicon-edit cursor-manito" title="Clic aquí para editar este registro"></span>
+        </ng-template>
+    </p-column>
+    <p-column [style]="{'width':'6%','text-align':'center'}" header="Eliminar">
+        <ng-template let-item="rowData" pTemplate="body">
+            <span class="glyphicon glyphicon-trash cursor-manito" title="Clic aquí para eliminar este registro"></span>
+        </ng-template>
+    </p-column>
+</p-dataTable>

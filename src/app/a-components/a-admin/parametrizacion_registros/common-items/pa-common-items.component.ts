@@ -1,9 +1,10 @@
+import { ModuloDTO } from './../../../../c-model/a-admin/seguridad/ModuloDTO';
 import { ModuloItemDTO } from './../../../../c-model/a-admin/seguridad/ModuloItemDTO';
 import { Component, OnInit, Input } from '@angular/core';
 
 /**
  * Componente para las parametrizaciones iniciales de los registros comunes,
- * tales registros que tienen solamente (NOMBRE, ESTADO)
+ * son los registros que tienen solamente (ID, NOMBRE)
  */
 @Component({
     selector: 'pa-common-items',
@@ -11,9 +12,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PaCommonItemsComponent implements OnInit {
 
-    /** Contiene el tipo de parametrizacion que se va administrar*/
+    /** Es el item seleccionado por el usuario*/
     @Input()
     public item: ModuloItemDTO;
+
+    /** Es el modulo del item seleccionado por el usuario*/
+    @Input()
+    public modulo: ModuloDTO;
 
     /**
      * PostConstructor que permite inicializar las variables del component

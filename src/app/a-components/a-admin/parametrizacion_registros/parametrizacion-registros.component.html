@@ -31,14 +31,12 @@
 
 <!-- Item para Series documentales -->
 <div *ngIf="itemSeleccionado?.idItem == CORRESPONDENCIA_ITEM2">
-  <pa-common-items [item]="itemSeleccionado"></pa-common-items>
+  <pa-common-items [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-common-items>
 </div>
 
 <!-- Item para Funcionarios -->
 <div *ngIf="itemSeleccionado?.idItem == CORRESPONDENCIA_ITEM3">
-  <p>
-    Funcionarios
-  </p>
+  <pa-common-items [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-common-items>
 </div>
 
 <!-- Item para Cargue consecutivos correspondencia -->

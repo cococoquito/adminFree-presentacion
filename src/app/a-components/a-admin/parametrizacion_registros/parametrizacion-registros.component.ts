@@ -43,6 +43,9 @@ export class ParametrizacionRegistrosComponent implements OnInit {
     /**Representa el item seleccionado por el usuario*/
     private itemSeleccionado: ModuloItemDTO;
 
+    /**Representa el modulo del item seleccionado por el usuario*/
+    private moduloSeleccionado: ModuloDTO
+
     /**
      * PostConstructor que permite inicializar las variables del component
      */
@@ -80,8 +83,9 @@ export class ParametrizacionRegistrosComponent implements OnInit {
         item.seleccionado = true;
         modulo.cerradoModulo = true;
 
-        // se configura el item seleccionado
+        // se configura el item y el modulo seleccionado
         this.itemSeleccionado = item;
+        this.moduloSeleccionado = modulo;
     }
 
     /**
