@@ -34,7 +34,7 @@
     </p-column>
     <p-column [style]="{'width':'6%','text-align':'center'}" header="Eliminar">
         <ng-template let-item="rowData" pTemplate="body">
-            <span class="glyphicon glyphicon-trash cursor-manito" title="Clic aquí para eliminar este registro"></span>
+            <span class="glyphicon glyphicon-trash cursor-manito" (click)="eliminarItemParametrico(item)" title="Clic aquí para eliminar este registro"></span>
         </ng-template>
     </p-column>
 </p-dataTable>

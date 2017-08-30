@@ -59,6 +59,9 @@ export class AdministradorService {
     /** URL para insertar un item parametrico */
     private static URL_CREAR_ITEM = 'admin/insertar_item';
 
+    /** URL para eliminar un item parametrico */
+    private static URL_ELIMINAR_ITEM = 'admin/eliminar_item/';
+
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json' });
 
@@ -173,6 +176,15 @@ export class AdministradorService {
      */
     public insertarItemParametrico(item: CommonVO): Observable<Response> {
         return this.http.post(URL_BASE + AdministradorService.URL_CREAR_ITEM, item, this.options);
+    }
+
+    /**
+     * Metodo que permite eliminar un item parametrico del sistema
+     * @param id , identificador del item a eliminar
+     * @param idItem, identificador del item para saber que tabla tomar
+     */
+    public eliminarItemParametrico(id: number, idItem: number) {
+        return this.http.get(URL_BASE + AdministradorService.URL_ELIMINAR_ITEM + id + "/" + idItem);
     }
 
     /**

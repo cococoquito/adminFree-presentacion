@@ -1,4 +1,4 @@
-import { STYLE_SUCCESS_CENTER, ITEM_REGISTRADO_EXITOSAMENTE } from './../../../../z-util/Constants';
+import { STYLE_SUCCESS_CENTER, ITEM_REGISTRADO_EXITOSAMENTE, EXITOSO_ITEM_ELIMINADO } from './../../../../z-util/Constants';
 import { CommonVO } from './../../../../c-model/a-admin/parametrizacion/CommonVO';
 import { ConfirmationService } from 'primeng/primeng';
 import { AlertService } from './../../../../b-service/z-common/alert.service';
@@ -34,7 +34,8 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
     private itemCrear: CommonVO;
 
     /**
-    * Constructor del componente para la administracion de los USUARIOS
+    * Constructor del componente para la administracion de registros comunes
+    *
     * @param utilService, service con las funciones utilitarias
     * @param alertService, service para la comunicacion del componente de mensaje de alerta
     * @param confirmationService, servicio para la visualizacion del modal de confirmacion
@@ -116,6 +117,44 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
                 this.showErrorSistema(error);
             }
         );
+    }
+
+    /**
+     *  Metodo que respalda el evento del boton Eliminar 
+     */
+    private eliminarItemParametrico(registro: CommonVO): void {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
+
+        // se procede abrir la ventana de confirmacion
+        this.confirmationService.confirm({
+            message: '¿Está seguro de que desea eliminar el siguiente registro? <br/><strong>' + registro.nombre + '</strong>',
+            header: 'Confirmación',
+            icon: 'fa fa-trash',
+            accept: () => {
+
+                // se muestra el modal de carga
+                this.utilService.displayLoading(true);
+
+                // susbripcion para la eliminacion del Registro
+                this.administradorService.eliminarItemParametrico(registro.id, this.item.idItem).subscribe(
+                    data => {
+                        // se construye los ITEMS que retorna el servicio
+                        this.items = data.json();
+
+                        // se muestra el mensaje exitoso en pantalla
+                        this.alertService.showAlert(EXITOSO_ITEM_ELIMINADO, STYLE_SUCCESS_CENTER, false);
+
+                        // se cierra el modal de carga
+                        this.utilService.displayLoading(false);
+                    },
+                    error => {
+                        this.showErrorSistema(error);
+                    }
+                );
+            }
+        });
     }
 
     /**
