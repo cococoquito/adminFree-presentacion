@@ -1,3 +1,4 @@
+import { CommonVO } from './../../c-model/a-admin/parametrizacion/CommonVO';
 import { UsuariosDTO } from './../../c-model/a-admin/seguridad/UsuariosDTO';
 import { Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
@@ -54,6 +55,9 @@ export class AdministradorService {
 
     /** URL para listar los items parametricos de una tabla especifica */
     private static URL_LISTAR_ITEMS = 'admin/listar_items/';
+
+    /** URL para insertar un item parametrico */
+    private static URL_CREAR_ITEM = 'admin/insertar_item';
 
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json' });
@@ -160,6 +164,15 @@ export class AdministradorService {
      */
     public getItemsParametricos(idItem: number): Observable<Response> {
         return this.http.get(URL_BASE + AdministradorService.URL_LISTAR_ITEMS + idItem);
+    }
+
+    /**
+     * Metodo que permite insertar un item parametrico en el sistema
+     * @param item contiene el nombre del item, identificador 
+     * del item para saber que tabla se va insertar
+     */
+    public insertarItemParametrico(item: CommonVO): Observable<Response> {
+        return this.http.post(URL_BASE + AdministradorService.URL_CREAR_ITEM, item, this.options);
     }
 
     /**

@@ -41,3 +41,7 @@ export var EXITOSO_MSJ_USER_ELIMINADO: string = "El Usuario fue eliminado exitos
 export var EXITOSO_MSJ_USUARIO_EDITADO: string = "El usuario fue actualizado exitosamente en el sistema.";
 export var EXITOSO_MSJ_USUARIO_CREADO: string = "El usuario fue creado exitosamente en el sistema.";
 /** mensajes para el modulo Adminstracion>>usuario>>admin-usuario - final*/
+
+/** mensajes para el modulo Adminstracion>>parametrizaciones - inicio*/
+export var ITEM_REGISTRADO_EXITOSAMENTE: string = "El registro fue ingresado exitosamente en el sistema.";
+/** mensajes para el modulo Adminstracion>>parametrizaciones - inicio*/

@@ -1,3 +1,4 @@
+import { STYLE_SUCCESS_CENTER, ITEM_REGISTRADO_EXITOSAMENTE } from './../../../../z-util/Constants';
 import { CommonVO } from './../../../../c-model/a-admin/parametrizacion/CommonVO';
 import { ConfirmationService } from 'primeng/primeng';
 import { AlertService } from './../../../../b-service/z-common/alert.service';
@@ -29,6 +30,9 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
     /** Lista de items parametrizados en el sistema, estos se visualiza en la tabla*/
     private items: Array<CommonVO>;
 
+    /** se utiliza para crear el item*/
+    private itemCrear: CommonVO;
+
     /**
     * Constructor del componente para la administracion de los USUARIOS
     * @param utilService, service con las funciones utilitarias
@@ -51,6 +55,9 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
 
         // se procede a consultar los items parametricos asociado al item seleccionado
         this.listarItemsParametricos();
+
+        // se inicializa las variables globales
+        this.init();
     }
 
     /**
@@ -74,5 +81,52 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
                 this.showErrorSistema(error);
             }
         );
+    }
+
+    /**
+     * Metodo que respalda el evento del boton Agregar 
+     */
+    private insertarItemParametrico(): void {
+
+        // se muestra el modal de carga
+        this.utilService.displayLoading(true);
+
+        // se indica que el usuario no ha dado commit
+        this.submitted = false;
+
+        // se eliminan los espacios en blanco del nombre ingresado
+        this.itemCrear.nombre = this.itemCrear.nombre.trim();
+
+        // se procede a insertar el item en el sistema
+        this.administradorService.insertarItemParametrico(this.itemCrear).subscribe(
+            data => {
+                // se construye los ITEMS que retorna el servicio
+                this.items = data.json();
+
+                // se muestra el mensaje exitoso en pantalla
+                this.alertService.showAlert(ITEM_REGISTRADO_EXITOSAMENTE, STYLE_SUCCESS_CENTER, false);
+
+                // se inicializa las variables globales
+                this.init();
+
+                // se cierra el modal de carga
+                this.utilService.displayLoading(false);
+            },
+            error => {
+                this.showErrorSistema(error);
+            }
+        );
+    }
+
+    /**
+     * Metodo que permite inicializar las variable globales
+     */
+    private init(): void {
+
+        // se define la variable que se utiilza para creacion de item
+        this.itemCrear = new CommonVO();
+
+        // se configura el id del item, esto para identificar que tabla parametrica se va insertar
+        this.itemCrear.id = this.item.idItem;
     }
 }
