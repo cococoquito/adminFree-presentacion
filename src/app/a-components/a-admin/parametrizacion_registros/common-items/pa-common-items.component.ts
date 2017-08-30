@@ -34,8 +34,8 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
     /** Lista de items parametrizados en el sistema, estos se visualiza en la tabla*/
     private items: Array<CommonVO>;
 
-    /** se utiliza para crear el item*/
-    private itemCrear: CommonVO;
+    /** nombre del item al momento de su creacion*/
+    private nombre: string;
 
     /** representa el nombre del item, funcionario, ciudad, solicutud etc*/
     private nombreItem: string;
@@ -63,9 +63,6 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
 
         // se procede a consultar los items parametricos asociado al item seleccionado
         this.listarItemsParametricos();
-
-        // se inicializa las variables globales
-        this.init();
 
         // se configura el nombre del item
         this.configurarNombreItem();
@@ -102,24 +99,24 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
         // se muestra el modal de carga
         this.utilService.displayLoading(true);
 
-        // se indica que el usuario no ha dado commit
+        // se indica que el usuario no ha dado submit
         this.submitted = false;
 
         // se eliminan los espacios en blanco del nombre ingresado
-        this.itemCrear.nombre = this.itemCrear.nombre.trim();
+        this.nombre = this.nombre.trim();
 
         // se procede a insertar el item en el sistema
-        this.administradorService.insertarItemParametrico(this.itemCrear).subscribe(
+        this.administradorService.insertarItemParametrico(this.nombre, this.item.idItem).subscribe(
             data => {
                 // se construye los ITEMS que retorna el servicio
                 this.items = data.json();
 
                 // se muestra el mensaje exitoso en pantalla
-                let msj = ITEM_REGISTRADO_EXITOSAMENTE.replace("?1", this.nombreItem).replace("?2", this.itemCrear.nombre);
+                let msj = ITEM_REGISTRADO_EXITOSAMENTE.replace("?1", this.nombreItem).replace("?2", this.nombre);
                 this.alertService.showAlert(msj, STYLE_SUCCESS_CENTER, false);
 
-                // se inicializa las variables globales
-                this.init();
+                // se limpia la variable del nombre del item
+                this.nombre = null;
 
                 // se cierra el modal de carga
                 this.utilService.displayLoading(false);
@@ -137,6 +134,9 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
 
         // se oculta el alert esto por si hay errores con el submit anterior
         this.alertService.hiddenAlert();
+
+        // se indica que el usuario no ha dado submit
+        this.submitted = false;        
 
         // se procede abrir la ventana de confirmacion
         this.confirmationService.confirm({
@@ -167,18 +167,6 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
                 );
             }
         });
-    }
-
-    /**
-     * Metodo que permite inicializar las variable globales
-     */
-    private init(): void {
-
-        // se define la variable que se utiilza para creacion de item
-        this.itemCrear = new CommonVO();
-
-        // se configura el id del item, esto para identificar que tabla parametrica se va insertar
-        this.itemCrear.id = this.item.idItem;
     }
 
     /**

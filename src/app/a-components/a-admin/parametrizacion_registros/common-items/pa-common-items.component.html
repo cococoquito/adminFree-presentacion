@@ -10,7 +10,7 @@
     <div class="row pa_from_div">
         <!-- nombre item con button agregar-->
         <div class="form-group col-md-6 paddin_lef_zero">
-            <input type="text" [(ngModel)]="itemCrear.nombre" name="nombreItem" #nombreItem="ngModel" 
+            <input type="text" [(ngModel)]="nombre" name="nombreItem" #nombreItem="ngModel" 
              [ngClass]="(submitted && !nombreItem.valid) ? 'form-control input-invalido':'form-control input-valido'"
               maxlength="100" placeholder="Este campo es requerido" myNoSpaces style="width: 75%" />
             <button type="submit" class="btn btn-primary" title="Clic aquí para agregar un nuevo registro" style="width: 110px">Agregar</button>

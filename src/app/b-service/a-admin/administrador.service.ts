@@ -57,7 +57,7 @@ export class AdministradorService {
     private static URL_LISTAR_ITEMS = 'admin/listar_items/';
 
     /** URL para insertar un item parametrico */
-    private static URL_CREAR_ITEM = 'admin/insertar_item';
+    private static URL_CREAR_ITEM = 'admin/insertar_item/';
 
     /** URL para eliminar un item parametrico */
     private static URL_ELIMINAR_ITEM = 'admin/eliminar_item/';
@@ -163,7 +163,7 @@ export class AdministradorService {
     /**
      * Metodo que permite listar los items parametricos de una tabla 
      * especifica de acuerdo al identificador del item
-     * @param idItem, identificador del item parametrico
+     * @param idItem, identifica a que tabla parametrica va relacionado el item
      */
     public getItemsParametricos(idItem: number): Observable<Response> {
         return this.http.get(URL_BASE + AdministradorService.URL_LISTAR_ITEMS + idItem);
@@ -171,17 +171,18 @@ export class AdministradorService {
 
     /**
      * Metodo que permite insertar un item parametrico en el sistema
-     * @param item contiene el nombre del item, identificador 
-     * del item para saber que tabla se va insertar
+     * 
+     * @param nombre , nombre del nuevo item a insertar
+     * @param idItem, identifica a que tabla parametrica va relacionado el item
      */
-    public insertarItemParametrico(item: CommonVO): Observable<Response> {
-        return this.http.post(URL_BASE + AdministradorService.URL_CREAR_ITEM, item, this.options);
+    public insertarItemParametrico(nombre: string, idItem: number): Observable<Response> {
+        return this.http.get(URL_BASE + AdministradorService.URL_CREAR_ITEM + nombre + "/" + idItem);
     }
 
     /**
      * Metodo que permite eliminar un item parametrico del sistema
      * @param id , identificador del item a eliminar
-     * @param idItem, identificador del item para saber que tabla tomar
+     * @param idItem, identifica a que tabla parametrica va relacionado el item
      */
     public eliminarItemParametrico(id: number, idItem: number) {
         return this.http.get(URL_BASE + AdministradorService.URL_ELIMINAR_ITEM + id + "/" + idItem);
