@@ -1,3 +1,4 @@
+import { ParametrizacionRegistrosComponent } from './../parametrizacion-registros.component';
 import { STYLE_SUCCESS_CENTER, ITEM_REGISTRADO_EXITOSAMENTE, EXITOSO_ITEM_ELIMINADO } from './../../../../z-util/Constants';
 import { CommonVO } from './../../../../c-model/a-admin/parametrizacion/CommonVO';
 import { ConfirmationService } from 'primeng/primeng';
@@ -19,6 +20,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
 
+    /** Constantes para los identificadores de los items del menu parametrico */
+    private CORRESPONDENCIA_ITEM3: number = 3;
+
     /** Es el item seleccionado por el usuario*/
     @Input()
     public item: ModuloItemDTO;
@@ -32,6 +36,9 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
 
     /** se utiliza para crear el item*/
     private itemCrear: CommonVO;
+
+    /** representa el nombre del item, funcionario, ciudad, solicutud etc*/
+    private nombreItem: string;
 
     /**
     * Constructor del componente para la administracion de registros comunes
@@ -59,6 +66,9 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
 
         // se inicializa las variables globales
         this.init();
+
+        // se configura el nombre del item
+        this.configurarNombreItem();
     }
 
     /**
@@ -105,7 +115,8 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
                 this.items = data.json();
 
                 // se muestra el mensaje exitoso en pantalla
-                this.alertService.showAlert(ITEM_REGISTRADO_EXITOSAMENTE, STYLE_SUCCESS_CENTER, false);
+                let msj = ITEM_REGISTRADO_EXITOSAMENTE.replace("?1", this.nombreItem).replace("?2", this.itemCrear.nombre);
+                this.alertService.showAlert(msj, STYLE_SUCCESS_CENTER, false);
 
                 // se inicializa las variables globales
                 this.init();
@@ -129,7 +140,7 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
 
         // se procede abrir la ventana de confirmacion
         this.confirmationService.confirm({
-            message: '¿Está seguro de que desea eliminar el siguiente registro? <br/><strong>' + registro.nombre + '</strong>',
+            message: '¿Está seguro de que desea eliminar el siguiente ' + this.nombreItem + '? <br/><strong>' + registro.nombre + '</strong>',
             header: 'Confirmación',
             icon: 'fa fa-trash',
             accept: () => {
@@ -144,7 +155,8 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
                         this.items = data.json();
 
                         // se muestra el mensaje exitoso en pantalla
-                        this.alertService.showAlert(EXITOSO_ITEM_ELIMINADO, STYLE_SUCCESS_CENTER, false);
+                        let msj = EXITOSO_ITEM_ELIMINADO.replace("?1", this.nombreItem).replace("?2", registro.nombre);
+                        this.alertService.showAlert(msj, STYLE_SUCCESS_CENTER, false);
 
                         // se cierra el modal de carga
                         this.utilService.displayLoading(false);
@@ -167,5 +179,14 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
 
         // se configura el id del item, esto para identificar que tabla parametrica se va insertar
         this.itemCrear.id = this.item.idItem;
+    }
+
+    /**
+     * Metodo que configura el nombre de la entidad para el item seleccionado
+     */
+    private configurarNombreItem(): void {
+        if (this.item.idItem == this.CORRESPONDENCIA_ITEM3) {
+            this.nombreItem = "funcionario";
+        }
     }
 }
