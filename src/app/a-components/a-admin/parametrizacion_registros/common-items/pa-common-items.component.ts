@@ -190,6 +190,9 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
      */
     private editarItemParametrico(itemEditar: CommonVO): void {
 
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();        
+
         // se valida si hay un item seleccionado con anterioridad
         if (this.itemEdicion) {
 
@@ -230,6 +233,15 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
 
         // se inicializa el item como no modificado
         itemChange.itemModificado = false;
+ 
+        // NO APLICA si el item es nulo o vacio
+        itemChange.nombre = (itemChange.nombre) ? itemChange.nombre.trim() : null;
+        if (!itemChange.nombre) {
+            
+            // se elimina de la lista que almacena los items modificados
+            this.eliminarItemModificado(itemChange);
+            return;
+        }
 
         // si el item tiene el nombre diferente a su origen es porque el item fue modificado
         if (itemChange.nombreOrigen != itemChange.nombre) {
@@ -250,19 +262,7 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
             this.itemsModificados.push(itemChange);
         } else {
             // se procede a eliminar el item de los items modificados ya que el nombre y el origen son iguales
-            if (this.itemsModificados.length > 0) {
-                for (let itemModificado of this.itemsModificados) {
-                    if (itemModificado.id == itemChange.id) {
-
-                        // la funcion splice es para eliminar el item de la lista
-                        let i = this.itemsModificados.indexOf(itemModificado, 0);
-                        if (i > -1) {
-                            this.itemsModificados.splice(i, 1);
-                        }
-                        return;
-                    }
-                }
-            }
+            this.eliminarItemModificado(itemChange);
         }
     }
 
@@ -307,6 +307,33 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
 
         // se limpia el item seleccionado para editar
         this.itemEdicion = null;
+    }
+
+    /**
+     * Metodo que permite eliminar el item de la lista que guarda los items modificados
+     * 
+     * @param itemEliminar , es el valor del item a eliminar
+     */
+    private eliminarItemModificado(itemEliminar: CommonVO): void {
+
+        // se verifica si hay item modificado en la lista
+        if (this.itemsModificados.length > 0) {
+
+            // se recorre los items modificados
+            for (let itemModificado of this.itemsModificados) {
+
+                // se verifica si el item a eliminar es el mismo que este item
+                if (itemModificado.id == itemEliminar.id) {
+
+                    // la funcion splice es para eliminar el item de la lista
+                    let i = this.itemsModificados.indexOf(itemModificado, 0);
+                    if (i > -1) {
+                        this.itemsModificados.splice(i, 1);
+                    }
+                    return;
+                }
+            }
+        }
     }
 
     /**
