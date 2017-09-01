@@ -10,4 +10,13 @@ export class CommonVO {
 
     /** representa el nombre del registro **/
     public nombre: string;
-}    
+
+    /** copia de seguridad del nombre **/
+    public nombreOrigen: string;
+
+    /** identifica si el registro esta en modo de edicion **/
+    public habilitarEdicion: boolean;
+
+    /** identifica si el reistro fue modificado **/
+    public itemModificado: boolean;
+}

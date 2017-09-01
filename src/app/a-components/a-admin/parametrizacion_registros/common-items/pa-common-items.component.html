@@ -13,23 +13,37 @@
             <input type="text" [(ngModel)]="nombre" name="nombreItem" #nombreItem="ngModel" 
              [ngClass]="(submitted && !nombreItem.valid) ? 'form-control input-invalido':'form-control input-valido'"
               maxlength="100" placeholder="Este campo es requerido" myNoSpaces style="width: 75%" />
-            <button type="submit" class="btn btn-primary" title="Clic aquí para agregar un nuevo registro" style="width: 110px">Agregar</button>
+            <button [disabled]="modoEdicion" type="submit" class="btn btn-primary" title="Clic aquí para agregar un nuevo registro" style="width: 110px">Agregar</button>
         </div>
 
         <!-- buttons aplicar cambios y cancelar-->
         <div class="form-group col-md-6 pa_buttons">
-            <button type="button" class="btn btn-primary" title="Clic aquí para guardar los cambios aplicados" style="width: 130px">Aplicar Cambios</button>&nbsp;&nbsp;
-            <button type="button" class="btn btn-default" title="Clic aquí para cancelar la edición" style="width: 130px">Cancelar Edición</button>
+            <button [disabled]="!(itemsModificados?.length > 0)" type="button" class="btn btn-primary" title="Clic aquí para guardar los cambios aplicados" style="width: 130px">Aplicar Cambios</button>&nbsp;&nbsp;
+            <button [disabled]="!modoEdicion" (click)="cancelarEdicionItemParametrico()" type="button" class="btn btn-default" title="Clic aquí para cancelar la edición" style="width: 130px">Cancelar Edición</button>
         </div>
     </div>
 </form>
 
 <!-- tabla con la lista de items -->
 <p-dataTable [value]="items" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No se encontraron registros en el sistema." selectionMode="single">
-    <p-column header="{{item.nombreItem}}" field="nombre" [style]="{'text-align':'center'}" [filter]="true" filterPlaceholder="Filtro de búsqueda"></p-column>
+    
+
+    <p-column header="{{item.nombreItem}}" field="nombre" [style]="{'text-align':'center'}" [filter]="true" filterPlaceholder="Filtro de búsqueda">
+        <ng-template let-item="rowData" pTemplate="body">
+
+              <span *ngIf="!(item.habilitarEdicion)">{{item.nombre}}</span>
+
+              <input type="text" *ngIf="item.habilitarEdicion" name="nombre" #nombre="ngModel" 
+              [ngClass]="(item.nombre) ? 'form-control input-valido':'form-control input-invalido'"
+              [(ngModel)]="item.nombre" (change)="changeItemParametrico(item)"/>
+        </ng-template>
+    </p-column>
+
+    
     <p-column [style]="{'width':'5%','text-align':'center'}" header="Editar">
         <ng-template let-item="rowData" pTemplate="body">
-            <span class="glyphicon glyphicon-edit cursor-manito" title="Clic aquí para editar este registro"></span>
+            <span class="glyphicon glyphicon-edit cursor-manito" (click)="editarItemParametrico(item)" title="Clic aquí para editar este registro"></span>
+            <span *ngIf="item.itemModificado" title="Este registro fue modificado y esta pendiente de guardar" style="color: #C45246">*</span>
         </ng-template>
     </p-column>
     <p-column [style]="{'width':'6%','text-align':'center'}" header="Eliminar">
