@@ -277,9 +277,6 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
      */
     private cancelarEdicionItemParametrico(): void {
 
-        // se oculta el alert esto por si hay errores con el submit anterior
-        this.alertService.hiddenAlert();        
-
         // se recorre lo items modificados para hacer rolback a las modificaciones
         if (this.itemsModificados.length > 0) {
             for (let itemEditado of this.itemsModificados) {
