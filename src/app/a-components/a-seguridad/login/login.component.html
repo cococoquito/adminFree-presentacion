@@ -6,7 +6,7 @@
 				<label for="username">Usuario*</label>
 				<input type="text" [(ngModel)]="user.nombreUsuario" name="username" #username="ngModel" 
 				 [ngClass]="(submitted && !username.valid) ? 'form-control input-invalido':'form-control input-valido'"
-				 placeholder="Ingrese el usuario" maxlength="100" myNoSpaces/>
+				 placeholder="Ingrese el usuario" maxlength="100" focus="true" myNoSpaces/>
 			</div>
 			<div class="form-group col-xs-12">
 				<label for="contrasena">Contraseña*</label>

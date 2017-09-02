@@ -17,7 +17,7 @@
       <label for="claveActual">Contraseña actual*</label>
       <input type="password" [(ngModel)]="cambioClave.claveActual" name="claveActual" #claveActual="ngModel" 
        [ngClass]="(submitted && !claveActual.valid) ? 'form-control input-invalido':'form-control input-valido'"
-       maxlength="100" placeholder="Este campo es requerido" myNoSpaces/>
+       maxlength="100" placeholder="Este campo es requerido" focus="true" myNoSpaces/>
     </div>
 
     <!-- clave nueva -->
