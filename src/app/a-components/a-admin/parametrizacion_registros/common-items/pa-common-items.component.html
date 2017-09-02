@@ -18,7 +18,7 @@
 
         <!-- buttons aplicar cambios y cancelar-->
         <div class="form-group col-md-6 pa_buttons">
-            <button [disabled]="!modoEdicion" type="button" class="btn btn-primary" title="Clic aquí para guardar los cambios aplicados" style="width: 135px">{{(itemsModificados?.length > 0) ? '*Aplicar Cambios' : 'Aplicar Cambios' }} </button>&nbsp;&nbsp;
+            <button [disabled]="!modoEdicion" (click)="aplicarCambiosEdicion()" type="button" class="btn btn-primary" title="Clic aquí para guardar los cambios aplicados" style="width: 135px">{{(itemsModificados?.length > 0) ? '*Aplicar Cambios' : 'Aplicar Cambios' }} </button>&nbsp;&nbsp;
             <button [disabled]="!modoEdicion" (click)="cancelarEdicionItemParametrico()" type="button" class="btn btn-default" title="Clic aquí para cancelar la edición" style="width: 135px">Cancelar Edición</button>
         </div>
     </div>

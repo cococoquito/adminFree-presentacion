@@ -1,3 +1,4 @@
+import { ActualizacionItemsDTO } from './../../c-model/a-admin/parametrizacion/ActualizacionItemsDTO';
 import { CommonVO } from './../../c-model/a-admin/parametrizacion/CommonVO';
 import { UsuariosDTO } from './../../c-model/a-admin/seguridad/UsuariosDTO';
 import { Injectable } from '@angular/core';
@@ -61,6 +62,9 @@ export class AdministradorService {
 
     /** URL para eliminar un item parametrico */
     private static URL_ELIMINAR_ITEM = 'admin/eliminar_item/';
+
+    /** URL para editar un conjunto de items parametricos */
+    private static URL_EDITAR_ITEMS = 'admin/editar_items';
 
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json' });
@@ -184,8 +188,20 @@ export class AdministradorService {
      * @param id , identificador del item a eliminar
      * @param idItem, identifica a que tabla parametrica va relacionado el item
      */
-    public eliminarItemParametrico(id: number, idItem: number) {
+    public eliminarItemParametrico(id: number, idItem: number): Observable<Response> {
         return this.http.get(URL_BASE + AdministradorService.URL_ELIMINAR_ITEM + id + "/" + idItem);
+    }
+
+    /**
+     * Metodo que permite editar un conjunto de items parametricos
+     * @param items , lista de items a editar
+     * @param idItem, identifica a que tabla parametrica va relacionado el item
+     */
+    public editarItemsParametrico(items: Array<CommonVO>, idItem: number): Observable<Response> {
+        let parametro = new ActualizacionItemsDTO();
+        parametro.items = items;
+        parametro.idItem = idItem;
+        return this.http.post(URL_BASE + AdministradorService.URL_EDITAR_ITEMS, parametro, this.options);
     }
 
     /**

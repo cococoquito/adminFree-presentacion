@@ -1,5 +1,5 @@
 import { ParametrizacionRegistrosComponent } from './../parametrizacion-registros.component';
-import { STYLE_SUCCESS_CENTER, ITEM_REGISTRADO_EXITOSAMENTE, EXITOSO_ITEM_ELIMINADO } from './../../../../z-util/Constants';
+import { STYLE_SUCCESS_CENTER, ITEM_REGISTRADO_EXITOSAMENTE, EXITOSO_ITEM_ELIMINADO, EXITOSO_ITEMS_UPDATE } from './../../../../z-util/Constants';
 import { CommonVO } from './../../../../c-model/a-admin/parametrizacion/CommonVO';
 import { ConfirmationService } from 'primeng/primeng';
 import { AlertService } from './../../../../b-service/z-common/alert.service';
@@ -194,8 +194,8 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
     private editarItemParametrico(itemEditar: CommonVO): void {
 
         // se indica que el usuario no ha dado submit
-        this.submitted = false;        
-        
+        this.submitted = false;
+
         // se valida si hay un item seleccionado con anterioridad
         if (this.itemEdicion) {
 
@@ -215,7 +215,7 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
         }
 
         // se oculta el alert esto por si hay errores con el submit anterior
-        this.alertService.hiddenAlert();        
+        this.alertService.hiddenAlert();
 
         // se configura el nombre del origen para el item seleccionado
         if (!itemEditar.nombreOrigen) {
@@ -236,7 +236,7 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
      * @param itemChange, es el item quien ejecuta el evento porque cambio su nombre 
      */
     private changeItemParametrico(itemChange: CommonVO): void {
-        
+
         // se inicializa el item como no modificado
         itemChange.itemModificado = false;
 
@@ -276,7 +276,7 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
      * Metodo que soporta el evento del boton cancelar edicion
      */
     private cancelarEdicionItemParametrico(): void {
-         
+
         // se recorre lo items modificados para hacer rolback a las modificaciones
         if (this.itemsModificados.length > 0) {
             for (let itemEditado of this.itemsModificados) {
@@ -304,6 +304,45 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
 
         // se inicializa el modo de edicion
         this.initModoEdicion();
+    }
+
+    /**
+     * Metodo que respalda el evento del boton aplicar cambios
+     */
+    private aplicarCambiosEdicion(): void {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
+
+        // se hace la edicion solo si hay items modificados
+        if (this.itemsModificados && this.itemsModificados.length > 0) {
+
+            // se muestra el modal de carga
+            this.utilService.displayLoading(true);
+
+            // se procede actualizar los items modificados
+            this.administradorService.editarItemsParametrico(this.itemsModificados, this.item.idItem).subscribe(
+                data => {
+                    // se construye los ITEMS que retorna el servicio
+                    this.items = data.json();
+
+                    // se muestra el mensaje exitoso en pantalla
+                    this.alertService.showAlert(EXITOSO_ITEMS_UPDATE, STYLE_SUCCESS_CENTER, false);
+
+                    // se reinicia le modo de edicion
+                    this.initModoEdicion();
+
+                    // se cierra el modal de carga
+                    this.utilService.displayLoading(false);
+                },
+                error => {
+                    this.showErrorSistema(error);
+                }
+            );
+
+        } else {
+            this.cancelarEdicionItemParametrico();
+        }
     }
 
     /**
