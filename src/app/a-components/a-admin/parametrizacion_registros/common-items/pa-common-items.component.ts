@@ -172,6 +172,9 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
                         let msj = EXITOSO_ITEM_ELIMINADO.replace("?1", this.nombreItem).replace("?2", itemEliminar.nombre);
                         this.alertService.showAlert(msj, STYLE_SUCCESS_CENTER, false);
 
+                        // se inicializa el modo de edicion
+                        this.initModoEdicion();
+
                         // se cierra el modal de carga
                         this.utilService.displayLoading(false);
                     },
@@ -189,10 +192,7 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
      * @param itemEditar , es el item seleccionado por el usuario para Editar
      */
     private editarItemParametrico(itemEditar: CommonVO): void {
-
-        // se oculta el alert esto por si hay errores con el submit anterior
-        this.alertService.hiddenAlert();        
-
+        
         // se valida si hay un item seleccionado con anterioridad
         if (this.itemEdicion) {
 
@@ -211,6 +211,9 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
             this.itemEdicion.habilitarEdicion = false;
         }
 
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();        
+
         // se configura el nombre del origen para el item seleccionado
         if (!itemEditar.nombreOrigen) {
             itemEditar.nombreOrigen = itemEditar.nombre;
@@ -227,17 +230,17 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
     /**
      * Metodo que soporta el evento change del nombre del item en edicion
      * 
-     * @param itemChange, es le item quien ejecuta el evento porque cambio su nombre 
+     * @param itemChange, es el item quien ejecuta el evento porque cambio su nombre 
      */
     private changeItemParametrico(itemChange: CommonVO): void {
 
         // se inicializa el item como no modificado
         itemChange.itemModificado = false;
- 
+
         // NO APLICA si el item es nulo o vacio
         itemChange.nombre = (itemChange.nombre) ? itemChange.nombre.trim() : null;
         if (!itemChange.nombre) {
-            
+
             // se elimina de la lista que almacena los items modificados
             this.eliminarItemModificado(itemChange);
             return;
@@ -270,15 +273,21 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
      * Metodo que soporta el evento del boton cancelar edicion
      */
     private cancelarEdicionItemParametrico(): void {
-
+         
         // se recorre lo items modificados para hacer rolback a las modificaciones
         if (this.itemsModificados.length > 0) {
             for (let itemEditado of this.itemsModificados) {
+
+                // no se debe tener en cuenta el item en edicion ya que lo limpian mas abajo
+                if (this.itemEdicion && this.itemEdicion.id == itemEditado.id) {
+                    continue;
+                }
 
                 // se hace rolback del nombre y se limpia la bandera que lo identifica si fue modificado
                 itemEditado.nombre = itemEditado.nombreOrigen;
                 itemEditado.itemModificado = false;
                 itemEditado.nombreOrigen = null;
+
             }
         }
 
