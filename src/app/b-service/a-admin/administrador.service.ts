@@ -198,9 +198,24 @@ export class AdministradorService {
      * @param idItem, identifica a que tabla parametrica va relacionado el item
      */
     public editarItemsParametrico(items: Array<CommonVO>, idItem: number): Observable<Response> {
+
+        // se debe crear una nueva lista dado que el evento (change) agrega
+        // una variable que a nivel de negocio no la contiene _$visited
+        let itemsModificados = new Array<CommonVO>();
+        let itemModificado = null;
+        for (let item of items) {
+            itemModificado = new CommonVO();
+            itemModificado.id = item.id;
+            itemModificado.nombre = item.nombre;
+            itemsModificados.push(itemModificado);
+        }
+
+        // se construye el wraper para enviar al servicio
         let parametro = new ActualizacionItemsDTO();
-        parametro.items = items;
+        parametro.items = itemsModificados;
         parametro.idItem = idItem;
+
+        // se procede a ejecutar el servicio para la actualizacion de los items
         return this.http.post(URL_BASE + AdministradorService.URL_EDITAR_ITEMS, parametro, this.options);
     }
 
