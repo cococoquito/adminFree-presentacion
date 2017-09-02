@@ -57,7 +57,7 @@
                         <label for="nombreUser">Nombre completo: *</label>
                         <input type="text" [(ngModel)]="crearEditarUser.nombre" name="nombreUser" #nombreUser="ngModel" 
                          [ngClass]="(submitted && !nombreUser.valid) ? 'form-control input-invalido':'form-control input-valido'"
-                         maxlength="100" placeholder="Este campo es requerido" myNoSpaces/>                          
+                         maxlength="100" placeholder="Este campo es requerido" focus="true" myNoSpaces/>                          
                     </div>
 
                     <!-- usuario de ingreso-->

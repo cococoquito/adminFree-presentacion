@@ -17,6 +17,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FocusModule } from 'angular2-focus';
 
 /**
  * declarations
@@ -96,7 +97,8 @@ import { NoWhitespaceDirective } from './a-components/y-directivas/validadores/w
     BrowserAnimationsModule,
     CheckboxModule,
     DataGridModule,
-    DialogModule
+    DialogModule,
+    FocusModule.forRoot()
   ],
 
   providers: [
