@@ -67,7 +67,7 @@ export class AdministradorService {
     private static URL_EDITAR_ITEMS = 'admin/editar_items';
 
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
-    private headers = new Headers({ 'Content-Type': 'application/json' });
+    private headers = new Headers({ 'Content-Type': 'application/json; charset=UTF-8' });
 
     /** Son las opciones donde se especifica en cada request */
     private options = new RequestOptions({ headers: this.headers });
