@@ -192,6 +192,9 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
      * @param itemEditar , es el item seleccionado por el usuario para Editar
      */
     private editarItemParametrico(itemEditar: CommonVO): void {
+
+        // se indica que el usuario no ha dado submit
+        this.submitted = false;        
         
         // se valida si hay un item seleccionado con anterioridad
         if (this.itemEdicion) {
@@ -233,7 +236,7 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
      * @param itemChange, es el item quien ejecuta el evento porque cambio su nombre 
      */
     private changeItemParametrico(itemChange: CommonVO): void {
-
+        
         // se inicializa el item como no modificado
         itemChange.itemModificado = false;
 
