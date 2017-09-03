@@ -424,7 +424,7 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
         } else if (this.item.idItem == this.SOLICITUD_CERTIFICADO_ITEM6) {
             this.nombreItem = "tipo de cargo";
         } else if (this.item.idItem == this.SOLICITUD_CERTIFICADO_ITEM7) {
-            this.nombreItem = "institución educativa";
+            this.nombreItem = "ente educativo";
         }
     }
 }
