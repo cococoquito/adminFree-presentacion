@@ -29,6 +29,10 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
     private SOLICITUD_CERTIFICADO_ITEM1: number = 6;
     private SOLICITUD_CERTIFICADO_ITEM2: number = 7;
     private SOLICITUD_CERTIFICADO_ITEM3: number = 8;
+    private SOLICITUD_CERTIFICADO_ITEM5: number = 10;
+    private SOLICITUD_CERTIFICADO_ITEM6: number = 11;
+    private SOLICITUD_CERTIFICADO_ITEM7: number = 12;
+
 
     /** Es el item seleccionado por el usuario*/
     @Input()
@@ -415,6 +419,12 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
             this.nombreItem = "destino";
         } else if (this.item.idItem == this.SOLICITUD_CERTIFICADO_ITEM3) {
             this.nombreItem = "destino";
+        } else if (this.item.idItem == this.SOLICITUD_CERTIFICADO_ITEM5) {
+            this.nombreItem = "tipo de vinculación";
+        } else if (this.item.idItem == this.SOLICITUD_CERTIFICADO_ITEM6) {
+            this.nombreItem = "tipo de cargo";
+        } else if (this.item.idItem == this.SOLICITUD_CERTIFICADO_ITEM7) {
+            this.nombreItem = "institución educativa";
         }
     }
 }

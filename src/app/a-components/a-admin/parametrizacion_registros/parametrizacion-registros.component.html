@@ -82,23 +82,17 @@
 
 <!-- Item para Tipos de Vinculación del Docente -->
 <div *ngIf="itemSeleccionado?.idItem == SOLICITUD_CERTIFICADO_ITEM5">
-  <p>
-    Tipos de Vinculación del Docente
-  </p>
+  <pa-common-items [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-common-items>
 </div>
 
 <!-- Item para Tipos de Cargo del Docente -->
 <div *ngIf="itemSeleccionado?.idItem == SOLICITUD_CERTIFICADO_ITEM6">
-  <p>
-    Tipos de Cargo del Docente
-  </p>
+  <pa-common-items [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-common-items>
 </div>
 
 <!-- Item para Instituciones Educativas -->
 <div *ngIf="itemSeleccionado?.idItem == SOLICITUD_CERTIFICADO_ITEM7">
-  <p>
-    Instituciones Educativas
-  </p>
+  <pa-common-items [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-common-items>
 </div>
 
 <!-- Item para Configuración de Impresión para Certificados Solicitados -->
