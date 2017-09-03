@@ -65,16 +65,12 @@
 
 <!-- Item para Destinos para Certificados Tiempo Servicios y Salarios -->
 <div *ngIf="itemSeleccionado?.idItem == SOLICITUD_CERTIFICADO_ITEM2">
-  <p>
-    Destinos para Certificados Tiempo Servicios y Salarios
-  </p>
+  <pa-common-items [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-common-items>
 </div>
 
 <!-- Item para Destinos para Certificados Carta Laboral -->
 <div *ngIf="itemSeleccionado?.idItem == SOLICITUD_CERTIFICADO_ITEM3">
-  <p>
-    Destinos para Certificados Carta Laboral
-  </p>
+  <pa-common-items [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-common-items>
 </div>
 
 <!-- Item para Grados de Escalafón del Docente -->

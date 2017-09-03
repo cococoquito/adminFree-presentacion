@@ -27,6 +27,8 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
     private DEMANDAS_ITEM3: number = 18;
     private DEMANDAS_ITEM4: number = 19;
     private SOLICITUD_CERTIFICADO_ITEM1: number = 6;
+    private SOLICITUD_CERTIFICADO_ITEM2: number = 7;
+    private SOLICITUD_CERTIFICADO_ITEM3: number = 8;
 
     /** Es el item seleccionado por el usuario*/
     @Input()
@@ -396,7 +398,7 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
      */
     private configurarNombreItem(): void {
 
-        // para el item de Correspondencia>>Funcionario
+        // para los items del menu de parametrizaciones
         if (this.item.idItem == this.CORRESPONDENCIA_ITEM3) {
             this.nombreItem = "funcionario";
         } else if (this.item.idItem == this.DEMANDAS_ITEM1) {
@@ -409,6 +411,10 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
             this.nombreItem = "tipo del caso";
         } else if (this.item.idItem == this.SOLICITUD_CERTIFICADO_ITEM1) {
             this.nombreItem = "tipo de solicitud";
+        } else if (this.item.idItem == this.SOLICITUD_CERTIFICADO_ITEM2) {
+            this.nombreItem = "destino";
+        } else if (this.item.idItem == this.SOLICITUD_CERTIFICADO_ITEM3) {
+            this.nombreItem = "destino";
         }
     }
 }
