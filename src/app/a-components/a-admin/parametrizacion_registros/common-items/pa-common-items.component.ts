@@ -23,6 +23,9 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
     /** Constantes para los identificadores de los items del menu parametrico */
     private CORRESPONDENCIA_ITEM3: number = 3;
     private DEMANDAS_ITEM1: number = 16;
+    private DEMANDAS_ITEM2: number = 17;
+    private DEMANDAS_ITEM3: number = 18;
+    private DEMANDAS_ITEM4: number = 19;
 
     /** Es el item seleccionado por el usuario*/
     @Input()
@@ -397,6 +400,12 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
             this.nombreItem = "funcionario";
         } else if (this.item.idItem == this.DEMANDAS_ITEM1) {
             this.nombreItem = "demandado";
+        } else if (this.item.idItem == this.DEMANDAS_ITEM2) {
+            this.nombreItem = "tipo de proceso";
+        } else if (this.item.idItem == this.DEMANDAS_ITEM3) {
+            this.nombreItem = "despacho judicial";
+        } else if (this.item.idItem == this.DEMANDAS_ITEM4) {
+            this.nombreItem = "tipo del caso";
         }
     }
 }

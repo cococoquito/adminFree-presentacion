@@ -138,23 +138,17 @@
 
 <!-- Item para Tipos de Proceso -->
 <div *ngIf="itemSeleccionado?.idItem == DEMANDAS_ITEM2">
-  <p>
-    Tipos de Proceso
-  </p>
+  <pa-common-items [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-common-items>
 </div>
 
 <!-- Item para Despachos Judiciales -->
 <div *ngIf="itemSeleccionado?.idItem == DEMANDAS_ITEM3">
-  <p>
-    Despachos Judiciales
-  </p>
+  <pa-common-items [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-common-items>
 </div>
 
 <!-- Item para Tipos del Caso -->
 <div *ngIf="itemSeleccionado?.idItem == DEMANDAS_ITEM4">
-  <p>
-    Tipos del Caso
-  </p>
+  <pa-common-items [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-common-items>
 </div>
 <!-- ******************** Modulo demandas - inicio ******************************** -->
 
