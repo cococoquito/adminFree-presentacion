@@ -60,9 +60,7 @@
 <!-- ******************** Modulo de solicitud certificados - inicio **************** -->
 <!-- Item para Tipos de Solicitud para Certificados Tiempo Servicios y Salarios -->
 <div *ngIf="itemSeleccionado?.idItem == SOLICITUD_CERTIFICADO_ITEM1">
-  <p>
-    Tipos de Solicitud para Certificados Tiempo Servicios y Salarios
-  </p>
+  <pa-common-items [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-common-items>
 </div>
 
 <!-- Item para Destinos para Certificados Tiempo Servicios y Salarios -->

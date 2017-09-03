@@ -26,6 +26,7 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
     private DEMANDAS_ITEM2: number = 17;
     private DEMANDAS_ITEM3: number = 18;
     private DEMANDAS_ITEM4: number = 19;
+    private SOLICITUD_CERTIFICADO_ITEM1: number = 6;
 
     /** Es el item seleccionado por el usuario*/
     @Input()
@@ -406,6 +407,8 @@ export class PaCommonItemsComponent extends ComponentCommon implements OnInit {
             this.nombreItem = "despacho judicial";
         } else if (this.item.idItem == this.DEMANDAS_ITEM4) {
             this.nombreItem = "tipo del caso";
+        } else if (this.item.idItem == this.SOLICITUD_CERTIFICADO_ITEM1) {
+            this.nombreItem = "tipo de solicitud";
         }
     }
 }
