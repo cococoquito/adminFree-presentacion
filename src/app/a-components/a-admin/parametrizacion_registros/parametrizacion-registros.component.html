@@ -31,7 +31,9 @@
 
 <!-- Item para Series documentales -->
 <div *ngIf="itemSeleccionado?.idItem == CORRESPONDENCIA_ITEM2">
-  <pa-common-items [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-common-items>
+  <p>
+    Series documentales
+  </p>
 </div>
 
 <!-- Item para Funcionarios -->
@@ -131,9 +133,7 @@
 <!-- ******************** Modulo demandas - inicio ******************************** -->
 <!-- Item para Demandados -->
 <div *ngIf="itemSeleccionado?.idItem == DEMANDAS_ITEM1">
-  <p>
-    Demandados
-  </p>
+  <pa-common-items [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-common-items>
 </div>
 
 <!-- Item para Tipos de Proceso -->
