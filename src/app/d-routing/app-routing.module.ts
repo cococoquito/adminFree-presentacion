@@ -21,7 +21,7 @@ import { AgendarEventosComponent } from './../a-components/d-demandas/agendar_ev
 import { GestionProcesosComponent } from './../a-components/d-demandas/gestion_procesos/gestion-procesos.component';
 
 import { SeguridadComponent } from './../a-components/a-admin/seguridad/seguridad.component';
-import { ParametrizacionRegistrosComponent } from './../a-components/a-admin/parametrizacion_registros/parametrizacion-registros.component';
+import { ParametrizacionComponent } from './../a-components/a-admin/parametrizacion/parametrizacion.component';
 import { FormatoFuenteComponent } from './../a-components/a-admin/formato_fuente/formato-fuente.component';
 
 const ROUTES: Routes = [

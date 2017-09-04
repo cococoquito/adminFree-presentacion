@@ -8,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
  */
 @Component({
     selector: 'app-parametrizaciones',
-    templateUrl: './parametrizacion-registros.component.html'
+    templateUrl: './parametrizacion.component.html'
 })
-export class ParametrizacionRegistrosComponent implements OnInit {
+export class ParametrizacionComponent implements OnInit {
 
     /** Constantes para los identificadores de los items de correspondencia */
     private CORRESPONDENCIA_ITEM1: number = 1;
