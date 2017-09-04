@@ -1,4 +1,3 @@
-import { ParametrizacionRegistrosComponent } from './../parametrizacion-registros.component';
 import { STYLE_SUCCESS_CENTER, ITEM_REGISTRADO_EXITOSAMENTE, EXITOSO_ITEM_ELIMINADO, EXITOSO_ITEMS_UPDATE } from './../../../../z-util/Constants';
 import { CommonVO } from './../../../../c-model/a-admin/parametrizacion/CommonVO';
 import { ConfirmationService } from 'primeng/primeng';

@@ -47,7 +47,7 @@ const ROUTES: Routes = [
       { path: 'gestion_procesos', component: GestionProcesosComponent },
 
       { path: 'seguridad', component: SeguridadComponent },
-      { path: 'parametrizaciones', component: ParametrizacionRegistrosComponent },
+      { path: 'parametrizaciones', component: ParametrizacionComponent },
       { path: 'formato_fuente', component: FormatoFuenteComponent }
     ]
   }
