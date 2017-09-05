@@ -52,6 +52,7 @@ import { AdminRolesComponent } from './a-components/a-admin/seguridad/admin_role
 import { AdminUsersComponent } from './a-components/a-admin/seguridad/admin_usuarios/admin-usuarios.component';
 import { ParametrizacionComponent } from './a-components/a-admin/parametrizacion/parametrizacion.component';
 import { PaCommonItemsComponent } from './a-components/a-admin/parametrizacion/common-items/pa-common-items.component';
+import { PaTiposConsecutivosComponent } from './a-components/a-admin/parametrizacion/correspondencia/consecutivos_correspondencia/pa-tipos-consecutivos.component';
 
 import { FormatoFuenteComponent } from './a-components/a-admin/formato_fuente/formato-fuente.component';
 
@@ -85,7 +86,8 @@ import { NoWhitespaceDirective } from './a-components/y-directivas/validadores/w
     AdminRolesComponent,
     AdminUsersComponent,
     RolPrivilegioModal,
-    NoWhitespaceDirective
+    NoWhitespaceDirective,
+    PaTiposConsecutivosComponent
   ],
 
   imports: [

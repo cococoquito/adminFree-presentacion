@@ -24,9 +24,7 @@
 <!-- ******************** Modulo de correspondencia - inicio ************************ -->
 <!-- Item para Tipos consecutivos correspondencia -->
 <div *ngIf="itemSeleccionado?.idItem == CORRESPONDENCIA_ITEM1">
-  <p>
-    Tipos consecutivos correspondencia
-  </p>
+  <pa-tipos-consecutivos [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-tipos-consecutivos>
 </div>
 
 <!-- Item para Series documentales -->
