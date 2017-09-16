@@ -7,6 +7,9 @@
  */
 export class CampoTipoCC {
 
+    /** identificador del campo a digilenciar  **/
+    public id: number;
+
     /** Es el nombre del campo tales como (Fecha elaboracion, elaborado por etc) **/
     public nombreCampo: string;
 
@@ -16,9 +19,6 @@ export class CampoTipoCC {
     /** Identifica si el campo es editable **/
     public editable: boolean;
 
-    /** Identifica si el campo es visible para que el funcionario ingrese el dato  **/
-    public visible: boolean;
-
-    /** identificador del campo a digilenciar  **/
-    public id: number;
+    /** Identifica si el campo debe ser digilenciado por el funcionario  **/
+    public diligenciar: boolean;
 }

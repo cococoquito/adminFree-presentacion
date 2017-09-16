@@ -20,51 +20,82 @@ export class PaTiposConsecutivosComponent implements OnInit {
     @Input()
     public modulo: ModuloDTO;
 
-    private crearTipoConsecutivo : boolean=false;
+    /** lista de campos para identificar si se deben digilenciar al momento de solicar el consecutivo*/
+    private camposIngreso: Array<CampoTipoCC>;
 
-    private camposIngreso:Array<CampoTipoCC>;
+    private crearTipoConsecutivo: boolean = false;
 
     /**
      * PostConstructor que permite inicializar las variables del component
      */
-    ngOnInit(): void { 
-        
+    ngOnInit(): void {
+
+        // se configuran los campos a visualizar por pantalla
+        this.configurarCamposDigilenciar();
+    }
+
+    /**
+     * Metodo que permite abrir el panel de creacion de consecutivo
+     */
+    private abrirPanelCreacion(): void {
+        this.crearTipoConsecutivo = true;
+    }
+
+    /**
+     * Metodo que permite cerrar el panel de creacion de consecutivo
+     */
+    private cerrarPanelCreacion(): void {
+        this.crearTipoConsecutivo = false;
+    }
+
+    /**
+     * Metodo que permite configurar los campos a visualizar por pantalla
+     */
+    private configurarCamposDigilenciar(): void {
+
+        // fecha de elaboracion
         let fechaElaboracion = new CampoTipoCC();
-        fechaElaboracion.nombreCampo ="Fecha de Elaboración";
-        fechaElaboracion.descripcionCampo = "Es la fecha del dia que elaboro el oficio dando respuesta, el sistema toma asigna la fecha actual si el campo es editable el funcionario podrá cambiar este valor";
-        fechaElaboracion.visible=true;
-        fechaElaboracion.id =1;
+        fechaElaboracion.nombreCampo = "Fecha de Elaboración";
+        fechaElaboracion.descripcionCampo = "Fecha de elaboración del documento de respuesta, El sistema asigna la fecha actual por defecto";
+        fechaElaboracion.diligenciar = true;
+        fechaElaboracion.id = 1;
 
+        // Elaborado Por
         let elaboradoPor = new CampoTipoCC();
-        elaboradoPor.nombreCampo ="Elaborado por";
-        elaboradoPor.descripcionCampo = "Corresponde al nombre del funcionario el cual va a elaborar el oficio de respuesta";
-        elaboradoPor.visible=true;
-        elaboradoPor.id =2;
+        elaboradoPor.nombreCampo = "Elaborado Por";
+        elaboradoPor.descripcionCampo = "Nombre del funcionario quien elabora el documento de respuesta";
+        elaboradoPor.diligenciar = true;
+        elaboradoPor.id = 2;
 
+        // Dirigido A
         let dirigido = new CampoTipoCC();
-        dirigido.nombreCampo ="Dirigido a";
-        dirigido.descripcionCampo = "Corresponde al nombre de la entidad o el nombre de la persona que escribe a la secretaría";        
-        dirigido.visible=true;
-        dirigido.id =3;
+        dirigido.nombreCampo = "Dirigido A";
+        dirigido.descripcionCampo = "Nombre de la entidad o ciudadano a quien se va dirigir el documento de respuesta";
+        dirigido.diligenciar = true;
+        dirigido.id = 3;
 
+        // Asunto
         let asunto = new CampoTipoCC();
-        asunto.nombreCampo ="Asunto";
-        asunto.descripcionCampo = "es un pequeño resumen donde se dice que solicita el ciudadano u organización";     
-        asunto.visible=true; 
-        asunto.id =4;       
+        asunto.nombreCampo = "Asunto";
+        asunto.descripcionCampo = "Breve resumen donde se especifica lo que solicita la entidad o el ciudadano";
+        asunto.diligenciar = true;
+        asunto.id = 4;
 
-        let fechaSAC=new CampoTipoCC();
-        fechaSAC.nombreCampo ="Fecha del SAC";
-        fechaSAC.descripcionCampo = "Corresponde a la fecha del recibido que se hace una vez ingresado o radicado la solicitud de un ciudadano u organización";
-        fechaSAC.visible=true;  
-        fechaSAC.id =5;
+        // Fecha del SAC
+        let fechaSAC = new CampoTipoCC();
+        fechaSAC.nombreCampo = "Fecha del SAC";
+        fechaSAC.descripcionCampo = "Fecha en la que el SAC recibió o radicó la solicitud de la entidad o ciudadano";
+        fechaSAC.diligenciar = true;
+        fechaSAC.id = 5;
 
-        let nroSAC=new CampoTipoCC();
-        nroSAC.nombreCampo ="Nro del SAC";
-        nroSAC.descripcionCampo = "la Secretaría de Educación Municipal de Armenia, actualmente cuenta con una aplicación donde se radican toda la correspondencia (oficios) que ingresa a la entidad, y el cual asigna un numero de radicado con lo que se identifica el documento.";        
-        nroSAC.visible=true; 
-        nroSAC.id =6;
+        // Numero del SAC
+        let nroSAC = new CampoTipoCC();
+        nroSAC.nombreCampo = "Número del SAC";
+        nroSAC.descripcionCampo = "Número que asigna el SAC para identificar la solicitud de la entidad o ciudadano";
+        nroSAC.diligenciar = true;
+        nroSAC.id = 6;
 
+        // se agregan los campos
         this.camposIngreso = new Array<CampoTipoCC>();
         this.camposIngreso.push(fechaElaboracion);
         this.camposIngreso.push(elaboradoPor);
@@ -72,14 +103,5 @@ export class PaTiposConsecutivosComponent implements OnInit {
         this.camposIngreso.push(asunto);
         this.camposIngreso.push(fechaSAC);
         this.camposIngreso.push(nroSAC);
-
-    }
-
-    private crearTipoConsecutivoCorrespondencia():void {
-        this.crearTipoConsecutivo = true;
-    }
-
-    private cancelarCreacionTipoConsecutivo():void{
-        this.crearTipoConsecutivo = false;
     }
 }

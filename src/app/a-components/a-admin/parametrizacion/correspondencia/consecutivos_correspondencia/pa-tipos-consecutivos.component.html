@@ -4,11 +4,12 @@
 </div>
 <alert></alert>
 
-<!-- tabla con la lista de roles parametrizados -->
+<!-- tabla con la lista de tipos de consecutivos parametrizados -->
 <div *ngIf="!crearTipoConsecutivo">
     <div class="cpm_right">
-        <button type="button" class="btn btn-primary" (click)="crearTipoConsecutivoCorrespondencia()" title="Clic aquí para crear un tipo de consecutivo de correspondencia">Crear Consecutivo</button>
+        <button type="button" class="btn btn-primary" (click)="abrirPanelCreacion()" title="Clic aquí para crear un tipo de consecutivo de correspondencia">Crear Consecutivo</button>
     </div>
+
     <p-dataTable [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No se encontraron registros en el sistema."
         selectionMode="single">
         <p-column header="Nomenclatura" [style]="{'width':'15%', 'text-align':'center'}" [filter]="true" filterPlaceholder="Filtro de búsqueda">
@@ -45,46 +46,36 @@
     <!-- formulario del nombre del ROL-->
     <form name="form" #f="ngForm" (keydown.enter)="$event.preventDefault()" novalidate style="margin-bottom:4px">
 
-
-
-
-
         <div class="row">
-            <div class="form-group col-md-6 sin_margin_bottom" style="width: 30%">
-                <label for="nomen">Nomenclatura*:</label>
-                <input type="text" name="nomen" class="form-control input-valido" maxlength="100" placeholder="Este campo es requerido" focus="true"
+            <div class="form-group col-md-6 sin_margin_bottom" style="width: 40%">
+                <label for="descr">Nombre del Consecutivo*:</label>
+                <input type="text" name="descr" class="form-control input-valido" maxlength="100" placeholder="Este campo es requerido" focus="true"
                     myNoSpaces/>
             </div>
-            <div class="form-group col-md-6 sin_margin_bottom" style="width: 40%">
-                <label for="descr">Descripción*:</label>
-                <input type="text" name="descr" class="form-control input-valido" maxlength="100" placeholder="Este campo es requerido" myNoSpaces/>
+            <div class="form-group col-md-6 sin_margin_bottom" style="width: 25%">
+                <label for="nomen">Nomenclatura*:</label>
+                <input type="text" name="nomen" class="form-control input-valido" maxlength="100" placeholder="Este campo es requerido" myNoSpaces/>
             </div>
 
-            <div class="form-group col-md-6 sin_margin_bottom" style="width: 30%;margin-top:25px;text-align: right">
+            <div class="form-group col-md-6 sin_margin_bottom" style="width: 35%;margin-top:25px;text-align: right">
                 <button type="submit" class="btn btn-primary" title="Clic aquí para guardar los cambios en el sistema">Crear Consecutivo</button>&nbsp;
-                <button type="button" class="btn btn-default" (click)="cancelarCreacionTipoConsecutivo()" title="Clic aquí para regresar a la lista de tipos de consecutivos de correspondencia"
+                <button type="button" class="btn btn-default" (click)="cerrarPanelCreacion()" title="Clic aquí para regresar a la lista de tipos de consecutivos de correspondencia"
                     style="width: 145px">Cancelar</button>
             </div>
-
-
         </div>
-
-
     </form>
 
     <div>
         <div class="panel panel-info">
             <!-- Default panel contents -->
-            <div class="panel-heading" style="text-align: center;padding: 7px 15px;">
+            <div class="panel-heading" style="text-align: center;">
                 Seleccione los campos que <strong>requieren ser diligenciados por parte del funcionario</strong> al momento
                 de solicitar este consecutivo de correspondencia
             </div>
             <div class="panel-body">
-
-
-
-                <p-dataTable [value]="camposIngreso" [responsive]="true" selectionMode="single">
-                    <p-column header="Nombre campo" field="nombreCampo" [style]="{'width':'16%'}">
+                <br/>
+                <p-dataTable [value]="camposIngreso" [responsive]="true" rowHover="true">
+                    <p-column header="Nombre del campo" field="nombreCampo" [style]="{'width':'16%'}">
 
                         <ng-template let-item="rowData" pTemplate="body">
                             <span style="font-weight: bold;font-family: 'PT Sans', 'Trebuchet Ms', Sans;">{{item.nombreCampo}}</span>
@@ -92,14 +83,14 @@
 
                     </p-column>
 
-                    <p-column header="Descripción campo" field="descripcionCampo">
+                    <p-column header="Descripción del campo" field="descripcionCampo">
 
                         <ng-template let-item="rowData" pTemplate="body">
                             <span style="font-family: 'PT Sans', 'Trebuchet Ms', Sans;">{{item.descripcionCampo}}</span>
                         </ng-template>
                     </p-column>
 
-                                 <p-column [style]="{'width':'9%','text-align':'center'}" header="¿Editable?">
+                    <p-column [style]="{'width':'9%','text-align':'center'}" header="¿Editable?">
                         <ng-template let-item="rowData" pTemplate="body">
                             <p-checkbox name="nameItems" binary="true" *ngIf="item.id == 1"></p-checkbox>
                         </ng-template>
@@ -107,23 +98,11 @@
 
                     <p-column [style]="{'width':'10%','text-align':'center'}" header="¿Diligenciar?">
                         <ng-template let-item="rowData" pTemplate="body">
-                            <p-checkbox name="nameItems" binary="true" [(ngModel)]="item.visible" *ngIf="item.id != 1"></p-checkbox>
+                            <p-checkbox name="nameItems" binary="true" [(ngModel)]="item.diligenciar" *ngIf="item.id != 1"></p-checkbox>
                             <span class="glyphicon glyphicon-ok" *ngIf="item.id == 1"></span>
                         </ng-template>
                     </p-column>
-
-       
                 </p-dataTable>
             </div>
-
-            <!-- Table -->
-
-
-
-
-
         </div>
-
-
-
     </div>
