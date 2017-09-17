@@ -1,4 +1,10 @@
-import { CampoTipoCC } from './../../../../../c-model/a-admin/parametrizacion/CampoTipoCC';
+import { AdministradorService } from './../../../../../b-service/a-admin/administrador.service';
+import { ConfirmationService } from 'primeng/primeng';
+import { AlertService } from './../../../../../b-service/z-common/alert.service';
+import { UtilitarioService } from './../../../../../b-service/z-common/utilitario.service';
+import { ComponentCommon } from './../../../../../z-util/Component-common';
+import { WraperNomeclaturaConsecutivo } from './../../../../../c-model/a-admin/parametrizacion/WraperNomeclaturaConsecutivo';
+import { NomenclaturasConsecutivosVO } from './../../../../../c-model/a-admin/parametrizacion/NomenclaturasConsecutivosVO';
 import { ModuloItemDTO } from './../../../../../c-model/a-admin/seguridad/ModuloItemDTO';
 import { ModuloDTO } from './../../../../../c-model/a-admin/seguridad/ModuloDTO';
 import { Component, OnInit, Input } from '@angular/core';
@@ -10,7 +16,7 @@ import { Component, OnInit, Input } from '@angular/core';
     selector: 'pa-tipos-consecutivos',
     templateUrl: './pa-tipos-consecutivos.component.html'
 })
-export class PaTiposConsecutivosComponent implements OnInit {
+export class PaTiposConsecutivosComponent extends ComponentCommon implements OnInit {
 
     /** Es el item seleccionado por el usuario*/
     @Input()
@@ -20,88 +26,60 @@ export class PaTiposConsecutivosComponent implements OnInit {
     @Input()
     public modulo: ModuloDTO;
 
-    /** lista de campos para identificar si se deben digilenciar al momento de solicar el consecutivo*/
-    private camposIngreso: Array<CampoTipoCC>;
+    /** VO que se utiliza para crear o editar la nomenclatura*/
+    private nomenclaturaCrearEditar: WraperNomeclaturaConsecutivo;
 
-    private crearTipoConsecutivo: boolean = false;
+    /**
+    * Constructor del componente para la administracion de los tipos de consecutivos
+    * @param utilService, service con las funciones utilitarias
+    * @param alertService, service para la comunicacion del componente de mensaje de alerta
+    * @param confirmationService, servicio para la visualizacion del modal de confirmacion
+    * @param administradorService, contiene los servicios administrativo
+    */
+    constructor(
+        protected utilService: UtilitarioService,
+        protected alertService: AlertService,
+        private confirmationService: ConfirmationService,
+        private administradorService: AdministradorService) { 
+        super(utilService, alertService);
+    }
 
     /**
      * PostConstructor que permite inicializar las variables del component
      */
     ngOnInit(): void {
-
-        // se configuran los campos a visualizar por pantalla
-        this.configurarCamposDigilenciar();
     }
 
     /**
      * Metodo que permite abrir el panel de creacion de consecutivo
      */
     private abrirPanelCreacion(): void {
-        this.crearTipoConsecutivo = true;
+
+        // se crea la nomenclatura para ser diligenciada por pantalla
+        this.nomenclaturaCrearEditar = new WraperNomeclaturaConsecutivo();
+        this.nomenclaturaCrearEditar.nomenclatura = new NomenclaturasConsecutivosVO();
+        this.nomenclaturaCrearEditar.fechaElaboracionEditableB = false;
+        this.nomenclaturaCrearEditar.elaboradoPorVisibleB = true;
+        this.nomenclaturaCrearEditar.dirigidoAVisibleB = true;
+        this.nomenclaturaCrearEditar.asuntoVisibleB = true;
+        this.nomenclaturaCrearEditar.fechaSacVisibleB = true;
+        this.nomenclaturaCrearEditar.nroSacVisibleB = true;
+
+        this.submitted = false;
+    }
+
+    private crearConsecutivoCorrespondencia(): void{
+
     }
 
     /**
      * Metodo que permite cerrar el panel de creacion de consecutivo
      */
     private cerrarPanelCreacion(): void {
-        this.crearTipoConsecutivo = false;
+        this.nomenclaturaCrearEditar = null;
     }
 
-    /**
-     * Metodo que permite configurar los campos a visualizar por pantalla
-     */
-    private configurarCamposDigilenciar(): void {
 
-        // fecha de elaboracion
-        let fechaElaboracion = new CampoTipoCC();
-        fechaElaboracion.nombreCampo = "Fecha de Elaboración";
-        fechaElaboracion.descripcionCampo = "Fecha de elaboración del documento de respuesta, El sistema asigna la fecha actual por defecto";
-        fechaElaboracion.diligenciar = true;
-        fechaElaboracion.id = 1;
 
-        // Elaborado Por
-        let elaboradoPor = new CampoTipoCC();
-        elaboradoPor.nombreCampo = "Elaborado Por";
-        elaboradoPor.descripcionCampo = "Nombre del funcionario quien elabora el documento de respuesta";
-        elaboradoPor.diligenciar = true;
-        elaboradoPor.id = 2;
 
-        // Dirigido A
-        let dirigido = new CampoTipoCC();
-        dirigido.nombreCampo = "Dirigido A";
-        dirigido.descripcionCampo = "Nombre de la entidad o ciudadano a quien se va dirigir el documento de respuesta";
-        dirigido.diligenciar = true;
-        dirigido.id = 3;
-
-        // Asunto
-        let asunto = new CampoTipoCC();
-        asunto.nombreCampo = "Asunto";
-        asunto.descripcionCampo = "Breve resumen donde se especifica lo que solicita la entidad o el ciudadano";
-        asunto.diligenciar = true;
-        asunto.id = 4;
-
-        // Fecha del SAC
-        let fechaSAC = new CampoTipoCC();
-        fechaSAC.nombreCampo = "Fecha del SAC";
-        fechaSAC.descripcionCampo = "Fecha en la que el SAC recibió o radicó la solicitud de la entidad o ciudadano";
-        fechaSAC.diligenciar = true;
-        fechaSAC.id = 5;
-
-        // Numero del SAC
-        let nroSAC = new CampoTipoCC();
-        nroSAC.nombreCampo = "Número del SAC";
-        nroSAC.descripcionCampo = "Número que asigna el SAC para identificar la solicitud de la entidad o ciudadano";
-        nroSAC.diligenciar = true;
-        nroSAC.id = 6;
-
-        // se agregan los campos
-        this.camposIngreso = new Array<CampoTipoCC>();
-        this.camposIngreso.push(fechaElaboracion);
-        this.camposIngreso.push(elaboradoPor);
-        this.camposIngreso.push(dirigido);
-        this.camposIngreso.push(asunto);
-        this.camposIngreso.push(fechaSAC);
-        this.camposIngreso.push(nroSAC);
-    }
 }
