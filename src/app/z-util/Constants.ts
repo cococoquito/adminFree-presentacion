@@ -47,4 +47,6 @@ export var ITEM_REGISTRADO_EXITOSAMENTE: string = "El ?1 con el nombre (?2) fue 
 export var EXITOSO_ITEM_ELIMINADO: string = "El ?1 con el nombre (?2) fue eliminado exitosamente del sistema.";
 export var EXITOSO_ITEMS_UPDATE: string = "Los registros modificados fueron actualizados exitosamente en el sistema.";
 export var NOMENCLATURA_CREADA: string = "El tipo de consecutivo de correspondencia (?1) fue ingresado exitosamente en el sistema.";
+export var NOMENCLATURA_EDITADA: string = "El tipo de consecutivo de correspondencia (?1) fue actualizada exitosamente en el sistema.";
+export var NOMENCLATURA_ELIMINADO: string = "El tipo de consecutivo con la nomenclatura (?1) fue eliminado exitosamente del sistema.";
 /** mensajes para el modulo Adminstracion>>parametrizaciones - final*/

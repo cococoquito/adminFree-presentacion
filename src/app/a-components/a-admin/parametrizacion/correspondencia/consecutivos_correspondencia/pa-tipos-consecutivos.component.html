@@ -1,6 +1,6 @@
 <!-- titulo de la pagina -->
 <div class="text_center sub-title-page_conf">
-    {{modulo.nombreModulo+' / '+item.nombreItem}}
+     {{nomenclaturaCrearEditar ? nomenclaturaCrearEditar?.nomenclaturaVO?.idNomenclatura ? modulo.nombreModulo+' / '+item.nombreItem+' / edición': modulo.nombreModulo+' / '+item.nombreItem+' / creación': modulo.nombreModulo+' / '+item.nombreItem}}
 </div>
 <alert></alert>
 
@@ -10,57 +10,62 @@
         <button type="button" class="btn btn-primary" (click)="abrirPanelCreacion()" title="Clic aquí para crear un tipo de consecutivo de correspondencia">Crear Consecutivo</button>
     </div>
 
-    <p-dataTable [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No se encontraron registros en el sistema." selectionMode="single">
-        <p-column header="Nomenclatura" [style]="{'width':'15%', 'text-align':'center'}" [filter]="true" filterPlaceholder="Filtro de búsqueda">
+    <p-dataTable [value]="nomenclaturas" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No se encontraron registros en el sistema." selectionMode="single">
+
+        <p-column header="Nomenclatura" field="nomenclatura" [filter]="true" filterPlaceholder="Filtro de búsqueda" [style]="{'width':'15%', 'text-align':'center'}">
         </p-column>
 
-        <p-column header="Nombre del Consecutivo" [style]="{'text-align':'center'}" [filter]="true" filterPlaceholder="Filtro de búsqueda">
+        <p-column header="Nombre del Consecutivo" field="nombre" [filter]="true" filterPlaceholder="Filtro de búsqueda" [style]="{'text-align':'center'}">
         </p-column>
 
         <p-column [style]="{'width':'8%','text-align':'center'}" header="Ver Campos">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-share cursor-manito" title="Clic aquí para ver los privilegios de este ROL"></span>
+                <span class="glyphicon glyphicon-share cursor-manito" title="Clic aquí para ver los campos a diligenciar para este consecutivo"></span>
             </ng-template>
         </p-column>
 
         <p-column [style]="{'width':'5%','text-align':'center'}" header="Editar">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-edit cursor-manito" title="Clic aquí para editar los valores de este ROL"></span>
+                <span class="glyphicon glyphicon-edit cursor-manito" (click)="abrirPanelEdicion(item)" title="Clic aquí para editar este tipo de consecutivo de correspondencia"></span>
             </ng-template>
         </p-column>
 
         <p-column [style]="{'width':'6%','text-align':'center'}" header="Eliminar">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-trash cursor-manito" title="Clic aquí para eliminar este ROL del sistema"></span>
+                <span class="glyphicon glyphicon-trash cursor-manito" (click)="eliminarTipoConsecutivo(item)" title="Clic aquí para eliminar este tipo de consecutivo del sistema"></span>
             </ng-template>
         </p-column>
     </p-dataTable>
 </div>
 
-<!-- panel creacion, tipo consecutivo correspondencia -->
+<!-- panel creacion o edicion -->
 <br *ngIf="nomenclaturaCrearEditar" />
 <div *ngIf="nomenclaturaCrearEditar">
 
     <!-- formulario del nombre y nomenclatura del tipo de consecutivo-->
-    <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid" (keydown.enter)="$event.preventDefault()" novalidate style="margin-bottom:4px">
+    <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && crearEditarConsecutivoSistema()" (keydown.enter)="$event.preventDefault()" novalidate style="margin-bottom:4px">
 
         <div class="row">
             <div class="form-group col-md-6 sin_margin_bottom" style="width: 30%">
                 <label for="nomen">Nomenclatura*:</label>
-                <input type="text" [(ngModel)]="nomenclaturaCrearEditar.nomenclatura.nomenclatura" name="nomen" #nomen="ngModel" 
+                <input type="text" [(ngModel)]="nomenclaturaCrearEditar.nomenclaturaVO.nomenclatura" name="nomen" #nomen="ngModel" 
                  [ngClass]="(submitted && !nomen.valid) ? 'form-control input-invalido':'form-control input-valido'"
-                 maxlength="10" placeholder="Este campo es requerido" myNoSpaces/>
+                 maxlength="10" placeholder="Este campo es requerido" focus="true" myNoSpaces/>
             </div>
             <div class="form-group col-md-6 sin_margin_bottom" style="width: 30%">
                 <label for="nombre">Nombre del Consecutivo*:</label>
-                <input type="text" [(ngModel)]="nomenclaturaCrearEditar.nomenclatura.nombre" name="nombre" #nombre="ngModel" 
+                <input type="text" [(ngModel)]="nomenclaturaCrearEditar.nomenclaturaVO.nombre" name="nombre" #nombre="ngModel" 
                  [ngClass]="(submitted && !nombre.valid) ? 'form-control input-invalido':'form-control input-valido'"
                  maxlength="50" placeholder="Este campo es requerido" myNoSpaces/>
             </div>
 
             <div class="form-group col-md-6 sin_margin_bottom" style="width: 40%;margin-top:25px;text-align: right">
-                <button type="submit" class="btn btn-primary" title="Clic aquí para guardar los cambios en el sistema">Crear Consecutivo</button>&nbsp;
-                <button type="button" class="btn btn-default" (click)="cerrarPanelCreacion()" title="Clic aquí para regresar a la lista de tipos de consecutivos de correspondencia" style="width: 145px">Cancelar</button>
+                <button  type="submit" class="btn btn-primary" 
+                 title="{{nomenclaturaCrearEditar?.nomenclaturaVO?.idNomenclatura ? 'Clic aquí para guardar los cambios en el sistema' : 'Clic aquí para crear el tipo de consecutivo de correspondencia'}}">
+                        {{nomenclaturaCrearEditar?.nomenclaturaVO?.idNomenclatura ? 'Editar Consecutivo' : 'Crear Consecutivo'}}
+                </button>
+                &nbsp;
+                <button type="button" class="btn btn-default" (click)="cerrarPanelCreacionEdicion()" title="Clic aquí para regresar a la lista de tipos de consecutivos de correspondencia" style="width: 145px">Cancelar</button>
             </div>
         </div>
     </form>

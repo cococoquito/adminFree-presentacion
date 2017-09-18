@@ -1,4 +1,4 @@
-import { STYLE_SUCCESS_CENTER, NOMENCLATURA_CREADA } from './../../../../../z-util/Constants';
+import { STYLE_SUCCESS_CENTER, NOMENCLATURA_CREADA, NOMENCLATURA_ELIMINADO, NOMENCLATURA_EDITADA } from './../../../../../z-util/Constants';
 import { AdministradorService } from './../../../../../b-service/a-admin/administrador.service';
 import { ConfirmationService } from 'primeng/primeng';
 import { AlertService } from './../../../../../b-service/z-common/alert.service';
@@ -53,6 +53,32 @@ export class PaTiposConsecutivosComponent extends ComponentCommon implements OnI
      * PostConstructor que permite inicializar las variables del component
      */
     ngOnInit(): void {
+
+        // se consultan los tipos de consecutivos ACTIVOS parametrizados en el sistema
+        this.getTiposConsecutivos();
+    }
+
+    /**
+     * Metodo que permite obtener los tipos de consecutivos parametrizados en el sistema
+     */
+    private getTiposConsecutivos(): void {
+
+        // se muestra el modal de carga
+        this.utilService.displayLoading(true);
+
+        // se invoca el servicio para obtener las nomenclaturas en estado ACTIVO
+        this.administradorService.listarTiposConsecutivos().subscribe(
+            data => {
+                // se configura los tipos de consecutivos retornado por el servicio
+                this.nomenclaturas = data.json();
+
+                // se cierra el modal de carga
+                this.utilService.displayLoading(false);
+            },
+            error => {
+                this.showErrorSistema(error);
+            }
+        );
     }
 
     /**
@@ -78,18 +104,61 @@ export class PaTiposConsecutivosComponent extends ComponentCommon implements OnI
     }
 
     /**
-     * Metodo que soporta el evento del boton crear consecutivo
-     */
-    private crearConsecutivoSistema(): void {
+    * Metodo que permite abrir el panel para la edicion del consecutivo
+    *
+    * @param tipo , VO con los datos del tipo de consecutivo a editar
+    */
+    private abrirPanelEdicion(tipo: NomenclaturasConsecutivosVO): void {
 
         // se oculta el alert esto por si hay errores con el submit anterior
         this.alertService.hiddenAlert();
 
-        // se muestra el modal de carga
-        this.utilService.displayLoading(true);
+        // se indica que el usuario no ha dado commit
+        this.submitted = false;
+
+        //se crear la instancia de la nomenclatura a editar
+        this.nomenclaturaCrearEditar = new WraperNomeclaturaConsecutivo();
+        this.nomenclaturaCrearEditar.nomenclaturaVO = new NomenclaturasConsecutivosVO();
+        this.nomenclaturaCrearEditar.nomenclaturaVO.idNomenclatura = tipo.idNomenclatura;
+        this.nomenclaturaCrearEditar.nomenclaturaVO.nomenclatura = tipo.nomenclatura;
+        this.nomenclaturaCrearEditar.nomenclaturaVO.nombre = tipo.nombre;
+        this.nomenclaturaCrearEditar.nomenclaturaVO.fechaElaboracionEditable = tipo.fechaElaboracionEditable;
+        this.nomenclaturaCrearEditar.nomenclaturaVO.elaboradoPorVisible = tipo.elaboradoPorVisible;
+        this.nomenclaturaCrearEditar.nomenclaturaVO.dirigidoAVisible = tipo.dirigidoAVisible;
+        this.nomenclaturaCrearEditar.nomenclaturaVO.asuntoVisible = tipo.asuntoVisible;
+        this.nomenclaturaCrearEditar.nomenclaturaVO.fechaSacVisible = tipo.fechaSacVisible;
+        this.nomenclaturaCrearEditar.nomenclaturaVO.nroSacVisible = tipo.nroSacVisible;
+
+        // se configuran las banderas que indican que campos son para digilenciar
+        this.nomenclaturaCrearEditar.configurarBanderas();
+    }
+
+    /**
+     * Metodo que soporta el evento de crear o editar consecutivo de la pantalla
+     */
+    private crearEditarConsecutivoSistema(): void {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
 
         // se organiza los datos antes de persistir
         this.organizarDatosAntesPersistir();
+
+        // se muestra el modal de carga
+        this.utilService.displayLoading(true);
+
+        // se llama el metodo de crear o editar dependiendo de la accion
+        if (this.nomenclaturaCrearEditar.nomenclaturaVO.idNomenclatura) {
+            this.editarConsecutivoSistema();
+        } else {
+            this.crearConsecutivoSistema();
+        }
+    }
+
+    /**
+     * Metodo que permite crear el consecutivo en el sistema
+     */
+    private crearConsecutivoSistema(): void {
 
         // se invoca el servicio para crear la nomenclatura en el sistema
         this.administradorService.insertarTipoConsecutivo(this.nomenclaturaCrearEditar.nomenclaturaVO).subscribe(
@@ -113,18 +182,93 @@ export class PaTiposConsecutivosComponent extends ComponentCommon implements OnI
     }
 
     /**
-     * Metodo que permite cerrar el panel de creacion de consecutivo
+     * Metodo que permite editar el consecutivo en el sistema
      */
-    private cerrarPanelCreacion(): void {
+    private editarConsecutivoSistema(): void {
+
+        // se invoca el servicio para editar la nomenclatura en el sistema
+        this.administradorService.editarTipoConsecutivo(this.nomenclaturaCrearEditar.nomenclaturaVO).subscribe(
+            data => {
+                // se configura los tipos de consecutivos retornado por el servicio
+                this.nomenclaturas = data.json();
+
+                // se muestra el mensaje exitoso en pantalla
+                this.alertService.showAlert(NOMENCLATURA_EDITADA.replace("?1", this.nomenclaturaCrearEditar.nomenclaturaVO.nomenclatura), STYLE_SUCCESS_CENTER, false);
+
+                // se limpia la variable para retornar a la lista de nomenclaturas
+                this.nomenclaturaCrearEditar = null;
+
+                // se cierra el modal de carga
+                this.utilService.displayLoading(false);
+            },
+            error => {
+                this.showErrorSistema(error);
+            }
+        );
+    }
+
+    /**
+     * Metodo que permite soporta el evento del boton de eliminar tipo de consecutivo
+     * 
+     * @param tipo , VO con los datos del tipo de consecutivo a eliminar
+     */
+    private eliminarTipoConsecutivo(tipo: NomenclaturasConsecutivosVO): void {
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
+
+        // se procede abrir la ventana de confirmacion
+        this.confirmationService.confirm({
+            message: '¿Está seguro de que desea eliminar el siguiente tipo de consecutivo? <br/><strong>' + tipo.nomenclatura + '</strong>',
+            header: 'Confirmación',
+            icon: 'fa fa-trash',
+            accept: () => {
+
+                // se muestra el modal de carga
+                this.utilService.displayLoading(true);
+
+                // susbripcion para la eliminacion del tipo de consecutivo
+                this.administradorService.eliminarTipoConsecutivo(tipo.idNomenclatura).subscribe(
+                    data => {
+                        // se configura los tipos de consecutivos retornado por el servicio
+                        this.nomenclaturas = data.json();
+
+                        // se muestra el mensaje exitoso en pantalla
+                        this.alertService.showAlert(NOMENCLATURA_ELIMINADO.replace("?1", tipo.nomenclatura), STYLE_SUCCESS_CENTER, false);
+
+                        // se cierra el modal de carga
+                        this.utilService.displayLoading(false);
+                    },
+                    error => {
+                        this.showErrorSistema(error);
+                    }
+                );
+            }
+        });
+    }
+
+    /**
+     * Metodo que permite cerrar el panel de creacion o edicion del consecutivo
+     */
+    private cerrarPanelCreacionEdicion(): void {
+
+        // se limpia la variable para retornar a la lista de nomenclaturas
         this.nomenclaturaCrearEditar = null;
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
     }
 
     /**
      * Metodo que se utiliza para configurar los datos antes de persistir
      */
     private organizarDatosAntesPersistir(): void {
+
+        // se elimina los espacios en blanco inicio y final
         this.nomenclaturaCrearEditar.nomenclaturaVO.nombre = this.nomenclaturaCrearEditar.nomenclaturaVO.nombre.trim();
         this.nomenclaturaCrearEditar.nomenclaturaVO.nomenclatura = this.nomenclaturaCrearEditar.nomenclaturaVO.nomenclatura.trim();
+
+        // se configuran los bytes que indican que campos son para digilenciar
         this.nomenclaturaCrearEditar.configurarByteVisibilidad();
     }
 }
