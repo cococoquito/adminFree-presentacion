@@ -1,3 +1,4 @@
+import { NomenclaturasConsecutivosVO } from './../../c-model/a-admin/parametrizacion/NomenclaturasConsecutivosVO';
 import { ActualizacionItemsDTO } from './../../c-model/a-admin/parametrizacion/ActualizacionItemsDTO';
 import { CommonVO } from './../../c-model/a-admin/parametrizacion/CommonVO';
 import { UsuariosDTO } from './../../c-model/a-admin/seguridad/UsuariosDTO';
@@ -65,6 +66,18 @@ export class AdministradorService {
 
     /** URL para editar un conjunto de items parametricos */
     private static URL_EDITAR_ITEMS = 'admin/editar_items';
+
+    /** URL para listar los tipos de consecutivos de correspondencia */
+    private static URL_LISTAR_TIPOS_CONSECUTIVOS = 'admin/listar_tipos_consecutivos';
+
+    /** URL para eliminar un tipo de consecutivo de correspondencia */
+    private static URL_ELIMINAR_TIPO_CONSECUTIVO = 'admin/eliminar_tipo_consecutivo/';
+
+    /** URL que permite insertar un tipo de consecutivo de correspondencia */
+    private static URL_INSERTAR_TIPO_CONSECUTIVO = 'admin/insertar_tipo_consecutivo';
+
+    /** URL que permite editar un tipo de consecutivo de correspondencia */
+    private static URL_EDITAR_TIPO_CONSECUTIVO = 'admin/editarTipoConsecutivo';
 
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json; charset=UTF-8' });
@@ -217,6 +230,40 @@ export class AdministradorService {
 
         // se procede a ejecutar el servicio para la actualizacion de los items
         return this.http.post(URL_BASE + AdministradorService.URL_EDITAR_ITEMS, parametro, this.options);
+    }
+
+    /**
+     * Metodo que permite consultar todos los tipos de consecutivos de correspondencia en estado ACTIVO
+     */
+    public listarTiposConsecutivos(): Observable<Response> {
+        return this.http.get(URL_BASE + AdministradorService.URL_LISTAR_TIPOS_CONSECUTIVOS);
+    }
+
+    /**
+     * Metodo que permite eliminar un tipo de consecutivo de correspondencia
+     * 
+     * @param id , identificador del tipo de consecutivo a eliminar
+     */
+    public eliminarTipoConsecutivo(id: number): Observable<Response> {
+        return this.http.get(URL_BASE + AdministradorService.URL_ELIMINAR_TIPO_CONSECUTIVO + id);
+    }    
+
+    /**
+     * Metodo que permite insertar un tipo de consecutivo de correspondencia
+     * 
+     * @param tipo, VO con los datos del tipo de consecutivo de correspondencia
+     */
+    public insertarTipoConsecutivo(tipo: NomenclaturasConsecutivosVO): Observable<Response> {
+        return this.http.post(URL_BASE + AdministradorService.URL_INSERTAR_TIPO_CONSECUTIVO, tipo, this.options);
+    }
+
+    /**
+     * Metodo que permite editar un tipo de consecutivo de correspondencia
+     * 
+     * @param tipo, VO con los datos del tipo de consecutivo de correspondencia
+     */
+    public editarTipoConsecutivo(tipo: NomenclaturasConsecutivosVO): Observable<Response> {
+        return this.http.post(URL_BASE + AdministradorService.URL_EDITAR_TIPO_CONSECUTIVO, tipo, this.options);
     }
 
     /**
