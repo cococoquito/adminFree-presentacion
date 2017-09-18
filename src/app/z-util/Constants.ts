@@ -46,4 +46,5 @@ export var EXITOSO_MSJ_USUARIO_CREADO: string = "El usuario fue creado exitosame
 export var ITEM_REGISTRADO_EXITOSAMENTE: string = "El ?1 con el nombre (?2) fue ingresado exitosamente en el sistema.";
 export var EXITOSO_ITEM_ELIMINADO: string = "El ?1 con el nombre (?2) fue eliminado exitosamente del sistema.";
 export var EXITOSO_ITEMS_UPDATE: string = "Los registros modificados fueron actualizados exitosamente en el sistema.";
+export var NOMENCLATURA_CREADA: string = "El tipo de consecutivo de correspondencia (?1) fue ingresado exitosamente en el sistema.";
 /** mensajes para el modulo Adminstracion>>parametrizaciones - final*/

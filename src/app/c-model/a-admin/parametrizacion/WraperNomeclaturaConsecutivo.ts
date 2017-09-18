@@ -10,8 +10,8 @@ import { NomenclaturasConsecutivosVO } from './NomenclaturasConsecutivosVO';
 export class WraperNomeclaturaConsecutivo {
 
     /** contiene los datos de la nomenclatura **/
-    public nomenclatura: NomenclaturasConsecutivosVO;
-    
+    public nomenclaturaVO: NomenclaturasConsecutivosVO;
+
     /** 1 si la Fecha de elaboracion es editable de lo contrario 0 **/
     public fechaElaboracionEditableB: boolean;
 
@@ -29,4 +29,92 @@ export class WraperNomeclaturaConsecutivo {
 
     /** 1 si el campo (Nro SAC) se debe diligenciar de lo contrario 0 **/
     public nroSacVisibleB: boolean;
+
+    /**
+     * Metodo que permite configurar las banderas de acuerdo al byte de visibilidad que tiene la nomenclatura
+     */
+    public configurarBanderas(): void {
+        if (this.nomenclaturaVO) {
+
+            // campo fecha de elaboracion editable
+            this.fechaElaboracionEditableB = false;
+            if (this.nomenclaturaVO.fechaElaboracionEditable && this.nomenclaturaVO.fechaElaboracionEditable == SI) {
+                this.fechaElaboracionEditableB = true;
+            }
+
+            // campo elaborado por visible
+            this.elaboradoPorVisibleB = false;
+            if (this.nomenclaturaVO.elaboradoPorVisible && this.nomenclaturaVO.elaboradoPorVisible == SI) {
+                this.elaboradoPorVisibleB = true;
+            }
+
+            // campo dirigido A visible
+            this.dirigidoAVisibleB = false;
+            if (this.nomenclaturaVO.dirigidoAVisible && this.nomenclaturaVO.dirigidoAVisible == SI) {
+                this.dirigidoAVisibleB = true;
+            }
+
+            // campo asunto visible
+            this.asuntoVisibleB = false;
+            if (this.nomenclaturaVO.asuntoVisible && this.nomenclaturaVO.asuntoVisible == SI) {
+                this.asuntoVisibleB = true;
+            }
+
+            // campo fecha SAC visible
+            this.fechaSacVisibleB = false;
+            if (this.nomenclaturaVO.fechaSacVisible && this.nomenclaturaVO.fechaSacVisible == SI) {
+                this.fechaSacVisibleB = true;
+            }
+
+            // campo numero SAC visible
+            this.nroSacVisibleB = false;
+            if (this.nomenclaturaVO.nroSacVisible && this.nomenclaturaVO.nroSacVisible == SI) {
+                this.nroSacVisibleB = true;
+            }
+        }
+    }
+
+    /**
+     * Metodo que permite configurar los bytes de visibilidad que tiene la nomenclatura
+     */
+    public configurarByteVisibilidad(): void {
+        if (this.nomenclaturaVO) {
+
+            // campo Fecha de elaboracion editable
+            this.nomenclaturaVO.fechaElaboracionEditable = NO;
+            if (this.fechaElaboracionEditableB) {
+                this.nomenclaturaVO.fechaElaboracionEditable = SI;
+            }
+
+            // campo Elaborado Por visible
+            this.nomenclaturaVO.elaboradoPorVisible = NO;
+            if (this.elaboradoPorVisibleB) {
+                this.nomenclaturaVO.elaboradoPorVisible = SI;
+            }
+
+            // campo dirigido A visible
+            this.nomenclaturaVO.dirigidoAVisible = NO;
+            if (this.dirigidoAVisibleB) {
+                this.nomenclaturaVO.dirigidoAVisible = SI;
+            }
+
+            // campo Asunto visible
+            this.nomenclaturaVO.asuntoVisible = NO;
+            if (this.asuntoVisibleB) {
+                this.nomenclaturaVO.asuntoVisible = SI;
+            }
+
+            // campo Fecha SAC visible
+            this.nomenclaturaVO.fechaSacVisible = NO;
+            if (this.fechaSacVisibleB) {
+                this.nomenclaturaVO.fechaSacVisible = SI;
+            }
+
+            // numero SAC visible
+            this.nomenclaturaVO.nroSacVisible = NO;
+            if (this.nroSacVisibleB) {
+                this.nomenclaturaVO.nroSacVisible = SI;
+            }
+        }
+    }
 }

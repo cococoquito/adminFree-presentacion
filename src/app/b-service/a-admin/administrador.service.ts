@@ -77,7 +77,7 @@ export class AdministradorService {
     private static URL_INSERTAR_TIPO_CONSECUTIVO = 'admin/insertar_tipo_consecutivo';
 
     /** URL que permite editar un tipo de consecutivo de correspondencia */
-    private static URL_EDITAR_TIPO_CONSECUTIVO = 'admin/editarTipoConsecutivo';
+    private static URL_EDITAR_TIPO_CONSECUTIVO = 'admin/editar_tipo_consecutivo';
 
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json; charset=UTF-8' });
