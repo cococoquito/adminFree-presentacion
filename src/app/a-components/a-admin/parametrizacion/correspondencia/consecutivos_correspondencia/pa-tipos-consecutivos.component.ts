@@ -33,6 +33,12 @@ export class PaTiposConsecutivosComponent extends ComponentCommon implements OnI
     /**lista de tipos de consecutivos de correspondencia parametrizados en el sistema*/
     private nomenclaturas: Array<NomenclaturasConsecutivosVO>;
 
+    /**Nomenclatura seleccionada para ver los campos a diligenciar*/
+    private nomenclaturaVerCampos: WraperNomeclaturaConsecutivo;
+
+    /** bandera que indica cuando se debe visualizar el modal de ver campos*/
+    private modalVerCamposVisible: boolean = false;
+
     /**
     * Constructor del componente para la administracion de los tipos de consecutivos de correspondencia
     *
@@ -338,5 +344,39 @@ export class PaTiposConsecutivosComponent extends ComponentCommon implements OnI
             return true;
         }
         return false;
+    }
+
+    /**
+     * Metodo que permite abrir el modal para la visualizacion de los campos a diligenciar
+     * para el tipo de consecutivo de correspondencia seleccionada
+     * 
+     * @param nomenclatura , nomenclatura seleccionada para ver los campos a diligenciar
+     */
+    private abrirModalVerCampos(nomenclatura: NomenclaturasConsecutivosVO): void {
+
+        // se crea el wrapper que tiene las banderas de visibilidad
+        this.nomenclaturaVerCampos = new WraperNomeclaturaConsecutivo();
+
+        // se asocia la nomenclatura seleccionada
+        this.nomenclaturaVerCampos.nomenclaturaVO = nomenclatura;
+
+        // se configura las banderas que identifica que campo son para diligenciar
+        this.nomenclaturaVerCampos.configurarBanderas();
+
+        // se abre el modal para ver los campos a diligenciar
+        this.modalVerCamposVisible = true;
+
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
+    }
+
+    /**
+     * Metodo que permite soportar el evento cuando cierran el modal de ver campos
+     */
+    public cerrarModalVerCampos() :void{
+
+        // se limpia las variables asociadas al modal ver campos
+        this.nomenclaturaVerCampos  = null;
+        this.modalVerCamposVisible = false;
     }
 }

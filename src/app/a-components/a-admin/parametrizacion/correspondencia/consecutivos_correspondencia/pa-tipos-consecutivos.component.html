@@ -20,7 +20,7 @@
 
         <p-column [style]="{'width':'8%','text-align':'center'}" header="Ver Campos">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-share cursor-manito" title="Clic aquí para ver los campos a diligenciar para este consecutivo"></span>
+                <span class="glyphicon glyphicon-share cursor-manito" (click)="abrirModalVerCampos(item)" title="Clic aquí para ver los campos a diligenciar para este consecutivo"></span>
             </ng-template>
         </p-column>
 
@@ -147,4 +147,85 @@
             </table>
         </div>
     </div>
+</div>
+
+<div *ngIf="nomenclaturaVerCampos">
+
+    <p-dialog id="modal_campos" (onHide)="cerrarModalVerCampos()" [(visible)]="modalVerCamposVisible" [responsive]="true" dismissableMask="true" modal="modal" styleClass="modal_campos">
+        <p-header>
+            Nomenclatura: {{nomenclaturaVerCampos?.nomenclaturaVO?.nomenclatura}}
+        </p-header>
+
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <table class="table table-hover" style="margin-bottom: 0px;">
+                    <thead>
+                        <tr>
+                            <th>Nombre del Campo</th>
+                            <th>Descripción del Campo</th>
+                            <th>¿Editable?</th>
+                            <th>¿Diligenciar?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fecha de Elaboración</td>
+                            <td>Fecha de elaboración del documento de respuesta, El sistema asigna la fecha actual por defecto</td>
+                            <td style="text-align: center">
+                                <span class="glyphicon glyphicon-ok" *ngIf="nomenclaturaVerCampos.fechaElaboracionEditableB"></span>
+                            </td>
+                            <td style="text-align: center">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Elaborado Por</td>
+                            <td>Nombre del funcionario quien elabora el documento de respuesta</td>
+                            <td></td>
+                            <td style="text-align: center">
+                                <span class="glyphicon glyphicon-ok" *ngIf="nomenclaturaVerCampos.elaboradoPorVisibleB"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Dirigido A</td>
+                            <td>Nombre de la entidad o ciudadano a quien se va dirigir el documento de respuesta</td>
+                            <td></td>
+                            <td style="text-align: center">
+                                <span class="glyphicon glyphicon-ok" *ngIf="nomenclaturaVerCampos.dirigidoAVisibleB"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Asunto</td>
+                            <td>Breve resumen donde se especifica lo que solicita la entidad o el ciudadano</td>
+                            <td></td>
+                            <td style="text-align: center">
+                                <span class="glyphicon glyphicon-ok" *ngIf="nomenclaturaVerCampos.asuntoVisibleB"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Fecha del SAC</td>
+                            <td>Fecha en la que el SAC recibió o radicó la solicitud de la entidad o ciudadano</td>
+                            <td></td>
+                            <td style="text-align: center">
+                                <span class="glyphicon glyphicon-ok" *ngIf="nomenclaturaVerCampos.fechaSacVisibleB"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Número del SAC</td>
+                            <td>Número que asigna el SAC para identificar la solicitud de la entidad o ciudadano</td>
+                            <td></td>
+                            <td style="text-align: center">
+                                <span class="glyphicon glyphicon-ok" *ngIf="nomenclaturaVerCampos.nroSacVisibleB"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </p-dialog>
 </div>

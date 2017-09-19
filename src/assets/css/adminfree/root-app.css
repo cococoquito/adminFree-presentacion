@@ -480,3 +480,8 @@ ul.alert-dropdown {
     text-align: right; 
     padding-right:0px
 }
+
+.modal_campos{
+    width:80%;
+    top: 10% !important
+}
