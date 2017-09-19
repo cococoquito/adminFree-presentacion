@@ -31,4 +31,7 @@ export class NomenclaturasConsecutivosVO {
 
     /** 1 si el campo (Nro SAC) se debe diligenciar de lo contrario 0 **/
     public nroSacVisible: number;
+
+    /** bandera que identifica si la nomenclatura fue modificada **/
+    public nomenclaturaModificada: boolean;
 }

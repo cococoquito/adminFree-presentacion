@@ -129,6 +129,9 @@ export class PaTiposConsecutivosComponent extends ComponentCommon implements OnI
         this.nomenclaturaCrearEditar.nomenclaturaVO.fechaSacVisible = tipo.fechaSacVisible;
         this.nomenclaturaCrearEditar.nomenclaturaVO.nroSacVisible = tipo.nroSacVisible;
 
+        // se configura el origen de la nomenclatura a editar
+        this.nomenclaturaCrearEditar.nomenclaturaOrigen = tipo;
+
         // se configuran las banderas que indican que campos son para digilenciar
         this.nomenclaturaCrearEditar.configurarBanderas();
     }
@@ -144,12 +147,16 @@ export class PaTiposConsecutivosComponent extends ComponentCommon implements OnI
         // se organiza los datos antes de persistir
         this.organizarDatosAntesPersistir();
 
-        // se muestra el modal de carga
-        this.utilService.displayLoading(true);
-
         // se llama el metodo de crear o editar dependiendo de la accion
         if (this.nomenclaturaCrearEditar.nomenclaturaVO.idNomenclatura) {
-            this.editarConsecutivoSistema();
+
+            // se edita el consecutivo solo si hay modificaciones
+            if (this.esTipoConsecutivoModificado()) {
+                this.editarConsecutivoSistema();
+            } else {
+                // se limpia la variable para retornar a la lista de nomenclaturas
+                this.nomenclaturaCrearEditar = null;
+            } 
         } else {
             this.crearConsecutivoSistema();
         }
@@ -159,6 +166,9 @@ export class PaTiposConsecutivosComponent extends ComponentCommon implements OnI
      * Metodo que permite crear el consecutivo en el sistema
      */
     private crearConsecutivoSistema(): void {
+
+        // se muestra el modal de carga
+        this.utilService.displayLoading(true);
 
         // se invoca el servicio para crear la nomenclatura en el sistema
         this.administradorService.insertarTipoConsecutivo(this.nomenclaturaCrearEditar.nomenclaturaVO).subscribe(
@@ -185,6 +195,9 @@ export class PaTiposConsecutivosComponent extends ComponentCommon implements OnI
      * Metodo que permite editar el consecutivo en el sistema
      */
     private editarConsecutivoSistema(): void {
+
+        // se muestra el modal de carga
+        this.utilService.displayLoading(true);
 
         // se invoca el servicio para editar la nomenclatura en el sistema
         this.administradorService.editarTipoConsecutivo(this.nomenclaturaCrearEditar.nomenclaturaVO).subscribe(
@@ -268,7 +281,62 @@ export class PaTiposConsecutivosComponent extends ComponentCommon implements OnI
         this.nomenclaturaCrearEditar.nomenclaturaVO.nombre = this.nomenclaturaCrearEditar.nomenclaturaVO.nombre.trim();
         this.nomenclaturaCrearEditar.nomenclaturaVO.nomenclatura = this.nomenclaturaCrearEditar.nomenclaturaVO.nomenclatura.trim();
 
+        // se inicializa la bandera que identifica si hay modificaciones en la nomenclatura
+        this.nomenclaturaCrearEditar.nomenclaturaVO.nomenclaturaModificada = false;
+
         // se configuran los bytes que indican que campos son para digilenciar
         this.nomenclaturaCrearEditar.configurarByteVisibilidad();
+    }
+
+    /**
+     * Metodo que permite identificar si hubo modificaciones para editar el tipo de consecutivo
+     */
+    private esTipoConsecutivoModificado(): boolean {
+
+        // se obtiene la nomenclatura a editar
+        let nomenclaturaEditar = this.nomenclaturaCrearEditar.nomenclaturaVO;
+        let nomenclaturaOrigen = this.nomenclaturaCrearEditar.nomenclaturaOrigen;
+
+        // se verifica si la nomenclatura fue modificado
+        if (nomenclaturaEditar.nomenclatura != nomenclaturaOrigen.nomenclatura) {
+            nomenclaturaEditar.nomenclaturaModificada = true;
+            return true;
+        }        
+
+        // se verifica si el nombre fue modificado
+        if (nomenclaturaEditar.nombre != nomenclaturaOrigen.nombre) {
+            return true;
+        }
+
+        // se verifica si la fecha de elaboracion fue modificado
+        if (nomenclaturaEditar.fechaElaboracionEditable != nomenclaturaOrigen.fechaElaboracionEditable) {
+            return true;
+        }
+
+        // se verifica si el campo elaborado por fue modificado
+        if (nomenclaturaEditar.elaboradoPorVisible != nomenclaturaOrigen.elaboradoPorVisible) {
+            return true;
+        }
+
+        // se verifica si el campo dirigido A por fue modificado
+        if (nomenclaturaEditar.dirigidoAVisible != nomenclaturaOrigen.dirigidoAVisible) {
+            return true;
+        }
+
+        // se verifica si el campo asunto por fue modificado
+        if (nomenclaturaEditar.asuntoVisible != nomenclaturaOrigen.asuntoVisible) {
+            return true;
+        }
+
+        // se verifica si el campo fecha SAC por fue modificado
+        if (nomenclaturaEditar.fechaSacVisible != nomenclaturaOrigen.fechaSacVisible) {
+            return true;
+        }
+
+        // se verifica si el campo Nro SAC por fue modificado
+        if (nomenclaturaEditar.nroSacVisible != nomenclaturaOrigen.nroSacVisible) {
+            return true;
+        }
+        return false;
     }
 }

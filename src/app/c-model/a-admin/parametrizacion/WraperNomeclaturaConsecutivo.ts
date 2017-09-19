@@ -12,6 +12,9 @@ export class WraperNomeclaturaConsecutivo {
     /** contiene los datos de la nomenclatura **/
     public nomenclaturaVO: NomenclaturasConsecutivosVO;
 
+    /** contiene los datos de la nomenclatura origen se utiliza para la edicion **/
+    public nomenclaturaOrigen: NomenclaturasConsecutivosVO;    
+
     /** 1 si la Fecha de elaboracion es editable de lo contrario 0 **/
     public fechaElaboracionEditableB: boolean;
 
