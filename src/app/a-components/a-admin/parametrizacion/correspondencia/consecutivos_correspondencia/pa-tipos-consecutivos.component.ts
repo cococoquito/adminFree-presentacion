@@ -36,7 +36,7 @@ export class PaTiposConsecutivosComponent extends ComponentCommon implements OnI
     /**Nomenclatura seleccionada para ver los campos a diligenciar*/
     private nomenclaturaVerCampos: WraperNomeclaturaConsecutivo;
 
-    /** bandera que indica cuando se debe visualizar el modal de ver campos*/
+    /** bandera para la visualizacion del modal de ver campos*/
     private modalVerCamposVisible: boolean = false;
 
     /**
