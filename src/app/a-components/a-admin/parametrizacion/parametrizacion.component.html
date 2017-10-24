@@ -27,13 +27,6 @@
   <pa-tipos-consecutivos [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-tipos-consecutivos>
 </div>
 
-<!-- Item para Series documentales -->
-<div *ngIf="itemSeleccionado?.idItem == CORRESPONDENCIA_ITEM2">
-  <p>
-    Series documentales
-  </p>
-</div>
-
 <!-- Item para Funcionarios -->
 <div *ngIf="itemSeleccionado?.idItem == CORRESPONDENCIA_ITEM3">
   <pa-common-items [item]="itemSeleccionado" [modulo]="moduloSeleccionado"></pa-common-items>

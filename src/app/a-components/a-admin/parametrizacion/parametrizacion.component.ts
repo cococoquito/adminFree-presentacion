@@ -14,7 +14,6 @@ export class ParametrizacionComponent implements OnInit {
 
     /** Constantes para los identificadores de los items de correspondencia */
     private CORRESPONDENCIA_ITEM1: number = 1;
-    private CORRESPONDENCIA_ITEM2: number = 2;
     private CORRESPONDENCIA_ITEM3: number = 3;
     private CORRESPONDENCIA_ITEM4: number = 4;
     private CORRESPONDENCIA_ITEM5: number = 5;
@@ -102,17 +101,11 @@ export class ParametrizacionComponent implements OnInit {
         let items = Array<ModuloItemDTO>();
         modulo.itemsMenu = items;
 
-        // primer item para tipos de consecutivos correspondencia
+        // primer item para las nomenclatura de correspondencia
         let item1 = new ModuloItemDTO();
-        item1.nombreItem = "Tipos de Consecutivo de Correspondencia";
+        item1.nombreItem = "Nomenclaturas de Correspondencia";
         item1.idItem = this.CORRESPONDENCIA_ITEM1;
         items.push(item1);
-
-        // segundo item para Series Documentales
-        let item2 = new ModuloItemDTO();
-        item2.nombreItem = "Series Documentales";
-        item2.idItem = this.CORRESPONDENCIA_ITEM2;
-        items.push(item2);
 
         // tercer item para Funcionarios
         let item3 = new ModuloItemDTO();

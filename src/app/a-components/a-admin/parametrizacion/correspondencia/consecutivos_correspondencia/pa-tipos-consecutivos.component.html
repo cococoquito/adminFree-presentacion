@@ -7,7 +7,7 @@
 <!-- tabla con la lista de tipos de consecutivos parametrizados -->
 <div *ngIf="!nomenclaturaCrearEditar">
     <div class="cpm_right">
-        <button type="button" class="btn btn-primary" (click)="abrirPanelCreacion()" title="Clic aquí para crear un tipo de consecutivo de correspondencia">Crear Consecutivo</button>
+        <button type="button" class="btn btn-primary" (click)="abrirPanelCreacion()" title="Clic aquí para crear una nomenclatura de correspondencia">Crear Nomenclatura</button>
     </div>
 
     <p-dataTable [value]="nomenclaturas" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No se encontraron registros en el sistema." selectionMode="single">
@@ -15,24 +15,24 @@
         <p-column header="Nomenclatura" field="nomenclatura" [filter]="true" filterPlaceholder="Filtro de búsqueda" [style]="{'width':'15%', 'text-align':'center'}">
         </p-column>
 
-        <p-column header="Nombre del Consecutivo" field="nombre" [filter]="true" filterPlaceholder="Filtro de búsqueda" [style]="{'text-align':'center'}">
+        <p-column header="Descripción" field="nombre" [filter]="true" filterPlaceholder="Filtro de búsqueda" [style]="{'text-align':'center'}">
         </p-column>
 
         <p-column [style]="{'width':'8%','text-align':'center'}" header="Ver Campos">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-share cursor-manito" (click)="abrirModalVerCampos(item)" title="Clic aquí para ver los campos a diligenciar para este consecutivo"></span>
+                <span class="glyphicon glyphicon-share cursor-manito" (click)="abrirModalVerCampos(item)" title="Clic aquí para ver los campos a diligenciar para esta nomenclatura"></span>
             </ng-template>
         </p-column>
 
         <p-column [style]="{'width':'5%','text-align':'center'}" header="Editar">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-edit cursor-manito" (click)="abrirPanelEdicion(item)" title="Clic aquí para editar este tipo de consecutivo de correspondencia"></span>
+                <span class="glyphicon glyphicon-edit cursor-manito" (click)="abrirPanelEdicion(item)" title="Clic aquí para editar esta nomenclatura de correspondencia"></span>
             </ng-template>
         </p-column>
 
         <p-column [style]="{'width':'6%','text-align':'center'}" header="Eliminar">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-trash cursor-manito" (click)="eliminarTipoConsecutivo(item)" title="Clic aquí para eliminar este tipo de consecutivo del sistema"></span>
+                <span class="glyphicon glyphicon-trash cursor-manito" (click)="eliminarTipoConsecutivo(item)" title="Clic aquí para eliminar esta nomenclatura del sistema"></span>
             </ng-template>
         </p-column>
     </p-dataTable>
@@ -53,7 +53,7 @@
                  maxlength="10" placeholder="Este campo es requerido" focus="true" myNoSpaces/>
             </div>
             <div class="form-group col-md-6 sin_margin_bottom" style="width: 30%">
-                <label for="nombre">Nombre del Consecutivo*:</label>
+                <label for="nombre">Descripción*:</label>
                 <input type="text" [(ngModel)]="nomenclaturaCrearEditar.nomenclaturaVO.nombre" name="nombre" #nombre="ngModel" 
                  [ngClass]="(submitted && !nombre.valid) ? 'form-control input-invalido':'form-control input-valido'"
                  maxlength="50" placeholder="Este campo es requerido" myNoSpaces/>
@@ -61,11 +61,11 @@
 
             <div class="form-group col-md-6 sin_margin_bottom" style="width: 40%;margin-top:25px;text-align: right">
                 <button  type="submit" class="btn btn-primary" 
-                 title="{{nomenclaturaCrearEditar?.nomenclaturaVO?.idNomenclatura ? 'Clic aquí para guardar los cambios en el sistema' : 'Clic aquí para crear el tipo de consecutivo de correspondencia'}}">
-                        {{nomenclaturaCrearEditar?.nomenclaturaVO?.idNomenclatura ? 'Editar Consecutivo' : 'Crear Consecutivo'}}
+                 title="{{nomenclaturaCrearEditar?.nomenclaturaVO?.idNomenclatura ? 'Clic aquí para guardar los cambios en el sistema' : 'Clic aquí para crear la nomenclatura de correspondencia'}}">
+                        {{nomenclaturaCrearEditar?.nomenclaturaVO?.idNomenclatura ? 'Editar Nomenclatura' : 'Crear Nomenclatura'}}
                 </button>
                 &nbsp;
-                <button type="button" class="btn btn-default" (click)="cerrarPanelCreacionEdicion()" title="Clic aquí para regresar a la lista de tipos de consecutivos de correspondencia" style="width: 145px">Cancelar</button>
+                <button type="button" class="btn btn-default" (click)="cerrarPanelCreacionEdicion()" title="Clic aquí para regresar a la lista de nomenclaturas de correspondencia" style="width: 145px">Cancelar</button>
             </div>
         </div>
     </form>
@@ -73,7 +73,7 @@
     <!-- tabla con los campos a diligenciar-->
     <div class="panel panel-info">
         <div class="panel-heading" style="text-align: center;padding: 5px 15px;"> 
-          Verifique los campos que <strong>requieren ser diligenciados por parte del funcionario</strong> al momento de solicitar este consecutivo de correspondencia
+          Verifique los campos que <strong>requieren ser diligenciados por parte del funcionario</strong> al momento de solicitar consecutivos para esta nomenclatura
         </div>
 
         <div class="panel-body">

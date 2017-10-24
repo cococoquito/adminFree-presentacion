@@ -11,7 +11,7 @@ import { ModuloDTO } from './../../../../../c-model/a-admin/seguridad/ModuloDTO'
 import { Component, OnInit, Input } from '@angular/core';
 
 /**
- * Componente para las parametrizaciones de los tipos de consecutivos de correspondencia
+ * Componente para las parametrizaciones de las nomenclatura de correspondencia
  */
 @Component({
     selector: 'pa-tipos-consecutivos',
@@ -238,7 +238,7 @@ export class PaTiposConsecutivosComponent extends ComponentCommon implements OnI
 
         // se procede abrir la ventana de confirmacion
         this.confirmationService.confirm({
-            message: '¿Está seguro de que desea eliminar el siguiente tipo de consecutivo? <br/><strong>' + tipo.nomenclatura + '</strong>',
+            message: '¿Está seguro de que desea eliminar la siguiente nomenclatura? <br/><strong>' + tipo.nomenclatura + '</strong>',
             header: 'Confirmación',
             icon: 'fa fa-trash',
             accept: () => {
