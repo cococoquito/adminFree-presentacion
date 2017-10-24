@@ -103,7 +103,7 @@ export class ParametrizacionComponent implements OnInit {
 
         // primer item para las nomenclatura de correspondencia
         let item1 = new ModuloItemDTO();
-        item1.nombreItem = "Nomenclaturas de Correspondencia";
+        item1.nombreItem = "Nomenclaturas";
         item1.idItem = this.CORRESPONDENCIA_ITEM1;
         items.push(item1);
 

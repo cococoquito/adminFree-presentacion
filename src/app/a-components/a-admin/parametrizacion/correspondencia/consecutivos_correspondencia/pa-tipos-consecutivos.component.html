@@ -7,7 +7,7 @@
 <!-- tabla con la lista de tipos de consecutivos parametrizados -->
 <div *ngIf="!nomenclaturaCrearEditar">
     <div class="cpm_right">
-        <button type="button" class="btn btn-primary" (click)="abrirPanelCreacion()" title="Clic aquí para crear una nomenclatura de correspondencia">Crear Nomenclatura</button>
+        <button type="button" class="btn btn-primary" (click)="abrirPanelCreacion()" title="Clic aquí para crear una nomenclatura">Crear Nomenclatura</button>
     </div>
 
     <p-dataTable [value]="nomenclaturas" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No se encontraron registros en el sistema." selectionMode="single">
@@ -26,7 +26,7 @@
 
         <p-column [style]="{'width':'5%','text-align':'center'}" header="Editar">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-edit cursor-manito" (click)="abrirPanelEdicion(item)" title="Clic aquí para editar esta nomenclatura de correspondencia"></span>
+                <span class="glyphicon glyphicon-edit cursor-manito" (click)="abrirPanelEdicion(item)" title="Clic aquí para editar esta nomenclatura"></span>
             </ng-template>
         </p-column>
 
@@ -61,11 +61,11 @@
 
             <div class="form-group col-md-6 sin_margin_bottom" style="width: 40%;margin-top:25px;text-align: right">
                 <button  type="submit" class="btn btn-primary" 
-                 title="{{nomenclaturaCrearEditar?.nomenclaturaVO?.idNomenclatura ? 'Clic aquí para guardar los cambios en el sistema' : 'Clic aquí para crear la nomenclatura de correspondencia'}}">
+                 title="{{nomenclaturaCrearEditar?.nomenclaturaVO?.idNomenclatura ? 'Clic aquí para guardar los cambios en el sistema' : 'Clic aquí para crear la nomenclatura'}}">
                         {{nomenclaturaCrearEditar?.nomenclaturaVO?.idNomenclatura ? 'Editar Nomenclatura' : 'Crear Nomenclatura'}}
                 </button>
                 &nbsp;
-                <button type="button" class="btn btn-default" (click)="cerrarPanelCreacionEdicion()" title="Clic aquí para regresar a la lista de nomenclaturas de correspondencia" style="width: 145px">Cancelar</button>
+                <button type="button" class="btn btn-default" (click)="cerrarPanelCreacionEdicion()" title="Clic aquí para regresar a la lista de nomenclaturas" style="width: 145px">Cancelar</button>
             </div>
         </div>
     </form>
@@ -73,7 +73,7 @@
     <!-- tabla con los campos a diligenciar-->
     <div class="panel panel-info">
         <div class="panel-heading" style="text-align: center;padding: 5px 15px;"> 
-          Verifique los campos que <strong>requieren ser diligenciados por parte del funcionario</strong> al momento de solicitar consecutivos para esta nomenclatura
+          Verifique los campos que <strong>requieren ser diligenciados por parte del funcionario</strong> al momento de solicitar un consecutivo para esta nomenclatura
         </div>
 
         <div class="panel-body">
