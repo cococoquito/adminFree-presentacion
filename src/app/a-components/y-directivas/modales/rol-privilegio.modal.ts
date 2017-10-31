@@ -1,3 +1,4 @@
+import { ModuloDTO } from './../../../c-model/a-admin/seguridad/ModuloDTO';
 import { RoleDTO } from './../../../c-model/a-admin/seguridad/RoleDTO';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UtilitarioService } from './../../../b-service/z-common/utilitario.service';
@@ -21,6 +22,9 @@ export class RolPrivilegioModal implements OnInit, OnDestroy {
 
     /** bandera que indica cuando se debe visualizar el modal*/
     private modalVisible: boolean = false;
+
+    /**Es el modulo seleccionado del tab de modulos para asignar privilegios*/
+    private moduloSeleccionado: ModuloDTO;
 
     /**
      * Constructor del modal para la visualizacion de privilegios asociados a un ROLE
@@ -78,6 +82,9 @@ export class RolPrivilegioModal implements OnInit, OnDestroy {
                 // se inicializa las variables
                 this.role = data.json();
 
+                // por default se presenta el primer modulo a visualizar en el tab
+                this.moduloSeleccionado = this.role.modulos[0];
+
                 // se cierra el modal de carga
                 this.utilService.displayLoading(false);
             },
@@ -94,5 +101,13 @@ export class RolPrivilegioModal implements OnInit, OnDestroy {
     private cerrarModal(): void {
         this.role = null;
         this.modalVisible = false;
+    }
+
+    /**
+     * Metodo que soporta el evento click para los tab de los modulos a seleccionar privilegio
+     * @param modulo , es el modulo seleccionado
+     */
+    private clickModulo(modulo: ModuloDTO): void {
+        this.moduloSeleccionado = modulo;
     }
 }

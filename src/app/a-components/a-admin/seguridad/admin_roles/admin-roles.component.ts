@@ -28,6 +28,9 @@ export class AdminRolesComponent extends ComponentCommon implements OnInit {
     /**Esta variable se utiliza para visualizar el panel de creacion o edicion del ROL*/
     private rolCrearEditar: RoleDTO;
 
+    /**Es el modulo seleccionado del tab de modulos para asignar privilegios*/
+    private moduloSeleccionado: ModuloDTO;
+
     /**
     * Constructor del componente para la administracion de los USUARIOS
     * @param utilService, service con las funciones utilitarias
@@ -47,7 +50,6 @@ export class AdminRolesComponent extends ComponentCommon implements OnInit {
      * PostConstructor que permite inicializar las variables del component
      */
     ngOnInit(): void {
-
         // se lista los ROLES del sistema
         this.getRoles();
     }
@@ -286,6 +288,9 @@ export class AdminRolesComponent extends ComponentCommon implements OnInit {
         // se asigna los modulos al ROL
         this.rolCrearEditar.modulos = this.modulos;
 
+        // por default se presenta el primer modulo para asignar privilegios
+        this.moduloSeleccionado = this.rolCrearEditar.modulos[0];
+
         // se indica que el usuario no ha dado commit
         this.submitted = false;
     }
@@ -344,6 +349,14 @@ export class AdminRolesComponent extends ComponentCommon implements OnInit {
             this.alertService.showAlert(ERROR_MSJ_PRIVILEGIOS_SELECCIONADO, STYLE_ERROR_CENTER, false);
         }
     }
+
+    /**
+     * Metodo que soporta el evento click para los tab de los modulos a seleccionar privilegio
+     * @param modulo , es el modulo seleccionado
+     */
+    private clickModulo(modulo: ModuloDTO): void {
+        this.moduloSeleccionado = modulo;
+    }    
 
     /**
      * Metodo que retorna true si almenos un item fue selecionado por el usuario

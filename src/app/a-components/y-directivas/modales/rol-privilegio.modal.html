@@ -2,50 +2,65 @@
 <div *ngIf="role">
 
     <!-- modal con los privilegios del ROL-->
-    <p-dialog id="modal_role" [(visible)]="modalVisible" [responsive]="true" dismissableMask="true" modal="modal"
-     [styleClass]="role?.modulos?.length > 1 ? 'modal_role_max' : 'modal_role_min'" (onHide)="cerrarModal()">
+    <p-dialog id="modal_role" (onHide)="cerrarModal()" [(visible)]="modalVisible" [responsive]="true" dismissableMask="true" modal="modal" styleClass="modal_role_max">
         <p-header>
-            Privilegios asignados al ROL: {{role?.nombreRole}}
+            Nombre del ROL: {{role?.nombreRole}}
         </p-header>
 
-        <!-- datagrid con los modulos asociado al ROL-->
-        <p-dataGrid [value]="role?.modulos">
+        <div class="panel panel-info sin_margin_bottom">
+            <div class="panel-heading text_center center-all sin_padding title">
+                Privilegios asignados para este ROL
+            </div>
+            <div class="panel-body sin_padding_bottom">
+                <!-- modulos-->
+                <ul class="nav nav-tabs">
+                    <li *ngFor="let modulo of role?.modulos" role="presentation" class="width_20">
+                        <a (click)="clickModulo(modulo)" [ngClass]="(moduloSeleccionado && modulo.idModulo == moduloSeleccionado.idModulo) ? 'tab_item_seleccionado' : 'tab_no_seleccionado'">
+                            <i [ngClass]="(modulo.idModulo == 1)?'fa fa-fw fa-envelope':(modulo.idModulo == 2)?'fa fa-fw fa-file':(modulo.idModulo == 3)?'fa fa-fw fa-folder-open':(modulo.idModulo == 4)?'fa fa-fw fa-graduation-cap':(modulo.idModulo == 5)?'fa fa-fw fa-wrench':''">
+                            </i> {{modulo.nombreModulo}}
+                        </a>
+                    </li>
+                </ul>
 
-            <!-- se recorre los modulos-->
-            <ng-template let-modulo pTemplate="modulo">
+                <!-- tabla con los privilegios de cada submodulo de este modulo-->
+                <div *ngIf="moduloSeleccionado">
+                    <table class="table sin_margin_bottom">
+                        <thead>
+                            <tr>
+                                <th>Submódulos</th>
+                                <th>Privilegio Otorgado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- se recorre los submodulos de este modulo-->
+                            <tr *ngFor="let item of moduloSeleccionado.itemsMenu">
+                                <td class="width_35">{{item.nombreItem}}</td>
+                                <td class="width_65">
+                                    <span class="glyphicon glyphicon-ok"></span>
 
-                <!-- por cada modulo se muestra un panel-->
-                <div  [ngClass]="role?.modulos?.length > 1 ? 'panel panel-info admin_modulos' : 'panel panel-info admin_modulos_max'">
-
-                    <!-- encabezado del panel-->
-                    <div class="panel-heading text_center center-all sin_padding">
-                        <i [ngClass]="(modulo.idModulo == 1)?'fa fa-fw fa-envelope':(modulo.idModulo == 2)?'fa fa-fw fa-folder-open':(modulo.idModulo == 3)?'fa fa-fw fa-graduation-cap':(modulo.idModulo == 4)?'fa fa-fw fa-wrench':''"></i>{{modulo.nombreModulo}}
-                    </div>
-
-                    <!-- cuerpo del panel-->
-                    <div class="panel-body sin_padding">
-                        <ul class="list-group sin_margin_bottom">
-
-                            <!-- se recorre los items de este modulo-->
-                            <li *ngFor="let item of modulo.itemsMenu" class="list-group-item items_border">
-
-                                <!-- nombre del item-->
-                                {{item.nombreItem}}
-
-                                <!-- se recorre los privilegios especificos de este item-->
-                                <ul class="list-group sin_margin_bottom" *ngIf="item.privilegiosEspecificosDTO">
-                                    <li *ngFor="let especifico of item.privilegiosEspecificosDTO" class="list-group-item items_border" style="border: 0px">
-                                        {{especifico.tipoPrivilegio == 1 ? 'Este Rol es para funcionarios quién atiende al solicitante' : especifico.tipoPrivilegio == 2 ? 'Este Rol es para funcionarios quién elabora el certificado' : especifico.tipoPrivilegio == 3 ? 'Permitir ANULAR, ACTIVAR abogados' : especifico.tipoPrivilegio == 4 ? 'Permitir ELIMINAR procesos' : especifico.tipoPrivilegio == 5 ? 'Permitir EDITAR procesos' : especifico.tipoPrivilegio == 6 ? 'Permitir TRANSFERIR procesos' : ''}}
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+                                    <!-- se recorre los privilegios especifico de este submodulo-->
+                                    <ul *ngIf="item.privilegiosEspecificosDTO" class="list-group sin_margin_bottom">
+                                        <li *ngFor="let especifico of item.privilegiosEspecificosDTO" class="list-group-item items_border sin_border">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <span class="glyphicon glyphicon-ok"></span>
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            {{especifico.tipoPrivilegio == 1 ? '&nbsp;¿Este Rol es para funcionarios quién atiende al solicitante?' : especifico.tipoPrivilegio == 2 ? '&nbsp;¿Este Rol es para funcionarios quién elabora el certificado?': especifico.tipoPrivilegio == 3 ? '&nbsp;¿Permitir ANULAR, ACTIVAR abogados?' : especifico.tipoPrivilegio == 4 ? '&nbsp;¿Permitir ELIMINAR procesos?' : especifico.tipoPrivilegio == 5 ? '&nbsp;¿Permitir EDITAR procesos?' : especifico.tipoPrivilegio == 6 ? '&nbsp;¿Permitir TRANSFERIR procesos?' : ''}}
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </ng-template>
-        </p-dataGrid>
-        <div class="text_center" style="padding: 4px">
-            <button class="button" class="btn btn-primary" (click)="cerrarModal()">Cerrar ventana</button>
+            </div>
         </div>
     </p-dialog>
 </div>

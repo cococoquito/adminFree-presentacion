@@ -59,7 +59,7 @@
                  maxlength="50" placeholder="Este campo es requerido" myNoSpaces/>
             </div>
 
-            <div class="form-group col-md-6 sin_margin_bottom" style="width: 40%;margin-top:25px;text-align: right">
+            <div class="form-group col-md-6 sin_margin_bottom text-right" style="width: 40%;margin-top:25px">
                 <button  type="submit" class="btn btn-primary" 
                  title="{{nomenclaturaCrearEditar?.nomenclaturaVO?.idNomenclatura ? 'Clic aquí para guardar los cambios en el sistema' : 'Clic aquí para crear la nomenclatura'}}">
                         {{nomenclaturaCrearEditar?.nomenclaturaVO?.idNomenclatura ? 'Editar Nomenclatura' : 'Crear Nomenclatura'}}
@@ -72,12 +72,12 @@
 
     <!-- tabla con los campos a diligenciar-->
     <div class="panel panel-info">
-        <div class="panel-heading" style="text-align: center;padding: 5px 15px;"> 
+        <div class="panel-heading title text-center" style="padding: 5px 15px;"> 
           Verifique los campos que <strong>requieren ser diligenciados por parte del funcionario</strong> al momento de solicitar un consecutivo para esta nomenclatura
         </div>
 
-        <div class="panel-body">
-            <table class="table table-hover" style="margin-bottom: 0px;">
+        <div class="panel-body sin_padding_bottom">
+            <table class="table table-hover sin_margin_bottom">
                 <thead>
                     <tr>
                         <th>Nombre del Campo</th>
@@ -91,10 +91,17 @@
                     <tr>
                         <td>Fecha de Elaboración</td>
                         <td>Fecha de elaboración del documento de respuesta, El sistema asigna la fecha actual por defecto</td>
-                        <td style="text-align: center"> 
-                            <p-checkbox name="nmCampos" binary="true" [(ngModel)]="nomenclaturaCrearEditar.fechaElaboracionEditableB"></p-checkbox>
+                        <td class="text-center"> 
+                            <div [ngClass]="nomenclaturaCrearEditar.fechaElaboracionEditableB?'toggle btn btn-primary':'toggle btn btn-default off'" 
+                                 (click)="clickInputSwitch(nomenclaturaCrearEditar)">
+                                <div class="toggle-group">
+                                    <label class="btn btn-primary toggle-on">Si</label>
+                                    <label class="btn btn-default active toggle-off">No</label>
+                                    <span class="toggle-handle btn btn-default"></span>
+                                </div>
+                            </div>
                         </td>
-                        <td style="text-align: center">
+                        <td class="text-center">
                             <span class="glyphicon glyphicon-ok"></span>
                         </td>
                     </tr>
@@ -103,8 +110,15 @@
                         <td>Elaborado Por</td>
                         <td>Nombre del funcionario quien elabora el documento de respuesta</td>
                         <td></td>
-                        <td style="text-align: center">
-                            <p-checkbox name="nmCampos" binary="true" [(ngModel)]="nomenclaturaCrearEditar.elaboradoPorVisibleB"></p-checkbox>
+                        <td class="text-center">
+                            <div [ngClass]="nomenclaturaCrearEditar.elaboradoPorVisibleB?'toggle btn btn-primary':'toggle btn btn-default off'" 
+                                 (click)="clickInputSwitch(nomenclaturaCrearEditar)">
+                                <div class="toggle-group">
+                                    <label class="btn btn-primary toggle-on">Si</label>
+                                    <label class="btn btn-default active toggle-off">No</label>
+                                    <span class="toggle-handle btn btn-default"></span>
+                                </div>
+                            </div>
                         </td>
                     </tr>
 
@@ -112,8 +126,15 @@
                         <td>Dirigido A</td>
                         <td>Nombre de la entidad o ciudadano a quien se va dirigir el documento de respuesta</td>
                         <td></td>
-                        <td style="text-align: center">
-                            <p-checkbox name="nmCampos" binary="true" [(ngModel)]="nomenclaturaCrearEditar.dirigidoAVisibleB"></p-checkbox>
+                        <td class="text-center">
+                            <div [ngClass]="nomenclaturaCrearEditar.dirigidoAVisibleB?'toggle btn btn-primary':'toggle btn btn-default off'" 
+                                 (click)="clickInputSwitch(nomenclaturaCrearEditar)">
+                                <div class="toggle-group">
+                                    <label class="btn btn-primary toggle-on">Si</label>
+                                    <label class="btn btn-default active toggle-off">No</label>
+                                    <span class="toggle-handle btn btn-default"></span>
+                                </div>
+                            </div>
                         </td>
                     </tr>
 
@@ -121,8 +142,15 @@
                         <td>Asunto</td>
                         <td>Breve resumen donde se especifica lo que solicita la entidad o el ciudadano</td>
                         <td></td>
-                        <td style="text-align: center">
-                            <p-checkbox name="nmCampos" binary="true" [(ngModel)]="nomenclaturaCrearEditar.asuntoVisibleB"></p-checkbox>
+                        <td class="text-center">
+                            <div [ngClass]="nomenclaturaCrearEditar.asuntoVisibleB?'toggle btn btn-primary':'toggle btn btn-default off'" 
+                                 (click)="clickInputSwitch(nomenclaturaCrearEditar)">
+                                <div class="toggle-group">
+                                    <label class="btn btn-primary toggle-on">Si</label>
+                                    <label class="btn btn-default active toggle-off">No</label>
+                                    <span class="toggle-handle btn btn-default"></span>
+                                </div>
+                            </div>
                         </td>
                     </tr>
 
@@ -130,8 +158,15 @@
                         <td>Fecha del SAC</td>
                         <td>Fecha en la que el SAC recibió o radicó la solicitud de la entidad o ciudadano</td>
                         <td></td>
-                        <td style="text-align: center">
-                            <p-checkbox name="nmCampos" binary="true" [(ngModel)]="nomenclaturaCrearEditar.fechaSacVisibleB"></p-checkbox>
+                        <td class="text-center">
+                            <div [ngClass]="nomenclaturaCrearEditar.fechaSacVisibleB?'toggle btn btn-primary':'toggle btn btn-default off'" 
+                                 (click)="clickInputSwitch(nomenclaturaCrearEditar)">
+                                <div class="toggle-group">
+                                    <label class="btn btn-primary toggle-on">Si</label>
+                                    <label class="btn btn-default active toggle-off">No</label>
+                                    <span class="toggle-handle btn btn-default"></span>
+                                </div>
+                            </div>
                         </td>
                     </tr>
 
@@ -139,8 +174,15 @@
                         <td>Número del SAC</td>
                         <td>Número que asigna el SAC para identificar la solicitud de la entidad o ciudadano</td>
                         <td></td>
-                        <td style="text-align: center">
-                            <p-checkbox name="nmCampos" binary="true" [(ngModel)]="nomenclaturaCrearEditar.nroSacVisibleB"></p-checkbox>
+                        <td class="text-center">
+                            <div [ngClass]="nomenclaturaCrearEditar.nroSacVisibleB?'toggle btn btn-primary':'toggle btn btn-default off'" 
+                                 (click)="clickInputSwitch(nomenclaturaCrearEditar)">
+                                <div class="toggle-group">
+                                    <label class="btn btn-primary toggle-on">Si</label>
+                                    <label class="btn btn-default active toggle-off">No</label>
+                                    <span class="toggle-handle btn btn-default"></span>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -157,8 +199,8 @@
         </p-header>
 
         <div class="panel panel-info">
-            <div class="panel-body">
-                <table class="table table-hover" style="margin-bottom: 0px;">
+            <div class="panel-body sin_padding_bottom">
+                <table class="table table-hover sin_margin_bottom">
                     <thead>
                         <tr>
                             <th>Nombre del Campo</th>
@@ -171,7 +213,7 @@
                         <tr>
                             <td>Fecha de Elaboración</td>
                             <td>Fecha de elaboración del documento de respuesta, El sistema asigna la fecha actual por defecto</td>
-                            <td style="text-align: center">
+                            <td class="text-center">
                                 <span class="glyphicon glyphicon-ok" *ngIf="nomenclaturaVerCampos.fechaElaboracionEditableB"></span>
                             </td>
                             <td style="text-align: center">
@@ -183,7 +225,7 @@
                             <td>Elaborado Por</td>
                             <td>Nombre del funcionario quien elabora el documento de respuesta</td>
                             <td></td>
-                            <td style="text-align: center">
+                            <td class="text-center">
                                 <span class="glyphicon glyphicon-ok" *ngIf="nomenclaturaVerCampos.elaboradoPorVisibleB"></span>
                             </td>
                         </tr>
@@ -192,7 +234,7 @@
                             <td>Dirigido A</td>
                             <td>Nombre de la entidad o ciudadano a quien se va dirigir el documento de respuesta</td>
                             <td></td>
-                            <td style="text-align: center">
+                            <td class="text-center">
                                 <span class="glyphicon glyphicon-ok" *ngIf="nomenclaturaVerCampos.dirigidoAVisibleB"></span>
                             </td>
                         </tr>
@@ -201,7 +243,7 @@
                             <td>Asunto</td>
                             <td>Breve resumen donde se especifica lo que solicita la entidad o el ciudadano</td>
                             <td></td>
-                            <td style="text-align: center">
+                            <td class="text-center">
                                 <span class="glyphicon glyphicon-ok" *ngIf="nomenclaturaVerCampos.asuntoVisibleB"></span>
                             </td>
                         </tr>
@@ -210,7 +252,7 @@
                             <td>Fecha del SAC</td>
                             <td>Fecha en la que el SAC recibió o radicó la solicitud de la entidad o ciudadano</td>
                             <td></td>
-                            <td style="text-align: center">
+                            <td class="text-center">
                                 <span class="glyphicon glyphicon-ok" *ngIf="nomenclaturaVerCampos.fechaSacVisibleB"></span>
                             </td>
                         </tr>
@@ -219,7 +261,7 @@
                             <td>Número del SAC</td>
                             <td>Número que asigna el SAC para identificar la solicitud de la entidad o ciudadano</td>
                             <td></td>
-                            <td style="text-align: center">
+                            <td class="text-center">
                                 <span class="glyphicon glyphicon-ok" *ngIf="nomenclaturaVerCampos.nroSacVisibleB"></span>
                             </td>
                         </tr>

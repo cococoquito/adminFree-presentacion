@@ -81,7 +81,13 @@
                     <!-- El usuario es un abogado-->
                     <div class="form-group col-md-6">
                         <br/>
-                        <p-checkbox name="abogado" [(ngModel)]="esUsuarioAbogado" binary="true"></p-checkbox>
+                        <div (click)="clickInputSwitch(esUsuarioAbogado)" [ngClass]="esUsuarioAbogado?'toggle btn btn-primary':'toggle btn btn-default off'">
+                            <div class="toggle-group">
+                                <label class="btn btn-primary toggle-on">Si</label>
+                                <label class="btn btn-default active toggle-off">No</label>
+                                <span class="toggle-handle btn btn-default"></span>
+                            </div>
+                        </div>
                         <label for="abogado">¿El usuario es un abogado? </label>
                     </div>
                 </div>

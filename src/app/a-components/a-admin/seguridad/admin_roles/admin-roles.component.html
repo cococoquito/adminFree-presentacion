@@ -1,6 +1,6 @@
 <!-- titulo de la pagina -->
 <div class="text_center sub-title-page_conf">
-    {{rolCrearEditar ? rolCrearEditar.idRole ? 'Administración de Roles / Editar ROL' : 'Administración de Roles / Crear ROL' : 'Administración de Roles'}}  
+    {{rolCrearEditar ? rolCrearEditar.idRole ? 'Administración de Roles / Editar ROL' : 'Administración de Roles / Crear ROL' : 'Administración de Roles'}}
 </div>
 <alert></alert>
 
@@ -10,93 +10,114 @@
         <button type="button" class="btn btn-primary" (click)="abrirPanelCrearROL()" title="Clic aquí para abrir el panel de creación del ROL">Crear ROL</button>
     </div>
     <p-dataTable [value]="roles" [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No se encontraron roles en el sistema." selectionMode="single">
-        <p-column header="Lista de Roles parametrizados en el sistema" field="nombre" [style]="{'text-align':'center'}" 
-           [filter]="true" filterPlaceholder="Filtro de búsqueda por nombre del ROL">
+        <p-column header="Lista de Roles parametrizados en el sistema" field="nombre" [style]="{'text-align':'center'}" [filter]="true"
+            filterPlaceholder="Filtro de búsqueda por nombre del ROL">
         </p-column>
         <p-column [style]="{'width':'8%','text-align':'center'}" header="Privilegios">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-share cursor-manito" (click)="verDetalleRol(item)" 
-                 title="Clic aquí para ver los privilegios de este ROL"></span>
+                <span class="glyphicon glyphicon-share cursor-manito" (click)="verDetalleRol(item)" title="Clic aquí para ver los privilegios de este ROL"></span>
             </ng-template>
         </p-column>
 
         <p-column [style]="{'width':'5%','text-align':'center'}" header="Editar">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-edit cursor-manito" (click)="abrirPanelEdicionROL(item)"
-                 title="Clic aquí para editar los valores de este ROL"></span>
+                <span class="glyphicon glyphicon-edit cursor-manito" (click)="abrirPanelEdicionROL(item)" title="Clic aquí para editar los valores de este ROL"></span>
             </ng-template>
         </p-column>
 
         <p-column [style]="{'width':'6%','text-align':'center'}" header="Eliminar">
             <ng-template let-item="rowData" pTemplate="body">
-                <span class="glyphicon glyphicon-trash cursor-manito" (click)="eliminarRol(item)"
-                title="Clic aquí para eliminar este ROL del sistema"></span>
+                <span class="glyphicon glyphicon-trash cursor-manito" (click)="eliminarRol(item)" title="Clic aquí para eliminar este ROL del sistema"></span>
             </ng-template>
         </p-column>
     </p-dataTable>
 </div>
 
 <!-- panel creacion, edicion ROL -->
-<br *ngIf="rolCrearEditar"/>
+<br *ngIf="rolCrearEditar" />
 <div *ngIf="rolCrearEditar">
 
     <!-- formulario del nombre del ROL-->
-    <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && crearEditarROLsistema()" (keydown.enter)="$event.preventDefault()" novalidate class="form-inline" style="padding:4px">
+    <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && crearEditarROLsistema()" (keydown.enter)="$event.preventDefault()"
+        novalidate class="form-inline" style="padding:4px">
         <div class="form-group">
             <label for="nombreRol">Nombre del Rol*:</label>
             <input type="text" [(ngModel)]="rolCrearEditar.nombreRole" name="nombreRol" #nombreRol="ngModel" 
              [ngClass]="(submitted && !nombreRol.valid) ? 'form-control input-invalido':'form-control input-valido'"
              maxlength="100" size="60" placeholder="Este campo es requerido" focus="true" myNoSpaces/>
         </div>
-        <button type="submit" class="btn btn-primary" title="Clic aquí para guardar los cambios en el sistema">{{rolCrearEditar.idRole ? 'Editar ROL' : 'Crear ROL' }}</button> &nbsp;
+        <button type="submit" class="btn btn-primary" title="Clic aquí para guardar los cambios en el sistema">{{rolCrearEditar.idRole ? 'Editar ROL' : 'Crear ROL' }}</button>&nbsp;
         <button type="button" class="btn btn-default" (click)="cerrarPanelRoles()" title="Clic aquí para regresar a la lista de ROLES">Cancelar</button>
     </form>
 
-    <!-- datagrid con los roles del sistema-->
-    <p-dataGrid [value]="rolCrearEditar.modulos">
-        <p-header>
-            Seleccione los ítems que tendrá privilegios este ROL
-        </p-header>
+    <!-- panel con los modulos del sistema para asignar privilegios-->
+    <div class="panel panel-info sin_margin_bottom">
 
-        <!-- se recorre los modulos-->
-        <ng-template let-modulo pTemplate="modulo">
+        <div class="panel-heading text_center center-all sin_padding title">
+            Seleccione los privilegios que tendrá este ROL por cada módulo del sistema
+        </div>
+        <div class="panel-body sin_padding_bottom">
 
-            <!-- por cada modulo se muestra un panel-->
-            <div class="panel panel-info admin_modulos">
+            <!-- modulos-->
+            <ul class="nav nav-tabs">
+                <li *ngFor="let modulo of rolCrearEditar.modulos" role="presentation" class="width_20">
+                    <a (click)="clickModulo(modulo)" [ngClass]="(moduloSeleccionado && modulo.idModulo == moduloSeleccionado.idModulo) ? 'tab_item_seleccionado' : 'tab_no_seleccionado'">
+                        <i [ngClass]="(modulo.idModulo == 1)?'fa fa-fw fa-envelope':(modulo.idModulo == 2)?'fa fa-fw fa-file':(modulo.idModulo == 3)?'fa fa-fw fa-folder-open':(modulo.idModulo == 4)?'fa fa-fw fa-graduation-cap':(modulo.idModulo == 5)?'fa fa-fw fa-wrench':''">
+                        </i> {{modulo.nombreModulo}}
+                    </a>
+                </li>
+            </ul>
 
-                <!-- encabezado del panel-->
-                <div class="panel-heading text_center center-all sin_padding">
-                    <i [ngClass]="(modulo.idModulo == 1)?'fa fa-fw fa-envelope':(modulo.idModulo == 2)?'fa fa-fw fa-file':(modulo.idModulo == 3)?'fa fa-fw fa-folder-open':(modulo.idModulo == 4)?'fa fa-fw fa-graduation-cap':(modulo.idModulo == 5)?'fa fa-fw fa-wrench':''"></i>{{modulo.nombreModulo}}
-                </div>
+            <!-- tabla con los privilegios de cada submodulo de este modulo-->
+            <div *ngIf="moduloSeleccionado">
+                <table class="table sin_margin_bottom">
+                    <thead>
+                        <tr>
+                            <th>Submódulos</th>
+                            <th>¿Conceder Privilegio?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- se recorre los submodulos de este modulo-->
+                        <tr *ngFor="let item of moduloSeleccionado.itemsMenu">
+                            <td class="width_35">{{item.nombreItem}}</td>
+                            <td class="width_65">
+                                <div (click)="clickInputSwitch(item);onchangeItem(item)" [ngClass]="item.seleccionado?'toggle btn btn-primary':'toggle btn btn-default off'">
+                                    <div class="toggle-group">
+                                        <label class="btn btn-primary toggle-on">Si</label>
+                                        <label class="btn btn-default active toggle-off">No</label>
+                                        <span class="toggle-handle btn btn-default"></span>
+                                    </div>
+                                </div>
 
-                <!-- cuerpo del panel-->
-                <div class="panel-body sin_padding">
-                    <ul class="list-group sin_margin_bottom">
-
-                        <!-- se recorre los items de este modulo-->
-                        <li *ngFor="let item of modulo.itemsMenu" class="list-group-item items_border">
-
-                            <!-- por cada items se muestra un check-->
-                            <p-checkbox name="nameItems" [(ngModel)]="item.seleccionado" binary="true" label="{{item.nombreItem}}" (onChange)="onchangeItem(item)"></p-checkbox>
-                            <ul class="list-group sin_margin_bottom" *ngIf="item.seleccionado && item.privilegiosEspecificosDTO">
-
-                                <!-- se recorre los privilegios especificos de este item-->
-                                <li *ngFor="let especifico of item.privilegiosEspecificosDTO" class="list-group-item items_border" style="border: 0px">
-
-                                    <!-- por cada privilegio especifico se muestra un check-->
-                                    <p-checkbox name="nameEspecifico" [(ngModel)]="especifico.seleccionado" binary="true" label="{{especifico.tipoPrivilegio == 1 ? '¿Este Rol es para funcionarios quién atiende al solicitante?' :
-                                                especifico.tipoPrivilegio == 2 ? '¿Este Rol es para funcionarios quién elabora el certificado?' : 
-                                                especifico.tipoPrivilegio == 3 ? 'Permitir ANULAR, ACTIVAR abogados' :
-                                                especifico.tipoPrivilegio == 4 ? 'Permitir ELIMINAR procesos' :
-                                                especifico.tipoPrivilegio == 5 ? 'Permitir EDITAR procesos' :
-                                                especifico.tipoPrivilegio == 6 ? 'Permitir TRANSFERIR procesos' : ''}}">
-                                    </p-checkbox>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                                <!-- se recorre los privilegios especifico de este submodulo-->
+                                <ul *ngIf="item.seleccionado && item.privilegiosEspecificosDTO" class="list-group sin_margin_bottom">
+                                    <li *ngFor="let especifico of item.privilegiosEspecificosDTO" class="list-group-item items_border sin_border">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <div (click)="clickInputSwitch(especifico)" [ngClass]="especifico.seleccionado?'toggle btn btn-primary':'toggle btn btn-default off'">
+                                                        <div class="toggle-group">
+                                                            <label class="btn btn-primary toggle-on">Si</label>
+                                                            <label class="btn btn-default active toggle-off">No</label>
+                                                            <span class="toggle-handle btn btn-default"></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        {{especifico.tipoPrivilegio == 1 ? '&nbsp;¿Este Rol es para funcionarios quién atiende al solicitante?' : especifico.tipoPrivilegio == 2 ? '&nbsp;¿Este Rol es para funcionarios quién elabora el certificado?': especifico.tipoPrivilegio == 3 ? '&nbsp;¿Permitir ANULAR, ACTIVAR abogados?' : especifico.tipoPrivilegio == 4 ? '&nbsp;¿Permitir ELIMINAR procesos?' : especifico.tipoPrivilegio == 5 ? '&nbsp;¿Permitir EDITAR procesos?' : especifico.tipoPrivilegio == 6 ? '&nbsp;¿Permitir TRANSFERIR procesos?' : ''}}
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </ng-template>
-    </p-dataGrid>
+        </div>
+    </div>
 </div>

@@ -51,4 +51,13 @@ export class ComponentCommon {
         // se cierra el modal de carga
         this.utilService.displayLoading(false);
     }
+
+    /**
+     * Metodo que permite soportar el evento click del componente
+     * input switch del sistema
+     * @param object , este objecto debe contener la bandera seleccionado
+     */
+    private clickInputSwitch(object: any): void {
+        object.seleccionado = (object.seleccionado) ? false : true;
+    }
 }
