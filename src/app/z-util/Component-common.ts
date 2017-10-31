@@ -22,7 +22,7 @@ export class ComponentCommon {
         protected utilService: UtilitarioService,
         protected alertService: AlertService) {
 
-        // se configura el value por default de los select items    
+        // se configura el value por default de los select items
         this.selectValueDefaultNumber = SELECT_VALUE_DEFAULT_NUMBER;
     }
 
@@ -56,8 +56,43 @@ export class ComponentCommon {
      * Metodo que permite soportar el evento click del componente
      * input switch del sistema
      * @param object , este objecto debe contener la bandera seleccionado
+     * @param typeAtribute, identifica el tipo de atributo a configurar
      */
-    private clickInputSwitch(object: any): void {
-        object.seleccionado = (object.seleccionado) ? false : true;
+    private clickInputSwitch(object: any, typeAtribute: number): void {
+        
+        // nombre del atributo "seleccionado"
+        if (typeAtribute == 1) {
+            object.seleccionado = (object.seleccionado) ? false : true;
+        } 
+        
+        // nombre del atributo "fechaElaboracionEditableB"
+        else if (typeAtribute == 2) {
+            object.fechaElaboracionEditableB = (object.fechaElaboracionEditableB) ? false : true;
+        } 
+        
+        // nombre del atributo "elaboradoPorVisibleB"
+        else if (typeAtribute == 3) {
+            object.elaboradoPorVisibleB = (object.elaboradoPorVisibleB) ? false : true;
+        }
+        
+        // nombre del atributo "dirigidoAVisibleB"
+        else if (typeAtribute == 4) {
+            object.dirigidoAVisibleB = (object.dirigidoAVisibleB) ? false : true;
+        } 
+        
+        // nombre del atributo "asuntoVisibleB"
+        else if (typeAtribute == 5) {
+            object.asuntoVisibleB = (object.asuntoVisibleB) ? false : true;
+        } 
+        
+        // nombre del atributo "fechaSacVisibleB"
+        else if (typeAtribute == 6) {
+            object.fechaSacVisibleB = (object.fechaSacVisibleB) ? false : true;
+        } 
+        
+        // nombre del atributo "nroSacVisibleB"
+        else if (typeAtribute == 7) {
+            object.nroSacVisibleB = (object.nroSacVisibleB) ? false : true;
+        }
     }
 }

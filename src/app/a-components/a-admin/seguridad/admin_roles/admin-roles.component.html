@@ -82,7 +82,7 @@
                         <tr *ngFor="let item of moduloSeleccionado.itemsMenu">
                             <td class="width_35">{{item.nombreItem}}</td>
                             <td class="width_65">
-                                <div (click)="clickInputSwitch(item);onchangeItem(item)" [ngClass]="item.seleccionado?'toggle btn btn-primary':'toggle btn btn-default off'">
+                                <div (click)="clickInputSwitch(item,1);onchangeItem(item)" [ngClass]="item.seleccionado?'toggle btn btn-primary':'toggle btn btn-default off'">
                                     <div class="toggle-group">
                                         <label class="btn btn-primary toggle-on">Si</label>
                                         <label class="btn btn-default active toggle-off">No</label>
@@ -96,7 +96,7 @@
                                         <table>
                                             <tr>
                                                 <td>
-                                                    <div (click)="clickInputSwitch(especifico)" [ngClass]="especifico.seleccionado?'toggle btn btn-primary':'toggle btn btn-default off'">
+                                                    <div (click)="clickInputSwitch(especifico,1)" [ngClass]="especifico.seleccionado?'toggle btn btn-primary':'toggle btn btn-default off'">
                                                         <div class="toggle-group">
                                                             <label class="btn btn-primary toggle-on">Si</label>
                                                             <label class="btn btn-default active toggle-off">No</label>

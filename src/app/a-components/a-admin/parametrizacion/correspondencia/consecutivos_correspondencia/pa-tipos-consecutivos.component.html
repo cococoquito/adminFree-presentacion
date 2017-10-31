@@ -93,7 +93,7 @@
                         <td>Fecha de elaboración del documento de respuesta, El sistema asigna la fecha actual por defecto</td>
                         <td class="text-center"> 
                             <div [ngClass]="nomenclaturaCrearEditar.fechaElaboracionEditableB?'toggle btn btn-primary':'toggle btn btn-default off'" 
-                                 (click)="clickInputSwitch(nomenclaturaCrearEditar)">
+                                 (click)="clickInputSwitch(nomenclaturaCrearEditar,2)">
                                 <div class="toggle-group">
                                     <label class="btn btn-primary toggle-on">Si</label>
                                     <label class="btn btn-default active toggle-off">No</label>
@@ -112,7 +112,7 @@
                         <td></td>
                         <td class="text-center">
                             <div [ngClass]="nomenclaturaCrearEditar.elaboradoPorVisibleB?'toggle btn btn-primary':'toggle btn btn-default off'" 
-                                 (click)="clickInputSwitch(nomenclaturaCrearEditar)">
+                                 (click)="clickInputSwitch(nomenclaturaCrearEditar,3)">
                                 <div class="toggle-group">
                                     <label class="btn btn-primary toggle-on">Si</label>
                                     <label class="btn btn-default active toggle-off">No</label>
@@ -128,7 +128,7 @@
                         <td></td>
                         <td class="text-center">
                             <div [ngClass]="nomenclaturaCrearEditar.dirigidoAVisibleB?'toggle btn btn-primary':'toggle btn btn-default off'" 
-                                 (click)="clickInputSwitch(nomenclaturaCrearEditar)">
+                                 (click)="clickInputSwitch(nomenclaturaCrearEditar,4)">
                                 <div class="toggle-group">
                                     <label class="btn btn-primary toggle-on">Si</label>
                                     <label class="btn btn-default active toggle-off">No</label>
@@ -144,7 +144,7 @@
                         <td></td>
                         <td class="text-center">
                             <div [ngClass]="nomenclaturaCrearEditar.asuntoVisibleB?'toggle btn btn-primary':'toggle btn btn-default off'" 
-                                 (click)="clickInputSwitch(nomenclaturaCrearEditar)">
+                                 (click)="clickInputSwitch(nomenclaturaCrearEditar,5)">
                                 <div class="toggle-group">
                                     <label class="btn btn-primary toggle-on">Si</label>
                                     <label class="btn btn-default active toggle-off">No</label>
@@ -160,7 +160,7 @@
                         <td></td>
                         <td class="text-center">
                             <div [ngClass]="nomenclaturaCrearEditar.fechaSacVisibleB?'toggle btn btn-primary':'toggle btn btn-default off'" 
-                                 (click)="clickInputSwitch(nomenclaturaCrearEditar)">
+                                 (click)="clickInputSwitch(nomenclaturaCrearEditar,6)">
                                 <div class="toggle-group">
                                     <label class="btn btn-primary toggle-on">Si</label>
                                     <label class="btn btn-default active toggle-off">No</label>
@@ -176,7 +176,7 @@
                         <td></td>
                         <td class="text-center">
                             <div [ngClass]="nomenclaturaCrearEditar.nroSacVisibleB?'toggle btn btn-primary':'toggle btn btn-default off'" 
-                                 (click)="clickInputSwitch(nomenclaturaCrearEditar)">
+                                 (click)="clickInputSwitch(nomenclaturaCrearEditar,7)">
                                 <div class="toggle-group">
                                     <label class="btn btn-primary toggle-on">Si</label>
                                     <label class="btn btn-default active toggle-off">No</label>
