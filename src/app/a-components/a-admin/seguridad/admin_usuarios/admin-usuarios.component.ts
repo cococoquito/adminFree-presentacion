@@ -26,9 +26,6 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
     /**Esta variable se utiliza para visualizar el panel de creacion o edicion del USER*/
     private crearEditarUser: UsuariosDTO;
 
-    /**bandera que identifica si el usuario es abogado, se utiliza para la creacion o edicion del user*/
-    private esUsuarioAbogado: boolean;
-
     /**
     * Constructor del componente para la administracion de los USUARIOS
     * @param utilService, service con las funciones utilitarias
@@ -83,8 +80,8 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
 
         // se crea el nuevo USER para ser parametrizado en el sistema
         this.crearEditarUser = new UsuariosDTO();
+        this.crearEditarUser.userEsAbogado = false;
         this.crearEditarUser.roles = this.selectValueDefaultNumber;
-        this.esUsuarioAbogado = false;
 
         // se configura los datos para la visualizacion del panel
         this.abrirPanel();
@@ -102,9 +99,8 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
         this.crearEditarUser.nombre = userEditar.nombre;
         this.crearEditarUser.nombreUsuario = userEditar.nombreUsuario;
         this.crearEditarUser.roles = userEditar.roles;
-        this.crearEditarUser.esAbogado = userEditar.esAbogado;
+        this.crearEditarUser.userEsAbogado = userEditar.userEsAbogado;
         this.crearEditarUser.nombreRole = userEditar.nombreRole;
-        this.esUsuarioAbogado = (userEditar.esAbogado == SI);
 
         // se configura los datos para la visualizacion del panel
         this.abrirPanel();
@@ -297,9 +293,6 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
      */
     private organizarDatosUsuario(): void {
 
-        // se configura la bandera que determina si el user es un abogado
-        this.crearEditarUser.esAbogado = (this.esUsuarioAbogado) ? SI : NO;
-
         // se eliminan los espacios en blanco
         this.crearEditarUser.nombre = this.crearEditarUser.nombre.trim();
         this.crearEditarUser.nombreUsuario = this.crearEditarUser.nombreUsuario.trim();
@@ -336,7 +329,7 @@ export class AdminUsersComponent extends ComponentCommon implements OnInit {
                 }
 
                 // se valida si se modifico la bandera que lo identifica como abogado
-                if (this.crearEditarUser.esAbogado != user.esAbogado) {
+                if (this.crearEditarUser.userEsAbogado != user.userEsAbogado) {
                     return true;
                 }
                 break;

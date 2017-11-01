@@ -94,5 +94,10 @@ export class ComponentCommon {
         else if (typeAtribute == 7) {
             object.nroSacVisibleB = (object.nroSacVisibleB) ? false : true;
         }
+
+        // nombre del atributo "userEsAbogado"
+        else if (typeAtribute == 8) {
+            object.userEsAbogado = (object.userEsAbogado) ? false : true;
+        }
     }
 }

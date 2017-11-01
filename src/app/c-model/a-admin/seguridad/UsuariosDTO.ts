@@ -18,8 +18,8 @@ export class UsuariosDTO {
     /** representa el identificador del ROL del usuario **/
     public roles: number;
 
-    /** 1= si el usuario es abogado **/
-    public esAbogado: number;
+    /** indica si el usuario es un abogado **/
+    public userEsAbogado: boolean;
 
     /** representa el nombre del ROL del usuario **/
     public nombreRole: string;
