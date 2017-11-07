@@ -501,6 +501,14 @@ ul.alert-dropdown {
     width: 65%
 }
 
+.width_5{
+    width: 5%
+}
+
+.width_70{
+    width: 70%
+}
+
 .sin_border{
     border: 0px
 }
@@ -509,4 +517,16 @@ ul.alert-dropdown {
     font-family: 'palatino linotype', palatino, serif;
     word-spacing: 0.8pt;
     font-weight: bold
+}
+
+.font_family{
+    font-family: 'PT Sans', 'Trebuchet Ms', Sans
+}
+
+.color_blue{
+    color: #337ab7
+}
+
+.margin_top_1{
+    margin-top: 1%
 }

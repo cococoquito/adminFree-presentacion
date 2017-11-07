@@ -13,6 +13,9 @@ export class ModuloItemDTO {
     /** nombre del item */
     public nombreItem: string;
 
+	/** dscripcion del item */
+	private descripcion: string;    
+
     /** URL del router para el redireccionamiento */
     public urlRouter: string;
 
