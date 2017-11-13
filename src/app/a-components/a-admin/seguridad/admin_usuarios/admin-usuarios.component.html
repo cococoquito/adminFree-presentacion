@@ -48,7 +48,7 @@
     <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && crearEditarUser.roles != selectValueDefaultNumber && crearEditarUsuarioSistema()" (keydown.enter)="$event.preventDefault()" novalidate>
 
         <div class="panel panel-info">
-            <div class="panel-heading">{{crearEditarUser.idUsuario ? 'Datos del usuario a editar' : 'Ingrese los datos del usuario a crear'}}</div>
+            <div class="panel-heading title sin_padding text_center">{{crearEditarUser.idUsuario ? 'Datos del usuario a editar' : 'Ingrese los datos del nuevo usuario'}}</div>
             <div class="panel-body">
                 <div class="row">
 
