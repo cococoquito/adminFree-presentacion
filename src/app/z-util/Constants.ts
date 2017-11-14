@@ -1,4 +1,4 @@
-/** Constante que contiene la URL BASE donde estám los recursos a consumir */
+/** Constante que contiene la URL BASE donde estan los recursos a consumir */
 export var URL_BASE: string = "http://localhost:8080/AdminFreeRS/adminfree/";
 
 /** Constante para configurar el valor por default de los select items numerico */
