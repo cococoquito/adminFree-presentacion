@@ -530,3 +530,13 @@ ul.alert-dropdown {
 .margin_top_1{
     margin-top: 1%
 }
+
+.folder_cc {
+	background: url('../../img/carpeta.png') no-repeat;
+	width: 205px;
+	height: 85px;
+	border: 0px;
+	cursor: pointer;
+	margin: auto;
+	text-align: left;
+}

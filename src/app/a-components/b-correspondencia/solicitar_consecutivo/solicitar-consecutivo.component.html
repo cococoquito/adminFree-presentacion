@@ -1,3 +1,12 @@
 <p>
     Solicitar consecutivo correspondecia
 </p>
+
+            <ul class="nav nav-tabs">
+                <li *ngFor="let nomenclatura of nomenclaturas" role="presentation" class="width_20">
+                    <a (click)="clickNomenclatura(nomenclatura)" [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada.idNomenclatura) ? 'tab_seleccionado' : 'tab_no_seleccionado'">
+                        <i [ngClass]="'fa fa-fw fa-envelope'">
+                        </i> {{nomenclatura.nombre}}
+                    </a>
+                </li>
+            </ul>
