@@ -540,3 +540,13 @@ ul.alert-dropdown {
 	margin: auto;
 	text-align: left;
 }
+
+.nome_no_seleccionada{
+    margin: 0 0 0px; 
+    color:#C45246
+}
+
+.nome_seleccionada{
+    margin: 0 0 0px; 
+    color:#FFF
+}

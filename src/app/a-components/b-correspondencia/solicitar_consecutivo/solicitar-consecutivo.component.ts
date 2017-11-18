@@ -17,30 +17,38 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     /**lista de tipos de nomenclaturas parametrizados en el sistema*/
     private nomenclaturas: Array<NomenclaturasConsecutivosVO>;
 
-    private nomenclaturaSeleccionada : NomenclaturasConsecutivosVO;
+    /**Es la nomenclatura seleccionado para solicitar un consecutivo*/
+    private nomenclaturaSeleccionada: NomenclaturasConsecutivosVO;
 
-   /**
-    * Constructor del componente para la administracion de los USUARIOS
-    * @param utilService, service con las funciones utilitarias
-    * @param alertService, service para la comunicacion del componente de mensaje de alerta
-    * @param administradorService, contiene los servicios administrativo
-    */
+    /**
+     * Constructor del componente para la administracion de los USUARIOS
+     * @param utilService, service con las funciones utilitarias
+     * @param alertService, service para la comunicacion del componente de mensaje de alerta
+     * @param administradorService, contiene los servicios administrativo
+     */
     constructor(
         protected utilService: UtilitarioService,
         protected alertService: AlertService,
-        private administradorService: AdministradorService) { 
+        private administradorService: AdministradorService) {
         super(utilService, alertService);
     }
 
     /**
      * PostConstructor que permite inicializar las variables del component
      */
-    ngOnInit(): void { 
+    ngOnInit(): void {
+        // se obtiene las nomenclaturas parametrizada en el sistema
         this.getNomenclaturas();
     }
 
-    private clickNomenclatura(nomenclatura:NomenclaturasConsecutivosVO):void{
-this.nomenclaturaSeleccionada = nomenclatura;
+    /**
+     * Metodo que soporta el evento click para cada tab de cada nomenclatura
+     * 
+     * @param nomenclatura , Es la nomenclatura seleccionado por el usuario
+     *  para solicitar un consecutivo
+     */
+    private clickNomenclatura(nomenclatura: NomenclaturasConsecutivosVO): void {
+        this.nomenclaturaSeleccionada = nomenclatura;
     }
 
     /**

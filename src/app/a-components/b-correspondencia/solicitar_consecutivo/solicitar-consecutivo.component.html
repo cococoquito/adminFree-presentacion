@@ -1,12 +1,50 @@
-<p>
-    Solicitar consecutivo correspondecia
-</p>
+<!-- titulo de la pagina -->
+<div class="text_center title-page back-ground-title">
+  Solicitar Consecutivos de Correspondencia
+</div>
+<div class="text_center sub-title-page">
+  Submódulo para <strong>solicitar consecutivos</strong> de correspondencia asociado a la nomenclatura seleccionada
+</div>
+<alert></alert>
+<br/>
 
-            <ul class="nav nav-tabs">
-                <li *ngFor="let nomenclatura of nomenclaturas" role="presentation" class="width_20">
-                    <a (click)="clickNomenclatura(nomenclatura)" [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada.idNomenclatura) ? 'tab_seleccionado' : 'tab_no_seleccionado'">
-                        <i [ngClass]="'fa fa-fw fa-envelope'">
-                        </i> {{nomenclatura.nombre}}
-                    </a>
-                </li>
-            </ul>
+<ul class="nav nav-tabs">
+  <li *ngFor="let nomenclatura of nomenclaturas" role="presentation" class="width_20" pTooltip="{{nomenclatura.nombre}}" tooltipPosition="top">
+    <a (click)="clickNomenclatura(nomenclatura)" [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada.idNomenclatura) ? 'tab_seleccionado' : 'tab_no_seleccionado'">
+
+      <table style="width: 100%">
+        <tr>
+          <td style="width: 40%; text-align: left">
+            <p [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada.idNomenclatura) ? 'nome_seleccionada' : 'nome_no_seleccionada'">
+              <i class="fa fa-fw fa-envelope"></i> 0
+            </p>
+
+          </td>
+          <td style="width: 60%; text-align: left">
+            <strong>{{nomenclatura.nomenclatura}}</strong>
+
+          </td>
+        </tr>
+
+      </table>
+    </a>
+  </li>
+</ul>
+
+<!-- panel cuando no hay nomenclatura seleccionado -->
+<div *ngIf="!nomenclaturaSeleccionada" class="panel panel-default center-all" style="min-height: 200px; height: 200px">
+  <div style="width: 90%; text-align: center">
+    <p class="sub-title-page" style="background-color: #FFF;">
+      <i class="glyphicon glyphicon-asterisk color_blue"></i> Seleccione la nomenclatura en el menú superior para solicitar
+      un consecutivo, si la nomenclatura no se encuentra en el menú superior, por favor comuníquese con el <strong>administrador del sistema</strong>.
+
+      <br/><br/><br/>
+
+      <i class="glyphicon glyphicon-asterisk color_blue"></i> El número al lado del icono <i class="fa fa-fw fa-envelope"
+        style="color:#C45246"></i> es la <strong>cantidad de 
+ consecutivos</strong> que han solicitado para esa nomenclatura.
+
+
+    </p>
+  </div>
+</div>
