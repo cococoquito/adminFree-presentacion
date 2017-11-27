@@ -22,62 +22,65 @@ export class AdministradorService {
     /** se utiliza para las notificaciones cuando el usuario se autentica */
     public behaviorAutenticacion: BehaviorSubject<UsuarioLoginDTO> = new BehaviorSubject<UsuarioLoginDTO>(null);
 
-    /** URL para el recurso de autenticacion en el sistema */
-    private static URL_INICIAR_SESION = 'admin/iniciar_sesion';
+    /** Path raiz de los servicios REST del modulo administrativo */
+    private static PATH = 'admin/';    
 
-    /** URL para el recurso de cambio de clave */
-    private static URL_CAMBIAR_CLAVE = 'admin/cambiar_clave';
+    /** Path para el recurso de autenticacion en el sistema */
+    private static PATH_INICIAR_SESION = 'iniciar_sesion';
 
-    /** URL para listar los modulos del sistema */
-    private static URL_LISTAR_MODULOS = 'admin/listar_modulos';
+    /** Path para el recurso de cambio de clave */
+    private static PATH_CAMBIAR_CLAVE = 'cambiar_clave';
 
-    /** URL para listar los ROLES del sistema */
-    private static URL_LISTAR_ROLES = 'admin/listar_roles';
+    /** Path para listar los modulos del sistema */
+    private static PATH_LISTAR_MODULOS = 'listar_modulos';
 
-    /** URL para obtener el ROLE de acuerdo a su ID */
-    private static URL_GET_ROLE = 'admin/role/';
+    /** Path para listar los ROLES del sistema */
+    private static PATH_LISTAR_ROLES = 'listar_roles';
 
-    /** URL para eliminar el ROLE de acuerdo a su ID */
-    private static URL_ELIMINAR_ROLE = 'admin/role/eliminar/';
+    /** Path para obtener el ROLE de acuerdo a su ID */
+    private static PATH_GET_ROLE = 'role/';
 
-    /** URL para crear o editar un ROLE */
-    private static URL_CREAR_EDITAR_ROLE = 'admin/crear_editar_role';
+    /** Path para eliminar el ROLE de acuerdo a su ID */
+    private static PATH_ELIMINAR_ROLE = 'role/eliminar/';
 
-    /** URL para listar los usuarios activos del sistema */
-    private static URL_LISTAR_USUARIOS = 'admin/listar_usuarios';
+    /** Path para crear o editar un ROLE */
+    private static PATH_CREAR_EDITAR_ROLE = 'crear_editar_role';
 
-    /** URL para crear o editar usuario */
-    private static URL_CREAR_EDITAR_USER = 'admin/crear_editar_user';
+    /** Path para listar los usuarios activos del sistema */
+    private static PATH_LISTAR_USUARIOS = 'listar_usuarios';
 
-    /** URL para eliminar el user */
-    private static URL_ELIMINAR_USER = 'admin/eliminar_user';
+    /** Path para crear o editar usuario */
+    private static PATH_CREAR_EDITAR_USER = 'crear_editar_user';
 
-    /** URL para restablecer la clave del user */
-    private static URL_RESTABLECER_CLAVE = 'admin/restablecer_clave';
+    /** Path para eliminar el user */
+    private static PATH_ELIMINAR_USER = 'eliminar_user';
 
-    /** URL para listar los items parametricos de una tabla especifica */
-    private static URL_LISTAR_ITEMS = 'admin/listar_items/';
+    /** Path para restablecer la clave del user */
+    private static PATH_RESTABLECER_CLAVE = 'restablecer_clave';
 
-    /** URL para insertar un item parametrico */
-    private static URL_CREAR_ITEM = 'admin/insertar_item/';
+    /** Path para listar los items parametricos de una tabla especifica */
+    private static PATH_LISTAR_ITEMS = 'listar_items/';
 
-    /** URL para eliminar un item parametrico */
-    private static URL_ELIMINAR_ITEM = 'admin/eliminar_item/';
+    /** Path para insertar un item parametrico */
+    private static PATH_CREAR_ITEM = 'insertar_item/';
 
-    /** URL para editar un conjunto de items parametricos */
-    private static URL_EDITAR_ITEMS = 'admin/editar_items';
+    /** Path para eliminar un item parametrico */
+    private static PATH_ELIMINAR_ITEM = 'eliminar_item/';
 
-    /** URL para listar los tipos de consecutivos de correspondencia */
-    private static URL_LISTAR_TIPOS_CONSECUTIVOS = 'admin/listar_tipos_consecutivos';
+    /** Path para editar un conjunto de items parametricos */
+    private static PATH_EDITAR_ITEMS = 'editar_items';
 
-    /** URL para eliminar un tipo de consecutivo de correspondencia */
-    private static URL_ELIMINAR_TIPO_CONSECUTIVO = 'admin/eliminar_tipo_consecutivo/';
+    /** Path para listar los tipos de consecutivos de correspondencia */
+    private static PATH_LISTAR_TIPOS_CONSECUTIVOS = 'listar_tipos_consecutivos';
 
-    /** URL que permite insertar un tipo de consecutivo de correspondencia */
-    private static URL_INSERTAR_TIPO_CONSECUTIVO = 'admin/insertar_tipo_consecutivo';
+    /** Path para eliminar un tipo de consecutivo de correspondencia */
+    private static PATH_ELIMINAR_TIPO_CONSECUTIVO = 'eliminar_tipo_consecutivo/';
 
-    /** URL que permite editar un tipo de consecutivo de correspondencia */
-    private static URL_EDITAR_TIPO_CONSECUTIVO = 'admin/editar_tipo_consecutivo';
+    /** Path que permite insertar un tipo de consecutivo de correspondencia */
+    private static PATH_INSERTAR_TIPO_CONSECUTIVO = 'insertar_tipo_consecutivo';
+
+    /** Path que permite editar un tipo de consecutivo de correspondencia */
+    private static PATH_EDITAR_TIPO_CONSECUTIVO = 'editar_tipo_consecutivo';
 
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json; charset=UTF-8' });
@@ -97,7 +100,7 @@ export class AdministradorService {
      * @param user, usuario que intenta autenticarse en el sistema
      */
     public iniciarSesion(user: UsuariosVO): Observable<Response> {
-        return this.http.post(URL_BASE + AdministradorService.URL_INICIAR_SESION, user, this.options);
+        return this.http.post(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_INICIAR_SESION, user, this.options);
     }
 
     /**
@@ -105,21 +108,21 @@ export class AdministradorService {
      * @param cambioClave, DTO con los datos de la nueva clave a cambiar
      */
     public cambiarClave(cambioClave: CambioClaveDTO): Observable<Response> {
-        return this.http.post(URL_BASE + AdministradorService.URL_CAMBIAR_CLAVE, cambioClave, this.options);
+        return this.http.post(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_CAMBIAR_CLAVE, cambioClave, this.options);
     }
 
     /**
      * Metodo que permite obtener todos los modulos del sistema
      */
     public getModulosItems(): Observable<Response> {
-        return this.http.get(URL_BASE + AdministradorService.URL_LISTAR_MODULOS);
+        return this.http.get(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_LISTAR_MODULOS);
     }
 
     /**
      * Metodo que permite obtener todos los ROLES del sistema
      */
     public getRoles(): Observable<Response> {
-        return this.http.get(URL_BASE + AdministradorService.URL_LISTAR_ROLES);
+        return this.http.get(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_LISTAR_ROLES);
     }
 
     /**
@@ -127,7 +130,7 @@ export class AdministradorService {
      * @param idRole , identificador del ROLE
      */
     public getDetalleRole(idRole: number): Observable<Response> {
-        return this.http.get(URL_BASE + AdministradorService.URL_GET_ROLE + idRole);
+        return this.http.get(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_GET_ROLE + idRole);
     }
 
     /**
@@ -135,7 +138,7 @@ export class AdministradorService {
      * @param idRole , identificador del ROLE
      */
     public eliminarRole(idRole: number): Observable<Response> {
-        return this.http.get(URL_BASE + AdministradorService.URL_ELIMINAR_ROLE + idRole);
+        return this.http.get(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_ELIMINAR_ROLE + idRole);
     }
 
     /**
@@ -143,14 +146,14 @@ export class AdministradorService {
      * @param role , DTO con los datos del ROL a editar o crear
      */
     public crearEditarRole(role: RoleDTO): Observable<Response> {
-        return this.http.post(URL_BASE + AdministradorService.URL_CREAR_EDITAR_ROLE, role, this.options);
+        return this.http.post(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_CREAR_EDITAR_ROLE, role, this.options);
     }
 
     /**
      * Metodo que permite listar los usuarios activos en el sistema
      */
     public listarUsuariosActivos(): Observable<Response> {
-        return this.http.get(URL_BASE + AdministradorService.URL_LISTAR_USUARIOS);
+        return this.http.get(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_LISTAR_USUARIOS);
     }
 
     /**
@@ -158,7 +161,7 @@ export class AdministradorService {
      * @param user , DTO con los datos del USER a editar o crear
      */
     public crearEditarUsuario(user: UsuariosDTO): Observable<Response> {
-        return this.http.post(URL_BASE + AdministradorService.URL_CREAR_EDITAR_USER, user, this.options);
+        return this.http.post(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_CREAR_EDITAR_USER, user, this.options);
     }
 
     /**
@@ -166,7 +169,7 @@ export class AdministradorService {
      * @param usuario, DTO con los datos del usuario a eliminar
      */
     public eliminarUsuario(user: UsuariosDTO): Observable<Response> {
-        return this.http.post(URL_BASE + AdministradorService.URL_ELIMINAR_USER, user, this.options);
+        return this.http.post(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_ELIMINAR_USER, user, this.options);
     }
 
     /**
@@ -174,7 +177,7 @@ export class AdministradorService {
      * @param usuario, DTO con los datos del usuario a restablecer la clave
      */
     public restablecerClaveUsuario(user: UsuariosDTO): Observable<Response> {
-        return this.http.post(URL_BASE + AdministradorService.URL_RESTABLECER_CLAVE, user, this.options);
+        return this.http.post(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_RESTABLECER_CLAVE, user, this.options);
     }
 
     /**
@@ -183,7 +186,7 @@ export class AdministradorService {
      * @param idItem, identifica a que tabla parametrica va relacionado el item
      */
     public getItemsParametricos(idItem: number): Observable<Response> {
-        return this.http.get(URL_BASE + AdministradorService.URL_LISTAR_ITEMS + idItem);
+        return this.http.get(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_LISTAR_ITEMS + idItem);
     }
 
     /**
@@ -193,7 +196,7 @@ export class AdministradorService {
      * @param idItem, identifica a que tabla parametrica va relacionado el item
      */
     public insertarItemParametrico(nombre: string, idItem: number): Observable<Response> {
-        return this.http.get(URL_BASE + AdministradorService.URL_CREAR_ITEM + nombre + "/" + idItem);
+        return this.http.get(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_CREAR_ITEM + nombre + "/" + idItem);
     }
 
     /**
@@ -202,7 +205,7 @@ export class AdministradorService {
      * @param idItem, identifica a que tabla parametrica va relacionado el item
      */
     public eliminarItemParametrico(id: number, idItem: number): Observable<Response> {
-        return this.http.get(URL_BASE + AdministradorService.URL_ELIMINAR_ITEM + id + "/" + idItem);
+        return this.http.get(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_ELIMINAR_ITEM + id + "/" + idItem);
     }
 
     /**
@@ -229,14 +232,14 @@ export class AdministradorService {
         parametro.idItem = idItem;
 
         // se procede a ejecutar el servicio para la actualizacion de los items
-        return this.http.post(URL_BASE + AdministradorService.URL_EDITAR_ITEMS, parametro, this.options);
+        return this.http.post(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_EDITAR_ITEMS, parametro, this.options);
     }
 
     /**
      * Metodo que permite consultar todos los tipos de consecutivos de correspondencia en estado ACTIVO
      */
     public listarTiposConsecutivos(): Observable<Response> {
-        return this.http.get(URL_BASE + AdministradorService.URL_LISTAR_TIPOS_CONSECUTIVOS);
+        return this.http.get(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_LISTAR_TIPOS_CONSECUTIVOS);
     }
 
     /**
@@ -245,7 +248,7 @@ export class AdministradorService {
      * @param id , identificador del tipo de consecutivo a eliminar
      */
     public eliminarTipoConsecutivo(id: number): Observable<Response> {
-        return this.http.get(URL_BASE + AdministradorService.URL_ELIMINAR_TIPO_CONSECUTIVO + id);
+        return this.http.get(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_ELIMINAR_TIPO_CONSECUTIVO + id);
     }    
 
     /**
@@ -254,7 +257,7 @@ export class AdministradorService {
      * @param tipo, VO con los datos del tipo de consecutivo de correspondencia
      */
     public insertarTipoConsecutivo(tipo: NomenclaturasConsecutivosVO): Observable<Response> {
-        return this.http.post(URL_BASE + AdministradorService.URL_INSERTAR_TIPO_CONSECUTIVO, tipo, this.options);
+        return this.http.post(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_INSERTAR_TIPO_CONSECUTIVO, tipo, this.options);
     }
 
     /**
@@ -263,7 +266,7 @@ export class AdministradorService {
      * @param tipo, VO con los datos del tipo de consecutivo de correspondencia
      */
     public editarTipoConsecutivo(tipo: NomenclaturasConsecutivosVO): Observable<Response> {
-        return this.http.post(URL_BASE + AdministradorService.URL_EDITAR_TIPO_CONSECUTIVO, tipo, this.options);
+        return this.http.post(URL_BASE + AdministradorService.PATH + AdministradorService.PATH_EDITAR_TIPO_CONSECUTIVO, tipo, this.options);
     }
 
     /**

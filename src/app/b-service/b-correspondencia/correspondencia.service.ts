@@ -9,8 +9,11 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 @Injectable()
 export class CorrespondenciaService {
 
-    /** URL para el recurso de los datos init del modulo solicitar consecutivo */
-    private static URL_INIT_SOLICITAR_CONSECUTIVOS = 'correspondencia/init_solicitar_consecutivo';
+    /** Path raiz de los servicios REST del modulo de correspondencia */
+    private static PATH = 'correspondencia/';
+
+    /** Path del recurso para obtener los datos iniciales del submodulo solicitar consecutivo */
+    private static PATH_INIT_SOLICITAR_CONSECUTIVO = 'init_solicitar_consecutivo';
 
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json; charset=UTF-8' });
@@ -29,6 +32,6 @@ export class CorrespondenciaService {
 	 * solicitar consecutivo de correspondencia
      */
     public getDatosInitSolicitarConsecutivo(): Observable<Response> {
-        return this.http.get(URL_BASE + CorrespondenciaService.URL_INIT_SOLICITAR_CONSECUTIVOS);
+        return this.http.get(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_INIT_SOLICITAR_CONSECUTIVO);
     }
 }
