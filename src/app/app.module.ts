@@ -4,6 +4,7 @@
 import { UtilitarioService } from './b-service/z-common/utilitario.service';
 import { ConfirmationService } from 'primeng/primeng';
 import { AdministradorService } from './b-service/a-admin/administrador.service';
+import { CorrespondenciaService } from './b-service/b-correspondencia/correspondencia.service';
 import { AlertService } from './b-service/z-common/alert.service';
 import { GuardRouting } from './d-routing/guards/guards-routing';
 import { DatePipe } from '@angular/common';
@@ -11,7 +12,7 @@ import { DatePipe } from '@angular/common';
 /**
  * imports
  */
-import { DataTableModule, ConfirmDialogModule, DataGridModule, DialogModule, TooltipModule } from 'primeng/primeng';
+import { DataTableModule, ConfirmDialogModule, DataGridModule, DialogModule, TooltipModule, CalendarModule } from 'primeng/primeng';
 import { AppRoutingModule } from './d-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -101,13 +102,15 @@ import { NoWhitespaceDirective } from './a-components/y-directivas/validadores/w
     DataGridModule,
     DialogModule,
     FocusModule.forRoot(),
-    TooltipModule
+    TooltipModule,
+    CalendarModule
   ],
 
   providers: [
     UtilitarioService,
     ConfirmationService,
     AdministradorService,
+    CorrespondenciaService,
     AlertService,
     GuardRouting,
     DatePipe

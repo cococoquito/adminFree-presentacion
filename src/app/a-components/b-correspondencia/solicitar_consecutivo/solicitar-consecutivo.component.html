@@ -9,7 +9,7 @@
 <br/>
 
 <ul class="nav nav-tabs">
-  <li *ngFor="let nomenclatura of nomenclaturas" role="presentation" class="width_20" pTooltip="{{nomenclatura.nombre}}" tooltipPosition="top">
+  <li *ngFor="let nomenclatura of init?.nomenclaturas" role="presentation" class="width_20" pTooltip="{{nomenclatura.nombre}}" tooltipPosition="top">
     <a (click)="clickNomenclatura(nomenclatura)" [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada.idNomenclatura) ? 'tab_seleccionado' : 'tab_no_seleccionado'">
 
       <table style="width: 100%">
@@ -18,7 +18,6 @@
             <p [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada.idNomenclatura) ? 'nome_seleccionada' : 'nome_no_seleccionada'">
               <i class="fa fa-fw fa-envelope"></i> 0
             </p>
-
           </td>
           <td style="width: 60%; text-align: left">
             <strong>{{nomenclatura.nomenclatura}}</strong>
@@ -48,3 +47,12 @@
     </p>
   </div>
 </div>
+
+<div *ngIf="nomenclaturaSeleccionada">
+    
+  <p-calendar id="fecha" [(ngModel)]="init.fechaActual" name="fecha" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="false"
+  [locale]="es" [showIcon]="true" showButtonBar="true" placeholder="Este campo es requerido" ></p-calendar>
+
+
+
+</div> 
