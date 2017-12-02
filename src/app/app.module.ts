@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
 /**
  * imports
  */
-import { DataTableModule, ConfirmDialogModule, DataGridModule, DialogModule, TooltipModule, CalendarModule } from 'primeng/primeng';
+import { DataTableModule, ConfirmDialogModule, DataGridModule, DialogModule, TooltipModule, CalendarModule, AutoCompleteModule } from 'primeng/primeng';
 import { AppRoutingModule } from './d-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
@@ -103,7 +103,8 @@ import { NoWhitespaceDirective } from './a-components/y-directivas/validadores/w
     DialogModule,
     FocusModule.forRoot(),
     TooltipModule,
-    CalendarModule
+    CalendarModule,
+    AutoCompleteModule
   ],
 
   providers: [

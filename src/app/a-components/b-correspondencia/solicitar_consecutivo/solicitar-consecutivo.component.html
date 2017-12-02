@@ -9,50 +9,287 @@
 <br/>
 
 <ul class="nav nav-tabs">
-  <li *ngFor="let nomenclatura of init?.nomenclaturas" role="presentation" class="width_20" pTooltip="{{nomenclatura.nombre}}" tooltipPosition="top">
-    <a (click)="clickNomenclatura(nomenclatura)" [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada.idNomenclatura) ? 'tab_seleccionado' : 'tab_no_seleccionado'">
-
-      <table style="width: 100%">
-        <tr>
-          <td style="width: 40%; text-align: left">
-            <p [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada.idNomenclatura) ? 'nome_seleccionada' : 'nome_no_seleccionada'">
-              <i class="fa fa-fw fa-envelope"></i> 0
-            </p>
-          </td>
-          <td style="width: 60%; text-align: left">
-            <strong>{{nomenclatura.nomenclatura}}</strong>
-
-          </td>
-        </tr>
-
-      </table>
-    </a>
+  <li 
+   *ngFor="let nomenclatura of init?.nomenclaturas"
+    role="presentation" 
+    class="width_20" 
+    pTooltip="{{nomenclatura.nombre}}"
+    tooltipPosition="top">
+        <a (click)="clickNomenclatura(nomenclatura)" 
+         [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada?.nomenclaturaVO?.idNomenclatura) ? 'tab_seleccionado' : 'tab_no_seleccionado'">
+            <table class="width_100">
+              <tr>
+                <td class="width_40 text-left">
+                  <p [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada?.nomenclaturaVO?.idNomenclatura) ? 'nome_seleccionada' : 'nome_no_seleccionada'">
+                    <i class="fa fa-fw fa-envelope"></i> 0
+                  </p>
+                </td>
+                <td class="width_60 text-left">
+                  <strong>{{nomenclatura.nomenclatura}}</strong>
+                </td>
+              </tr>
+            </table>
+        </a>
   </li>
 </ul>
 
 <!-- panel cuando no hay nomenclatura seleccionado -->
-<div *ngIf="!nomenclaturaSeleccionada" class="panel panel-default center-all" style="min-height: 200px; height: 200px">
-  <div style="width: 90%; text-align: center">
-    <p class="sub-title-page" style="background-color: #FFF;">
-      <i class="glyphicon glyphicon-asterisk color_blue"></i> Seleccione la nomenclatura en el menú superior para solicitar
-      un consecutivo, si la nomenclatura no se encuentra en el menú superior, por favor comuníquese con el <strong>administrador del sistema</strong>.
-
-      <br/><br/><br/>
-
-      <i class="glyphicon glyphicon-asterisk color_blue"></i> El número al lado del icono <i class="fa fa-fw fa-envelope"
-        style="color:#C45246"></i> es la <strong>cantidad de 
- consecutivos</strong> que han solicitado para esa nomenclatura.
-
-
-    </p>
-  </div>
+<div *ngIf="!nomenclaturaSeleccionada" class="panel panel-default center-all panel_init">
+    <div class="text-center width_90">
+      <p class="sub-title-page background_white">
+        <i class="glyphicon glyphicon-asterisk color_blue"></i> Seleccione la nomenclatura en el menú superior para solicitar un consecutivo, si la nomenclatura no se encuentra en el menú superior, por favor comuníquese con el <strong>administrador del sistema</strong>.
+        <br/><br/><br/>
+        <i class="glyphicon glyphicon-asterisk color_blue"></i> El número al lado del icono <i class="fa fa-fw fa-envelope red"></i> es la <strong>cantidad de consecutivos</strong> que han solicitado para esa nomenclatura.
+      </p>
+    </div>
 </div>
 
+<!-- fomulario para solicititar consecutivo -->
 <div *ngIf="nomenclaturaSeleccionada">
-    
-  <p-calendar id="fecha" [(ngModel)]="init.fechaActual" name="fecha" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="false"
-  [locale]="es" [showIcon]="true" showButtonBar="true" placeholder="Este campo es requerido" ></p-calendar>
 
+  <form>
+    <div class="panel panel-default">
+      <div class="title text_center padding_top10">{{nomenclaturaSeleccionada?.nomenclaturaVO?.nomenclatura}} ({{nomenclaturaSeleccionada?.nomenclaturaVO?.nombre}})</div>
+      <div class="panel-body">
 
+        <!-- la cantidad de campos visibles es 1 -->
+        <div class="row padding_bottom15 back_ground_form" *ngIf="nomenclaturaSeleccionada.cantCamposVisible == 1">
+          <!-- fecha de elaboracion -->
+          <table class="width_50 component_center">
+            <tr>
+              <td class="width_100">
+                <label for="fecElabora" class="col-form-label">Fecha elaboración:</label>
+                <p-calendar 
+                  id="fecElabora"
+                  name="fecElabora"
+                  #fecElabora="ngModel"
+                  [(ngModel)]="consecutivoCorrespondencia.fechaElaboracion"
+                  dateFormat="dd/mm/yy"
+                  [monthNavigator]="true"
+                  [yearNavigator]="false"
+                  [locale]="es"
+                  [showIcon]="true"
+                  placeholder="Campo Requerido (dd/mm/yyyy)" 
+                  [inputStyleClass]="nomenclaturaSeleccionada.fechaElaboracionEditableB ? 'component_ng input-valido' : 'component_ng input-valido calendar_disable'"
+                  [style]="{'width':'100%'}" 
+                  [inputStyle]="{'width':'95%'}"
+                  [disabled]="!(nomenclaturaSeleccionada.fechaElaboracionEditableB)">
+                </p-calendar>
+              </td>
+              <td>
+                <span 
+                  class="glyphicon glyphicon-info-sign style_help padding_top30"
+                  pTooltip="Fecha de elaboración del documento de respuesta"
+                  tooltipPosition="right">
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
 
-</div> 
+        <!-- la cantidad de campos visibles es mayor que 1 -->
+        <div class="row padding_bottom15 back_ground_form" *ngIf="nomenclaturaSeleccionada.cantCamposVisible > 1">
+          <!-- fecha de elaboracion -->
+          <div class="col-md-6">
+            <label for="fecElabora" class="col-form-label">Fecha elaboración:</label>
+            <table class="width_100">
+              <tr>
+                <td class="width_100">
+                  <p-calendar 
+                    id="fecElabora"
+                    name="fecElabora"
+                    #fecElabora="ngModel"
+                    [(ngModel)]="consecutivoCorrespondencia.fechaElaboracion"
+                    dateFormat="dd/mm/yy"
+                    [monthNavigator]="true"
+                    [yearNavigator]="false"
+                    [locale]="es"
+                    [showIcon]="true"
+                    placeholder="Campo Requerido (dd/mm/yyyy)" 
+                    [inputStyleClass]="nomenclaturaSeleccionada.fechaElaboracionEditableB ? 'component_ng input-valido' : 'component_ng input-valido calendar_disable'"
+                    [style]="{'width':'100%'}" 
+                    [inputStyle]="{'width':'94.5%'}"
+                    [disabled]="!(nomenclaturaSeleccionada.fechaElaboracionEditableB)">
+                  </p-calendar>
+                </td>
+                <td>
+                  <span 
+                    class="glyphicon glyphicon-info-sign style_help"
+                    pTooltip="Fecha de elaboración del documento de respuesta"
+                    tooltipPosition="left">
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Elaborado por -->
+          <div class="col-md-6" *ngIf="nomenclaturaSeleccionada.elaboradoPorVisibleB">
+            <label for="funcionario" class="col-form-label">Elaborado por:</label>
+            <table class="width_100">
+              <tr>
+                <td class="width_100">
+                  <p-autoComplete
+                    id="funcionario"
+                    name="funcionario"
+                    #funcionario="ngModel"
+                    [(ngModel)]="consecutivoCorrespondencia.nombreFuncionario"
+                    [suggestions]="funcionariosFilter"
+                    (completeMethod)="dropDownFuncionariosSearch($event)"
+                    (onDropdownClick)="dropDownFuncionariosClick($event)"
+                    field="nombre" 
+                    [dropdown]="true"
+                    [ngModelOptions]="{standalone: true}"
+                    inputStyleClass="component_ng input-valido"
+                    [style]="{'width':'100%'}" 
+                    [inputStyle]="{'width':'94.3%'}"
+                    placeholder="Campo Requerido">
+                      <ng-template let-item pTemplate="item">
+                        <div class="ui-helper-clearfix autocomplete_item">
+                          <div class="autocomplete_2tem">{{item.nombre}}</div>
+                        </div>
+                      </ng-template>
+                  </p-autoComplete>
+                </td>
+                <td>
+                  <span 
+                    class="glyphicon glyphicon-info-sign style_help"
+                    pTooltip="Nombre del funcionario quien elabora el documento de respuesta"
+                    tooltipPosition="left">
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Dirigido A -->
+          <div class="col-md-6" *ngIf="nomenclaturaSeleccionada.dirigidoAVisibleB">
+            <label for="dirigido" class="col-form-label">Dirigido a:</label>
+            <table class="width_100">
+              <tr>
+                <td class="width_100">
+                  <input
+                    id="dirigido"
+                    name="dirigido"
+                    type="text"
+                    #dirigido="ngModel"
+                    [(ngModel)]="consecutivoCorrespondencia.destinatario"
+                    [ngClass]="'form-control input-valido'" 
+                    maxlength="100" 
+                    placeholder="Campo Requerido"
+                    myNoSpaces/>
+                </td>
+                <td>
+                  <span 
+                   class="glyphicon glyphicon-info-sign style_help"
+                   pTooltip="Nombre de la entidad o ciudadano a quien se va dirigir el documento de respuesta"
+                   tooltipPosition="left">
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Asunto -->
+          <div class="col-md-6" *ngIf="nomenclaturaSeleccionada.asuntoVisibleB">
+            <label for="asunto" class="col-form-label">Asunto:</label>
+            <table class="width_100">
+              <tr>
+                <td class="width_100">
+                  <input
+                    id="asunto"
+                    name="asunto"
+                    type="text"
+                    #asunto="ngModel"
+                    [(ngModel)]="consecutivoCorrespondencia.asunto"
+                    [ngClass]="'form-control input-valido'"
+                    maxlength="100" 
+                    placeholder="Campo Requerido"
+                    myNoSpaces/>
+                </td>
+                <td>
+                  <span 
+                   class="glyphicon glyphicon-info-sign style_help"
+                   pTooltip="Breve resumen donde se especifica lo que solicita la entidad o el ciudadano"
+                   tooltipPosition="left">
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Fecha SAC -->
+          <div class="col-md-6" *ngIf="nomenclaturaSeleccionada.fechaSacVisibleB">
+            <label for="fecSAC" class="col-form-label">Fecha SAC:</label>
+            <table class="width_100">
+              <tr>
+                <td class="width_100">
+                  <p-calendar 
+                    id="fecSAC"
+                    name="fecSAC"
+                    #fecSAC="ngModel"
+                    [(ngModel)]="consecutivoCorrespondencia.fechaSAC"
+                    dateFormat="dd/mm/yy"
+                    [monthNavigator]="true"
+                    [yearNavigator]="false"
+                    [locale]="es"
+                    [showIcon]="true"
+                    placeholder="Campo Requerido (dd/mm/yyyy)" 
+                    inputStyleClass="component_ng input-valido"
+                    [style]="{'width':'100%'}" 
+                    [inputStyle]="{'width':'94.5%'}">
+                  </p-calendar>
+                </td>
+                <td>
+                  <span 
+                   class="glyphicon glyphicon-info-sign style_help"
+                   pTooltip="Fecha en la que el SAC recibió o radicó la solicitud de la entidad o ciudadano"
+                   tooltipPosition="left">
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Numero SAC -->
+          <div class="col-md-6" *ngIf="nomenclaturaSeleccionada.nroSacVisibleB">
+            <label for="nroSac" class="col-form-label">Número SAC:</label>
+            <table class="width_100">
+              <tr>
+                <td class="width_100">
+                  <input
+                    id="nroSac"
+                    name="nroSac"
+                    type="text"
+                    #nroSac="ngModel"
+                    [(ngModel)]="consecutivoCorrespondencia.nroSAC"
+                    [ngClass]="'form-control input-valido'"
+                    maxlength="100" 
+                    placeholder="Campo Requerido"
+                    myNoSpaces/>
+                </td>
+                <td>
+                  <span
+                   class="glyphicon glyphicon-info-sign style_help"
+                   pTooltip="Número que asigna el SAC para identificar la solicitud de la entidad o ciudadano"
+                   tooltipPosition="left">
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Boton solicitar consecutivo -->
+        <div class="button_center_user padding_top15">
+          <button 
+           type="submit"
+           class="btn btn-primary"
+           title="Clic aquí para guardar los cambios en el sistema">
+              Solicitar Consecutivo
+          </button>
+        </div>
+      </div>
+    </div> 
+  </form>
+</div>

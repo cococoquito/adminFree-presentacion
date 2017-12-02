@@ -1,5 +1,5 @@
 /**
- * Clase que representa las propiedades de los items parametricos del sistea
+ * Clase que representa las propiedades de los items parametricos del sistema
  * 
  * @author Carlos Andres Diaz
  */
