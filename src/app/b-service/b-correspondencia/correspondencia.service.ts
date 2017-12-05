@@ -1,3 +1,4 @@
+import { ConsecutivoCorrespondenciaDTO } from './../../c-model/c-correspondencia/solicitar_consecutivo/ConsecutivoCorrespondenciaDTO';
 import { URL_BASE } from './../../z-util/Constants';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -14,6 +15,9 @@ export class CorrespondenciaService {
 
     /** Path del recurso para obtener los datos iniciales del submodulo solicitar consecutivo */
     private static PATH_INIT_SOLICITAR_CONSECUTIVO = 'init_solicitar_consecutivo';
+
+    /** Path del recurso para solicitar un consecutivo de correspondencia*/
+    private static PATH_SOLICITAR_CONSECUTIVO = 'solicitar_consecutivo';
 
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json; charset=UTF-8' });
@@ -33,5 +37,13 @@ export class CorrespondenciaService {
      */
     public getDatosInitSolicitarConsecutivo(): Observable<Response> {
         return this.http.get(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_INIT_SOLICITAR_CONSECUTIVO);
+    }
+
+    /**
+     * Metodo que permite generar un consecutivo de correspondencia para el anio actual
+     * @param consecutivo , correspondencia, Datos de los valores relacionados al consecutivo
+     */
+    public solicitarConsecutivoAnioActual(consecutivo: ConsecutivoCorrespondenciaDTO): Observable<Response> {
+        return this.http.post(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_SOLICITAR_CONSECUTIVO, consecutivo, this.options);
     }
 }
