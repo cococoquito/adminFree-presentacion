@@ -230,7 +230,7 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     public validarDatosEntrada(): boolean {
 
 
-        alert('entro');
+        alert(this.consecutivoCorrespondencia.fechaElaboracion);
          return false;
     }    
 

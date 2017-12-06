@@ -1,14 +1,14 @@
 <!-- titulo de la pagina -->
-<div class="text_center title-page back-ground-title">
+<div id="sc01" class="text_center title-page back-ground-title">
   Solicitar Consecutivos de Correspondencia
 </div>
-<div class="text_center sub-title-page">
+<div id="sc02" class="text_center sub-title-page">
   Submódulo para <strong>solicitar consecutivos</strong> de correspondencia asociado a la nomenclatura seleccionada
 </div>
 <alert></alert>
 <br/>
 
-<ul class="nav nav-tabs">
+<ul id="sc03" class="nav nav-tabs">
   <li 
    *ngFor="let nomenclatura of init?.nomenclaturas"
     role="presentation" 
@@ -34,8 +34,8 @@
 </ul>
 
 <!-- panel cuando no hay nomenclatura seleccionado -->
-<div *ngIf="!nomenclaturaSeleccionada" class="panel panel-default center-all panel_init">
-    <div class="text-center width_90">
+<div id="sc04" *ngIf="!nomenclaturaSeleccionada" class="panel panel-default center-all panel_init">
+    <div id="sc05" class="text-center width_90">
       <p class="sub-title-page background_white">
         <i class="glyphicon glyphicon-asterisk color_blue"></i> Seleccione la nomenclatura en el menú superior para solicitar un consecutivo, si la nomenclatura no se encuentra en el menú superior, por favor comuníquese con el <strong>administrador del sistema</strong>.
         <br/><br/><br/>
@@ -45,21 +45,22 @@
 </div>
 
 <!-- fomulario para solicititar consecutivo -->
-<div #divSolicitud *ngIf="nomenclaturaSeleccionada">
+<div id="sc06" #divSolicitud *ngIf="nomenclaturaSeleccionada">
 
   <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && validarDatosEntrada()" (keydown.enter)="$event.preventDefault()">
-    <div class="panel panel-default">
-      <div class="title text_center padding_top10">{{nomenclaturaSeleccionada?.nomenclaturaVO?.nomenclatura}} ({{nomenclaturaSeleccionada?.nomenclaturaVO?.nombre}})</div>
-      <div class="panel-body">
+    <div id="sc07" class="panel panel-default">
+      <div id="sc08" class="title text_center padding_top10">{{nomenclaturaSeleccionada?.nomenclaturaVO?.nomenclatura}} ({{nomenclaturaSeleccionada?.nomenclaturaVO?.nombre}})</div>
+      <div id="sc09" class="panel-body">
 
         <!-- la cantidad de campos visibles es 1 -->
-        <div class="row padding_bottom15 back_ground_form" *ngIf="nomenclaturaSeleccionada.cantCamposVisible == 1">
+        <div id="sc10" class="row padding_bottom15 back_ground_form" *ngIf="nomenclaturaSeleccionada.cantCamposVisible == 1">
           <!-- fecha de elaboracion -->
-          <table class="width_50 component_center">
+          <table id="sc11" class="width_50 component_center">
             <tr>
               <td class="width_100">
                 <label for="fecElabora1" class="col-form-label">Fecha elaboración:</label>
-                <p-calendar 
+                <p-calendar
+                  *ngIf="nomenclaturaSeleccionada.fechaElaboracionEditableB"
                   id="fecElabora1"
                   name="fecElabora1"
                   #fecElabora1="ngModel"
@@ -70,12 +71,14 @@
                   [locale]="es"
                   [showIcon]="true"
                   placeholder="Campo Requerido (dd/mm/yyyy)" 
-                  [inputStyleClass]="(nomenclaturaSeleccionada.fechaElaboracionEditableB) ? (submitted && !fecElabora1.valid) ? 'component_ng input-invalido' :'component_ng ng-valido' : 'component_ng ng-valido calendar_disable'"
+                  [inputStyleClass]="(submitted && !fecElabora1.valid) ? 'component_ng input-invalido' :'component_ng ng-valido'"
                   [style]="{'width':'100%'}" 
                   [inputStyle]="{'width':'95%'}"
-                  [disabled]="!(nomenclaturaSeleccionada.fechaElaboracionEditableB)"
                   required="true">
                 </p-calendar>
+                <div id="sc12" *ngIf="!(nomenclaturaSeleccionada.fechaElaboracionEditableB)" class="div_input">
+                  {{consecutivoCorrespondencia.fechaElaboracion | date: 'dd/MM/yyyy'}}
+                </div>
               </td>
               <td>
                 <span 
@@ -89,14 +92,15 @@
         </div>
 
         <!-- la cantidad de campos visibles es mayor que 1 -->
-        <div class="row padding_bottom15 back_ground_form" *ngIf="nomenclaturaSeleccionada.cantCamposVisible > 1">
+        <div id="sc13" class="row padding_bottom15 back_ground_form" *ngIf="nomenclaturaSeleccionada.cantCamposVisible > 1">
           <!-- fecha de elaboracion -->
-          <div class="col-md-6">
+          <div id="sc14" class="col-md-6">
             <label for="fecElabora" class="col-form-label">Fecha elaboración:</label>
-            <table class="width_100">
+            <table id="sc15" class="width_100">
               <tr>
                 <td class="width_100">
-                  <p-calendar 
+                  <p-calendar
+                    *ngIf="nomenclaturaSeleccionada.fechaElaboracionEditableB"
                     id="fecElabora"
                     name="fecElabora"
                     #fecElabora="ngModel"
@@ -107,12 +111,14 @@
                     [locale]="es"
                     [showIcon]="true"
                     placeholder="Campo Requerido (dd/mm/yyyy)" 
-                    [inputStyleClass]="(nomenclaturaSeleccionada.fechaElaboracionEditableB) ? (submitted && !fecElabora.valid) ? 'component_ng input-invalido' :'component_ng ng-valido' : 'component_ng ng-valido calendar_disable'"
+                    [inputStyleClass]="(submitted && !fecElabora.valid) ? 'component_ng input-invalido' :'component_ng ng-valido'"
                     [style]="{'width':'100%'}" 
                     [inputStyle]="{'width':'95%'}"
-                    [disabled]="!(nomenclaturaSeleccionada.fechaElaboracionEditableB)"
                     required="true">
                   </p-calendar>
+                  <div id="sc16" *ngIf="!(nomenclaturaSeleccionada.fechaElaboracionEditableB)" class="div_input">
+                    {{consecutivoCorrespondencia.fechaElaboracion | date: 'dd/MM/yyyy'}}
+                  </div>
                 </td>
                 <td>
                   <span 
@@ -126,9 +132,9 @@
           </div>
 
           <!-- Elaborado por -->
-          <div class="col-md-6" *ngIf="nomenclaturaSeleccionada.elaboradoPorVisibleB">
+          <div id="sc17" class="col-md-6" *ngIf="nomenclaturaSeleccionada.elaboradoPorVisibleB">
             <label for="funcionario" class="col-form-label">Elaborado por:</label>
-            <table class="width_100">
+            <table id="sc18" class="width_100">
               <tr>
                 <td class="width_100">
                   <p-autoComplete
@@ -165,9 +171,9 @@
           </div>
 
           <!-- Dirigido A -->
-          <div class="col-md-6" *ngIf="nomenclaturaSeleccionada.dirigidoAVisibleB">
+          <div id="sc19" class="col-md-6" *ngIf="nomenclaturaSeleccionada.dirigidoAVisibleB">
             <label for="dirigido" class="col-form-label">Dirigido a:</label>
-            <table class="width_100">
+            <table id="sc20" class="width_100">
               <tr>
                 <td class="width_100">
                   <input
@@ -193,9 +199,9 @@
           </div>
 
           <!-- Asunto -->
-          <div class="col-md-6" *ngIf="nomenclaturaSeleccionada.asuntoVisibleB">
+          <div id="sc21" class="col-md-6" *ngIf="nomenclaturaSeleccionada.asuntoVisibleB">
             <label for="asunto" class="col-form-label">Asunto:</label>
-            <table class="width_100">
+            <table id="sc22" class="width_100">
               <tr>
                 <td class="width_100">
                   <input
@@ -221,9 +227,9 @@
           </div>
 
           <!-- Fecha SAC -->
-          <div class="col-md-6" *ngIf="nomenclaturaSeleccionada.fechaSacVisibleB">
+          <div id="sc23" class="col-md-6" *ngIf="nomenclaturaSeleccionada.fechaSacVisibleB">
             <label for="fecSAC" class="col-form-label">Fecha SAC:</label>
-            <table class="width_100">
+            <table id="sc24" class="width_100">
               <tr>
                 <td class="width_100">
                   <p-calendar 
@@ -255,9 +261,9 @@
           </div>
 
           <!-- Numero SAC -->
-          <div class="col-md-6" *ngIf="nomenclaturaSeleccionada.nroSacVisibleB">
+          <div id="sc25" class="col-md-6" *ngIf="nomenclaturaSeleccionada.nroSacVisibleB">
             <label for="nroSac" class="col-form-label">Número SAC:</label>
-            <table class="width_100">
+            <table id="sc26" class="width_100">
               <tr>
                 <td class="width_100">
                   <input
@@ -284,11 +290,12 @@
         </div>
 
         <!-- Boton solicitar consecutivo -->
-        <div class="button_center_user padding_top15">
+        <div id="sc27" class="button_center_user padding_top15">
           <button 
+           id="sc28"
            type="submit"
            class="btn btn-primary"
-           title="Clic aquí para guardar los cambios en el sistema">
+           title="Clic aquí para solicitar un consecutivo de correspondencia">
               Solicitar Consecutivo
           </button>
         </div>
