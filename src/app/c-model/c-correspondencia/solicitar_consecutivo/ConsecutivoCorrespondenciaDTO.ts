@@ -27,8 +27,8 @@ export class ConsecutivoCorrespondenciaDTO {
     public nroSAC: string;
 
     /** Nombre de la entidad a quien se va dirigir el documento **/
-    private destinatario: string;
+    public destinatario: string;
 
     /** Resumen donde se especifica lo que solicita el ciudadano **/
-    private asunto: string;
+    public asunto: string;
 }

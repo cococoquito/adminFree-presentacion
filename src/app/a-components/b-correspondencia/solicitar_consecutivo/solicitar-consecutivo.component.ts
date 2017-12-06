@@ -84,6 +84,9 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
         // se limpia el autocomplete, esto por si hay alguna instancia anterior
         this.autocompleteFuncionarios = null;
 
+        // se limpia el submit anterior
+        this.submitted = false;
+
         // se configura los datos de esta nomenclatura
         this.nomenclaturaSeleccionada = new WraperNomeclaturaConsecutivo();
         this.nomenclaturaSeleccionada.nomenclaturaVO = new NomenclaturasConsecutivosVO();
@@ -126,11 +129,14 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
         // se muestra el modal de carga
         this.utilService.displayLoading(true);
 
+        // se organizan los datos antes de la solicitud
+        this.organizarDatosEntrada();
+
         // se invoca el servicio para generar el nuevo consecutivo
         this.correspondenciaService.solicitarConsecutivoAnioActual(this.consecutivoCorrespondencia).subscribe(
             data => {
                 // se muestra el modal con el nuevo consecutivo
-                console.log(data.json());
+                console.log(data);
 
                 // se cierra el modal de carga
                 this.utilService.displayLoading(false);
@@ -210,9 +216,46 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     /**
      * Metodo que permite configurar el modelo del autucomplete de funcionarios
      */
-    private configurarAutocompleteFuncionarios() {
+    private configurarAutocompleteFuncionarios(): void {
         this.autocompleteFuncionarios.items = this.funcionarios;
         this.autocompleteFuncionarios.inputDIV = this.divSolicitud;
         this.autocompleteFuncionarios.inputID = this.ID_INPUT_AUTOCOMPLETE_FUNCIONARIOS;
+    }
+
+    /**
+     * Metodo que es invocado al dar click en solicitar consecutivo del 
+     * boton principal, donde se procede a validar los datos de entrada
+     * antes de solicitar un consecutivo de correspondencia
+     */
+    public validarDatosEntrada(): boolean {
+
+
+        alert('entro');
+         return false;
+    }    
+
+    /**
+     * Metodo que permite organizar los datos antes de solicitar un consecutivo
+     */
+    private organizarDatosEntrada(): void {
+
+        if (this.nomenclaturaSeleccionada.elaboradoPorVisibleB) {
+            this.consecutivoCorrespondencia.idFuncionario = this.autocompleteFuncionarios.itemSeleccionado.id;
+        }
+
+        // se limpia los espacios en blanco del campo elaborado por
+        this.consecutivoCorrespondencia.destinatario =
+            (this.nomenclaturaSeleccionada.dirigidoAVisibleB) ?
+                this.consecutivoCorrespondencia.destinatario.trim() : null;
+
+        // se limpia los espacios en blanco del campo asunto
+        this.consecutivoCorrespondencia.asunto =
+            (this.nomenclaturaSeleccionada.asuntoVisibleB) ?
+                this.consecutivoCorrespondencia.asunto.trim() : null;
+
+        // se limpia los espacios en blanco del campo nroSac
+        this.consecutivoCorrespondencia.nroSAC =
+            (this.nomenclaturaSeleccionada.nroSacVisibleB) ?
+                this.consecutivoCorrespondencia.nroSAC.trim() : null;
     }
 }

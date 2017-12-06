@@ -47,7 +47,7 @@
 <!-- fomulario para solicititar consecutivo -->
 <div #divSolicitud *ngIf="nomenclaturaSeleccionada">
 
-  <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid" (keydown.enter)="$event.preventDefault()">
+  <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && validarDatosEntrada()" (keydown.enter)="$event.preventDefault()">
     <div class="panel panel-default">
       <div class="title text_center padding_top10">{{nomenclaturaSeleccionada?.nomenclaturaVO?.nomenclatura}} ({{nomenclaturaSeleccionada?.nomenclaturaVO?.nombre}})</div>
       <div class="panel-body">
@@ -58,11 +58,11 @@
           <table class="width_50 component_center">
             <tr>
               <td class="width_100">
-                <label for="fecElabora" class="col-form-label">Fecha elaboración:</label>
+                <label for="fecElabora1" class="col-form-label">Fecha elaboración:</label>
                 <p-calendar 
-                  id="fecElabora"
-                  name="fecElabora"
-                  #fecElabora="ngModel"
+                  id="fecElabora1"
+                  name="fecElabora1"
+                  #fecElabora1="ngModel"
                   [(ngModel)]="consecutivoCorrespondencia.fechaElaboracion"
                   dateFormat="dd/mm/yy"
                   [monthNavigator]="true"
@@ -70,10 +70,11 @@
                   [locale]="es"
                   [showIcon]="true"
                   placeholder="Campo Requerido (dd/mm/yyyy)" 
-                  [inputStyleClass]="(submitted && !fecElabora.valid) ? 'component_ng input-invalido':'component_ng input-valido'"
+                  [inputStyleClass]="(nomenclaturaSeleccionada.fechaElaboracionEditableB) ? (submitted && !fecElabora1.valid) ? 'component_ng input-invalido' :'component_ng ng-valido' : 'component_ng ng-valido calendar_disable'"
                   [style]="{'width':'100%'}" 
                   [inputStyle]="{'width':'95%'}"
-                  [disabled]="!(nomenclaturaSeleccionada.fechaElaboracionEditableB)">
+                  [disabled]="!(nomenclaturaSeleccionada.fechaElaboracionEditableB)"
+                  required="true">
                 </p-calendar>
               </td>
               <td>
@@ -95,7 +96,7 @@
             <table class="width_100">
               <tr>
                 <td class="width_100">
-                  <p-calendar
+                  <p-calendar 
                     id="fecElabora"
                     name="fecElabora"
                     #fecElabora="ngModel"
@@ -106,10 +107,11 @@
                     [locale]="es"
                     [showIcon]="true"
                     placeholder="Campo Requerido (dd/mm/yyyy)" 
-                    [inputStyleClass]="nomenclaturaSeleccionada.fechaElaboracionEditableB ? 'component_ng ng-valido' : 'component_ng ng-valido calendar_disable'"
+                    [inputStyleClass]="(nomenclaturaSeleccionada.fechaElaboracionEditableB) ? (submitted && !fecElabora.valid) ? 'component_ng input-invalido' :'component_ng ng-valido' : 'component_ng ng-valido calendar_disable'"
                     [style]="{'width':'100%'}" 
-                    [inputStyle]="{'width':'94.5%'}"
-                    [disabled]="!(nomenclaturaSeleccionada.fechaElaboracionEditableB)">
+                    [inputStyle]="{'width':'95%'}"
+                    [disabled]="!(nomenclaturaSeleccionada.fechaElaboracionEditableB)"
+                    required="true">
                   </p-calendar>
                 </td>
                 <td>
@@ -133,15 +135,17 @@
                     id="funcionario"
                     inputId="funcionario"
                     name="funcionario"
+                    #funcionario="ngModel"
                     [(ngModel)]="autocompleteFuncionarios.valor"
                     [suggestions]="autocompleteFuncionarios.itemsFilter"
                     (completeMethod)="autocompleteFuncionarios.dropDownSearch($event)"
+                    (onBlur)="autocompleteFuncionarios.dropDownOnblur($event)"
+                    [inputStyleClass]="(submitted && !funcionario.valid) ? 'component_ng input-invalido':'component_ng ng-valido'"
                     [dropdown]="false"
-                    [inputStyleClass]="(submitted) ? 'component_ng input-invalido':'component_ng ng-valido'"
                     [style]="{'width':'100%'}" 
                     [inputStyle]="{'width':'100%'}"
                     placeholder="Campo Requerido"
-                    (onBlur)="autocompleteFuncionarios.dropDownOnblur($event)">
+                    required="true">
                       <ng-template let-item pTemplate="item">
                         <div class="ui-helper-clearfix autocomplete_item">
                           <div class="autocomplete_2tem">{{item}}</div>
@@ -169,11 +173,11 @@
                   <input
                     id="dirigido"
                     name="dirigido"
-                    type="text"
                     #dirigido="ngModel"
+                    type="text"
                     [(ngModel)]="consecutivoCorrespondencia.destinatario"
                     [ngClass]="(submitted && !dirigido.valid) ? 'form-control input-invalido':'form-control input-valido'"
-                    maxlength="100" 
+                    maxlength="255" 
                     placeholder="Campo Requerido"
                     myNoSpaces/>
                 </td>
@@ -197,11 +201,11 @@
                   <input
                     id="asunto"
                     name="asunto"
-                    type="text"
                     #asunto="ngModel"
+                    type="text"
                     [(ngModel)]="consecutivoCorrespondencia.asunto"
                     [ngClass]="(submitted && !asunto.valid) ? 'form-control input-invalido':'form-control input-valido'"
-                    maxlength="100" 
+                    maxlength="255" 
                     placeholder="Campo Requerido"
                     myNoSpaces/>
                 </td>
@@ -233,9 +237,10 @@
                     [locale]="es"
                     [showIcon]="true"
                     placeholder="Campo Requerido (dd/mm/yyyy)" 
-                    [inputStyleClass]="(submitted) ? 'component_ng ng-valido':'component_ng ng-valido'"
+                    [inputStyleClass]="(submitted && !fecSAC.valid) ? 'component_ng input-invalido':'component_ng ng-valido'"
                     [style]="{'width':'100%'}" 
-                    [inputStyle]="{'width':'94.5%'}">
+                    [inputStyle]="{'width':'95%'}"
+                    required="true">
                   </p-calendar>
                 </td>
                 <td>
@@ -258,8 +263,8 @@
                   <input
                     id="nroSac"
                     name="nroSac"
-                    type="text"
                     #nroSac="ngModel"
+                    type="text"
                     [(ngModel)]="consecutivoCorrespondencia.nroSAC"
                     [ngClass]="(submitted && !nroSac.valid) ? 'form-control input-invalido':'form-control input-valido'"
                     maxlength="100" 
