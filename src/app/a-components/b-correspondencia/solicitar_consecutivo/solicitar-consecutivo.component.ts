@@ -46,6 +46,9 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     @ViewChild('divSolicitud')
     private divSolicitud: ElementRef;
 
+    /**Bandera para visualizar el modal de confirmation para solicitar un consecutivo*/
+    private modalConfirmationVisible: boolean;
+
     /**
      * Constructor del componente para solicitudes de consecutivos de correspondencia
      * @param utilService, service con las funciones utilitarias
@@ -80,6 +83,13 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
      *  para solicitar un consecutivo
      */
     public clickNomenclatura(nomenclatura: NomenclaturasConsecutivosVO): void {
+
+        // se valida que no se la misma nomenclatura
+        if (this.nomenclaturaSeleccionada && 
+            this.nomenclaturaSeleccionada.nomenclaturaVO && 
+            this.nomenclaturaSeleccionada.nomenclaturaVO.idNomenclatura == nomenclatura.idNomenclatura) {
+            return;
+        }
 
         // se limpia el autocomplete, esto por si hay alguna instancia anterior
         this.autocompleteFuncionarios = null;
@@ -145,7 +155,20 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
                 this.showErrorSistema(error);
             }
         );
-    }    
+    }
+
+    public abrirModal():boolean{
+        this.organizarDatosEntrada();
+        this.modalConfirmationVisible = true;
+        return true;
+    }
+
+    /**
+     * Metodo que invocado al cerrar el modal de confirmaction
+     */
+    public cerrarModal(): void {
+        this.modalConfirmationVisible = false;
+    }
 
     /**
      * Metodo que permite obtener los datos iniciales del modulo
@@ -223,24 +246,17 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     }
 
     /**
-     * Metodo que es invocado al dar click en solicitar consecutivo del 
-     * boton principal, donde se procede a validar los datos de entrada
-     * antes de solicitar un consecutivo de correspondencia
-     */
-    public validarDatosEntrada(): boolean {
-
-
-        alert(this.consecutivoCorrespondencia.fechaElaboracion);
-         return false;
-    }    
-
-    /**
      * Metodo que permite organizar los datos antes de solicitar un consecutivo
      */
     private organizarDatosEntrada(): void {
 
+        // se configura el ID de la nomenclatura seleccionada
+        this.consecutivoCorrespondencia.idNomenclatura = this.nomenclaturaSeleccionada.nomenclaturaVO.idNomenclatura;
+
+        // se configura el id del funcionario
         if (this.nomenclaturaSeleccionada.elaboradoPorVisibleB) {
             this.consecutivoCorrespondencia.idFuncionario = this.autocompleteFuncionarios.itemSeleccionado.id;
+            this.consecutivoCorrespondencia.nombreFuncionario = this.autocompleteFuncionarios.itemSeleccionado.nombre;
         }
 
         // se limpia los espacios en blanco del campo elaborado por

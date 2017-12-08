@@ -8,59 +8,69 @@
 <alert></alert>
 <br/>
 
+<!-- menu de nomenclaturas -->
 <ul id="sc03" class="nav nav-tabs">
-  <li 
-   *ngFor="let nomenclatura of init?.nomenclaturas"
-    role="presentation" 
-    class="width_20" 
+  <li
+   *ngFor="let nomenclatura of init?.nomenclaturas" 
+    role="presentation"
+    class="width_20"
     pTooltip="{{nomenclatura.nombre}}"
     tooltipPosition="top">
-        <a (click)="clickNomenclatura(nomenclatura)" 
-         [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada?.nomenclaturaVO?.idNomenclatura) ? 'tab_seleccionado' : 'tab_no_seleccionado'">
-            <table class="width_100">
-              <tr>
-                <td class="width_40 text-left">
-                  <p [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada?.nomenclaturaVO?.idNomenclatura) ? 'nome_seleccionada' : 'nome_no_seleccionada'">
-                    <i class="fa fa-fw fa-envelope"></i> 0
-                  </p>
-                </td>
-                <td class="width_60 text-left">
-                  <strong>{{nomenclatura.nomenclatura}}</strong>
-                </td>
-              </tr>
-            </table>
-        </a>
+    <a (click)="clickNomenclatura(nomenclatura)"
+       [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada?.nomenclaturaVO?.idNomenclatura) ? 'tab_seleccionado' : 'tab_no_seleccionado'">
+      <table class="width_100">
+        <tr>
+          <td class="width_40 text-left">
+            <p [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada?.nomenclaturaVO?.idNomenclatura) ? 'nome_seleccionada' : 'nome_no_seleccionada'">
+              <i class="fa fa-fw fa-envelope"></i> 0
+            </p>
+          </td>
+          <td class="width_60 text-left">
+            <strong>{{nomenclatura.nomenclatura}}</strong>
+          </td>
+        </tr>
+      </table>
+    </a>
   </li>
 </ul>
 
 <!-- panel cuando no hay nomenclatura seleccionado -->
 <div id="sc04" *ngIf="!nomenclaturaSeleccionada" class="panel panel-default center-all panel_init">
-    <div id="sc05" class="text-center width_90">
-      <p class="sub-title-page background_white">
-        <i class="glyphicon glyphicon-asterisk color_blue"></i> Seleccione la nomenclatura en el menú superior para solicitar un consecutivo, si la nomenclatura no se encuentra en el menú superior, por favor comuníquese con el <strong>administrador del sistema</strong>.
-        <br/><br/><br/>
-        <i class="glyphicon glyphicon-asterisk color_blue"></i> El número al lado del icono <i class="fa fa-fw fa-envelope red"></i> es la <strong>cantidad de consecutivos</strong> que han solicitado para esa nomenclatura.
-      </p>
-    </div>
+  <div id="sc05" class="text-center width_90">
+    <p class="sub-title-page background_white">
+      <i class="glyphicon glyphicon-asterisk color_blue"></i>Seleccione la nomenclatura en el menú superior para solicitar un consecutivo, si la nomenclatura no se encuentra en el menú superior, por favor comuníquese con el <strong>administrador del sistema</strong>.
+      <br/><br/><br/>
+      <i class="glyphicon glyphicon-asterisk color_blue"></i> El número al lado del icono <i class="fa fa-fw fa-envelope red"></i> es la <strong>cantidad de consecutivos</strong> que han solicitado para esa nomenclatura.
+    </p>
+  </div>
 </div>
 
 <!-- fomulario para solicititar consecutivo -->
 <div id="sc06" #divSolicitud *ngIf="nomenclaturaSeleccionada">
+  <form
+    name="form"
+    #f="ngForm"
+    (ngSubmit)="onSubmit() && f.form.valid && abrirModal()"
+    (keydown.enter)="$event.preventDefault()">
 
-  <form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && validarDatosEntrada()" (keydown.enter)="$event.preventDefault()">
+    <!-- panel del formulario -->
     <div id="sc07" class="panel panel-default">
       <div id="sc08" class="title text_center padding_top10">{{nomenclaturaSeleccionada?.nomenclaturaVO?.nomenclatura}} ({{nomenclaturaSeleccionada?.nomenclaturaVO?.nombre}})</div>
       <div id="sc09" class="panel-body">
 
-        <!-- la cantidad de campos visibles es 1 -->
-        <div id="sc10" class="row padding_bottom15 back_ground_form" *ngIf="nomenclaturaSeleccionada.cantCamposVisible == 1">
+        <!-- si cantidad de campos visibles es 1 solamente se muestra fecha elaboracion -->
+        <div 
+         id="sc10"
+        *ngIf="nomenclaturaSeleccionada.cantCamposVisible == 1"
+         class="row padding_bottom15 back_ground_form">
+
           <!-- fecha de elaboracion -->
           <table id="sc11" class="width_50 component_center">
             <tr>
               <td class="width_100">
                 <label for="fecElabora1" class="col-form-label">Fecha elaboración:</label>
-                <p-calendar
-                  *ngIf="nomenclaturaSeleccionada.fechaElaboracionEditableB"
+                <p-calendar 
+                 *ngIf="nomenclaturaSeleccionada.fechaElaboracionEditableB"
                   id="fecElabora1"
                   name="fecElabora1"
                   #fecElabora1="ngModel"
@@ -70,21 +80,21 @@
                   [yearNavigator]="false"
                   [locale]="es"
                   [showIcon]="true"
-                  placeholder="Campo Requerido (dd/mm/yyyy)" 
+                  placeholder="Campo Requerido (dd/mm/yyyy)"
                   [inputStyleClass]="(submitted && !fecElabora1.valid) ? 'component_ng input-invalido' :'component_ng ng-valido'"
-                  [style]="{'width':'100%'}" 
+                  [style]="{'width':'100%'}"
                   [inputStyle]="{'width':'95%'}"
                   required="true">
                 </p-calendar>
                 <div id="sc12" *ngIf="!(nomenclaturaSeleccionada.fechaElaboracionEditableB)" class="div_input">
-                  {{consecutivoCorrespondencia.fechaElaboracion | date: 'dd/MM/yyyy'}}
+                   {{consecutivoCorrespondencia?.fechaElaboracion | date: 'dd/MM/yyyy'}}
                 </div>
               </td>
               <td>
-                <span 
-                  class="glyphicon glyphicon-info-sign style_help padding_top30"
-                  pTooltip="Fecha de elaboración del documento de respuesta"
-                  tooltipPosition="right">
+                <span
+                 class="glyphicon glyphicon-info-sign style_help padding_top30"
+                 pTooltip="Fecha de elaboración del documento de respuesta"
+                 tooltipPosition="right">
                 </span>
               </td>
             </tr>
@@ -92,7 +102,11 @@
         </div>
 
         <!-- la cantidad de campos visibles es mayor que 1 -->
-        <div id="sc13" class="row padding_bottom15 back_ground_form" *ngIf="nomenclaturaSeleccionada.cantCamposVisible > 1">
+        <div 
+          id="sc13"
+         *ngIf="nomenclaturaSeleccionada.cantCamposVisible > 1"
+          class="row padding_bottom15 back_ground_form">
+
           <!-- fecha de elaboracion -->
           <div id="sc14" class="col-md-6">
             <label for="fecElabora" class="col-form-label">Fecha elaboración:</label>
@@ -100,7 +114,7 @@
               <tr>
                 <td class="width_100">
                   <p-calendar
-                    *ngIf="nomenclaturaSeleccionada.fechaElaboracionEditableB"
+                   *ngIf="nomenclaturaSeleccionada.fechaElaboracionEditableB"
                     id="fecElabora"
                     name="fecElabora"
                     #fecElabora="ngModel"
@@ -110,18 +124,18 @@
                     [yearNavigator]="false"
                     [locale]="es"
                     [showIcon]="true"
-                    placeholder="Campo Requerido (dd/mm/yyyy)" 
+                    placeholder="Campo Requerido (dd/mm/yyyy)"
                     [inputStyleClass]="(submitted && !fecElabora.valid) ? 'component_ng input-invalido' :'component_ng ng-valido'"
-                    [style]="{'width':'100%'}" 
+                    [style]="{'width':'100%'}"
                     [inputStyle]="{'width':'95%'}"
                     required="true">
                   </p-calendar>
                   <div id="sc16" *ngIf="!(nomenclaturaSeleccionada.fechaElaboracionEditableB)" class="div_input">
-                    {{consecutivoCorrespondencia.fechaElaboracion | date: 'dd/MM/yyyy'}}
+                    {{consecutivoCorrespondencia?.fechaElaboracion | date: 'dd/MM/yyyy'}}
                   </div>
                 </td>
                 <td>
-                  <span 
+                  <span
                     class="glyphicon glyphicon-info-sign style_help"
                     pTooltip="Fecha de elaboración del documento de respuesta"
                     tooltipPosition="left">
@@ -132,12 +146,12 @@
           </div>
 
           <!-- Elaborado por -->
-          <div id="sc17" class="col-md-6" *ngIf="nomenclaturaSeleccionada.elaboradoPorVisibleB">
-            <label for="funcionario" class="col-form-label">Elaborado por:</label>
+          <div id="sc17" *ngIf="nomenclaturaSeleccionada.elaboradoPorVisibleB" class="col-md-6">
+            <label for="funcionario" class="col-form-label">Elaborado Por:</label>
             <table id="sc18" class="width_100">
               <tr>
                 <td class="width_100">
-                  <p-autoComplete
+                  <p-autoComplete 
                     id="funcionario"
                     inputId="funcionario"
                     name="funcionario"
@@ -148,19 +162,19 @@
                     (onBlur)="autocompleteFuncionarios.dropDownOnblur($event)"
                     [inputStyleClass]="(submitted && !funcionario.valid) ? 'component_ng input-invalido':'component_ng ng-valido'"
                     [dropdown]="false"
-                    [style]="{'width':'100%'}" 
+                    [style]="{'width':'100%'}"
                     [inputStyle]="{'width':'100%'}"
                     placeholder="Campo Requerido"
                     required="true">
-                      <ng-template let-item pTemplate="item">
-                        <div class="ui-helper-clearfix autocomplete_item">
-                          <div class="autocomplete_2tem">{{item}}</div>
-                        </div>
-                      </ng-template>
+                    <ng-template let-item pTemplate="item">
+                      <div class="ui-helper-clearfix autocomplete_item">
+                        <div class="autocomplete_2tem">{{item}}</div>
+                      </div>
+                    </ng-template>
                   </p-autoComplete>
                 </td>
                 <td>
-                  <span 
+                  <span
                     class="glyphicon glyphicon-info-sign style_help"
                     pTooltip="Nombre del funcionario quien elabora el documento de respuesta"
                     tooltipPosition="left">
@@ -171,8 +185,8 @@
           </div>
 
           <!-- Dirigido A -->
-          <div id="sc19" class="col-md-6" *ngIf="nomenclaturaSeleccionada.dirigidoAVisibleB">
-            <label for="dirigido" class="col-form-label">Dirigido a:</label>
+          <div id="sc19" *ngIf="nomenclaturaSeleccionada.dirigidoAVisibleB" class="col-md-6">
+            <label for="dirigido" class="col-form-label">Dirigido A:</label>
             <table id="sc20" class="width_100">
               <tr>
                 <td class="width_100">
@@ -183,15 +197,15 @@
                     type="text"
                     [(ngModel)]="consecutivoCorrespondencia.destinatario"
                     [ngClass]="(submitted && !dirigido.valid) ? 'form-control input-invalido':'form-control input-valido'"
-                    maxlength="255" 
+                    maxlength="255"
                     placeholder="Campo Requerido"
                     myNoSpaces/>
                 </td>
                 <td>
-                  <span 
-                   class="glyphicon glyphicon-info-sign style_help"
-                   pTooltip="Nombre de la entidad o ciudadano a quien se va dirigir el documento de respuesta"
-                   tooltipPosition="left">
+                  <span
+                    class="glyphicon glyphicon-info-sign style_help"
+                    pTooltip="Nombre de la entidad o ciudadano a quien se va dirigir el documento de respuesta"
+                    tooltipPosition="left">
                   </span>
                 </td>
               </tr>
@@ -199,7 +213,7 @@
           </div>
 
           <!-- Asunto -->
-          <div id="sc21" class="col-md-6" *ngIf="nomenclaturaSeleccionada.asuntoVisibleB">
+          <div id="sc21" *ngIf="nomenclaturaSeleccionada.asuntoVisibleB" class="col-md-6">
             <label for="asunto" class="col-form-label">Asunto:</label>
             <table id="sc22" class="width_100">
               <tr>
@@ -211,15 +225,15 @@
                     type="text"
                     [(ngModel)]="consecutivoCorrespondencia.asunto"
                     [ngClass]="(submitted && !asunto.valid) ? 'form-control input-invalido':'form-control input-valido'"
-                    maxlength="255" 
+                    maxlength="255"
                     placeholder="Campo Requerido"
                     myNoSpaces/>
                 </td>
                 <td>
-                  <span 
-                   class="glyphicon glyphicon-info-sign style_help"
-                   pTooltip="Breve resumen donde se especifica lo que solicita la entidad o el ciudadano"
-                   tooltipPosition="left">
+                  <span
+                    class="glyphicon glyphicon-info-sign style_help"
+                    pTooltip="Breve resumen donde se especifica lo que solicita la entidad o el ciudadano"
+                    tooltipPosition="left">
                   </span>
                 </td>
               </tr>
@@ -227,7 +241,7 @@
           </div>
 
           <!-- Fecha SAC -->
-          <div id="sc23" class="col-md-6" *ngIf="nomenclaturaSeleccionada.fechaSacVisibleB">
+          <div id="sc23" *ngIf="nomenclaturaSeleccionada.fechaSacVisibleB" class="col-md-6">
             <label for="fecSAC" class="col-form-label">Fecha SAC:</label>
             <table id="sc24" class="width_100">
               <tr>
@@ -242,18 +256,18 @@
                     [yearNavigator]="false"
                     [locale]="es"
                     [showIcon]="true"
-                    placeholder="Campo Requerido (dd/mm/yyyy)" 
+                    placeholder="Campo Requerido (dd/mm/yyyy)"
                     [inputStyleClass]="(submitted && !fecSAC.valid) ? 'component_ng input-invalido':'component_ng ng-valido'"
-                    [style]="{'width':'100%'}" 
+                    [style]="{'width':'100%'}"
                     [inputStyle]="{'width':'95%'}"
                     required="true">
                   </p-calendar>
                 </td>
                 <td>
-                  <span 
-                   class="glyphicon glyphicon-info-sign style_help"
-                   pTooltip="Fecha en la que el SAC recibió o radicó la solicitud de la entidad o ciudadano"
-                   tooltipPosition="left">
+                  <span
+                    class="glyphicon glyphicon-info-sign style_help"
+                    pTooltip="Fecha en la que el SAC recibió o radicó la solicitud de la entidad o ciudadano"
+                    tooltipPosition="left">
                   </span>
                 </td>
               </tr>
@@ -261,7 +275,7 @@
           </div>
 
           <!-- Numero SAC -->
-          <div id="sc25" class="col-md-6" *ngIf="nomenclaturaSeleccionada.nroSacVisibleB">
+          <div id="sc25" *ngIf="nomenclaturaSeleccionada.nroSacVisibleB" class="col-md-6">
             <label for="nroSac" class="col-form-label">Número SAC:</label>
             <table id="sc26" class="width_100">
               <tr>
@@ -273,15 +287,15 @@
                     type="text"
                     [(ngModel)]="consecutivoCorrespondencia.nroSAC"
                     [ngClass]="(submitted && !nroSac.valid) ? 'form-control input-invalido':'form-control input-valido'"
-                    maxlength="100" 
+                    maxlength="100"
                     placeholder="Campo Requerido"
                     myNoSpaces/>
                 </td>
                 <td>
                   <span
-                   class="glyphicon glyphicon-info-sign style_help"
-                   pTooltip="Número que asigna el SAC para identificar la solicitud de la entidad o ciudadano"
-                   tooltipPosition="left">
+                    class="glyphicon glyphicon-info-sign style_help"
+                    pTooltip="Número que asigna el SAC para identificar la solicitud de la entidad o ciudadano"
+                    tooltipPosition="left">
                   </span>
                 </td>
               </tr>
@@ -291,15 +305,130 @@
 
         <!-- Boton solicitar consecutivo -->
         <div id="sc27" class="button_center_user padding_top15">
-          <button 
-           id="sc28"
-           type="submit"
-           class="btn btn-primary"
-           title="Clic aquí para solicitar un consecutivo de correspondencia">
+          <button
+            id="sc28"
+            type="submit"
+            class="btn btn-primary"
+            title="Clic aquí para solicitar el consecutivo de correspondencia">
               Solicitar Consecutivo
           </button>
         </div>
       </div>
-    </div> 
+    </div>
   </form>
+</div>
+
+<!-- modal de confirmacion -->
+<div id="mdl_scc00" *ngIf="modalConfirmationVisible">
+  <p-dialog 
+     id="mdl_scc"
+     modal="modal"
+     width="800"
+     [(visible)]="modalConfirmationVisible" 
+     (onHide)="cerrarModal()"
+     [responsive]="true">
+
+    <p-header>
+      ¿Está seguro que desea solicitar el consecutivo con los siguientes datos?
+    </p-header>
+
+    <div id="mdl_scc01" class="panel panel-default sin_margin_bottom">
+
+      <!-- nombre nomenclatura -->
+      <div id="mdl_scc02" class="title text_center padding_top10">
+        <p class="red">{{nomenclaturaSeleccionada?.nomenclaturaVO?.nomenclatura}} ({{nomenclaturaSeleccionada?.nomenclaturaVO?.nombre}})</p>
+      </div>
+
+      <!-- body -->
+      <div id="mdl_scc03" class="panel-body sin_padding">
+
+        <!-- tabla con los datos del consecutivo -->
+        <table id="mdl_scc04" class="table table-hover sin_margin_bottom">
+          <tbody>
+            <!-- fecha elaboracion -->
+            <tr>
+              <td class="width_22">
+                <p class="sin_margin_bottom font_13">Fecha de Elaboración: (dd/mm/yyyy)</p>
+              </td>
+              <td class="width_78">
+                <p class="sin_margin_bottom bold">{{consecutivoCorrespondencia?.fechaElaboracion | date: 'dd/MM/yyyy'}}</p>
+              </td>
+            </tr>
+
+            <!-- elaborado Por -->
+            <tr *ngIf="nomenclaturaSeleccionada.elaboradoPorVisibleB">
+              <td>
+                <p class="sin_margin_bottom font_13">Elaborado Por:</p>
+              </td>
+              <td>
+                <p class="sin_margin_bottom bold">{{consecutivoCorrespondencia?.nombreFuncionario}}</p>
+              </td>
+            </tr>
+
+            <!-- Dirigido A -->
+            <tr *ngIf="nomenclaturaSeleccionada.dirigidoAVisibleB">
+              <td>
+                <p class="sin_margin_bottom font_13">Dirigido A:</p>
+              </td>
+              <td>
+                <p class="sin_margin_bottom bold">{{consecutivoCorrespondencia?.destinatario}}</p>
+              </td>
+            </tr>
+
+            <!-- Asunto -->
+            <tr *ngIf="nomenclaturaSeleccionada.asuntoVisibleB">
+              <td>
+                <p class="sin_margin_bottom font_13">Asunto:</p>
+              </td>
+              <td>
+                <p class="sin_margin_bottom bold">{{consecutivoCorrespondencia?.asunto}}</p>
+              </td>
+            </tr>
+
+            <!-- Fecha SAC -->
+            <tr *ngIf="nomenclaturaSeleccionada.fechaSacVisibleB">
+              <td>
+                <p class="sin_margin_bottom font_13">Fecha SAC: (dd/mm/yyyy)</p>
+              </td>
+              <td>
+                <p class="sin_margin_bottom bold">{{consecutivoCorrespondencia?.fechaSAC | date: 'dd/MM/yyyy'}}</p>
+              </td>
+            </tr>
+
+            <!-- Numero SAC -->
+            <tr *ngIf="nomenclaturaSeleccionada.nroSacVisibleB">
+              <td>
+                <p class="sin_margin_bottom font_13">Número SAC:</p>
+              </td>
+              <td>
+                <p class="sin_margin_bottom bold">{{consecutivoCorrespondencia?.nroSAC}}</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- btns cancelar y solicitar -->
+    <div id="mdl_scc05" class="button_center_user padding_top10">
+      <button
+        id="mdl_scc06"
+        type="button"
+        class="btn btn-primary"
+        title="Clic aquí para solicitar el consecutivo de correspondencia"
+        (click)="cerrarModal()"
+        style="width: 160px">
+          Solicitar Consecutivo
+      </button>
+      <button
+        id="mdl_scc07"
+        type="button"
+        class="btn btn-default"
+        title="Clic aquí para cancelar la solicitud"
+        (click)="cerrarModal()"
+        style="width: 160px;margin-left: 30px">
+          Cancelar
+      </button>
+    </div>
+  </p-dialog>
 </div>
