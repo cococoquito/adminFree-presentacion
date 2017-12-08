@@ -50,7 +50,7 @@
   <form
     name="form"
     #f="ngForm"
-    (ngSubmit)="onSubmit() && f.form.valid && abrirModal()"
+    (ngSubmit)="onSubmit() && f.form.valid && abrirModalConfirmacion()"
     (keydown.enter)="$event.preventDefault()">
 
     <!-- panel del formulario -->
@@ -164,7 +164,7 @@
                     [dropdown]="false"
                     [style]="{'width':'100%'}"
                     [inputStyle]="{'width':'100%'}"
-                    placeholder="Campo Requerido"
+                    placeholder="Campo Requerido (Autocomplete)"
                     required="true">
                     <ng-template let-item pTemplate="item">
                       <div class="ui-helper-clearfix autocomplete_item">
@@ -325,7 +325,7 @@
      modal="modal"
      width="800"
      [(visible)]="modalConfirmationVisible" 
-     (onHide)="cerrarModal()"
+     (onHide)="cerrarModalConfirmacion()"
      [responsive]="true">
 
     <p-header>
@@ -416,7 +416,7 @@
         type="button"
         class="btn btn-primary"
         title="Clic aquí para solicitar el consecutivo de correspondencia"
-        (click)="cerrarModal()"
+        (click)="cerrarModalConfirmacion()"
         style="width: 160px">
           Solicitar Consecutivo
       </button>
@@ -425,7 +425,7 @@
         type="button"
         class="btn btn-default"
         title="Clic aquí para cancelar la solicitud"
-        (click)="cerrarModal()"
+        (click)="cerrarModalConfirmacion()"
         style="width: 160px;margin-left: 30px">
           Cancelar
       </button>

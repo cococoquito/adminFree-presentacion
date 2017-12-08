@@ -51,6 +51,7 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
 
     /**
      * Constructor del componente para solicitudes de consecutivos de correspondencia
+     * 
      * @param utilService, service con las funciones utilitarias
      * @param alertService, service para la comunicacion del componente de mensaje de alerta
      * @param correspondenciaService, contiene los servicios para el modulo de correspondencia
@@ -80,13 +81,13 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
      * Metodo que soporta el evento click para cada tab de cada nomenclatura
      * 
      * @param nomenclatura , Es la nomenclatura seleccionado por el usuario
-     *  para solicitar un consecutivo
+     *  para solicitar un consecutivo de correspondencia
      */
     public clickNomenclatura(nomenclatura: NomenclaturasConsecutivosVO): void {
 
         // se valida que no se la misma nomenclatura
-        if (this.nomenclaturaSeleccionada && 
-            this.nomenclaturaSeleccionada.nomenclaturaVO && 
+        if (this.nomenclaturaSeleccionada &&
+            this.nomenclaturaSeleccionada.nomenclaturaVO &&
             this.nomenclaturaSeleccionada.nomenclaturaVO.idNomenclatura == nomenclatura.idNomenclatura) {
             return;
         }
@@ -132,15 +133,31 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     }
 
     /**
+     * Metodo que es invocado antes de solicitar el consecutivo donde se muestra el modal de confirmacion
+     */
+    public abrirModalConfirmacion(): void {
+
+        // se organizan los datos de entrada por el usuario
+        this.organizarDatosEntrada();
+
+        // se muestra el modal con esta bandera
+        this.modalConfirmationVisible = true;
+    }
+
+    /**
+     * Metodo que es invocado al cerrar el modal de confirmacion
+     */
+    public cerrarModalConfirmacion(): void {
+        this.modalConfirmationVisible = false;
+    }
+
+    /**
      * Metodo que permite generar un consecutivo de correspondencia para el anio actual
      */
     public solicitarConsecutivoAnioActual(): void {
 
         // se muestra el modal de carga
         this.utilService.displayLoading(true);
-
-        // se organizan los datos antes de la solicitud
-        this.organizarDatosEntrada();
 
         // se invoca el servicio para generar el nuevo consecutivo
         this.correspondenciaService.solicitarConsecutivoAnioActual(this.consecutivoCorrespondencia).subscribe(
@@ -155,19 +172,6 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
                 this.showErrorSistema(error);
             }
         );
-    }
-
-    public abrirModal():boolean{
-        this.organizarDatosEntrada();
-        this.modalConfirmationVisible = true;
-        return true;
-    }
-
-    /**
-     * Metodo que invocado al cerrar el modal de confirmaction
-     */
-    public cerrarModal(): void {
-        this.modalConfirmationVisible = false;
     }
 
     /**
@@ -220,7 +224,7 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     }
 
     /**
-     * Metodo que permite inicializar el DTO para la solicitud de la generacion del consecutivo
+     * Metodo que permite inicializar el DTO que mapea los datos ingresados por el user
      */
     private initConsecutivoCorrespondencia(): void {
 
@@ -237,7 +241,7 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     }
 
     /**
-     * Metodo que permite configurar el modelo del autucomplete de funcionarios
+     * Metodo que permite configurar el modelo del autocomplete de funcionarios
      */
     private configurarAutocompleteFuncionarios(): void {
         this.autocompleteFuncionarios.items = this.funcionarios;
