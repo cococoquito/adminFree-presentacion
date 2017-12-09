@@ -74,7 +74,7 @@
                   id="fecElabora1"
                   name="fecElabora1"
                   #fecElabora1="ngModel"
-                  [(ngModel)]="consecutivoCorrespondencia.fechaElaboracion"
+                  [(ngModel)]="datosSolicitud.fechaElaboracion"
                   dateFormat="dd/mm/yy"
                   [monthNavigator]="true"
                   [yearNavigator]="false"
@@ -87,7 +87,7 @@
                   required="true">
                 </p-calendar>
                 <div id="sc12" *ngIf="!(nomenclaturaSeleccionada.fechaElaboracionEditableB)" class="div_input">
-                   {{consecutivoCorrespondencia?.fechaElaboracion | date: 'dd/MM/yyyy'}}
+                   {{datosSolicitud?.fechaElaboracion | date: 'dd/MM/yyyy'}}
                 </div>
               </td>
               <td>
@@ -118,7 +118,7 @@
                     id="fecElabora"
                     name="fecElabora"
                     #fecElabora="ngModel"
-                    [(ngModel)]="consecutivoCorrespondencia.fechaElaboracion"
+                    [(ngModel)]="datosSolicitud.fechaElaboracion"
                     dateFormat="dd/mm/yy"
                     [monthNavigator]="true"
                     [yearNavigator]="false"
@@ -131,7 +131,7 @@
                     required="true">
                   </p-calendar>
                   <div id="sc16" *ngIf="!(nomenclaturaSeleccionada.fechaElaboracionEditableB)" class="div_input">
-                    {{consecutivoCorrespondencia?.fechaElaboracion | date: 'dd/MM/yyyy'}}
+                    {{datosSolicitud?.fechaElaboracion | date: 'dd/MM/yyyy'}}
                   </div>
                 </td>
                 <td>
@@ -195,7 +195,7 @@
                     name="dirigido"
                     #dirigido="ngModel"
                     type="text"
-                    [(ngModel)]="consecutivoCorrespondencia.destinatario"
+                    [(ngModel)]="datosSolicitud.destinatario"
                     [ngClass]="(submitted && !dirigido.valid) ? 'form-control input-invalido':'form-control input-valido'"
                     maxlength="255"
                     placeholder="Campo Requerido"
@@ -223,7 +223,7 @@
                     name="asunto"
                     #asunto="ngModel"
                     type="text"
-                    [(ngModel)]="consecutivoCorrespondencia.asunto"
+                    [(ngModel)]="datosSolicitud.asunto"
                     [ngClass]="(submitted && !asunto.valid) ? 'form-control input-invalido':'form-control input-valido'"
                     maxlength="255"
                     placeholder="Campo Requerido"
@@ -250,7 +250,7 @@
                     id="fecSAC"
                     name="fecSAC"
                     #fecSAC="ngModel"
-                    [(ngModel)]="consecutivoCorrespondencia.fechaSAC"
+                    [(ngModel)]="datosSolicitud.fechaSAC"
                     dateFormat="dd/mm/yy"
                     [monthNavigator]="true"
                     [yearNavigator]="false"
@@ -285,7 +285,7 @@
                     name="nroSac"
                     #nroSac="ngModel"
                     type="text"
-                    [(ngModel)]="consecutivoCorrespondencia.nroSAC"
+                    [(ngModel)]="datosSolicitud.nroSAC"
                     [ngClass]="(submitted && !nroSac.valid) ? 'form-control input-invalido':'form-control input-valido'"
                     maxlength="100"
                     placeholder="Campo Requerido"
@@ -351,7 +351,7 @@
                 <p class="sin_margin_bottom font_13">Fecha de Elaboración: (dd/mm/yyyy)</p>
               </td>
               <td class="width_78">
-                <p class="sin_margin_bottom bold">{{consecutivoCorrespondencia?.fechaElaboracion | date: 'dd/MM/yyyy'}}</p>
+                <p class="sin_margin_bottom bold">{{datosSolicitud?.fechaElaboracion | date: 'dd/MM/yyyy'}}</p>
               </td>
             </tr>
 
@@ -361,7 +361,7 @@
                 <p class="sin_margin_bottom font_13">Elaborado Por:</p>
               </td>
               <td>
-                <p class="sin_margin_bottom bold">{{consecutivoCorrespondencia?.nombreFuncionario}}</p>
+                <p class="sin_margin_bottom bold">{{datosSolicitud?.nombreFuncionario}}</p>
               </td>
             </tr>
 
@@ -371,7 +371,7 @@
                 <p class="sin_margin_bottom font_13">Dirigido A:</p>
               </td>
               <td>
-                <p class="sin_margin_bottom bold">{{consecutivoCorrespondencia?.destinatario}}</p>
+                <p class="sin_margin_bottom bold">{{datosSolicitud?.destinatario}}</p>
               </td>
             </tr>
 
@@ -381,7 +381,7 @@
                 <p class="sin_margin_bottom font_13">Asunto:</p>
               </td>
               <td>
-                <p class="sin_margin_bottom bold">{{consecutivoCorrespondencia?.asunto}}</p>
+                <p class="sin_margin_bottom bold">{{datosSolicitud?.asunto}}</p>
               </td>
             </tr>
 
@@ -391,7 +391,7 @@
                 <p class="sin_margin_bottom font_13">Fecha SAC: (dd/mm/yyyy)</p>
               </td>
               <td>
-                <p class="sin_margin_bottom bold">{{consecutivoCorrespondencia?.fechaSAC | date: 'dd/MM/yyyy'}}</p>
+                <p class="sin_margin_bottom bold">{{datosSolicitud?.fechaSAC | date: 'dd/MM/yyyy'}}</p>
               </td>
             </tr>
 
@@ -401,7 +401,7 @@
                 <p class="sin_margin_bottom font_13">Número SAC:</p>
               </td>
               <td>
-                <p class="sin_margin_bottom bold">{{consecutivoCorrespondencia?.nroSAC}}</p>
+                <p class="sin_margin_bottom bold">{{datosSolicitud?.nroSAC}}</p>
               </td>
             </tr>
           </tbody>
@@ -416,7 +416,7 @@
         type="button"
         class="btn btn-primary"
         title="Clic aquí para solicitar el consecutivo de correspondencia"
-        (click)="cerrarModalConfirmacion()"
+        (click)="solicitarConsecutivoAnioActual()"
         style="width: 160px">
           Solicitar Consecutivo
       </button>
@@ -424,10 +424,49 @@
         id="mdl_scc07"
         type="button"
         class="btn btn-default"
-        title="Clic aquí para cancelar la solicitud"
+        title="Clic aquí para cerrar esta ventana"
         (click)="cerrarModalConfirmacion()"
         style="width: 160px;margin-left: 30px">
-          Cancelar
+          Cerrar
+      </button>
+    </div>
+  </p-dialog>
+</div>
+
+<!-- modal del consecutivo generado -->
+<div id="mdl_cg00" *ngIf="modalConsecutivoVisible">
+  <p-dialog 
+    id="mdl_cg"
+    modal="modal"
+    width="400"
+    [(visible)]="modalConsecutivoVisible"
+    (onHide)="cerrarModalConsecutivo()"
+    [responsive]="true">
+    <!-- header -->
+    <p-header>
+      El número del consecutivo generado es:
+    </p-header>
+
+    <!-- body -->
+    <div id="mdl_cg05" class="title text_center">
+      <p>{{nomenclaturaSeleccionada?.nomenclaturaVO?.nomenclatura}} ({{nomenclaturaSeleccionada?.nomenclaturaVO?.nombre}})</p>
+    </div>
+    <div id="mdl_cg03" class="panel panel-default sin_margin_bottom back_ground_form">
+      <div id="mdl_cg04" class="title text_center padding_top10">
+        <p class="red font_22">{{consecutivoGenerado?.nroConsecutivo}}</p>
+      </div>
+    </div>
+    
+    <!-- btn cerrar modal -->
+    <div id="mdl_cg01" class="button_center_user padding_top10">
+      <button 
+        id="mdl_cg02"
+        type="button"
+        class="btn btn-primary"
+        title="Clic aquí para cerrar esta ventana"
+        (click)="cerrarModalConsecutivo()"
+        style="width: 130px">
+          Cerrar
       </button>
     </div>
   </p-dialog>

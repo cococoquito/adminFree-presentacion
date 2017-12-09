@@ -1,3 +1,4 @@
+import { ConsecutivoResponseDTO } from './../../../c-model/c-correspondencia/solicitar_consecutivo/ConsecutivoResponseDTO';
 import { AutocompleteUtil } from './../../../z-util/AutoComplete-util';
 import { WraperNomeclaturaConsecutivo } from './../../../c-model/a-admin/parametrizacion/WraperNomeclaturaConsecutivo';
 import { ConsecutivoCorrespondenciaDTO } from './../../../c-model/c-correspondencia/solicitar_consecutivo/ConsecutivoCorrespondenciaDTO';
@@ -24,6 +25,10 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     /**Es el ID del input del autocomplete de funcionarios*/
     private ID_INPUT_AUTOCOMPLETE_FUNCIONARIOS: string = "funcionario";
 
+    /**Div que contiene el autocomplete de funcionarios para el focus*/
+    @ViewChild('divSolicitud')
+    private divSolicitud: ElementRef;
+
     /**DTO que contiene los datos iniciales del modulo*/
     private init: InitSolicitarConsecutivoDTO;
 
@@ -37,17 +42,19 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     private nomenclaturaSeleccionada: WraperNomeclaturaConsecutivo;
 
     /**DTO para mapear los valores ingresados por el usuario*/
-    private consecutivoCorrespondencia: ConsecutivoCorrespondenciaDTO;
+    private datosSolicitud: ConsecutivoCorrespondenciaDTO;
 
     /**Es el modelo del componente de autocomplete de funcionarios*/
     private autocompleteFuncionarios: AutocompleteUtil;
 
-    /**Div que contiene el autocomplete de funcionarios para el focus*/
-    @ViewChild('divSolicitud')
-    private divSolicitud: ElementRef;
+    /**Es el consecutivo generado de acuerdo a la solicitud del usuario*/
+    private consecutivoGenerado: ConsecutivoResponseDTO;
 
     /**Bandera para visualizar el modal de confirmation para solicitar un consecutivo*/
     private modalConfirmationVisible: boolean;
+
+    /**Bandera para visualizar el modal donde se muestra el consecutivo generado por el sistema*/
+    private modalConsecutivoVisible: boolean;
 
     /**
      * Constructor del componente para solicitudes de consecutivos de correspondencia
@@ -129,7 +136,7 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
         }
 
         // se inicializa el DTO para ingresar los datos de la solicitud
-        this.initConsecutivoCorrespondencia();
+        this.initDatosSolicitudDTO();
     }
 
     /**
@@ -138,7 +145,7 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     public abrirModalConfirmacion(): void {
 
         // se organizan los datos de entrada por el usuario
-        this.organizarDatosEntrada();
+        this.organizarDatosSolicitud();
 
         // se muestra el modal con esta bandera
         this.modalConfirmationVisible = true;
@@ -152,21 +159,37 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     }
 
     /**
+     * Metodo que es invocado al cerrar el modal del consecutivo generado
+     */
+    public cerrarModalConsecutivo(): void {
+        this.modalConsecutivoVisible = false;
+    }
+
+    /**
      * Metodo que permite generar un consecutivo de correspondencia para el anio actual
      */
     public solicitarConsecutivoAnioActual(): void {
+
+        // se limpia el consecutivo generado esto por si hay solicitudes anteriores
+        this.consecutivoGenerado = null;
+
+        // se cierra el modal de confirmation
+        this.cerrarModalConfirmacion();
 
         // se muestra el modal de carga
         this.utilService.displayLoading(true);
 
         // se invoca el servicio para generar el nuevo consecutivo
-        this.correspondenciaService.solicitarConsecutivoAnioActual(this.consecutivoCorrespondencia).subscribe(
+        this.correspondenciaService.solicitarConsecutivoAnioActual(this.datosSolicitud).subscribe(
             data => {
-                // se muestra el modal con el nuevo consecutivo
-                console.log(data);
+                // se configuran el DTO del response
+                this.consecutivoGenerado = data.json();
 
                 // se cierra el modal de carga
                 this.utilService.displayLoading(false);
+
+                // se visualiza el modal con el consecutivo generado
+                this.modalConsecutivoVisible = true;
             },
             error => {
                 this.showErrorSistema(error);
@@ -226,17 +249,17 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     /**
      * Metodo que permite inicializar el DTO que mapea los datos ingresados por el user
      */
-    private initConsecutivoCorrespondencia(): void {
+    private initDatosSolicitudDTO(): void {
 
         // se crea la instancia del DTO donde mapea los datos ingresados
-        this.consecutivoCorrespondencia = new ConsecutivoCorrespondenciaDTO();
+        this.datosSolicitud = new ConsecutivoCorrespondenciaDTO();
 
         // se configura la fecha de elaboracion por default
-        this.consecutivoCorrespondencia.fechaElaboracion = new Date(this.init.fechaActual);
+        this.datosSolicitud.fechaElaboracion = new Date(this.init.fechaActual);
 
         // se configura la fecha SAC por default solo si es visible
         if (this.nomenclaturaSeleccionada.fechaSacVisibleB) {
-            this.consecutivoCorrespondencia.fechaSAC = new Date(this.init.fechaActual);
+            this.datosSolicitud.fechaSAC = new Date(this.init.fechaActual);
         }
     }
 
@@ -252,30 +275,24 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     /**
      * Metodo que permite organizar los datos antes de solicitar un consecutivo
      */
-    private organizarDatosEntrada(): void {
+    private organizarDatosSolicitud(): void {
 
         // se configura el ID de la nomenclatura seleccionada
-        this.consecutivoCorrespondencia.idNomenclatura = this.nomenclaturaSeleccionada.nomenclaturaVO.idNomenclatura;
+        this.datosSolicitud.idNomenclatura = this.nomenclaturaSeleccionada.nomenclaturaVO.idNomenclatura;
 
         // se configura el id del funcionario
         if (this.nomenclaturaSeleccionada.elaboradoPorVisibleB) {
-            this.consecutivoCorrespondencia.idFuncionario = this.autocompleteFuncionarios.itemSeleccionado.id;
-            this.consecutivoCorrespondencia.nombreFuncionario = this.autocompleteFuncionarios.itemSeleccionado.nombre;
+            this.datosSolicitud.idFuncionario = this.autocompleteFuncionarios.itemSeleccionado.id;
+            this.datosSolicitud.nombreFuncionario = this.autocompleteFuncionarios.itemSeleccionado.nombre;
         }
 
-        // se limpia los espacios en blanco del campo elaborado por
-        this.consecutivoCorrespondencia.destinatario =
-            (this.nomenclaturaSeleccionada.dirigidoAVisibleB) ?
-                this.consecutivoCorrespondencia.destinatario.trim() : null;
+        // se limpia los espacios en blanco del campo "Dirigido A"
+        this.datosSolicitud.destinatario = (this.nomenclaturaSeleccionada.dirigidoAVisibleB) ? this.datosSolicitud.destinatario.trim() : null;
 
-        // se limpia los espacios en blanco del campo asunto
-        this.consecutivoCorrespondencia.asunto =
-            (this.nomenclaturaSeleccionada.asuntoVisibleB) ?
-                this.consecutivoCorrespondencia.asunto.trim() : null;
+        // se limpia los espacios en blanco del campo "Asunto"
+        this.datosSolicitud.asunto = (this.nomenclaturaSeleccionada.asuntoVisibleB) ? this.datosSolicitud.asunto.trim() : null;
 
-        // se limpia los espacios en blanco del campo nroSac
-        this.consecutivoCorrespondencia.nroSAC =
-            (this.nomenclaturaSeleccionada.nroSacVisibleB) ?
-                this.consecutivoCorrespondencia.nroSAC.trim() : null;
+        // se limpia los espacios en blanco del campo "NroSac"
+        this.datosSolicitud.nroSAC = (this.nomenclaturaSeleccionada.nroSacVisibleB) ? this.datosSolicitud.nroSAC.trim() : null;
     }
 }
