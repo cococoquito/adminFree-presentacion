@@ -99,6 +99,9 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
             return;
         }
 
+        // se oculta el alert esto por si hay errores con el submit anterior
+        this.alertService.hiddenAlert();
+
         // se limpia el autocomplete, esto por si hay alguna instancia anterior
         this.autocompleteFuncionarios = null;
 
