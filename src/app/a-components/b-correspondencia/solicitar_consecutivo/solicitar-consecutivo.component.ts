@@ -102,12 +102,6 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
         // se oculta el alert esto por si hay errores con el submit anterior
         this.alertService.hiddenAlert();
 
-        // se limpia el autocomplete, esto por si hay alguna instancia anterior
-        this.autocompleteFuncionarios = null;
-
-        // se limpia el submit anterior
-        this.submitted = false;
-
         // se configura los datos de esta nomenclatura
         this.nomenclaturaSeleccionada = new WraperNomeclaturaConsecutivo();
         this.nomenclaturaSeleccionada.nomenclaturaVO = new NomenclaturasConsecutivosVO();
@@ -124,21 +118,7 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
         // se configuran las banderas que indican que campos son para digilenciar
         this.nomenclaturaSeleccionada.configurarBanderas();
 
-        // los funcionarios aplica solamente para el campo elaborado por
-        if (this.nomenclaturaSeleccionada.elaboradoPorVisibleB) {
-
-            // se crea la instancia del autocomplete
-            this.autocompleteFuncionarios = new AutocompleteUtil();
-
-            // se configura los funcionarios para el componente autocomplete
-            if (!this.funcionarios) {
-                this.listarFuncionarios();
-            } else {
-                this.configurarAutocompleteFuncionarios();
-            }
-        }
-
-        // se inicializa el DTO para ingresar los datos de la solicitud
+        // se inicializa las variables de ingreso de datos
         this.initDatosSolicitudDTO();
     }
 
@@ -190,6 +170,9 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
 
                 // se cierra el modal de carga
                 this.utilService.displayLoading(false);
+
+                // se inicializa las variables de ingreso de datos
+                this.initDatosSolicitudDTO();
 
                 // se visualiza el modal con el consecutivo generado
                 this.modalConsecutivoVisible = true;
@@ -250,9 +233,29 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     }
 
     /**
-     * Metodo que permite inicializar el DTO que mapea los datos ingresados por el user
+     * Metodo que permite inicializar las variables que mapea los datos ingresados por el user
      */
     private initDatosSolicitudDTO(): void {
+
+        // se limpia el submit anterior
+        this.submitted = false;
+
+        // se limpia el autocomplete, esto por si hay alguna instancia anterior
+        this.autocompleteFuncionarios = null;
+
+        // los funcionarios aplica solamente para el campo elaborado por
+        if (this.nomenclaturaSeleccionada.elaboradoPorVisibleB) {
+
+            // se crea la instancia del autocomplete
+            this.autocompleteFuncionarios = new AutocompleteUtil();
+
+            // se configura los funcionarios para el componente autocomplete
+            if (!this.funcionarios) {
+                this.listarFuncionarios();
+            } else {
+                this.configurarAutocompleteFuncionarios();
+            }
+        }
 
         // se crea la instancia del DTO donde mapea los datos ingresados
         this.datosSolicitud = new ConsecutivoCorrespondenciaDTO();
