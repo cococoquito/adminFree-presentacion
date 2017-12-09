@@ -38,23 +38,23 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     /** Es la lista de funcionarios consultados en BD**/
     private funcionarios: Array<CommonVO>;
 
-    /**Es la nomenclatura seleccionado para solicitar un consecutivo*/
-    private nomenclaturaSeleccionada: WraperNomeclaturaConsecutivo;
-
-    /**DTO para mapear los valores ingresados por el usuario*/
-    private datosSolicitud: ConsecutivoCorrespondenciaDTO;
-
     /**Es el modelo del componente de autocomplete de funcionarios*/
     private autocompleteFuncionarios: AutocompleteUtil;
 
-    /**Es el consecutivo generado de acuerdo a la solicitud del usuario*/
-    private consecutivoGenerado: ConsecutivoResponseDTO;
+    /**Es la nomenclatura seleccionado para solicitar un consecutivo*/
+    private nomenclaturaSeleccionada: WraperNomeclaturaConsecutivo;
 
-    /**Bandera para visualizar el modal de confirmation para solicitar un consecutivo*/
-    private modalConfirmationVisible: boolean;
+    /**DTO para mapear los valores ingresados por el usuario (request)*/
+    private datosSolicitud: ConsecutivoCorrespondenciaDTO;
+
+    /**DTO que contiene los datos del consecutivo generado (response)*/
+    private datosConsecutivo: ConsecutivoResponseDTO;
+
+    /**Bandera para visualizar el modal de confirmacion para solicitar un consecutivo*/
+    private showModalConfirmation: boolean;
 
     /**Bandera para visualizar el modal donde se muestra el consecutivo generado por el sistema*/
-    private modalConsecutivoVisible: boolean;
+    private showModalConsecutivo: boolean;
 
     /**
      * Constructor del componente para solicitudes de consecutivos de correspondencia
@@ -131,21 +131,21 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
         this.organizarDatosSolicitud();
 
         // se muestra el modal con esta bandera
-        this.modalConfirmationVisible = true;
+        this.showModalConfirmation = true;
     }
 
     /**
      * Metodo que es invocado al cerrar el modal de confirmacion
      */
     public cerrarModalConfirmacion(): void {
-        this.modalConfirmationVisible = false;
+        this.showModalConfirmation = false;
     }
 
     /**
      * Metodo que es invocado al cerrar el modal del consecutivo generado
      */
     public cerrarModalConsecutivo(): void {
-        this.modalConsecutivoVisible = false;
+        this.showModalConsecutivo = false;
     }
 
     /**
@@ -154,7 +154,7 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     public solicitarConsecutivoAnioActual(): void {
 
         // se limpia el consecutivo generado esto por si hay solicitudes anteriores
-        this.consecutivoGenerado = null;
+        this.datosConsecutivo = null;
 
         // se cierra el modal de confirmation
         this.cerrarModalConfirmacion();
@@ -166,7 +166,7 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
         this.correspondenciaService.solicitarConsecutivoAnioActual(this.datosSolicitud).subscribe(
             data => {
                 // se configuran el DTO del response
-                this.consecutivoGenerado = data.json();
+                this.datosConsecutivo = data.json();
 
                 // se cierra el modal de carga
                 this.utilService.displayLoading(false);
@@ -175,7 +175,7 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
                 this.initDatosSolicitudDTO();
 
                 // se visualiza el modal con el consecutivo generado
-                this.modalConsecutivoVisible = true;
+                this.showModalConsecutivo = true;
             },
             error => {
                 this.showErrorSistema(error);

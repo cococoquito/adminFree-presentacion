@@ -56,9 +56,9 @@
     <div id="sc07" class="panel panel-default">
       <div id="sc08" class="title text_center padding_top10">{{nomenclaturaSeleccionada?.nomenclaturaVO?.nomenclatura}} ({{nomenclaturaSeleccionada?.nomenclaturaVO?.nombre}})</div>
       <div id="sc09" class="panel-body">
-
+        <alert></alert>
         <!-- si cantidad de campos visibles es 1 solamente se muestra fecha elaboracion -->
-        <div 
+        <div
          id="sc10"
         *ngIf="nomenclaturaSeleccionada.cantCamposVisible == 1"
          class="row padding_bottom15 back_ground_form">
@@ -316,15 +316,14 @@
     </div>
   </form>
 </div>
-<alert></alert>
 
 <!-- modal de confirmacion -->
-<div id="mdl_scc00" *ngIf="modalConfirmationVisible">
+<div id="mdl_scc00" *ngIf="showModalConfirmation">
   <p-dialog 
      id="mdl_scc"
      modal="modal"
      width="800"
-     [(visible)]="modalConfirmationVisible" 
+     [(visible)]="showModalConfirmation" 
      (onHide)="cerrarModalConfirmacion()"
      [responsive]="true">
 
@@ -434,12 +433,12 @@
 </div>
 
 <!-- modal del consecutivo generado -->
-<div id="mdl_cg00" *ngIf="modalConsecutivoVisible">
+<div id="mdl_cg00" *ngIf="showModalConsecutivo">
   <p-dialog 
     id="mdl_cg"
     modal="modal"
     width="400"
-    [(visible)]="modalConsecutivoVisible"
+    [(visible)]="showModalConsecutivo"
     (onHide)="cerrarModalConsecutivo()"
     [responsive]="true">
     <!-- header -->
@@ -453,7 +452,7 @@
     </div>
     <div id="mdl_cg03" class="panel panel-default sin_margin_bottom back_ground_form">
       <div id="mdl_cg04" class="title text_center padding_top10">
-        <p class="red font_22">{{consecutivoGenerado?.nroConsecutivo}}</p>
+        <p class="red font_22">{{datosConsecutivo?.nroConsecutivo}}</p>
       </div>
     </div>
     
