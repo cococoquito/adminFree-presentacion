@@ -114,6 +114,7 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
         this.nomenclaturaSeleccionada.nomenclaturaVO.asuntoVisible = nomenclatura.asuntoVisible;
         this.nomenclaturaSeleccionada.nomenclaturaVO.fechaSacVisible = nomenclatura.fechaSacVisible;
         this.nomenclaturaSeleccionada.nomenclaturaVO.nroSacVisible = nomenclatura.nroSacVisible;
+        this.nomenclaturaSeleccionada.nomenclaturaOrigen = nomenclatura;
 
         // se configuran las banderas que indican que campos son para digilenciar
         this.nomenclaturaSeleccionada.configurarBanderas();
@@ -167,6 +168,9 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
             data => {
                 // se configuran el DTO del response
                 this.datosConsecutivo = data.json();
+
+                // se configura la nueva cantidad de consecutivos a la nomenclatura seleccionada
+                this.nomenclaturaSeleccionada.nomenclaturaOrigen.cantConsecutivos = this.datosConsecutivo.cantConsecutivos;
 
                 // se cierra el modal de carga
                 this.utilService.displayLoading(false);

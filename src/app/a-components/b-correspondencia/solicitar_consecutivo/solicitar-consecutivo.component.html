@@ -21,7 +21,7 @@
         <tr>
           <td class="width_40 text-left">
             <p [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada?.nomenclaturaVO?.idNomenclatura) ? 'nome_seleccionada' : 'nome_no_seleccionada'">
-              <i class="fa fa-fw fa-envelope"></i> 0
+              <i class="fa fa-fw fa-envelope"></i> {{nomenclatura.cantConsecutivos}}
             </p>
           </td>
           <td class="width_60 text-left">

@@ -34,4 +34,7 @@ export class NomenclaturasConsecutivosVO {
 
     /** bandera que identifica si la nomenclatura fue modificada **/
     public nomenclaturaModificada: boolean;
+
+    /** Contiene la cantidad de consecutivos que tiene la nomenclatura Relacionada con la solicitud **/
+    public cantConsecutivos: number;
 }
