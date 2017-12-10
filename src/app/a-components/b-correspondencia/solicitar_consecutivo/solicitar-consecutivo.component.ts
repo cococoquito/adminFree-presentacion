@@ -1,3 +1,4 @@
+import { EXITOSO_CONSECUTIVO_GENERADO, STYLE_SUCCESS_CENTER } from './../../../z-util/Constants';
 import { ConsecutivoResponseDTO } from './../../../c-model/c-correspondencia/solicitar_consecutivo/ConsecutivoResponseDTO';
 import { AutocompleteUtil } from './../../../z-util/AutoComplete-util';
 import { WraperNomeclaturaConsecutivo } from './../../../c-model/a-admin/parametrizacion/WraperNomeclaturaConsecutivo';
@@ -96,9 +97,6 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
             return;
         }
 
-        // se oculta el alert esto por si hay errores con el submit anterior
-        this.alertService.hiddenAlert();
-
         // se configura los datos de esta nomenclatura
         this.nomenclaturaSeleccionada = new WraperNomeclaturaConsecutivo();
         this.nomenclaturaSeleccionada.nomenclaturaVO = new NomenclaturasConsecutivosVO();
@@ -116,8 +114,8 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
         // se configuran las banderas que indican que campos son para digilenciar
         this.nomenclaturaSeleccionada.configurarBanderas();
 
-        // se inicializa las variables de ingreso de datos
-        this.initDatosSolicitudDTO();
+        // se visualiza el panel de solicitud
+        this.showPanelSolicitud();
     }
 
     /**
@@ -144,9 +142,6 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
      */
     public solicitarConsecutivoAnioActual(): void {
 
-        // se limpia el consecutivo generado esto por si hay solicitudes anteriores
-        this.datosConsecutivo = null;
-
         // se cierra el modal de confirmation
         this.cerrarModalConfirmacion();
 
@@ -168,6 +163,11 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
                 // se abre el panel exitoso limpiando la variable de la solicitud
                 this.datosSolicitud = null;
 
+                // se muestra el mensaje exitoso
+                setTimeout(() => {
+                    this.alertService.showAlert(EXITOSO_CONSECUTIVO_GENERADO, STYLE_SUCCESS_CENTER, false);
+                }, 100)
+
                 // se cierra el modal de carga
                 this.utilService.displayLoading(false);
             },
@@ -178,24 +178,16 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     }
 
     /**
-     * Metodo que permite soportar el click del boton finalizar
+     * Metodo que permite configurar todo lo que necesita para visualizar
+     * el panel de solicitud, tambien soporta el evento click del boton Finalizar
      */
-    public finalizar(): void {
+    public showPanelSolicitud(): void {
 
-        // se limpia el consecutivo generado, con esto se cierra panel esitos
+        // se limpia el consecutivo generado, con esto se cierra panel exitoso
         this.datosConsecutivo = null;
 
-        // se crea el DTO para ingresar otro consecutivo, con esto abre panel solicitud
-        this.initDatosSolicitudDTO();
-    }
-
-    /**
-     * Metodo que permite inicializar las variables que mapea los datos ingresados por el user
-     */
-    private initDatosSolicitudDTO(): void {
-
         // se limpia el submit anterior
-        this.submitted = false;
+        this.cleanSubmit();
 
         // se limpia el autocomplete, esto por si hay alguna instancia anterior
         this.autocompleteFuncionarios = null;

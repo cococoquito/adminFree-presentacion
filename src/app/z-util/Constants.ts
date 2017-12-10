@@ -50,3 +50,7 @@ export var NOMENCLATURA_CREADA: string = "La nomenclatura (?1) fue ingresado exi
 export var NOMENCLATURA_EDITADA: string = "La nomenclatura (?1) fue actualizada exitosamente en el sistema.";
 export var NOMENCLATURA_ELIMINADO: string = "La nomenclatura (?1) fue eliminado exitosamente del sistema.";
 /** mensajes para el modulo Adminstracion>>parametrizaciones - final*/
+
+/** mensajes para el modulo Correspondencia>>Solicitar Consecutivo - inicio*/
+export var EXITOSO_CONSECUTIVO_GENERADO: string = "El consecutivo fue generado exitosamente por el sistema";
+/** mensajes para el modulo Correspondencia>>Solicitar Consecutivo - final*/

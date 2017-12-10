@@ -7,6 +7,7 @@
 </div>
 <br/>
 
+
 <!-- menu de nomenclaturas -->
 <ul id="sc03" class="nav nav-tabs">
   <li
@@ -33,6 +34,7 @@
   </li>
 </ul>
 
+
 <!-- panel cuando no hay nomenclatura seleccionado -->
 <div id="sc04" *ngIf="!nomenclaturaSeleccionada" class="panel panel-default center-all panel_init">
   <div id="sc05" class="text-center width_90">
@@ -44,8 +46,9 @@
   </div>
 </div>
 
-<!-- fomulario para solicititar consecutivo -->
-<div id="sc06" #divSolicitud *ngIf="nomenclaturaSeleccionada">
+
+<!-- panel de solicitud -->
+<div id="sc06" #divSolicitud *ngIf="datosSolicitud">
   <form
     name="form"
     #f="ngForm"
@@ -316,6 +319,101 @@
     </div>
   </form>
 </div>
+
+
+<!-- panel de exitoso -->
+<div id="pnexi" *ngIf="datosConsecutivo" class="panel panel-default">
+  <div id="pnexi01" class="padding_5 sin_padding_bottom">
+    <alert></alert>
+  </div>
+  <div id="pnexi02" class="title text_center padding_5 sin_padding_top">
+    <p class="back_ground_form sin_margin_bottom2"><strong class="font_26 color_conse">{{datosConsecutivo.nroConsecutivo}}</strong></p>
+    <p class="sin_margin_bottom back_ground_form without_marge">Consecutivo</p>
+  </div>
+
+  <div id="pnexi03" class="panel-body">
+    <div id="pnexi04" class="title text_center font_16">{{nomenclaturaSeleccionada?.nomenclaturaVO?.nomenclatura}} ({{nomenclaturaSeleccionada?.nomenclaturaVO?.nombre}})</div>
+    <div id="pnexi05" class="row">
+      <table id="pnexi06" class="table table-hover sin_margin_bottom">
+        <tbody>
+          <!-- fecha elaboracion -->
+          <tr>
+            <td class="width_22">
+              <p class="sin_margin_bottom font_13">Fecha de Elaboración (dd/mm/yyyy):</p>
+            </td>
+            <td class="width_78">
+              <p class="sin_margin_bottom bold">{{datosConsecutivo?.datosSolicitud?.fechaElaboracion | date: 'dd/MM/yyyy'}}</p>
+            </td>
+          </tr>
+
+          <!-- elaborado Por -->
+          <tr *ngIf="nomenclaturaSeleccionada.elaboradoPorVisibleB">
+            <td>
+              <p class="sin_margin_bottom font_13">Elaborado Por:</p>
+            </td>
+            <td>
+              <p class="sin_margin_bottom bold">{{datosConsecutivo?.datosSolicitud?.nombreFuncionario}}</p>
+            </td>
+          </tr>
+
+          <!-- Dirigido A -->
+          <tr *ngIf="nomenclaturaSeleccionada.dirigidoAVisibleB">
+            <td>
+              <p class="sin_margin_bottom font_13">Dirigido A:</p>
+            </td>
+            <td>
+              <p class="sin_margin_bottom bold">{{datosConsecutivo?.datosSolicitud?.destinatario}}</p>
+            </td>
+          </tr>
+
+          <!-- Asunto -->
+          <tr *ngIf="nomenclaturaSeleccionada.asuntoVisibleB">
+            <td>
+              <p class="sin_margin_bottom font_13">Asunto:</p>
+            </td>
+            <td>
+              <p class="sin_margin_bottom bold">{{datosConsecutivo?.datosSolicitud?.asunto}}</p>
+            </td>
+          </tr>
+
+          <!-- Fecha SAC -->
+          <tr *ngIf="nomenclaturaSeleccionada.fechaSacVisibleB">
+            <td>
+              <p class="sin_margin_bottom font_13">Fecha SAC (dd/mm/yyyy):</p>
+            </td>
+            <td>
+              <p class="sin_margin_bottom bold">{{datosConsecutivo?.datosSolicitud?.fechaSAC | date: 'dd/MM/yyyy'}}</p>
+            </td>
+          </tr>
+
+          <!-- Numero SAC -->
+          <tr *ngIf="nomenclaturaSeleccionada.nroSacVisibleB">
+            <td>
+              <p class="sin_margin_bottom font_13">Número SAC:</p>
+            </td>
+            <td>
+              <p class="sin_margin_bottom bold">{{datosConsecutivo?.datosSolicitud?.nroSAC}}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Boton solicitar consecutivo -->
+    <div id="pnexi07" class="button_center_user row border_top">
+      <button 
+        id="pnexi08"
+        type="button"
+        class="btn btn-primary"
+        style="width: 150px;"
+        title="Clic aquí para regresar al formulario de solicitud"
+        (click)="showPanelSolicitud()">
+          Regresar
+      </button>
+    </div>
+  </div>
+</div>
+
 
 <!-- modal de confirmacion -->
 <div id="mdl_scc00" *ngIf="showModalConfirmation">

@@ -354,6 +354,10 @@ ul.alert-dropdown {
     margin-bottom:0%
 }
 
+.sin_margin_bottom2{
+    margin-bottom: -0.5%
+}
+
 .sin_padding_bottom{
     padding-bottom:0%!important
 }
@@ -636,6 +640,10 @@ ul.alert-dropdown {
     padding-top: 30px
 }
 
+.sin_padding_top{
+    padding-top: 0px!important
+}
+
 .padding_bottom15{
     padding-bottom: 15px
 }
@@ -685,7 +693,6 @@ ul.alert-dropdown {
   text-align: center
 }
 
-
 #mdl_scc .ui-dialog-title{
     font-family: 'palatino linotype', palatino, serif;
     color: #fff;
@@ -706,6 +713,18 @@ ul.alert-dropdown {
     font-size: 22px
 }
 
+.font_26{
+    font-size: 26px
+}
+
 .bold{
     font-weight: bold
+}
+
+.border_top{
+    border-top: 1px solid #ddd
+}
+
+.color_conse{
+    color: #F25423
 }

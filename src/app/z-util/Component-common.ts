@@ -40,6 +40,18 @@ export class ComponentCommon {
     }
 
     /**
+     * Metodo que permite limpiar el submit
+     */
+    protected cleanSubmit(): void {
+
+        // se esconde la ventana de alert
+        this.alertService.hiddenAlert();
+
+        // se limpia el submit anterior
+        this.submitted = false;
+    }
+
+    /**
      * metodo que permite mostrar el error ocacionado por el sistema
      * @param error, es el error a mostrar en el alert
      */
