@@ -355,7 +355,7 @@ ul.alert-dropdown {
 }
 
 .sin_padding_bottom{
-    padding-bottom:0%
+    padding-bottom:0%!important
 }
 
 .items_border{
@@ -644,6 +644,10 @@ ul.alert-dropdown {
     background-color: #F8F8F8
 }
 
+.padding_5{
+    padding: 5px
+}
+
 .component_center{
     margin: auto
 }
@@ -718,6 +722,10 @@ ul.alert-dropdown {
 
 .font_13{
     font-size: 13px
+}
+
+.font_16{
+    font-size: 16px
 }
 
 .font_22{
