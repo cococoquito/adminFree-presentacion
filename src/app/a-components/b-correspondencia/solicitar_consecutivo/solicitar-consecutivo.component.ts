@@ -53,9 +53,6 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     /**Bandera para visualizar el modal de confirmacion para solicitar un consecutivo*/
     private showModalConfirmation: boolean;
 
-    /**Bandera para visualizar el modal donde se muestra el consecutivo generado por el sistema*/
-    private showModalConsecutivo: boolean;
-
     /**
      * Constructor del componente para solicitudes de consecutivos de correspondencia
      * 
@@ -143,13 +140,6 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     }
 
     /**
-     * Metodo que es invocado al cerrar el modal del consecutivo generado
-     */
-    public cerrarModalConsecutivo(): void {
-        this.showModalConsecutivo = false;
-    }
-
-    /**
      * Metodo que permite generar un consecutivo de correspondencia para el anio actual
      */
     public solicitarConsecutivoAnioActual(): void {
@@ -172,19 +162,68 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
                 // se configura la nueva cantidad de consecutivos a la nomenclatura seleccionada
                 this.nomenclaturaSeleccionada.nomenclaturaOrigen.cantConsecutivos = this.datosConsecutivo.cantConsecutivos;
 
+                // se configura los datos de la solicitud
+                this.datosConsecutivo.datosSolicitud = this.datosSolicitud;
+
+                // se abre el panel exitoso limpiando la variable de la solicitud
+                this.datosSolicitud = null;
+
                 // se cierra el modal de carga
                 this.utilService.displayLoading(false);
-
-                // se inicializa las variables de ingreso de datos
-                this.initDatosSolicitudDTO();
-
-                // se visualiza el modal con el consecutivo generado
-                this.showModalConsecutivo = true;
             },
             error => {
                 this.showErrorSistema(error);
             }
         );
+    }
+
+    /**
+     * Metodo que permite soportar el click del boton finalizar
+     */
+    public finalizar(): void {
+
+        // se limpia el consecutivo generado, con esto se cierra panel esitos
+        this.datosConsecutivo = null;
+
+        // se crea el DTO para ingresar otro consecutivo, con esto abre panel solicitud
+        this.initDatosSolicitudDTO();
+    }
+
+    /**
+     * Metodo que permite inicializar las variables que mapea los datos ingresados por el user
+     */
+    private initDatosSolicitudDTO(): void {
+
+        // se limpia el submit anterior
+        this.submitted = false;
+
+        // se limpia el autocomplete, esto por si hay alguna instancia anterior
+        this.autocompleteFuncionarios = null;
+
+        // los funcionarios aplica solamente para el campo elaborado por
+        if (this.nomenclaturaSeleccionada.elaboradoPorVisibleB) {
+
+            // se crea la instancia del autocomplete
+            this.autocompleteFuncionarios = new AutocompleteUtil();
+
+            // se configura los funcionarios para el componente autocomplete
+            if (!this.funcionarios) {
+                this.listarFuncionarios();
+            } else {
+                this.configurarAutocompleteFuncionarios();
+            }
+        }
+
+        // se crea la instancia del DTO donde mapea los datos ingresados
+        this.datosSolicitud = new ConsecutivoCorrespondenciaDTO();
+
+        // se configura la fecha de elaboracion por default
+        this.datosSolicitud.fechaElaboracion = new Date(this.init.fechaActual);
+
+        // se configura la fecha SAC por default solo si es visible
+        if (this.nomenclaturaSeleccionada.fechaSacVisibleB) {
+            this.datosSolicitud.fechaSAC = new Date(this.init.fechaActual);
+        }
     }
 
     /**
@@ -234,43 +273,6 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
                 this.showErrorSistema(error);
             }
         );
-    }
-
-    /**
-     * Metodo que permite inicializar las variables que mapea los datos ingresados por el user
-     */
-    private initDatosSolicitudDTO(): void {
-
-        // se limpia el submit anterior
-        this.submitted = false;
-
-        // se limpia el autocomplete, esto por si hay alguna instancia anterior
-        this.autocompleteFuncionarios = null;
-
-        // los funcionarios aplica solamente para el campo elaborado por
-        if (this.nomenclaturaSeleccionada.elaboradoPorVisibleB) {
-
-            // se crea la instancia del autocomplete
-            this.autocompleteFuncionarios = new AutocompleteUtil();
-
-            // se configura los funcionarios para el componente autocomplete
-            if (!this.funcionarios) {
-                this.listarFuncionarios();
-            } else {
-                this.configurarAutocompleteFuncionarios();
-            }
-        }
-
-        // se crea la instancia del DTO donde mapea los datos ingresados
-        this.datosSolicitud = new ConsecutivoCorrespondenciaDTO();
-
-        // se configura la fecha de elaboracion por default
-        this.datosSolicitud.fechaElaboracion = new Date(this.init.fechaActual);
-
-        // se configura la fecha SAC por default solo si es visible
-        if (this.nomenclaturaSeleccionada.fechaSacVisibleB) {
-            this.datosSolicitud.fechaSAC = new Date(this.init.fechaActual);
-        }
     }
 
     /**

@@ -1,3 +1,4 @@
+import { ConsecutivoCorrespondenciaDTO } from './ConsecutivoCorrespondenciaDTO';
 /**
  * Clase que contiene la respuesta del consecutivo generado por el sistema
  * 
@@ -10,4 +11,7 @@ export class ConsecutivoResponseDTO {
 
     /** Contiene la cantidad de consecutivos que tiene la nomenclatura Relacionada con la solicitud **/
     public cantConsecutivos: number;
+
+    /** Datos de la solicitud, esto se utiliza solo para ANGULAR **/
+    public datosSolicitud: ConsecutivoCorrespondenciaDTO;
 }
