@@ -1,9 +1,9 @@
 import { EXITOSO_CONSECUTIVO_GENERADO, STYLE_SUCCESS_CENTER } from './../../../z-util/Constants';
 import { ConsecutivoResponseDTO } from './../../../c-model/c-correspondencia/solicitar_consecutivo/ConsecutivoResponseDTO';
-import { AutocompleteUtil } from './../../../z-util/AutoComplete-util';
-import { WraperNomeclaturaConsecutivo } from './../../../c-model/a-admin/parametrizacion/WraperNomeclaturaConsecutivo';
 import { ConsecutivoCorrespondenciaDTO } from './../../../c-model/c-correspondencia/solicitar_consecutivo/ConsecutivoCorrespondenciaDTO';
 import { InitSolicitarConsecutivoDTO } from './../../../c-model/c-correspondencia/solicitar_consecutivo/InitSolicitarConsecutivoDTO';
+import { AutocompleteUtil } from './../../../z-util/AutoComplete-util';
+import { WraperNomeclaturaConsecutivo } from './../../../c-model/a-admin/parametrizacion/WraperNomeclaturaConsecutivo';
 import { CommonVO } from './../../../c-model/a-admin/parametrizacion/CommonVO';
 import { CorrespondenciaService } from './../../../b-service/b-correspondencia/correspondencia.service';
 import { Util } from './../../../z-util/Util';
