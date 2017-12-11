@@ -1,3 +1,4 @@
+import { UsuarioLoginDTO } from './../../../c-model/b-seguridad/UsuarioLoginDTO';
 import { EXITOSO_CONSECUTIVO_GENERADO, STYLE_SUCCESS_CENTER } from './../../../z-util/Constants';
 import { ConsecutivoResponseDTO } from './../../../c-model/c-correspondencia/solicitar_consecutivo/ConsecutivoResponseDTO';
 import { ConsecutivoCorrespondenciaDTO } from './../../../c-model/c-correspondencia/solicitar_consecutivo/ConsecutivoCorrespondenciaDTO';
@@ -35,6 +36,9 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
 
     /**Es la localidad para los componentes fechas*/
     private es: any;
+
+    /**DTO que contiene los datos del usuario autenticado en el sistema*/
+    private user: UsuarioLoginDTO;
 
     /** Es la lista de funcionarios consultados en BD**/
     private funcionarios: Array<CommonVO>;
@@ -80,6 +84,9 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
 
         // se configura la localidad para fechas
         this.es = Util.getCalendarLocale();
+
+        // se configura los datos del usuario autenticado
+        this.user = this.administradorService.getUsuarioAutenticado();
     }
 
     /**
@@ -283,6 +290,9 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
 
         // se configura el ID de la nomenclatura seleccionada
         this.datosSolicitud.idNomenclatura = this.nomenclaturaSeleccionada.nomenclaturaVO.idNomenclatura;
+
+        // se configura el usuario autenticado en el sistema
+        this.datosSolicitud.idUsuario = this.user.usuario.idUsuario;
 
         // se configura el id del funcionario
         if (this.nomenclaturaSeleccionada.elaboradoPorVisibleB) {

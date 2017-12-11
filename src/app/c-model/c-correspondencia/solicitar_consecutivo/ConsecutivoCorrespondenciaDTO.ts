@@ -31,4 +31,7 @@ export class ConsecutivoCorrespondenciaDTO {
 
     /** Resumen donde se especifica lo que solicita el ciudadano **/
     public asunto: string;
+
+    /** Identificador del usuario quien hace la solicitud de generacion de consecutivo **/
+    public idUsuario: number;
 }
