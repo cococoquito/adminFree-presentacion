@@ -400,12 +400,12 @@ ul.alert-dropdown {
 
 .title_center{
     text-align: center; 
-    margin: auto; 
+    margin: auto;
     width: 70%
 }
 
 .button_center_user{
-    text-align: center; 
+    text-align: center;
     padding:4px
 }
 
@@ -508,6 +508,10 @@ ul.alert-dropdown {
     width: 20%
 }
 
+.width_80{
+    width: 80%
+}
+
 .width_35{
     width: 35%
 }
@@ -566,6 +570,10 @@ ul.alert-dropdown {
     margin-top: 1%
 }
 
+.margin_top_30{
+    margin-top: 30px
+}
+
 .folder_cc {
 	background: url('../../img/carpeta.png') no-repeat;
 	width: 205px;
@@ -616,8 +624,8 @@ ul.alert-dropdown {
 }
 
 .panel_init{
-    min-height: 200px; 
-    height: 200px
+    min-height: 250px; 
+    height: 250px
 }
 
 .background_white{
@@ -626,6 +634,10 @@ ul.alert-dropdown {
 
 .red{
     color:#C45246
+}
+
+.grey{
+    color: #757575
 }
 
 .padding_top10{
@@ -715,6 +727,10 @@ ul.alert-dropdown {
 
 .font_26{
     font-size: 26px
+}
+
+.font_30{
+    font-size: 30px
 }
 
 .bold{

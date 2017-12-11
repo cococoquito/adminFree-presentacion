@@ -11,15 +11,21 @@
 </ul>
 
 <!-- panel cuando no hay item seleccionado -->
-<div *ngIf="!itemSeleccionado" class="panel panel-default center-all" style="min-height: 250px; height: 250px">
-  <div style="width: 90%">
-    <p class="sub-title-page" style="background-color: #FFF;">
-      <strong class="color_blue">Administración de Roles:</strong> Este ítem permite la creación, edición y eliminación para los <strong>ROLES</strong>      del sistema, cada ROL se le debe asignar sus propios privilegios, cada privilegio es permitir que el usuario pueda
-      ingresar a un módulo o submódulo específico.
+<div id="pn_em" *ngIf="!itemSeleccionado" class="panel panel-default panel_init">
+  <div id="pn_em01" class="width_100 text-center font_30 margin_top_30">
+    <i class="glyphicon glyphicon-info-sign grey"></i>
+  </div>
 
-      <br/><br/><br/>
-      <strong class="color_blue">Administración de Usuarios:</strong> Este ítem permite la creación, edición, eliminación y restauración de contraseña
-      para los <strong>USUARIOS</strong> del sistema, para la creación del usuario se debe tener definido el ROL que se le asignará.
+  <div id="pn_em02" class="component_center width_80">
+    <p class="sub-title-page background_white text-left grey">
+      <strong class="color_blue">Administración de Roles:</strong> Este ítem permite la creación, edición y eliminación para los <strong>ROLES</strong>      del sistema, cada ROL se le debe asignar sus propios privilegios, cada privilegio es permitir que el usuario pueda ingresar a un módulo o submódulo específico.
+    </p>
+  </div>
+  <br/>
+
+  <div id="pn_em03" class="component_center width_80">
+    <p class="sub-title-page background_white text-left grey">
+      <strong class="color_blue">Administración de Usuarios:</strong> Este ítem permite la creación, edición, eliminación y restauración de contraseña para los <strong>USUARIOS</strong> del sistema, para la creación del usuario se debe tener definido el ROL que se le asignará.
     </p>
   </div>
 </div>

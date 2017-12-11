@@ -36,12 +36,21 @@
 
 
 <!-- panel cuando no hay nomenclatura seleccionado -->
-<div id="sc04" *ngIf="!nomenclaturaSeleccionada" class="panel panel-default center-all panel_init">
-  <div id="sc05" class="text-center width_90">
-    <p class="sub-title-page background_white">
-      <i class="glyphicon glyphicon-asterisk color_blue"></i>Seleccione la nomenclatura en el menú superior para solicitar un consecutivo, si la nomenclatura no se encuentra en el menú superior, por favor comuníquese con el <strong>administrador del sistema</strong>.
-      <br/><br/><br/>
-      <i class="glyphicon glyphicon-asterisk color_blue"></i> El número al lado del icono <i class="fa fa-fw fa-envelope red"></i> es la <strong>cantidad de consecutivos</strong> que han solicitado para esa nomenclatura.
+<div id="pn_em" *ngIf="!nomenclaturaSeleccionada" class="panel panel-default panel_init">
+  <div id="pn_em01" class="width_100 text-center font_30 margin_top_30">
+    <i class="glyphicon glyphicon-info-sign grey"></i>
+  </div>
+
+  <div id="pn_em02" class="component_center width_80">
+    <p class="sub-title-page background_white text-left grey">
+      Seleccione la nomenclatura en el menú superior para solicitar un consecutivo, si la nomenclatura no se encuentra en el menú superior, por favor comuníquese con el <strong>administrador del sistema</strong>.
+    </p>
+  </div>
+  <br/>
+
+  <div id="pn_em03" class="component_center width_80">
+    <p class="sub-title-page background_white text-left grey">
+      El número que se encuentra al lado del icono <i class="fa fa-fw fa-envelope red"></i> es la <strong>cantidad de consecutivos</strong> que han solicitado para esa nomenclatura.
     </p>
   </div>
 </div>
@@ -444,10 +453,10 @@
           <tbody>
             <!-- fecha elaboracion -->
             <tr>
-              <td class="width_22">
-                <p class="sin_margin_bottom font_13">Fecha de Elaboración: (dd/mm/yyyy)</p>
+              <td class="width_20">
+                <p class="sin_margin_bottom font_13">Fecha de Elaboración:<br/>(dd/mm/yyyy)</p>
               </td>
-              <td class="width_78">
+              <td class="width_80">
                 <p class="sin_margin_bottom bold">{{datosSolicitud?.fechaElaboracion | date: 'dd/MM/yyyy'}}</p>
               </td>
             </tr>
@@ -485,7 +494,7 @@
             <!-- Fecha SAC -->
             <tr *ngIf="nomenclaturaSeleccionada.fechaSacVisibleB">
               <td>
-                <p class="sin_margin_bottom font_13">Fecha SAC: (dd/mm/yyyy)</p>
+                <p class="sin_margin_bottom font_13">Fecha SAC:<br/>(dd/mm/yyyy)</p>
               </td>
               <td>
                 <p class="sin_margin_bottom bold">{{datosSolicitud?.fechaSAC | date: 'dd/MM/yyyy'}}</p>
