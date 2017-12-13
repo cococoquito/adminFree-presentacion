@@ -196,6 +196,17 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
         // se limpia el submit anterior
         this.cleanSubmit();
 
+        // se crea la instancia del DTO donde mapea los datos ingresados
+        this.datosSolicitud = new ConsecutivoCorrespondenciaDTO();
+
+        // se configura la fecha de elaboracion por default
+        this.datosSolicitud.fechaElaboracion = new Date(this.init.fechaActual);
+
+        // se configura la fecha SAC por default solo si es visible
+        if (this.nomenclaturaSeleccionada.fechaSacVisibleB) {
+            this.datosSolicitud.fechaSAC = new Date(this.init.fechaActual);
+        }
+
         // se limpia el autocomplete, esto por si hay alguna instancia anterior
         this.autocompleteFuncionarios = null;
 
@@ -211,17 +222,6 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
             } else {
                 this.configurarAutocompleteFuncionarios();
             }
-        }
-
-        // se crea la instancia del DTO donde mapea los datos ingresados
-        this.datosSolicitud = new ConsecutivoCorrespondenciaDTO();
-
-        // se configura la fecha de elaboracion por default
-        this.datosSolicitud.fechaElaboracion = new Date(this.init.fechaActual);
-
-        // se configura la fecha SAC por default solo si es visible
-        if (this.nomenclaturaSeleccionada.fechaSacVisibleB) {
-            this.datosSolicitud.fechaSAC = new Date(this.init.fechaActual);
         }
     }
 
@@ -278,9 +278,11 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
      * Metodo que permite configurar el modelo del autocomplete de funcionarios
      */
     private configurarAutocompleteFuncionarios(): void {
-        this.autocompleteFuncionarios.items = this.funcionarios;
-        this.autocompleteFuncionarios.inputDIV = this.divSolicitud;
-        this.autocompleteFuncionarios.inputID = this.ID_INPUT_AUTOCOMPLETE_FUNCIONARIOS;
+        setTimeout(() => {
+            this.autocompleteFuncionarios.items = this.funcionarios;
+            this.autocompleteFuncionarios.inputDIV = this.divSolicitud;
+            this.autocompleteFuncionarios.inputID = this.ID_INPUT_AUTOCOMPLETE_FUNCIONARIOS;
+        }, 100)
     }
 
     /**
