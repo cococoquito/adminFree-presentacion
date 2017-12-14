@@ -260,13 +260,17 @@ ul.alert-dropdown {
     font-weight: bold;
 }
 
-.sub-title-page{
-    background-color: #F8F8F8; 
-    font-family: 'PT Sans', 'Trebuchet Ms', Sans;
+.title-page{
+    font-family: 'palatino linotype', palatino, serif;
+    color: #00AECF;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0.4pt;
+    word-spacing: 0.8pt
 }
 
-.back-ground-title{
-    background-color: #F8F8F8; 
+.sub-title-page{
+    font-family: 'PT Sans', 'Trebuchet Ms', Sans
 }
 
 .fecha-ingreso{
@@ -383,15 +387,6 @@ ul.alert-dropdown {
 .link_role{
     cursor:pointer !important;
     text-decoration: underline !important;
-}
-
-.title-page{
-    font-family: 'palatino linotype', palatino, serif;
-    color: #C45246;
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 0.4pt;
-    word-spacing: 0.8pt;
 }
 
 #mdl_confirm_seguridad .ui-dialog-content{
