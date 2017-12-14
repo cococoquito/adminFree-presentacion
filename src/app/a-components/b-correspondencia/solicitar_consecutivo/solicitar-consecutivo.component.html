@@ -17,7 +17,7 @@
     pTooltip="{{nomenclatura.nombre}}"
     tooltipPosition="top">
     <a (click)="clickNomenclatura(nomenclatura)"
-       [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada?.nomenclaturaVO?.idNomenclatura) ? 'tab_seleccionado' : 'tab_no_seleccionado'">
+       [ngClass]="(nomenclaturaSeleccionada && nomenclatura.idNomenclatura == nomenclaturaSeleccionada?.nomenclaturaVO?.idNomenclatura) ? 'tab_seleccionado' : 'conse_no_seleccionado'">
       <table class="width_100">
         <tr>
           <td class="width_40 text-left">
@@ -26,7 +26,7 @@
             </p>
           </td>
           <td class="width_60 text-left">
-            <strong>{{nomenclatura.nomenclatura}}</strong>
+            <strong class="font_15">{{nomenclatura.nomenclatura}}</strong>
           </td>
         </tr>
       </table>
@@ -67,7 +67,7 @@
     <!-- panel del formulario -->
     <div id="sc07" class="panel panel-default">
       <div class="padding_5 sin_padding_bottom"><alert></alert></div>
-      <div id="sc08" class="title text_center font_16">{{nomenclaturaSeleccionada?.nomenclaturaVO?.nomenclatura}} ({{nomenclaturaSeleccionada?.nomenclaturaVO?.nombre}})</div>
+      <div id="sc08" class="title text_center font_16 padding_top10">{{nomenclaturaSeleccionada?.nomenclaturaVO?.nomenclatura}} ({{nomenclaturaSeleccionada?.nomenclaturaVO?.nombre}})</div>
       <div id="sc09" class="panel-body">
         <!-- si cantidad de campos visibles es 1 solamente se muestra fecha elaboracion -->
         <div

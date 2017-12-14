@@ -466,6 +466,12 @@ ul.alert-dropdown {
     border: 1px solid #ddd!important
 }
 
+.conse_no_seleccionado{
+    cursor: pointer;
+    border: 1px solid #ddd!important;
+    color: #676767
+}
+
 .pa_form{
     padding-bottom:4px;
     padding-top:4px
