@@ -1,46 +1,48 @@
 <!-- titulo de la pagina -->
-<div class="text_center title-page back-ground-title">
+<div class="text_center title-page">
   Cambio de Contraseña
 </div>
 <div class="text_center sub-title-page">
-  <br/>
+  <i class="glyphicon glyphicon-info-sign grey"></i>
   Se recomienda usar una contraseña segura como una secuencia del teclado para así evitar usurpación de usuarios.<br/>La nueva contraseña debe tener al menos <strong>8 caracteres</strong> y no puede contener espacios en blanco.
 </div>
-<br/><br/><br/>
+<br/><br/>
+
 
 <!-- formulario con el enter desabilitado -->
-<form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && cambiarClave()" (keydown.enter)="$event.preventDefault()" novalidate>
+<form name="form" #f="ngForm" (ngSubmit)="onSubmit() && f.form.valid && cambiarClave()" (keydown.enter)="$event.preventDefault()">
 
-  <div style="width: 40%" class="img-center">
-    <!-- clave actual -->
-    <div class="form-group">
-      <label for="claveActual">Contraseña actual*</label>
-      <input type="password" [(ngModel)]="cambioClave.claveActual" name="claveActual" #claveActual="ngModel" 
-       [ngClass]="(submitted && !claveActual.valid) ? 'form-control input-invalido':'form-control input-valido'"
-       maxlength="100" placeholder="Este campo es requerido" focus="true" myNoSpaces/>
-    </div>
+  <div style="border-radius: 6px;" class="back_ground_form component_center padding_top10 width_80 padding_bottom05">
+    <div style="width: 40%" class="img-center">
+      <!-- clave actual -->
+      <div class="form-group">
+        <label for="claveActual">Contraseña actual*</label>
+        <input type="password" [(ngModel)]="cambioClave.claveActual" name="claveActual" #claveActual="ngModel" 
+        [ngClass]="(submitted && !claveActual.valid) ? 'form-control input-invalido':'form-control input-valido'"
+        maxlength="100" placeholder="Campo Requerido" focus="true" myNoSpaces/>
+      </div>
 
-    <!-- clave nueva -->
-    <div class="form-group">
-      <label for="claveNueva">Contraseña nueva*</label>
-      <input type="password" [(ngModel)]="cambioClave.claveNueva" name="claveNueva" #claveNueva="ngModel" 
-       [ngClass]="(submitted && !claveNueva.valid) ? 'form-control input-invalido':'form-control input-valido'"
-       maxlength="100" placeholder="Este campo es requerido" myNoSpaces/>
-    </div>
+      <!-- clave nueva -->
+      <div class="form-group">
+        <label for="claveNueva">Contraseña nueva*</label>
+        <input type="password" [(ngModel)]="cambioClave.claveNueva" name="claveNueva" #claveNueva="ngModel" 
+        [ngClass]="(submitted && !claveNueva.valid) ? 'form-control input-invalido':'form-control input-valido'"
+        maxlength="100" placeholder="Campo Requerido" myNoSpaces/>
+      </div>
 
-    <!-- repetir clave nueva -->
-    <div class="form-group">
-      <label for="repetirClaveNueva">Confirmar nueva contraseña*</label>
-      <input type="password" [(ngModel)]="cambioClave.repetirClaveNueva" name="repetirClaveNueva" #repetirClaveNueva="ngModel" 
-       [ngClass]="(submitted && !repetirClaveNueva.valid) ? 'form-control input-invalido':'form-control input-valido'"
-       maxlength="100" placeholder="Este campo es requerido" myNoSpaces/>
-    </div>
-
-    <!-- button guardar cambios -->
-    <div class="form-group" class="text_center">
-      <button type="submit" class="btn btn-primary" title="Clic aquí para guardar la nueva contraseña en el sistema">Cambiar contraseña</button>
+      <!-- repetir clave nueva -->
+      <div class="form-group">
+        <label for="repetirClaveNueva">Confirmar nueva contraseña*</label>
+        <input type="password" [(ngModel)]="cambioClave.repetirClaveNueva" name="repetirClaveNueva" #repetirClaveNueva="ngModel" 
+        [ngClass]="(submitted && !repetirClaveNueva.valid) ? 'form-control input-invalido':'form-control input-valido'"
+        maxlength="100" placeholder="Campo Requerido" myNoSpaces/>
+      </div>
     </div>
   </div>
-  <br/>
+
+  <!-- button guardar cambios -->
+  <div class="form-group" class="text_center padding_top10 padding_bottom15">
+    <button type="submit" class="btn btn-primary" title="Clic aquí para guardar la nueva contraseña en el sistema">Cambiar contraseña</button>
+  </div>
   <alert></alert>
 </form>
