@@ -50,13 +50,13 @@
                 <label for="nomen">Nomenclatura*:</label>
                 <input type="text" [(ngModel)]="nomenclaturaCrearEditar.nomenclaturaVO.nomenclatura" name="nomen" #nomen="ngModel" 
                  [ngClass]="(submitted && !nomen.valid) ? 'form-control input-invalido':'form-control input-valido'"
-                 maxlength="15" placeholder="Este campo es requerido" focus="true" myNoSpaces/>
+                 maxlength="15" placeholder="Campo Requerido" focus="true" myNoSpaces/>
             </div>
             <div class="form-group col-md-6 sin_margin_bottom" style="width: 30%">
                 <label for="nombre">Descripción*:</label>
                 <input type="text" [(ngModel)]="nomenclaturaCrearEditar.nomenclaturaVO.nombre" name="nombre" #nombre="ngModel" 
                  [ngClass]="(submitted && !nombre.valid) ? 'form-control input-invalido':'form-control input-valido'"
-                 maxlength="50" placeholder="Este campo es requerido" myNoSpaces/>
+                 maxlength="50" placeholder="Campo Requerido" myNoSpaces/>
             </div>
 
             <div class="form-group col-md-6 sin_margin_bottom text-right" style="width: 40%;margin-top:25px">
