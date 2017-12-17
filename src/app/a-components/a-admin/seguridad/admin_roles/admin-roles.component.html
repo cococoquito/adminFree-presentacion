@@ -42,7 +42,7 @@
         novalidate class="form-inline" style="padding:4px">
         <div class="form-group">
             <label for="nombreRol">Nombre del Rol*:</label>
-            <input type="text" [(ngModel)]="rolCrearEditar.nombreRole" name="nombreRol" #nombreRol="ngModel" 
+            <input id="nombreRol" type="text" [(ngModel)]="rolCrearEditar.nombreRole" name="nombreRol" #nombreRol="ngModel" 
              [ngClass]="(submitted && !nombreRol.valid) ? 'form-control input-invalido':'form-control input-valido'"
              maxlength="100" size="60" placeholder="Campo Requerido" focus="true" myNoSpaces/>
         </div>

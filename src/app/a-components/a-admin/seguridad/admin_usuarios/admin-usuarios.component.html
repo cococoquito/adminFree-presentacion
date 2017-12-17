@@ -55,7 +55,7 @@
                     <!-- nombre completo-->
                     <div class="form-group col-md-6">
                         <label for="nombreUser">Nombre completo: *</label>
-                        <input type="text" [(ngModel)]="crearEditarUser.nombre" name="nombreUser" #nombreUser="ngModel" 
+                        <input id="nombreUser" type="text" [(ngModel)]="crearEditarUser.nombre" name="nombreUser" #nombreUser="ngModel" 
                          [ngClass]="(submitted && !nombreUser.valid) ? 'form-control input-invalido':'form-control input-valido'"
                          maxlength="100" placeholder="Campo Requerido" focus="true" myNoSpaces/>
                     </div>
@@ -63,7 +63,7 @@
                     <!-- usuario de ingreso-->
                     <div class="form-group col-md-6">
                         <label for="userIngreso">Usuario de ingreso: *</label>
-                        <input type="text" [(ngModel)]="crearEditarUser.nombreUsuario" name="userIngreso" #userIngreso="ngModel" 
+                        <input id="userIngreso" type="text" [(ngModel)]="crearEditarUser.nombreUsuario" name="userIngreso" #userIngreso="ngModel" 
                          [ngClass]="(submitted && !userIngreso.valid) ? 'form-control input-invalido':'form-control input-valido'"
                          maxlength="30" placeholder="Campo Requerido" myNoSpaces/>
                     </div>
@@ -71,7 +71,7 @@
                     <!-- rol asignado-->
                     <div class="form-group col-md-6">
                         <label for="rol">ROL: *</label>
-                        <select name="rol" [(ngModel)]="crearEditarUser.roles"
+                        <select id="rol" name="rol" [(ngModel)]="crearEditarUser.roles"
                          [ngClass]="(submitted && crearEditarUser.roles == selectValueDefaultNumber) ? 'form-control input-invalido':'form-control input-valido'">
                             <option value="{{selectValueDefaultNumber}}" disabled>Campo Requerido</option>
                             <option *ngFor="let rol of roles" value="{{rol.idRole}}">{{rol.nombre}}</option>
@@ -88,7 +88,7 @@
                                 <span class="toggle-handle btn btn-default"></span>
                             </div>
                         </div>
-                        <label for="abogado">¿El usuario es un abogado? </label>
+                        <label>¿El usuario es un abogado? </label>
                     </div>
                 </div>
             </div>
