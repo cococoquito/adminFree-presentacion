@@ -1,3 +1,207 @@
-<p>
-    Consecutivos solicitado correspondencia
-</p>
+<!-- titulo de la pagina -->
+<div id="cs01" class="text_center title-page">
+    Consecutivos Solicitados
+</div>
+<div id="cs02" class="text_center sub-title-page">
+    Submódulo para <strong>consultar los consecutivos de correspondencia</strong> que han solicitado.
+</div>
+<br/>
+
+<form name="form" #f="ngForm" (keydown.enter)="$event.preventDefault()">
+
+    <div id="cs03" class="panel panel-primary" style="margin-bottom: 0px;">
+
+        <div class="panel-heading" style="padding: 3px 15px;">
+    <p style="margin-bottom: 0px"><i class="fa fa-fw fa-filter"></i> Filtros de Búsqueda</p>
+  </div>
+
+        <div id="cs04" class="panel-body" style="padding: 0px; padding-bottom: 3px">
+
+            <div class="form-group col-md-4" style="margin-bottom: 0px;background-color: #F8F8F8; padding-bottom: 10px">
+                <label for="nomenclatura" class="col-form-label"><i class="fa fa-fw fa-filter"></i>Nomeclatura:</label>
+                <select name="nomenclatura" [ngClass]="'form-control input-valido'">
+                            <option value="{{selectValueDefaultNumber}}" disabled>Campo Requerido</option>
+                        </select>
+            </div>
+
+            <div class="form-group col-md-4" style="margin-bottom: 0px;background-color: #F8F8F8; padding-bottom: 10px">
+                <div><label for="fechaInicial" class="col-form-label">Fecha Solicitud Inicial:</label></div>
+                
+                <p-calendar id="fechaInicial" name="fechaInicial" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
+                    placeholder="(dd/mm/yyyy)" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}" [inputStyle]="{'width':'92%'}"
+                    required="false">
+                </p-calendar>
+            </div>
+
+
+            <div class="form-group col-md-4" style="margin-bottom: 0px;background-color: #F8F8F8; padding-bottom: 10px">
+                <div><label for="fechaFinal" class="col-form-label">Fecha Solicitud Final:</label></div>
+                <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
+                    placeholder="(dd/mm/yyyy)" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}" [inputStyle]="{'width':'92%'}"
+                    required="false">
+                </p-calendar>
+            </div>
+
+
+
+
+
+
+            <div class="form-group col-md-4" style="margin-bottom: 0px;  padding-bottom: 10px">
+                <label for="consecutivo" class="col-form-label">Consecutivo:</label>
+                <input
+                    id="consecutivo"
+                    name="consecutivo"
+                    type="text"
+                    [ngClass]="'form-control input-valido'"
+                    maxlength="255"
+                    myNoSpaces/>
+            </div>
+
+          
+
+
+            <div class="form-group col-md-4" style="margin-bottom: 0px; padding-bottom: 10px">
+                <div><label for="fechaFinal" class="col-form-label">Fecha Elaboracion:</label></div>
+                <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
+                    placeholder="(dd/mm/yyyy)" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}" [inputStyle]="{'width':'92%'}"
+                    required="false">
+                </p-calendar>
+
+            </div>
+
+            <div class="form-group col-md-4" style="margin-bottom: 0px; padding-bottom: 10px">
+                <div><label for="fechaFinal" class="col-form-label">Fecha SAC:</label></div>
+                <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
+                    placeholder="(dd/mm/yyyy)" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}" [inputStyle]="{'width':'92%'}"
+                    required="false">
+                </p-calendar>
+
+            </div>            
+
+             <div class="form-group col-md-4" style="margin-bottom: 0px; background-color: #F8F8F8; padding-bottom: 10px">
+                <label for="consecutivo" class="col-form-label">Numero SAC:</label>
+                <input
+                    id="consecutivo"
+                    name="consecutivo"
+                    type="text"
+                    [ngClass]="'form-control input-valido'"
+                    maxlength="255"
+                    myNoSpaces/>
+            </div>
+<div id="sc17" class="form-group col-md-4" style="margin-bottom: 0px; background-color: #F8F8F8; padding-bottom: 10px">
+            <label for="funcionario" class="col-form-label">Elaborado Por:</label>
+            <table id="sc18" class="width_100">
+              <tr>
+                <td class="width_100">
+                  <p-autoComplete 
+                    id="funcionario"
+                    inputId="funcionario"
+                    name="funcionario"
+                    [inputStyleClass]="'component_ng ng-valido'"
+                    [dropdown]="false"
+                    [style]="{'width':'100%'}"
+                    [inputStyle]="{'width':'100%'}"
+                    placeholder="(Autocomplete)">
+                  </p-autoComplete>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+<div id="sc17"  class="form-group col-md-4" style="margin-bottom: 0px; background-color: #F8F8F8; padding-bottom: 10px">
+            <label for="funcionario" class="col-form-label">Usuario quien solicitó el consecutivo:</label>
+            <table id="sc18" class="width_100">
+              <tr>
+                <td class="width_100">
+                  <p-autoComplete 
+                    id="funcionario"
+                    inputId="funcionario"
+                    name="funcionario"
+                    [inputStyleClass]="'component_ng ng-valido'"
+                    [dropdown]="false"
+                    [style]="{'width':'100%'}"
+                    [inputStyle]="{'width':'100%'}"
+                    placeholder="(Autocomplete)">
+                  </p-autoComplete>
+                </td>
+              </tr>
+            </table>
+          </div>
+   
+          
+<div class="form-group col-md-12" style="padding-bottom: 0px; margin-bottom: 0px; margin-left: 0px; padding-left: 0px;">
+
+
+            <div class="form-group col-md-4" style="margin-bottom: 0px">
+                <label for="consecutivo" class="col-form-label">Estado Consecutivo:</label>
+                 
+                <div>
+                    <label for="consecutivo" class="col-form-label">Acitvo:</label>
+                  <div [ngClass]="'toggle btn btn-default off'">
+                            <div class="toggle-group">
+                                <label class="btn btn-primary toggle-on">Si</label>
+                                <label class="btn btn-default active toggle-off">No</label>
+                                <span class="toggle-handle btn btn-default"></span>
+                            </div>
+                        </div>
+
+                         <label for="consecutivo" class="col-form-label" style="padding-left: 13px">Anulado:</label>
+                  <div [ngClass]="'toggle btn btn-default off'">
+                            <div class="toggle-group">
+                                <label class="btn btn-primary toggle-on">Si</label>
+                                <label class="btn btn-default active toggle-off">No</label>
+                                <span class="toggle-handle btn btn-default"></span>
+                            </div>
+                        </div>
+                <label for="consecutivo" class="col-form-label" style="padding-left: 13px">Cerrado:</label>
+                  <div [ngClass]="'toggle btn btn-default off'">
+                            <div class="toggle-group">
+                                <label class="btn btn-primary toggle-on">Si</label>
+                                <label class="btn btn-default active toggle-off">No</label>
+                                <span class="toggle-handle btn btn-default"></span>
+                            </div>
+                        </div>
+
+                </div>
+
+
+
+            </div>
+
+<div id="sc17"  class="form-group col-md-4 button_center_user" style="margin-bottom: 0px; margin-top: 18px">
+           <button
+            id="sc28"
+            type="submit"
+            class="btn btn-primary"
+            style="width: 130px; margin-left: 20px"
+            title="Clic aquí para solicitar el consecutivo de correspondencia">
+               <p style="margin-bottom: 0px"><i class="fa fa-fw fa-filter"></i> Buscar</p>
+          </button>
+
+          <button
+            id="sc28"
+            type="submit"
+            style="width: 130px; margin-left: 20px"
+            class="btn btn-default"
+            title="Clic aquí para solicitar el consecutivo de correspondencia">
+              Limpiar
+          </button>
+
+
+          </div>
+
+         </div>           
+
+
+        </div>
+
+     
+
+    </div>
+
+
+
+
+
+</form>
