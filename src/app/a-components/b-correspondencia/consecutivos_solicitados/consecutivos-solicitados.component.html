@@ -18,14 +18,14 @@
         <div id="cs04" class="panel-body" style="padding: 0px; padding-bottom: 3px">
 
             <div class="form-group col-md-4" style="margin-bottom: 0px;background-color: #F8F8F8; padding-bottom: 10px">
-                <label for="nomenclatura" class="col-form-label"><i class="fa fa-fw fa-filter"></i>Nomeclatura:</label>
-                <select name="nomenclatura" [ngClass]="'form-control input-valido'">
+                <label for="nomenclatura" class="col-form-label">Nomeclatura: <i class="fa fa-info-circle" style="font-size: 14px"></i></label>
+                <select id="nomenclatura" name="nomenclatura" [ngClass]="'form-control input-valido'">
                             <option value="{{selectValueDefaultNumber}}" disabled>Campo Requerido</option>
                         </select>
             </div>
 
             <div class="form-group col-md-4" style="margin-bottom: 0px;background-color: #F8F8F8; padding-bottom: 10px">
-                <div><label for="fechaInicial" class="col-form-label">Fecha Solicitud Inicial:</label></div>
+                <div><label class="col-form-label">Fecha Solicitud Inicial:</label></div>
                 
                 <p-calendar id="fechaInicial" name="fechaInicial" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
                     placeholder="(dd/mm/yyyy)" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}" [inputStyle]="{'width':'92%'}"
@@ -35,7 +35,7 @@
 
 
             <div class="form-group col-md-4" style="margin-bottom: 0px;background-color: #F8F8F8; padding-bottom: 10px">
-                <div><label for="fechaFinal" class="col-form-label">Fecha Solicitud Final:</label></div>
+                <div><label class="col-form-label">Fecha Solicitud Final:</label></div>
                 <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
                     placeholder="(dd/mm/yyyy)" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}" [inputStyle]="{'width':'92%'}"
                     required="false">
@@ -80,10 +80,10 @@
             </div>            
 
              <div class="form-group col-md-4" style="margin-bottom: 0px; background-color: #F8F8F8; padding-bottom: 10px">
-                <label for="consecutivo" class="col-form-label">Numero SAC:</label>
+                <label for="nroSAC" class="col-form-label">Numero SAC:</label>
                 <input
-                    id="consecutivo"
-                    name="consecutivo"
+                    id="nroSAC"
+                    name="nroSAC"
                     type="text"
                     [ngClass]="'form-control input-valido'"
                     maxlength="255"
