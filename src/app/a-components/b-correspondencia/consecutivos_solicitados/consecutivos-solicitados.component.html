@@ -12,34 +12,80 @@
     <div id="cs03" class="panel panel-primary" style="margin-bottom: 0px;">
 
         <div class="panel-heading" style="padding: 3px 15px;">
-    <p style="margin-bottom: 0px"><i class="fa fa-fw fa-filter"></i> Filtros de Búsqueda</p>
-  </div>
+            <p style="margin-bottom: 0px"><i class="fa fa-fw fa-filter"></i> Filtros de Búsqueda</p>
+        </div>
 
         <div id="cs04" class="panel-body" style="padding: 0px; padding-bottom: 3px">
 
             <div class="form-group col-md-4" style="margin-bottom: 0px;background-color: #F8F8F8; padding-bottom: 10px">
-                <label for="nomenclatura" class="col-form-label">Nomeclatura: <i class="fa fa-info-circle" style="font-size: 14px"></i></label>
-                <select id="nomenclatura" name="nomenclatura" [ngClass]="'form-control input-valido'">
+                <label for="nomenclatura" class="col-form-label">Nomenclatura: </label>
+                <table class="width_100">
+                    <tr>
+                        <td class="width_100">
+                            <select id="nomenclatura" name="nomenclatura" [ngClass]="'form-control input-valido'">
                             <option value="{{selectValueDefaultNumber}}" disabled>Campo Requerido</option>
                         </select>
+
+                        </td>
+                        <td>
+                            <i class="fa fa-info-circle" style="font-size: 16px; color:#4C4C4C; padding-left: 5px" pTooltip="Nomenclatura asociada a los consecutivos a buscar"
+                                tooltipPosition="right"></i>
+                        </td>
+                    </tr>
+                </table>
+
+
+
+
+
+
+
+
             </div>
 
             <div class="form-group col-md-4" style="margin-bottom: 0px;background-color: #F8F8F8; padding-bottom: 10px">
                 <div><label class="col-form-label">Fecha Solicitud Inicial:</label></div>
-                
-                <p-calendar id="fechaInicial" name="fechaInicial" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
-                    placeholder="(dd/mm/yyyy)" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}" [inputStyle]="{'width':'92%'}"
-                    required="false">
-                </p-calendar>
+
+                <table class="width_100">
+                    <tr>
+                        <td class="width_100">
+                            <p-calendar id="fechaInicial" name="fechaInicial" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
+                                placeholder="(dd/mm/yyyy)" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}"
+                                [inputStyle]="{'width':'92%'}" required="false">
+                            </p-calendar>
+
+                        </td>
+                        <td>
+                            <i class="fa fa-info-circle" style="font-size: 16px; color:#4C4C4C; padding-left: 5px" pTooltip="Fecha inicial en la que solicitaron los consecutivos"
+                                tooltipPosition="right"></i>
+                        </td>
+                    </tr>
+                </table>
+
             </div>
 
 
             <div class="form-group col-md-4" style="margin-bottom: 0px;background-color: #F8F8F8; padding-bottom: 10px">
                 <div><label class="col-form-label">Fecha Solicitud Final:</label></div>
-                <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
-                    placeholder="(dd/mm/yyyy)" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}" [inputStyle]="{'width':'92%'}"
-                    required="false">
-                </p-calendar>
+                <table class="width_100">
+                    <tr>
+                        <td class="width_100">
+                            <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
+                                placeholder="(dd/mm/yyyy)" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}"
+                                [inputStyle]="{'width':'92%'}" required="false">
+                            </p-calendar>
+
+                        </td>
+                        <td>
+                            <i class="fa fa-info-circle" style="font-size: 16px; color:#4C4C4C; padding-left: 5px" pTooltip="Fecha final en la que solicitaron los consecutivos"
+                                tooltipPosition="left"></i>
+                        </td>
+                    </tr>
+                </table>
+
+
+
+
             </div>
 
 
@@ -49,96 +95,129 @@
 
             <div class="form-group col-md-4" style="margin-bottom: 0px;  padding-bottom: 10px">
                 <label for="consecutivo" class="col-form-label">Consecutivo:</label>
-                <input
-                    id="consecutivo"
-                    name="consecutivo"
-                    type="text"
-                    [ngClass]="'form-control input-valido'"
-                    maxlength="255"
-                    myNoSpaces/>
+                <table class="width_100">
+                    <tr>
+                        <td class="width_100">
+                            <input id="consecutivo" name="consecutivo" type="text" [ngClass]="'form-control input-valido'" maxlength="255" myNoSpaces/>
+                        </td>
+                        <td>
+                            <i class="fa fa-info-circle" style="font-size: 16px; color:#4C4C4C; padding-left: 5px" pTooltip="Ingrese el número del consecutivo a buscar"
+                                tooltipPosition="right"></i>
+                        </td>
+                    </tr>
+                </table>
+
+
+
             </div>
 
-          
+
 
 
             <div class="form-group col-md-4" style="margin-bottom: 0px; padding-bottom: 10px">
                 <div><label for="fechaFinal" class="col-form-label">Fecha Elaboracion:</label></div>
-                <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
-                    placeholder="(dd/mm/yyyy)" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}" [inputStyle]="{'width':'92%'}"
-                    required="false">
-                </p-calendar>
+                <table class="width_100">
+                    <tr>
+                        <td class="width_100">
+                            <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
+                                placeholder="(dd/mm/yyyy)" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}"
+                                [inputStyle]="{'width':'92%'}" required="false">
+                            </p-calendar>
+                        </td>
+                        <td>
+                            <i class="fa fa-info-circle" style="font-size: 16px; color:#4C4C4C; padding-left: 5px" pTooltip="Fecha de elaboración del documento de respuesta"
+                                tooltipPosition="right"></i>
+                        </td>
+                    </tr>
+                </table>
+
+
+
 
             </div>
 
             <div class="form-group col-md-4" style="margin-bottom: 0px; padding-bottom: 10px">
                 <div><label for="fechaFinal" class="col-form-label">Fecha SAC:</label></div>
-                <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
-                    placeholder="(dd/mm/yyyy)" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}" [inputStyle]="{'width':'92%'}"
-                    required="false">
-                </p-calendar>
+                <table class="width_100">
+                    <tr>
+                        <td class="width_100">
+                            <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
+                                placeholder="(dd/mm/yyyy)" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}"
+                                [inputStyle]="{'width':'92%'}" required="false">
+                            </p-calendar>
+                        </td>
+                        <td>
+                            <i class="fa fa-info-circle" style="font-size: 16px; color:#4C4C4C; padding-left: 5px" pTooltip="Fecha en la que el SAC recibió o radicó la solicitud de la entidad o ciudadano"
+                                tooltipPosition="left"></i>
+                        </td>
+                    </tr>
+                </table>
 
-            </div>            
 
-             <div class="form-group col-md-4" style="margin-bottom: 0px; background-color: #F8F8F8; padding-bottom: 10px">
-                <label for="nroSAC" class="col-form-label">Numero SAC:</label>
-                <input
-                    id="nroSAC"
-                    name="nroSAC"
-                    type="text"
-                    [ngClass]="'form-control input-valido'"
-                    maxlength="255"
-                    myNoSpaces/>
+
             </div>
-<div id="sc17" class="form-group col-md-4" style="margin-bottom: 0px; background-color: #F8F8F8; padding-bottom: 10px">
-            <label for="funcionario" class="col-form-label">Elaborado Por:</label>
-            <table id="sc18" class="width_100">
-              <tr>
-                <td class="width_100">
-                  <p-autoComplete 
-                    id="funcionario"
-                    inputId="funcionario"
-                    name="funcionario"
-                    [inputStyleClass]="'component_ng ng-valido'"
-                    [dropdown]="false"
-                    [style]="{'width':'100%'}"
-                    [inputStyle]="{'width':'100%'}"
-                    placeholder="(Autocomplete)">
-                  </p-autoComplete>
-                </td>
-              </tr>
-            </table>
-          </div>
 
-<div id="sc17"  class="form-group col-md-4" style="margin-bottom: 0px; background-color: #F8F8F8; padding-bottom: 10px">
-            <label for="funcionario" class="col-form-label">Usuario quien solicitó el consecutivo:</label>
-            <table id="sc18" class="width_100">
-              <tr>
-                <td class="width_100">
-                  <p-autoComplete 
-                    id="funcionario"
-                    inputId="funcionario"
-                    name="funcionario"
-                    [inputStyleClass]="'component_ng ng-valido'"
-                    [dropdown]="false"
-                    [style]="{'width':'100%'}"
-                    [inputStyle]="{'width':'100%'}"
-                    placeholder="(Autocomplete)">
-                  </p-autoComplete>
-                </td>
-              </tr>
-            </table>
-          </div>
-   
-          
-<div class="form-group col-md-12" style="padding-bottom: 0px; margin-bottom: 0px; margin-left: 0px; padding-left: 0px;">
+            <div class="form-group col-md-4" style="margin-bottom: 0px; background-color: #F8F8F8; padding-bottom: 10px">
+                <label for="nroSAC" class="col-form-label">Numero SAC:</label>
+                <table class="width_100">
+                    <tr>
+                        <td class="width_100">
+                            <input id="nroSAC" name="nroSAC" type="text" [ngClass]="'form-control input-valido'" maxlength="255" myNoSpaces/>
+                        </td>
+                        <td>
+                            <i class="fa fa-info-circle" style="font-size: 16px; color:#4C4C4C; padding-left: 5px" pTooltip="Número que asigna el SAC para identificar la solicitud de la entidad o ciudadano"
+                                tooltipPosition="right"></i>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
 
 
-            <div class="form-group col-md-4" style="margin-bottom: 0px">
-                <label for="consecutivo" class="col-form-label">Estado Consecutivo:</label>
-                 
-                <div>
-                    <label for="consecutivo" class="col-form-label">Acitvo:</label>
-                  <div [ngClass]="'toggle btn btn-default off'">
+            <div id="sc17" class="form-group col-md-4" style="margin-bottom: 0px; background-color: #F8F8F8; padding-bottom: 10px">
+                <label for="funcionario" class="col-form-label">Elaborado Por:</label>
+                <table class="width_100">
+                    <tr>
+                        <td class="width_100">
+                            <p-autoComplete id="funcionario" inputId="funcionario" name="funcionario" [inputStyleClass]="'component_ng ng-valido'" [dropdown]="false"
+                                [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" placeholder="(Autocomplete)">
+                            </p-autoComplete>
+                        </td>
+                        <td>
+                            <i class="fa fa-info-circle" style="font-size: 16px; color:#4C4C4C; padding-left: 5px" pTooltip="Nombre del funcionario quien elabora el documento de respuesta"
+                                tooltipPosition="right"></i>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="sc17" class="form-group col-md-4" style="margin-bottom: 0px; background-color: #F8F8F8; padding-bottom: 10px">
+                <label for="funcionario" class="col-form-label">Usuario quien solicitó el consecutivo:</label>
+                <table class="width_100">
+                    <tr>
+                        <td class="width_100">
+                            <p-autoComplete id="funcionario" inputId="funcionario" name="funcionario" [inputStyleClass]="'component_ng ng-valido'" [dropdown]="false"
+                                [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" placeholder="(Autocomplete)">
+                            </p-autoComplete>
+                        </td>
+                        <td>
+                            <i class="fa fa-info-circle" style="font-size: 16px; color:#4C4C4C; padding-left: 5px" pTooltip="Nombre del usuario quien solicitó el consecutivo"
+                                tooltipPosition="left"></i>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="form-group col-md-12" style="padding-bottom: 0px; margin-bottom: 0px; margin-left: 0px; padding-left: 0px;">
+
+
+                <div class="form-group col-md-4" style="margin-bottom: 0px">
+                    <label for="consecutivo" class="col-form-label">Estado Consecutivo: <i class="fa fa-info-circle" style="font-size: 16px; color:#4C4C4C; padding-left: 5px" pTooltip="Estado en la que se encuentran los consecutivos a buscar" tooltipPosition="right"></i></label>
+
+                    <div>
+                        <label for="consecutivo" class="col-form-label">Acitvo:</label>
+                        <div [ngClass]="'toggle btn btn-default off'">
                             <div class="toggle-group">
                                 <label class="btn btn-primary toggle-on">Si</label>
                                 <label class="btn btn-default active toggle-off">No</label>
@@ -146,57 +225,47 @@
                             </div>
                         </div>
 
-                         <label for="consecutivo" class="col-form-label" style="padding-left: 13px">Anulado:</label>
-                  <div [ngClass]="'toggle btn btn-default off'">
+                        <label for="consecutivo" class="col-form-label" style="padding-left: 13px">Anulado:</label>
+                        <div [ngClass]="'toggle btn btn-default off'">
                             <div class="toggle-group">
                                 <label class="btn btn-primary toggle-on">Si</label>
                                 <label class="btn btn-default active toggle-off">No</label>
                                 <span class="toggle-handle btn btn-default"></span>
                             </div>
                         </div>
-                <label for="consecutivo" class="col-form-label" style="padding-left: 13px">Cerrado:</label>
-                  <div [ngClass]="'toggle btn btn-default off'">
+                        <label for="consecutivo" class="col-form-label" style="padding-left: 13px">Cerrado:</label>
+                        <div [ngClass]="'toggle btn btn-default off'">
                             <div class="toggle-group">
                                 <label class="btn btn-primary toggle-on">Si</label>
                                 <label class="btn btn-default active toggle-off">No</label>
                                 <span class="toggle-handle btn btn-default"></span>
                             </div>
                         </div>
+
+                    </div>
+
+
 
                 </div>
 
-
-
-            </div>
-
-<div id="sc17"  class="form-group col-md-4 button_center_user" style="margin-bottom: 0px; margin-top: 18px">
-           <button
-            id="sc28"
-            type="submit"
-            class="btn btn-primary"
-            style="width: 130px; margin-left: 20px"
-            title="Clic aquí para solicitar el consecutivo de correspondencia">
+                <div id="sc17" class="form-group col-md-4 button_center_user" style="margin-bottom: 0px; margin-top: 18px">
+                    <button id="sc28" type="submit" class="btn btn-primary" style="width: 130px; margin-left: 20px" title="Clic aquí para solicitar el consecutivo de correspondencia">
                <p style="margin-bottom: 0px"><i class="fa fa-fw fa-filter"></i> Buscar</p>
           </button>
 
-          <button
-            id="sc28"
-            type="submit"
-            style="width: 130px; margin-left: 20px"
-            class="btn btn-default"
-            title="Clic aquí para solicitar el consecutivo de correspondencia">
+                    <button id="sc28" type="submit" style="width: 130px; margin-left: 20px" class="btn btn-default" title="Clic aquí para solicitar el consecutivo de correspondencia">
               Limpiar
           </button>
 
 
-          </div>
+                </div>
 
-         </div>           
+            </div>
 
 
         </div>
 
-     
+
 
     </div>
 
@@ -205,3 +274,39 @@
 
 
 </form>
+
+<br/>
+<div id="cs03" class="panel panel-primary" style="margin-bottom: 15px; border-color: #676767">
+
+    <div class="panel-heading" style="padding: 3px 15px; background-color: #676767; border-color: #676767">
+        <p style="margin-bottom: 0px"><i class="fa fa-info-circle"></i> Cantidad de consecutivos encontrados: 5</p>
+    </div>
+
+    <div id="cs04" class="panel-body" style="padding: 0px; padding-bottom: 3px">
+
+        <p-dataTable [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No se encontraron registros asociados al filtro de busqueda"
+            selectionMode="single">
+            <p-column header="Nomenclatura" [style]="{'width':'10%','text-align':'center'}"></p-column>
+            <p-column header="Consecutivo" [style]="{'width':'10%','text-align':'center'}"></p-column>
+            <p-column header="Usuario quien solicitó el consecutivo" [style]="{'width':'40%','text-align':'center'}"></p-column>
+            <p-column header="Fecha de Solicitud" [style]="{'width':'10%','text-align':'center'}"></p-column>
+            <p-column header="Estado del Consecutivo" [style]="{'width':'12%','text-align':'center'}"></p-column>
+            <p-column header="Editar" [style]="{'width':'5%','text-align':'center'}"></p-column>
+            <p-column header="Ver Detalle" [style]="{'width':'5%','text-align':'center'}"></p-column>
+
+        </p-dataTable>
+
+     <div id="sc17"  style="margin:10px;margin-bottom: 5px; text-align: left">
+        <button id="sc28" type="submit" class="btn btn-primary" style="width: 130px; background-color: #1F6E42; border-color: #1F6E42" title="Clic aquí para solicitar el consecutivo de correspondencia">
+               <p style="margin-bottom: 0px"><i class="fa fa-file-excel-o"></i> Exportar Excel</p>
+          </button>
+
+
+                </div>
+
+
+    </div>
+
+
+
+</div>
