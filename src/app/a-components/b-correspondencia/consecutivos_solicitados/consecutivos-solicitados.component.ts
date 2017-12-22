@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsecutivosSolicitadosComponent implements OnInit {
 
+    private showFiltro : boolean;
+
     /**
      * PostConstructor que permite inicializar las variables del component
      */
