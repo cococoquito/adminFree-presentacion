@@ -15,13 +15,23 @@
 
     <div id="cs04" class="panel-body" style="padding: 0px; padding-bottom: 3px">
 
-        <p-dataTable [responsive]="true" [rows]="15" [paginator]="true" emptyMessage="No se encontraron consecutivos de correspondencia."
-            selectionMode="single">
-            <p-column header="Nomenclatura" [style]="{'width':'10%','text-align':'center'}"></p-column>
-            <p-column header="Consecutivo" [style]="{'width':'10%','text-align':'center'}"></p-column>
-            <p-column header="Usuario quien solicitó el consecutivo" [style]="{'width':'40%','text-align':'center'}"></p-column>
+        <p-dataTable 
+         [responsive]="true" 
+         [value]="consecutivosPaginados.registros"
+         [rows]="2" 
+         [paginator]="true" 
+         emptyMessage="No se encontraron consecutivos de correspondencia."
+         selectionMode="single"
+         [lazy]="true"
+         [totalRecords]="consecutivosPaginados.datos.totalRegistros"
+         (onLazyLoad)="consecutivosPaginados.scrollerListener($event)">
+
+         
+            <p-column header="Nomenclatura" field="nomenclatura" [style]="{'width':'10%','text-align':'center'}"></p-column>
+            <p-column header="Consecutivo"field="consecutivo" [style]="{'width':'10%','text-align':'center'}"></p-column>
+            <p-column header="Usuario quien solicitó el consecutivo" field="usuarioSolicito" [style]="{'width':'40%','text-align':'center'}"></p-column>
             <p-column header="Fecha de Solicitud" [style]="{'width':'10%','text-align':'center'}"></p-column>
-            <p-column header="Estado del Consecutivo" [style]="{'width':'12%','text-align':'center'}"></p-column>
+            <p-column header="Estado del Consecutivo" field="estadoConsecutivo" [style]="{'width':'12%','text-align':'center'}"></p-column>
             <p-column header="Editar" [style]="{'width':'5%','text-align':'center'}"></p-column>
             <p-column header="Ver Detalle" [style]="{'width':'5%','text-align':'center'}"></p-column>
 

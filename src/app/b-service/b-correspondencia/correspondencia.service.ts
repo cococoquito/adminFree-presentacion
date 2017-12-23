@@ -1,3 +1,4 @@
+import { PaginadorDTO } from './../../a-components/y-directivas/paginador/PaginadorDTO';
 import { ConsecutivoCorrespondenciaDTO } from './../../c-model/c-correspondencia/solicitar_consecutivo/ConsecutivoCorrespondenciaDTO';
 import { URL_BASE } from './../../z-util/Constants';
 import { Injectable } from '@angular/core';
@@ -45,5 +46,9 @@ export class CorrespondenciaService {
      */
     public solicitarConsecutivoAnioActual(consecutivo: ConsecutivoCorrespondenciaDTO): Observable<Response> {
         return this.http.post(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_SOLICITAR_CONSECUTIVO, consecutivo, this.options);
+    }
+
+    public getConsecutivosSolicitados(paginador: PaginadorDTO) : Observable<Response> {
+        return this.http.post(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_SOLICITAR_CONSECUTIVO, this.options);
     }
 }
