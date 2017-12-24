@@ -5,7 +5,7 @@ export var URL_BASE: string = "http://localhost:8080/AdminFreeRS/adminfree/";
 export var SELECT_VALUE_DEFAULT_NUMBER: number = -1;
 
 /** Constante con la cantidad de filas por pagina */
-export var CANTIDAD_FILAS_POR_PAGINA_DEFAULT: number = 20;
+export var CANTIDAD_FILAS_POR_PAGINA_DEFAULT: number = 15;
 
 /** Constantes para el binario de true y false */
 export var SI: number = 1;

@@ -31,7 +31,6 @@ export class PaginadorModel {
 
         // se crea el DTO donde contiene los atributos del paginador
         this.datos = new PaginadorDTO();
-        this.datos.init = true;
         this.datos.rowsPage = CANTIDAD_FILAS_POR_PAGINA_DEFAULT;
     }
 
@@ -41,9 +40,8 @@ export class PaginadorModel {
      */
     public scrollerListener(event: LazyLoadEvent): void {
 
-        // se configura registro inicio y final a consultar
-        this.datos.inicioR = event.first;
-        this.datos.finalR = (event.first + event.rows);
+        // se configura el skip para consultar paginadas FIREBIRD
+        this.datos.skip = event.first;
 
         // se invoca el metodo a consultar los registros
         this.listener.paginar(this);
@@ -55,8 +53,7 @@ export class PaginadorModel {
     public configurarRegistros(response: PaginadorResponseDTO): void {
 
         // se configura el total de registro solo si es la primera vez que se consulta
-        if (this.datos.init) {
-            this.datos.init = false;
+        if (!this.datos.totalRegistros) {
             this.datos.totalRegistros = response.registrosTotal;
         }
 

@@ -20,6 +20,9 @@ export class CorrespondenciaService {
     /** Path del recurso para solicitar un consecutivo de correspondencia*/
     private static PATH_SOLICITAR_CONSECUTIVO = 'solicitar_consecutivo';
 
+    /** Path del recurso para consultar los consecutivos solicitados*/
+    private static PATH_CONSECUTIVO_SOLICITADOS = 'get_consecutivos';
+
     /** Encabezado del request donde se especifica el tipo de contenido y el tipo de producer */
     private headers = new Headers({ 'Content-Type': 'application/json; charset=UTF-8' });
 
@@ -49,6 +52,6 @@ export class CorrespondenciaService {
     }
 
     public getConsecutivosSolicitados(paginador: PaginadorDTO) : Observable<Response> {
-        return this.http.post(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_SOLICITAR_CONSECUTIVO, this.options);
+        return this.http.post(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_CONSECUTIVO_SOLICITADOS, paginador, this.options);
     }
 }

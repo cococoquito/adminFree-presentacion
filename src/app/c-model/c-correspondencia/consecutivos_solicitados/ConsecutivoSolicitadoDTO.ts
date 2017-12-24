@@ -18,7 +18,7 @@ export class ConsecutivoSolicitadoDTO {
     public usuarioSolicito: string;
 
     /** Fecha en la que solicitaron el consecutivo **/
-    public fechaSolicitud: Date;
+    public fechaSolicitud: string;
 
     /** Estado en la que se encuentra el consecutivo **/
     public estadoConsecutivo: string;

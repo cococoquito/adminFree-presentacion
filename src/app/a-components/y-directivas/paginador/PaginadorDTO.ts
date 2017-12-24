@@ -6,19 +6,13 @@
  * 
  */
 export class PaginadorDTO {
-
-    /** bandera que indica si es la primera vez que se ejecuta la consulta */
-    public init: boolean;
-
+    
     /** es la cantidad total de registros que tiene la tabla*/
     public totalRegistros: number;
 
-    /** es el total de items por pagina*/
+    /** es la cantidad de filas por paginas*/
     public rowsPage: number;
 
-    /** es el registro inicial a consultar*/
-    public inicioR: number;
-
-    /** es el registro final a consultar*/
-    public finalR: number;
+    /** es el skip para firebird(10, 20, 30)*/
+    public skip: number;
 }
