@@ -51,6 +51,10 @@ export class CorrespondenciaService {
         return this.http.post(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_SOLICITAR_CONSECUTIVO, consecutivo, this.options);
     }
 
+    /**
+     * Metodo para obtener los consecutivos de correspondencia solicitados
+     * @param paginador , paginador, DTO con los datos del paginador
+     */
     public getConsecutivosSolicitados(paginador: PaginadorDTO) : Observable<Response> {
         return this.http.post(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_CONSECUTIVO_SOLICITADOS, paginador, this.options);
     }

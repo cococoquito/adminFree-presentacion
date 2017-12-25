@@ -1,4 +1,4 @@
-import { CANTIDAD_FILAS_POR_PAGINA_DEFAULT } from './../../../z-util/Constants';
+import { CANTIDAD_FILAS_POR_PAGINA_DEFAULT, ROWS_PER_PAGE_OPTIONS } from './../../../z-util/Constants';
 import { PaginadorResponseDTO } from './PaginadorResponseDTO';
 import { PaginadorDTO } from './PaginadorDTO';
 import { LazyLoadEvent } from 'primeng/primeng';
@@ -23,11 +23,14 @@ export class PaginadorModel {
     /** Es la cantidad de filas por default*/
     private rowsDefault: number;
 
+    /** son las opciones para el tamanio de cada pagina (10,20,30,40,50)*/
+    private rowsPerPageOptions: Array<number>;
+
     /**
      * Constructor del modelo del paginador
      * @param listener , escuchador del controlador para invocar el metodo a consultar
      */
-    constructor(listener: any) {
+     constructor(listener: any) {
 
         // se configura el listener
         this.listener = listener;
@@ -37,6 +40,9 @@ export class PaginadorModel {
 
         // se configura la cantidad de filas por default
         this.rowsDefault = CANTIDAD_FILAS_POR_PAGINA_DEFAULT;
+
+        // se configura las opciones que tiene el paginador
+        this.rowsPerPageOptions = ROWS_PER_PAGE_OPTIONS;
     }
 
     /**

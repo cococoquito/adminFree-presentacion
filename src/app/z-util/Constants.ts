@@ -4,8 +4,9 @@ export var URL_BASE: string = "http://localhost:8080/AdminFreeRS/adminfree/";
 /** Constante para configurar el valor por default de los select items numerico */
 export var SELECT_VALUE_DEFAULT_NUMBER: number = -1;
 
-/** Constante con la cantidad de filas por pagina */
+/** Constantes para los paginadores */
 export var CANTIDAD_FILAS_POR_PAGINA_DEFAULT: number = 10;
+export var ROWS_PER_PAGE_OPTIONS: Array<number> = [10,20,30,40,50];
 
 /** Constantes para el binario de true y false */
 export var SI: number = 1;

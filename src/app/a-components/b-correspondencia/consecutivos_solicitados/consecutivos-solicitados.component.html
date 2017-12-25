@@ -15,18 +15,18 @@
 
     <div id="cs04" class="panel-body" style="padding: 0px; padding-bottom: 3px">
 
-        <p-dataTable 
-         [responsive]="true" 
+        <p-dataTable
+         [responsive]="true"
          [value]="consecutivosPaginados.registros"
          [totalRecords]="consecutivosPaginados.datos.totalRegistros"
          (onLazyLoad)="consecutivosPaginados.scrollerListener($event)"
          [alwaysShowPaginator]="consecutivosPaginados.datos.totalRegistros > consecutivosPaginados.rowsDefault"
+         [rowsPerPageOptions]="consecutivosPaginados.rowsPerPageOptions"
          [rows]="consecutivosPaginados.rowsDefault"
-         [rowsPerPageOptions]="[10,20,30,40,50]"
          [paginator]="true"
+         [lazy]="true"
          emptyMessage="No se encontraron consecutivos de correspondencia."
-         selectionMode="single"
-         [lazy]="true">
+         selectionMode="single">
 
          <p-column header="ID"field="id" [style]="{'width':'10%','text-align':'center'}"></p-column>
             <p-column header="Consecutivo"field="consecutivo" [style]="{'width':'10%','text-align':'center'}"></p-column>
