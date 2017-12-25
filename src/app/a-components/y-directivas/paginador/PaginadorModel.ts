@@ -1,5 +1,4 @@
 import { PaginadorResponseDTO } from './PaginadorResponseDTO';
-import { CANTIDAD_FILAS_POR_PAGINA_DEFAULT } from './../../../z-util/Constants';
 import { PaginadorDTO } from './PaginadorDTO';
 import { LazyLoadEvent } from 'primeng/primeng';
 
@@ -31,7 +30,6 @@ export class PaginadorModel {
 
         // se crea el DTO donde contiene los atributos del paginador
         this.datos = new PaginadorDTO();
-        this.datos.rowsPage = CANTIDAD_FILAS_POR_PAGINA_DEFAULT;
     }
 
     /**
@@ -40,11 +38,18 @@ export class PaginadorModel {
      */
     public scrollerListener(event: LazyLoadEvent): void {
 
-        // se configura el skip para consultar paginadas FIREBIRD
-        this.datos.skip = event.first;
+        // solo aplica si no es la misma pagina
+        if (this.datos.skip != event.first || event.rows != this.datos.rowsPage) {
 
-        // se invoca el metodo a consultar los registros
-        this.listener.paginar(this);
+            // se configura el numero por paginas dado que puede llegar valores diferentes
+            this.datos.rowsPage = event.rows;
+
+            // se configura el skip para consultar paginadas FIREBIRD
+            this.datos.skip = event.first;
+
+            // se invoca el metodo a consultar los registros
+            this.listener.paginar(this);
+        }
     }
 
     /**

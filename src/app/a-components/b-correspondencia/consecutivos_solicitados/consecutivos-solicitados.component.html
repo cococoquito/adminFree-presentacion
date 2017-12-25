@@ -18,17 +18,18 @@
         <p-dataTable 
          [responsive]="true" 
          [value]="consecutivosPaginados.registros"
-         [rows]="consecutivosPaginados.datos.rowsPage"
          [totalRecords]="consecutivosPaginados.datos.totalRegistros"
          (onLazyLoad)="consecutivosPaginados.scrollerListener($event)"
-         [paginator]="true" 
+         [rowsPerPageOptions]="[10,20,30,40,50]"
+         [rows]="10"
+         [paginator]="true"
          emptyMessage="No se encontraron consecutivos de correspondencia."
          selectionMode="single"
          [lazy]="true">
 
-         
-            <p-column header="Nomenclatura" field="nomenclatura" [style]="{'width':'10%','text-align':'center'}"></p-column>
+         <p-column header="ID"field="id" [style]="{'width':'10%','text-align':'center'}"></p-column>
             <p-column header="Consecutivo"field="consecutivo" [style]="{'width':'10%','text-align':'center'}"></p-column>
+            <p-column header="Nomenclatura" field="nomenclatura" [style]="{'width':'10%','text-align':'center'}"></p-column>
             <p-column header="Usuario quien solicitó el consecutivo" field="usuarioSolicito" [style]="{'width':'40%','text-align':'center'}"></p-column>
             <p-column header="Fecha de Solicitud" field="fechaSolicitud" [style]="{'width':'10%','text-align':'center'}"></p-column>
             <p-column header="Estado del Consecutivo" field="estadoConsecutivo" [style]="{'width':'12%','text-align':'center'}"></p-column>
