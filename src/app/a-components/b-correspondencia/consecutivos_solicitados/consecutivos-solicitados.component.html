@@ -15,93 +15,87 @@
 
     <div id="cs04" class="panel-body" style="padding-bottom: 3px">
 
+        <div class="col-md-4" style="margin-bottom: 5px; padding-left: 0px">
+            <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo de selección de múltiples ítems</p>
+            <input id="consecutivo" name="consecutivo" type="text" [ngClass]="'form-control input-valido'" placeholder="Nomenclatura"
+                maxlength="255" myNoSpaces/>
+        </div>
 
-      
+        <div class="col-md-4" style="margin-bottom: 5px;">
+            <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Ingrese varios consecutivos separados por ENTER</p>
+            <input id="consecutivo" name="consecutivo" type="text" [ngClass]="'form-control input-valido'" placeholder="Consecutivo"
+                maxlength="255" myNoSpaces/>
+        </div>
 
-            <div class="col-md-4" style="margin-bottom: 5px; padding-left: 0px">
-                <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo de selección de múltiples ítems</p>
-                <input id="consecutivo" name="consecutivo" type="text" [ngClass]="'form-control input-valido'" placeholder="Nomenclatura"
-                    maxlength="255" myNoSpaces/>
-            </div>
+        <div class="col-md-4" style="margin-bottom: 5px; padding-right: 0px">
+            <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo de selección de múltiples ítems</p>
+            <input id="consecutivo" name="consecutivo" type="text" [ngClass]="'form-control input-valido'" placeholder="Estado del consecutivo"
+                maxlength="255" myNoSpaces/>
+        </div>
 
-            <div class="col-md-4" style="margin-bottom: 5px;">
-                <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Ingrese varios consecutivos separados por ENTER</p>
-                <input id="consecutivo" name="consecutivo" type="text" [ngClass]="'form-control input-valido'" placeholder="Consecutivo"
-                    maxlength="255" myNoSpaces/>
-            </div>
+        <div class="col-md-4" style="margin-bottom: 5px; padding-left: 0px">
+            <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo de selección de fecha</p>
+            <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
+                placeholder="Fecha de solicitud inicial" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}"
+                [inputStyle]="{'width':'92%'}" required="false">
+            </p-calendar>
+        </div>
 
-            <div class="col-md-4" style="margin-bottom: 5px; padding-right: 0px">
-                <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo de selección de múltiples ítems</p>
-                <input id="consecutivo" name="consecutivo" type="text" [ngClass]="'form-control input-valido'" placeholder="Estado del consecutivo"
-                    maxlength="255" myNoSpaces/>
-            </div>
+        <div class="col-md-4" style="margin-bottom: 5px;">
+            <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo de selección de fecha</p>
+            <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
+                placeholder="Fecha de solicitud final" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}"
+                [inputStyle]="{'width':'92%'}" required="false">
+            </p-calendar>
+        </div>
 
-            <div class="col-md-4" style="margin-bottom: 5px; padding-left: 0px">
-                <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo de selección de fecha</p>
-                <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
-                    placeholder="Fecha de solicitud inicial" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}"
-                    [inputStyle]="{'width':'92%'}" required="false">
-                </p-calendar>
-            </div>
+        <div class="col-md-4" style="margin-bottom: 10px; padding-right: 0px">
+            <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo autocompletable</p>
+            <input id="consecutivo" name="consecutivo" type="text" [ngClass]="'form-control input-valido'" placeholder="Usuario quien solicitó el consecutivo"
+                maxlength="255" myNoSpaces/>
+        </div>
 
-            <div class="col-md-4" style="margin-bottom: 5px;">
-                <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo de selección de fecha</p>
-                <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
-                    placeholder="Fecha de solicitud final" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}"
-                    [inputStyle]="{'width':'92%'}" required="false">
-                </p-calendar>
-            </div>
-
-            <div class="col-md-4" style="margin-bottom: 10px; padding-right: 0px">
-                <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo autocompletable</p>
-                <input id="consecutivo" name="consecutivo" type="text" [ngClass]="'form-control input-valido'" placeholder="Usuario quien solicitó el consecutivo"
-                    maxlength="255" myNoSpaces/>
-            </div>
-
-            <div id="sc17" class="col-md-4" style="margin-bottom: 0px; width: 100%;  text-align: left; margin-bottom: 10px;padding-left: 0px">
+        <div id="sc17" class="col-md-4" style="margin-bottom: 0px; width: 100%;  text-align: left; margin-bottom: 10px;padding-left: 0px">
             <button id="sc28" type="submit" class="btn btn-primary" style="width: 90px; padding-left: 5px;" title="Clic aquí para solicitar el consecutivo de correspondencia">
             <p style="margin-bottom: 0px"><i class="fa fa-fw fa-filter"></i> Filtrar</p>
             </button>
 
             <button id="sc28" type="submit" style="width: 90px; margin-left: 20px; padding-left: 5px;" class="btn btn-default" title="Clic aquí para solicitar el consecutivo de correspondencia">
                     <p style="margin-bottom: 0px"><i class="fa fa-fw fa-remove"></i> Limpiar</p>
-
             </button>
-            </div>
-
-
-
-        <p-dataTable
-         [responsive]="true"
-         [value]="consecutivosPaginados.registros"
-         [totalRecords]="consecutivosPaginados.datos.totalRegistros"
-         (onLazyLoad)="consecutivosPaginados.scrollerListener($event)"
-         [alwaysShowPaginator]="consecutivosPaginados.datos.totalRegistros > consecutivosPaginados.rowsDefault"
-         [rowsPerPageOptions]="consecutivosPaginados.rowsPerPageOptions"
-         [rows]="consecutivosPaginados.rowsDefault"
-         [paginator]="true"
-         [lazy]="true"
-         emptyMessage="No se encontraron consecutivos de correspondencia."
-         selectionMode="single">
-
-         <p-column header="ID"field="id" [style]="{'width':'10%','text-align':'center'}"></p-column>
-            <p-column header="Consecutivo"field="consecutivo" [style]="{'width':'10%','text-align':'center'}"></p-column>
-            <p-column header="Nomenclatura" field="nomenclatura" [style]="{'width':'10%','text-align':'center'}"></p-column>
-            <p-column header="Usuario quien solicitó el consecutivo" field="usuarioSolicito" [style]="{'width':'40%','text-align':'center'}"></p-column>
-            <p-column header="Fecha de Solicitud" field="fechaSolicitud" [style]="{'width':'10%','text-align':'center'}"></p-column>
-            <p-column header="Estado del Consecutivo" field="estadoConsecutivo" [style]="{'width':'12%','text-align':'center'}"></p-column>
-            <p-column header="Editar" [style]="{'width':'5%','text-align':'center'}"></p-column>
-            <p-column header="Ver Detalle" [style]="{'width':'5%','text-align':'center'}"></p-column>
-
-        </p-dataTable>
-
-        <div style="padding-top: 15px; margin-bottom: 5px; padding-left: 0px" class="form-group col-md-6">
-            <button id="sc28" type="submit" class="btn btn-primary" style="width: 130px; background-color: #1F6E42; border-color: #1F6E42"
-                title="Clic aquí para solicitar el consecutivo de correspondencia">
-               <p style="margin-bottom: 0px"><i class="fa fa-file-excel-o"></i> Exportar Excel</p>
-          </button>
         </div>
 
-     
+        <div>
+            <p-dataTable id="tblcc" [responsive]="true" [value]="consecutivosPaginados.registros" [totalRecords]="consecutivosPaginados.datos.totalRegistros"
+                (onLazyLoad)="consecutivosPaginados.scrollerListener($event)" [alwaysShowPaginator]="consecutivosPaginados.datos.totalRegistros > consecutivosPaginados.rowsDefault"
+                [rowsPerPageOptions]="consecutivosPaginados.rowsPerPageOptions" [rows]="consecutivosPaginados.rowsDefault" [paginator]="true"
+                [lazy]="true" emptyMessage="No se encontraron consecutivos de correspondencia." selectionMode="single">
+
+                <p-column header="ID" field="id" [style]="{'width':'10%','text-align':'center'}"></p-column>
+                <p-column header="Consecutivo" field="consecutivo" [style]="{'width':'10%','text-align':'center'}"></p-column>
+                <p-column header="Nomenclatura" field="nomenclatura" [style]="{'width':'10%','text-align':'center'}"></p-column>
+                <p-column header="Usuario quien solicitó el consecutivo" field="usuarioSolicito" [style]="{'width':'40%','text-align':'center'}"></p-column>
+                <p-column header="Fecha de Solicitud" field="fechaSolicitud" [style]="{'width':'10%','text-align':'center'}"></p-column>
+                <p-column header="Estado del Consecutivo" field="estadoConsecutivo" [style]="{'width':'12%','text-align':'center'}"></p-column>
+                <p-column header="Editar" [style]="{'width':'5%','text-align':'center'}"></p-column>
+                <p-column header="Ver Detalle" [style]="{'width':'5%','text-align':'center'}"></p-column>
+
+            </p-dataTable>
+
+            <div style="padding-top: 15px; margin-bottom: 5px; padding-right: 0px; text-align: right; width: 100%" class="form-group col-md-6">
+                <button id="sc28" type="submit" class="btn btn-primary" style="width: 130px; background-color: #1F6E42; border-color: #1F6E42"
+                    title="Clic aquí para solicitar el consecutivo de correspondencia">
+               <p style="margin-bottom: 0px"><i class="fa fa-file-excel-o"></i> Exportar Excel</p>
+                </button>
+            </div>
+
+        </div>
+
+
+
+
     </div>
+
+
+
 </div>

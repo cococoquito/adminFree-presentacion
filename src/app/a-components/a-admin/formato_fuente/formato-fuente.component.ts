@@ -14,4 +14,8 @@ export class FormatoFuenteComponent implements OnInit {
      * PostConstructor que permite inicializar las variables del component
      */
     ngOnInit(): void { }
+
+    clickButton(){
+        console.log("hola leidy");
+    }
 }
