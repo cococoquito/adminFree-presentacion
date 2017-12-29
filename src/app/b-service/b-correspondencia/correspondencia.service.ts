@@ -17,6 +17,9 @@ export class CorrespondenciaService {
     /** Path del recurso para obtener los datos iniciales del submodulo solicitar consecutivo */
     private static PATH_INIT_SOLICITAR_CONSECUTIVO = 'init_solicitar_consecutivo';
 
+    /** Path del recurso para obtener los datos iniciales del submodulo consecutivo solicitados */
+    private static PATH_INIT_CONSECUTIVO_SOLICITADOS = 'init_consecutivo_solicitados';
+
     /** Path del recurso para solicitar un consecutivo de correspondencia*/
     private static PATH_SOLICITAR_CONSECUTIVO = 'solicitar_consecutivo';
 
@@ -41,6 +44,16 @@ export class CorrespondenciaService {
      */
     public getDatosInitSolicitarConsecutivo(): Observable<Response> {
         return this.http.get(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_INIT_SOLICITAR_CONSECUTIVO);
+    }
+
+    /**
+	 * Metodo que permite obtener los datos iniciales para el submodulo de
+	 * consecutivo de correspondencia solicitados
+     * 
+     * @param paginador, Paginador inicial para consultar los consecutivos
+	 */
+    public getDatosInitConsecutivoSolicitados(paginador: PaginadorDTO): Observable<Response> {
+        return this.http.post(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_INIT_CONSECUTIVO_SOLICITADOS, paginador, this.options);
     }
 
     /**

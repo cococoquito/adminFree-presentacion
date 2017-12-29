@@ -1,3 +1,4 @@
+import { InitSolicitarConsecutivoDTO } from './../../../c-model/c-correspondencia/consecutivos_solicitados/InitConsecutivoSolicitadosDTO';
 import { ComponentCommon } from './../../../z-util/Component-common';
 import { AdministradorService } from './../../../b-service/a-admin/administrador.service';
 import { CorrespondenciaService } from './../../../b-service/b-correspondencia/correspondencia.service';
@@ -19,7 +20,9 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
 
     private showFiltro: boolean;
 
-    private consecutivosPaginados: PaginadorModel;
+     private consecutivosPaginados: PaginadorModel;
+
+     private init : InitSolicitarConsecutivoDTO;
 
     /**
      * Constructor del componente para solicitudes de consecutivos de correspondencia
@@ -52,18 +55,51 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
      */
     public paginar(paginador: PaginadorModel): void {
 
+        if (!this.init) {
+            this.getInit(paginador);
+        } else {
+            // se muestra el modal de carga
+            this.utilService.displayLoading(true);
+
+            // se invoca el servicio para generar el nuevo consecutivo
+            this.correspondenciaService.getConsecutivosSolicitados(paginador.datos).subscribe(
+                data => {
+
+                    // se configuran el DTO del response
+                    let response = data.json();
+
+                    // se configura los registros en el paginador
+                    this.consecutivosPaginados.configurarRegistros(response);
+
+                    // se cierra el modal de carga
+                    this.utilService.displayLoading(false);
+                },
+                error => {
+                    this.showErrorSistema(error);
+                }
+            );
+        }
+    }
+
+    /**
+     * Metodo que permite obtener los datos iniciales del modulo
+     * 
+     * @param paginador , es el modelo del paginador
+     */
+    private getInit(paginador: PaginadorModel): void {
+
         // se muestra el modal de carga
         this.utilService.displayLoading(true);
 
-        // se invoca el servicio para generar el nuevo consecutivo
-        this.correspondenciaService.getConsecutivosSolicitados(paginador.datos).subscribe(
+        // se invoca el servicio para obtener los datos iniciales
+        this.correspondenciaService.getDatosInitConsecutivoSolicitados(paginador.datos).subscribe(
             data => {
+                // se configura el DTO que contiene los datos iniciales
+                this.init = data.json();
 
-                // se configuran el DTO del response
-                 let response = data.json();
-                
-                 // se configura los registros en el paginador
-                 this.consecutivosPaginados.configurarRegistros(response);
+                 this.consecutivosPaginados.configurarRegistros(this.init.consecutivos);
+
+                 this.init.consecutivos = null;
 
                 // se cierra el modal de carga
                 this.utilService.displayLoading(false);
