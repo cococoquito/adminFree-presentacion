@@ -767,3 +767,34 @@ ul.alert-dropdown {
 #tblcc .ui-datatable{
     position: inherit
 }
+
+.ui-multiselect{
+    display: grid;
+    display: -ms-grid
+}
+
+.ui-chips-input-token{
+    margin: 0;
+    padding: 0
+}
+
+.ui-chips ul.ui-inputtext{
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-left: 5px solid #42A948
+}
+
+.ui-multiselect-label{
+    color: #978997;
+    padding-left: 10px !important;
+    font-weight: normal
+}
+
+.ui-datatable th.ui-state-default{
+    background: #D2D9E8
+}
+
+.ui-state-default{
+    color: #000
+}
