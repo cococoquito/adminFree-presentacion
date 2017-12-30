@@ -125,7 +125,14 @@ export class AutocompleteUtil {
     private setFocusAutocomplete(): void {
         setTimeout(() => {
             if (this.autocomplete) {
-                this.autocomplete.focus();
+
+                // si el input ID NO es NULL significa que el autocomplete es el <input>
+                if (this.inputID) {
+                    this.autocomplete.focus();
+                } else {
+                    // si el input ID es NULL significa que el autocomplete es el <p-autoComplete>
+                    this.autocomplete.inputEL.nativeElement.focus();
+                }
             }
         }, 100)
     }

@@ -1,3 +1,4 @@
+import { AutocompleteUtil } from './../../../z-util/AutoComplete-util';
 import { InitSolicitarConsecutivoDTO } from './../../../c-model/c-correspondencia/consecutivos_solicitados/InitConsecutivoSolicitadosDTO';
 import { ComponentCommon } from './../../../z-util/Component-common';
 import { AdministradorService } from './../../../b-service/a-admin/administrador.service';
@@ -6,7 +7,7 @@ import { AlertService } from './../../../b-service/z-common/alert.service';
 import { UtilitarioService } from './../../../b-service/z-common/utilitario.service';
 import { PaginadorModel } from './../../y-directivas/paginador/PaginadorModel';
 import { ConsecutivoSolicitadoDTO } from './../../../c-model/c-correspondencia/consecutivos_solicitados/ConsecutivoSolicitadoDTO';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/primeng';
 
 /**
@@ -18,11 +19,17 @@ import { LazyLoadEvent } from 'primeng/primeng';
 })
 export class ConsecutivosSolicitadosComponent extends ComponentCommon implements OnInit {
 
-    private showFiltro: boolean;
 
-     private consecutivosPaginados: PaginadorModel;
+    private consecutivosPaginados: PaginadorModel;
 
-     private init : InitSolicitarConsecutivoDTO;
+    private init: InitSolicitarConsecutivoDTO;
+
+    /**Es el modelo del componente de autocomplete para los usuarios*/
+    private autocompleteUsers: AutocompleteUtil;
+
+    /**Div que contiene el autocomplete de funcionarios para el focus*/
+    @ViewChild('user')
+    private userAutocomplete: ElementRef;
 
     /**
      * Constructor del componente para solicitudes de consecutivos de correspondencia
@@ -44,6 +51,7 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
      * PostConstructor que permite inicializar las variables del component
      */
     ngOnInit(): void {
+        this.autocompleteUsers = new AutocompleteUtil();
 
         // se crea el paginador para consultar los consecutivos solicitados
         this.consecutivosPaginados = new PaginadorModel(this);
@@ -97,9 +105,16 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
                 // se configura el DTO que contiene los datos iniciales
                 this.init = data.json();
 
-                 this.consecutivosPaginados.configurarRegistros(this.init.consecutivos);
 
-                 this.init.consecutivos = null;
+
+                this.consecutivosPaginados.configurarRegistros(this.init.consecutivos);
+
+                this.init.consecutivos = null;
+
+                this.autocompleteUsers.items = this.init.usuarios;
+                this.autocompleteUsers.inputDIV = this.userAutocomplete;
+                this.autocompleteUsers.inputID = null;
+
 
                 // se cierra el modal de carga
                 this.utilService.displayLoading(false);

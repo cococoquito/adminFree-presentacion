@@ -480,6 +480,10 @@ ul.alert-dropdown {
     padding-left:0px
 }
 
+.paddin_right_zero{
+    padding-right: 0px
+}
+
 .pa_buttons{
     text-align: right; 
     padding-right:0px
@@ -717,6 +721,10 @@ ul.alert-dropdown {
     text-align: center
 }
 
+.font_12{
+    font-size: 12px
+}
+
 .font_13{
     font-size: 13px
 }
@@ -782,7 +790,7 @@ ul.alert-dropdown {
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
-    border-left: 5px solid #42A948
+    border-left: 5px solid #245269
 }
 
 .ui-multiselect-label{
@@ -797,4 +805,45 @@ ul.alert-dropdown {
 
 .ui-state-default{
     color: #000
+}
+
+.ui-multiselect-label-container{
+    border-left: 5px solid #245269
+}
+
+.panel_primary{
+    margin-bottom: 15px!important;
+    border-color: #676767!important
+}
+
+.sub_panel_primary{
+    padding: 3px 15px!important;
+    background-color: #676767!important;
+    border-color: #676767!important
+}
+
+.sin_margin_botton{
+    margin-bottom: 0px
+}
+
+.padding_bottom3{
+    padding-bottom: 3px
+}
+
+.margin_bottom5{
+    margin-bottom: 5px
+}
+
+.margin_bottom10{
+    margin-bottom: 10px
+}
+
+.sin_margin{
+    margin: 0px
+}
+
+.btn_excel{
+    width: 130px;
+    background-color: #1F6E42!important;
+    border-color: #1F6E42!important
 }

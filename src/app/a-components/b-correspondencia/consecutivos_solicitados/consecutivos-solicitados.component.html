@@ -7,102 +7,168 @@
 </div>
 <br/>
 
-<div id="cs03" class="panel panel-primary" style="margin-bottom: 15px; border-color: #676767">
+<!-- panel principal -->
+<div id="cs03" class="panel panel-primary panel_primary">
 
-    <div class="panel-heading" style="padding: 3px 15px; background-color: #676767; border-color: #676767">
-        <p style="margin-bottom: 0px"><i class="fa fa-fw fa-envelope"></i> Cantidad de Consecutivos: {{consecutivosPaginados.datos.totalRegistros}}</p>
+    <div id="cs04" class="panel-heading sub_panel_primary">
+        <p class="sin_margin_botton"><i class="fa fa-fw fa-envelope"></i> Cantidad de Consecutivos: {{consecutivosPaginados?.datos?.totalRegistros}}</p>
     </div>
 
-    <div id="cs04" class="panel-body" style="padding-bottom: 3px">
+    <div id="cs05" class="panel-body padding_bottom3">
 
-        <div class="col-md-4" style="margin-bottom: 5px; padding-left: 0px" *ngIf="init && init.nomenclaturas">
-            <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo de selección de múltiples ítems</p>
-            <p-multiSelect [options]="init.nomenclaturas" optionLabel="nombre" defaultLabel="Nomenclatura" maxSelectedLabels="4"
-            selectedItemsLabel="{0} items seleccionados"></p-multiSelect>
+        <!-- filtro nomenclatura -->
+        <div id="cs06" class="col-md-4 paddin_lef_zero margin_bottom5" *ngIf="init && init.nomenclaturas">
+            <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de múltiples ítems</p>
+            <p-multiSelect
+             id="nomenclatura"
+             [options]="init.nomenclaturas"
+             optionLabel="nombre"
+             defaultLabel="Nomenclatura"
+             maxSelectedLabels="4"
+             selectedItemsLabel="{0} items seleccionados">
+            </p-multiSelect>
         </div>
 
-        <div class="col-md-4" style="margin-bottom: 5px;">
-            <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Ingrese varios consecutivos separados por ENTER</p>
-
+        <!-- filtro consecutivos -->
+        <div id="cs07" class="col-md-4 margin_bottom5">
+            <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Ingrese varios consecutivos separados por ENTER</p>
             <p-chips placeholder="Consecutivo"></p-chips>
         </div>
 
-        <div class="col-md-4" style="margin-bottom: 5px; padding-right: 0px" *ngIf="init">
-            <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo de selección de múltiples ítems</p>
-            <p-multiSelect [options]="init.estados" optionLabel="nombre" defaultLabel="Estado del consecutivo"
-            selectedItemsLabel="{0} items seleccionados"></p-multiSelect>
+        <!-- filtro estados -->
+        <div id="cs08" class="col-md-4 margin_bottom5 paddin_right_zero" *ngIf="init">
+            <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de múltiples ítems</p>
+            <p-multiSelect
+             id="estado"
+             [options]="init.estados"
+             optionLabel="nombre"
+             defaultLabel="Estado del consecutivo"
+             selectedItemsLabel="{0} items seleccionados">
+            </p-multiSelect>
         </div>
 
-        <div class="col-md-4" style="margin-bottom: 5px; padding-left: 0px">
-            <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo de selección de fecha</p>
-            <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
-                placeholder="Fecha de solicitud inicial" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}"
-                [inputStyle]="{'width':'92%'}" required="false">
+        <!-- filtro fecha inicial -->
+        <div id="cs09" class="col-md-4 paddin_lef_zero margin_bottom5">
+            <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de fecha</p>
+            <p-calendar
+             id="fechaInicio"
+             name="fechaInicio"
+             dateFormat="dd/mm/yy"
+             [monthNavigator]="true"
+             [yearNavigator]="true"
+             [showIcon]="true"
+             [style]="{'width':'100%'}"
+             [inputStyle]="{'width':'92%'}"
+             placeholder="Fecha de solicitud inicial"
+             inputStyleClass="component_ng ng-valido"
+             required="false">
             </p-calendar>
         </div>
 
-        <div class="col-md-4" style="margin-bottom: 5px;">
-            <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo de selección de fecha</p>
-            <p-calendar id="fechaFinal" name="fechaFinal" dateFormat="dd/mm/yy" [monthNavigator]="true" [yearNavigator]="true" [showIcon]="true"
-                placeholder="Fecha de solicitud final" [inputStyleClass]="'component_ng ng-valido'" [style]="{'width':'100%'}"
-                [inputStyle]="{'width':'92%'}" required="false">
+        <!-- filtro fecha final -->
+        <div id="cs10" class="col-md-4 margin_bottom5">
+            <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de fecha</p>
+            <p-calendar
+             id="fechaFinal"
+             name="fechaFinal"
+             dateFormat="dd/mm/yy"
+             [monthNavigator]="true"
+             [yearNavigator]="true"
+             [showIcon]="true"
+             [style]="{'width':'100%'}"
+             [inputStyle]="{'width':'92%'}"
+             placeholder="Fecha de solicitud final"
+             inputStyleClass="component_ng ng-valido"
+             required="false">
             </p-calendar>
         </div>
 
-        <div class="col-md-4" style="margin-bottom: 10px; padding-right: 0px">
-            <p class="grey font_13" style="margin: 0px; font-size: 12px"><i class="fa fa-info-circle grey"></i> Campo autocompletable</p>
-            <input id="consecutivo" name="consecutivo" type="text" [ngClass]="'form-control input-valido'" placeholder="Usuario quien solicitó el consecutivo"
-                maxlength="255" myNoSpaces/>
+        <!-- filtro usuarios -->
+        <div id="divUser" class="col-md-4 margin_bottom10 paddin_right_zero">
+            <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo autocompletable</p>
+            <p-autoComplete
+             #user
+             id="user"
+             inputId="user"
+             [(ngModel)]="autocompleteUsers.valor"
+             [suggestions]="autocompleteUsers.itemsFilter"
+             (completeMethod)="autocompleteUsers.dropDownSearch($event)"
+             (onBlur)="autocompleteUsers.dropDownOnblur($event)"
+             [dropdown]="false"
+             [style]="{'width':'100%'}"
+             [inputStyle]="{'width':'100%'}"
+             placeholder="Usuario quien solicitó el consecutivo"
+             inputStyleClass="component_ng ng-valido"
+             required="false">
+                <ng-template let-item pTemplate="item">
+                    <div class="ui-helper-clearfix autocomplete_item">
+                    <div class="autocomplete_2tem">{{item}}</div>
+                    </div>
+                </ng-template>
+            </p-autoComplete>
         </div>
 
-        <div id="sc17" class="col-md-4" style="margin-bottom: 0px; width: 100%;  text-align: left; margin-bottom: 10px;padding-left: 0px">
-            <button id="sc28" type="submit" class="btn btn-primary" style="width: 90px; padding-left: 5px;" title="Clic aquí para solicitar el consecutivo de correspondencia">
-            <p style="margin-bottom: 0px"><i class="fa fa-fw fa-filter"></i> Filtrar</p>
+        <!-- btns filtrar-limpiar -->
+        <div id="cs12" class="col-md-4 sin_margin_botton width_100 margin_bottom10 paddin_lef_zero text-left">
+            <button 
+             id="btn01"
+             type="button"
+             class="btn btn-primary"
+             style="width: 90px; padding-left: 5px;"
+             title="Clic aquí para ejecutar el filtro de búsqueda">
+                <p class="sin_margin_botton"><i class="fa fa-fw fa-filter"></i> Filtrar</p>
             </button>
 
-            <button id="sc28" type="submit" style="width: 90px; margin-left: 20px; padding-left: 5px;" class="btn btn-default" title="Clic aquí para solicitar el consecutivo de correspondencia">
-                    <p style="margin-bottom: 0px"><i class="fa fa-fw fa-remove"></i> Limpiar</p>
+            <button 
+             id="btn02"
+             type="button"
+             style="width: 90px; margin-left: 20px; padding-left: 5px;"
+             class="btn btn-default"
+             title="Clic aquí para limpiar el filtro de búsqueda">
+                <p class="sin_margin_botton"><i class="fa fa-fw fa-remove"></i> Limpiar</p>
             </button>
         </div>
 
-        <div>
-            <p-dataTable id="tblcc" [responsive]="true" [value]="consecutivosPaginados.registros" [totalRecords]="consecutivosPaginados.datos.totalRegistros"
-                (onLazyLoad)="consecutivosPaginados.scrollerListener($event)" [alwaysShowPaginator]="consecutivosPaginados.datos.totalRegistros > consecutivosPaginados.rowsDefault"
-                [rowsPerPageOptions]="consecutivosPaginados.rowsPerPageOptions" [rows]="consecutivosPaginados.rowsDefault" [paginator]="true"
-                [lazy]="true" emptyMessage="No se encontraron consecutivos de correspondencia." rowHover="true">
-                
-                <p-column header="Consecutivo" field="consecutivo" [style]="{'width':'10%','text-align':'center'}"></p-column>
-                <p-column header="Nomenclatura" field="nomenclatura" [style]="{'width':'15%','text-align':'center'}"></p-column>
-                <p-column header="Usuario quien solicitó el consecutivo" field="usuarioSolicito" [style]="{'width':'40%','text-align':'center'}"></p-column>
-                <p-column header="Fecha de Solicitud" field="fechaSolicitud" [style]="{'width':'15%','text-align':'center'}"></p-column>
-                <p-column header="Estado" field="estadoConsecutivo" [style]="{'width':'10%','text-align':'center'}"></p-column>
-                <p-column [style]="{'width':'5%','text-align':'center'}" header="Editar">
-                    <ng-template let-item="rowData" pTemplate="body">
-                        <button type="button" pButton icon="fa-pencil"></button>
-                    </ng-template>
-                </p-column>
-                <p-column [style]="{'width':'6%','text-align':'center'}" header="Detalle">
-                    <ng-template let-item="rowData" pTemplate="body">
-                        <button type="button" pButton icon="glyphicon glyphicon-share"></button>
-                    </ng-template>
-                </p-column>
+        <!-- table consecutivos -->
+        <p-dataTable
+         id="tblcc"
+         [responsive]="true"
+         [value]="consecutivosPaginados.registros"
+         [totalRecords]="consecutivosPaginados.datos.totalRegistros"
+         (onLazyLoad)="consecutivosPaginados.scrollerListener($event)"
+         [alwaysShowPaginator]="consecutivosPaginados.datos.totalRegistros > consecutivosPaginados.rowsDefault"
+         [rowsPerPageOptions]="consecutivosPaginados.rowsPerPageOptions"
+         [rows]="consecutivosPaginados.rowsDefault"
+         [paginator]="true"
+         [lazy]="true"
+         emptyMessage="No se encontraron consecutivos de correspondencia."
+         rowHover="true">
+            <p-column header="Consecutivo" field="consecutivo" [style]="{'width':'10%','text-align':'center'}"></p-column>
+            <p-column header="Nomenclatura" field="nomenclatura" [style]="{'width':'15%','text-align':'center'}"></p-column>
+            <p-column header="Usuario quien solicitó el consecutivo" field="usuarioSolicito" [style]="{'width':'40%','text-align':'center'}"></p-column>
+            <p-column header="Fecha de Solicitud" field="fechaSolicitud" [style]="{'width':'15%','text-align':'center'}"></p-column>
+            <p-column header="Estado" field="estadoConsecutivo" [style]="{'width':'10%','text-align':'center'}"></p-column>
+            <p-column [style]="{'width':'5%','text-align':'center'}" header="Editar">
+                <ng-template let-item="rowData" pTemplate="body">
+                <button type="button" pButton icon="fa-pencil"></button>
+                </ng-template>
+            </p-column>
+            <p-column [style]="{'width':'6%','text-align':'center'}" header="Detalle">
+                <ng-template let-item="rowData" pTemplate="body">
+                <button type="button" pButton icon="glyphicon glyphicon-share"></button>
+                </ng-template>
+            </p-column>
+        </p-dataTable>
 
-            </p-dataTable>
-
-            <div style="padding-top: 15px; margin-bottom: 5px; padding-right: 0px; text-align: right; width: 100%" class="form-group col-md-6">
-                <button id="sc28" type="submit" class="btn btn-primary" style="width: 130px; background-color: #1F6E42; border-color: #1F6E42"
-                    title="Clic aquí para solicitar el consecutivo de correspondencia">
-               <p style="margin-bottom: 0px"><i class="fa fa-file-excel-o"></i> Exportar Excel</p>
-                </button>
-            </div>
-
+        <!-- Exportar Excel -->
+        <div id="cs13"  class="form-group col-md-6 padding_top15 margin_bottom5 paddin_right_zero text-right width_100">
+            <button
+             id="bnt03"
+             type="button"
+             class="btn btn-primary btn_excel"
+             title="Clic aquí para exportar en excel los consecutivos de correspondencia">
+                <p class="sin_margin_botton"><i class="fa fa-file-excel-o"></i> Exportar Excel</p>
+            </button>
         </div>
-
-
-
-
     </div>
-
-
-
 </div>
