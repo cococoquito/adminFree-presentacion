@@ -1,5 +1,6 @@
+import { InitConsecutivoSolicitadosDTO } from './../../../c-model/c-correspondencia/consecutivos_solicitados/InitConsecutivoSolicitadosDTO';
+import { Util } from './../../../z-util/Util';
 import { AutocompleteUtil } from './../../../z-util/AutoComplete-util';
-import { InitSolicitarConsecutivoDTO } from './../../../c-model/c-correspondencia/consecutivos_solicitados/InitConsecutivoSolicitadosDTO';
 import { ComponentCommon } from './../../../z-util/Component-common';
 import { AdministradorService } from './../../../b-service/a-admin/administrador.service';
 import { CorrespondenciaService } from './../../../b-service/b-correspondencia/correspondencia.service';
@@ -19,10 +20,12 @@ import { LazyLoadEvent } from 'primeng/primeng';
 })
 export class ConsecutivosSolicitadosComponent extends ComponentCommon implements OnInit {
 
+    /**Es la localidad para los componentes fechas*/
+    private es: any;
 
     private consecutivosPaginados: PaginadorModel;
 
-    private init: InitSolicitarConsecutivoDTO;
+    private init: InitConsecutivoSolicitadosDTO;
 
     /**Es el modelo del componente de autocomplete para los usuarios*/
     private autocompleteUsers: AutocompleteUtil;
@@ -55,6 +58,9 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
 
         // se crea el paginador para consultar los consecutivos solicitados
         this.consecutivosPaginados = new PaginadorModel(this);
+
+        // se configura la localidad para fechas
+        this.es = Util.getCalendarLocale();
     }
 
     /**
@@ -70,7 +76,8 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
             this.utilService.displayLoading(true);
 
             // se invoca el servicio para generar el nuevo consecutivo
-            this.correspondenciaService.getConsecutivosSolicitados(paginador.datos).subscribe(
+            this.init.filtro.paginador = paginador.datos;
+            this.correspondenciaService.getConsecutivosSolicitados(this.init.filtro).subscribe(
                 data => {
 
                     // se configuran el DTO del response
@@ -105,6 +112,8 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
                 // se configura el DTO que contiene los datos iniciales
                 this.init = data.json();
 
+                this.init.filtro.fechaInicial = new Date(this.init.filtro.fechaInicial);
+                this.init.filtro.fechaFinal = new Date(this.init.filtro.fechaFinal);
 
 
                 this.consecutivosPaginados.configurarRegistros(this.init.consecutivos);

@@ -1,3 +1,4 @@
+import { ConsecutivoSolicitadoFiltroDTO } from './../../c-model/c-correspondencia/consecutivos_solicitados/ConsecutivoSolicitadoFiltroDTO';
 import { PaginadorDTO } from './../../a-components/y-directivas/paginador/PaginadorDTO';
 import { ConsecutivoCorrespondenciaDTO } from './../../c-model/c-correspondencia/solicitar_consecutivo/ConsecutivoCorrespondenciaDTO';
 import { URL_BASE } from './../../z-util/Constants';
@@ -66,9 +67,9 @@ export class CorrespondenciaService {
 
     /**
      * Metodo para obtener los consecutivos de correspondencia solicitados
-     * @param paginador , paginador, DTO con los datos del paginador
+     * @param filtro, DTO con los datos del filtro de busqueda
      */
-    public getConsecutivosSolicitados(paginador: PaginadorDTO) : Observable<Response> {
-        return this.http.post(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_CONSECUTIVO_SOLICITADOS, paginador, this.options);
+    public getConsecutivosSolicitados(filtro: ConsecutivoSolicitadoFiltroDTO) : Observable<Response> {
+        return this.http.post(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_CONSECUTIVO_SOLICITADOS, filtro, this.options);
     }
 }

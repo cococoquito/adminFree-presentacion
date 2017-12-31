@@ -48,17 +48,19 @@
         </div>
 
         <!-- filtro fecha inicial -->
-        <div id="cs09" class="col-md-4 paddin_lef_zero margin_bottom5">
+        <div id="cs09" class="col-md-4 paddin_lef_zero margin_bottom5" *ngIf="init">
             <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de fecha</p>
             <p-calendar
              id="fechaInicio"
              name="fechaInicio"
              dateFormat="dd/mm/yy"
+             [(ngModel)]="init.filtro.fechaInicial"
              [monthNavigator]="true"
              [yearNavigator]="true"
              [showIcon]="true"
              [style]="{'width':'100%'}"
              [inputStyle]="{'width':'92%'}"
+             [locale]="es"
              placeholder="Fecha de solicitud inicial"
              inputStyleClass="component_ng ng-valido"
              required="false">
@@ -66,17 +68,19 @@
         </div>
 
         <!-- filtro fecha final -->
-        <div id="cs10" class="col-md-4 margin_bottom5">
+        <div id="cs10" class="col-md-4 margin_bottom5" *ngIf="init">
             <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de fecha</p>
             <p-calendar
              id="fechaFinal"
              name="fechaFinal"
              dateFormat="dd/mm/yy"
+             [(ngModel)]="init.filtro.fechaFinal"
              [monthNavigator]="true"
              [yearNavigator]="true"
              [showIcon]="true"
              [style]="{'width':'100%'}"
              [inputStyle]="{'width':'92%'}"
+             [locale]="es"
              placeholder="Fecha de solicitud final"
              inputStyleClass="component_ng ng-valido"
              required="false">

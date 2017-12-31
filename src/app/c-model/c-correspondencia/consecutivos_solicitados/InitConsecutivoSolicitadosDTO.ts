@@ -1,3 +1,4 @@
+import { ConsecutivoSolicitadoFiltroDTO } from './ConsecutivoSolicitadoFiltroDTO';
 import { CommonVO } from './../../a-admin/parametrizacion/CommonVO';
 import { PaginadorResponseDTO } from './../../../a-components/y-directivas/paginador/PaginadorResponseDTO';
 
@@ -7,7 +8,7 @@ import { PaginadorResponseDTO } from './../../../a-components/y-directivas/pagin
  * 
  * @author Carlos andres diaz
  */
-export class InitSolicitarConsecutivoDTO {
+export class InitConsecutivoSolicitadosDTO {
 
     /** Es el reponse inicial de los consecutivos paginados **/
     public consecutivos: PaginadorResponseDTO;
@@ -20,4 +21,7 @@ export class InitSolicitarConsecutivoDTO {
 
     /** Lista de usuarios a visualizar en el filtro de busqueda **/
     public usuarios: Array<CommonVO>;
+
+    /** DTO que contiene los filtros de busqueda **/
+	public filtro: ConsecutivoSolicitadoFiltroDTO;
 }
