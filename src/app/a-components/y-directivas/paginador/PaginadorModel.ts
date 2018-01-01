@@ -1,7 +1,7 @@
 import { CANTIDAD_FILAS_POR_PAGINA_DEFAULT, ROWS_PER_PAGE_OPTIONS } from './../../../z-util/Constants';
 import { PaginadorResponseDTO } from './PaginadorResponseDTO';
 import { PaginadorDTO } from './PaginadorDTO';
-import { LazyLoadEvent } from 'primeng/primeng';
+import { LazyLoadEvent, DataTable } from 'primeng/primeng';
 
 /**
  * Clase que contiene el modelo del paginador, se debe utilizar esta clase para
@@ -52,7 +52,9 @@ export class PaginadorModel {
     public scrollerListener(event: LazyLoadEvent): void {
 
         // solo aplica si no es la misma pagina
-        if (this.datos.skip != event.first || event.rows != this.datos.rowsPage) {
+        if (this.datos.skip != event.first ||
+            event.rows != this.datos.rowsPage ||
+            this.datos.totalRegistros == null) {
 
             // se configura el numero por paginas dado que puede llegar valores diferentes
             this.datos.rowsPage = event.rows;
@@ -77,5 +79,51 @@ export class PaginadorModel {
 
         // se configura los registros consultados
         this.registros = response.registros;
+    }
+
+    /**
+     * Metodo que soporta el evento click del boton filtrar
+     * 
+     * @param dataTable , tabla asociada al paginador
+     */
+    public filtrar(dataTable: DataTable): void {
+
+        // se ejecutar el filtrar del listener
+        this.listener.filtrar(this);
+
+        // se resetea el estado del paginador
+        this.reset(dataTable);
+
+    }
+
+    /**
+     * Metodo que soporta el evento click del boton limpiar filtro
+     * 
+     * @param dataTable , tabla asociada al paginador
+     */
+    public limpiarFiltro(dataTable: DataTable): void {
+
+        // se ejecutar el filtrar del listener
+        this.listener.limpiarFiltro(this);
+
+        // se resetea el estado del paginador
+        this.reset(dataTable);
+    }
+
+    /**
+     * Metodo que permite resetear el paginador
+     * 
+     * @param dataTable , tabla donde hace referencia el paginador
+     */
+    private reset(dataTable: DataTable): void {
+
+        // se limpia el total de registro, esto con el fin para que sea de nuevo calculado
+        this.datos.totalRegistros = null;
+
+        // se limpia los registros consultado con anterioridad
+        this.registros = null;
+
+        // se resetea el estado del paginador
+        dataTable.reset();
     }
 }

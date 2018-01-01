@@ -23,5 +23,8 @@ export class InitConsecutivoSolicitadosDTO {
     public usuarios: Array<CommonVO>;
 
     /** DTO que contiene los filtros de busqueda **/
-	public filtro: ConsecutivoSolicitadoFiltroDTO;
+    public filtro: ConsecutivoSolicitadoFiltroDTO;
+    
+    /** Rango de anio para los campos calendar de ANGULAR **/
+	public rangeYear : string;
 }

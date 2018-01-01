@@ -1,3 +1,5 @@
+import { ConsecutivoSolicitadoFiltroDTO } from './../../../c-model/c-correspondencia/consecutivos_solicitados/ConsecutivoSolicitadoFiltroDTO';
+import { CommonVO } from './../../../c-model/a-admin/parametrizacion/CommonVO';
 import { InitConsecutivoSolicitadosDTO } from './../../../c-model/c-correspondencia/consecutivos_solicitados/InitConsecutivoSolicitadosDTO';
 import { Util } from './../../../z-util/Util';
 import { AutocompleteUtil } from './../../../z-util/AutoComplete-util';
@@ -9,7 +11,6 @@ import { UtilitarioService } from './../../../b-service/z-common/utilitario.serv
 import { PaginadorModel } from './../../y-directivas/paginador/PaginadorModel';
 import { ConsecutivoSolicitadoDTO } from './../../../c-model/c-correspondencia/consecutivos_solicitados/ConsecutivoSolicitadoDTO';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/primeng';
 
 /**
  * Componente para la pagina de consecutivos solicitados para correspondencia
@@ -29,6 +30,9 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
 
     /**Es el modelo del componente de autocomplete para los usuarios*/
     private autocompleteUsers: AutocompleteUtil;
+
+    private filtroDTO: ConsecutivoSolicitadoFiltroDTO;
+    private filtroPaginadorDTO: ConsecutivoSolicitadoFiltroDTO;
 
     /**Div que contiene el autocomplete de funcionarios para el focus*/
     @ViewChild('user')
@@ -64,6 +68,29 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
     }
 
     /**
+     * Metodo que soporta el evento click del boton Filtrar
+     */
+    public filtrar(paginador: PaginadorModel): void {
+        this.filtroPaginadorDTO = new ConsecutivoSolicitadoFiltroDTO();
+        this.filtroPaginadorDTO.clone(this.filtroDTO);
+                // se esconde la ventana de alert
+        this.alertService.hiddenAlert();
+    }
+
+    /**
+     * Metodo que soporta el evento click del boton Limpiar
+     */
+    public limpiarFiltro(paginador: PaginadorModel): void {
+        this.filtroDTO = new ConsecutivoSolicitadoFiltroDTO();
+        this.filtroDTO.clone(this.init.filtro);
+
+        this.filtroPaginadorDTO = new ConsecutivoSolicitadoFiltroDTO();
+        this.filtroPaginadorDTO.clone(this.init.filtro);
+                // se esconde la ventana de alert
+        this.alertService.hiddenAlert();
+    }
+
+    /**
      * Metodo que es invocado por el paginador de la tabla
      * @param paginador , es el modelo del paginador
      */
@@ -76,8 +103,9 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
             this.utilService.displayLoading(true);
 
             // se invoca el servicio para generar el nuevo consecutivo
-            this.init.filtro.paginador = paginador.datos;
-            this.correspondenciaService.getConsecutivosSolicitados(this.init.filtro).subscribe(
+            this.filtroPaginadorDTO.paginador = paginador.datos;
+
+            this.correspondenciaService.getConsecutivosSolicitados(this.filtroPaginadorDTO).subscribe(
                 data => {
 
                     // se configuran el DTO del response
@@ -112,11 +140,13 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
                 // se configura el DTO que contiene los datos iniciales
                 this.init = data.json();
 
-                this.init.filtro.fechaInicial = new Date(this.init.filtro.fechaInicial);
-                this.init.filtro.fechaFinal = new Date(this.init.filtro.fechaFinal);
-
-
                 this.consecutivosPaginados.configurarRegistros(this.init.consecutivos);
+
+                this.filtroDTO = new ConsecutivoSolicitadoFiltroDTO();
+                this.filtroDTO.clone(this.init.filtro);
+
+                this.filtroPaginadorDTO = new ConsecutivoSolicitadoFiltroDTO();
+                this.filtroPaginadorDTO.clone(this.init.filtro);
 
                 this.init.consecutivos = null;
 

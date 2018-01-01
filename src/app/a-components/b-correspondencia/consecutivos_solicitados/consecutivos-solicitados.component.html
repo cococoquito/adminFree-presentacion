@@ -6,6 +6,7 @@
     Submódulo para <strong>consultar los consecutivos de correspondencia</strong> que han solicitado.
 </div>
 <br/>
+<alert></alert>
 
 <!-- panel principal -->
 <div id="cs03" class="panel panel-primary panel_primary">
@@ -22,6 +23,7 @@
             <p-multiSelect
              id="nomenclatura"
              [options]="init.nomenclaturas"
+             [(ngModel)]="nome"
              optionLabel="nombre"
              defaultLabel="Nomenclatura"
              maxSelectedLabels="4"
@@ -30,9 +32,14 @@
         </div>
 
         <!-- filtro consecutivos -->
-        <div id="cs07" class="col-md-4 margin_bottom5">
+        <div id="cs07" class="col-md-4 margin_bottom5" *ngIf="init">
             <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Ingrese varios consecutivos separados por ENTER</p>
-            <p-chips placeholder="Consecutivo"></p-chips>
+            <p-chips 
+             id="inConse"
+             inputId="inConse"
+             [(ngModel)]="filtroDTO.consecutivos"
+             placeholder="Consecutivo">
+            </p-chips>
         </div>
 
         <!-- filtro estados -->
@@ -54,13 +61,14 @@
              id="fechaInicio"
              name="fechaInicio"
              dateFormat="dd/mm/yy"
-             [(ngModel)]="init.filtro.fechaInicial"
+             [(ngModel)]="filtroDTO.fechaInicial"
              [monthNavigator]="true"
              [yearNavigator]="true"
              [showIcon]="true"
              [style]="{'width':'100%'}"
              [inputStyle]="{'width':'92%'}"
              [locale]="es"
+             [yearRange]="init.rangeYear"
              placeholder="Fecha de solicitud inicial"
              inputStyleClass="component_ng ng-valido"
              required="false">
@@ -74,13 +82,14 @@
              id="fechaFinal"
              name="fechaFinal"
              dateFormat="dd/mm/yy"
-             [(ngModel)]="init.filtro.fechaFinal"
+             [(ngModel)]="filtroDTO.fechaFinal"
              [monthNavigator]="true"
              [yearNavigator]="true"
              [showIcon]="true"
              [style]="{'width':'100%'}"
              [inputStyle]="{'width':'92%'}"
              [locale]="es"
+             [yearRange]="init.rangeYear"
              placeholder="Fecha de solicitud final"
              inputStyleClass="component_ng ng-valido"
              required="false">
@@ -116,6 +125,7 @@
         <div id="cs12" class="col-md-4 sin_margin_botton width_100 margin_bottom10 paddin_lef_zero text-left">
             <button 
              id="btn01"
+             (click)="consecutivosPaginados.filtrar(tblcc)"
              type="button"
              class="btn btn-primary"
              style="width: 90px; padding-left: 5px;"
@@ -125,6 +135,7 @@
 
             <button 
              id="btn02"
+             (click)="consecutivosPaginados.limpiarFiltro(tblcc)"
              type="button"
              style="width: 90px; margin-left: 20px; padding-left: 5px;"
              class="btn btn-default"
@@ -136,6 +147,7 @@
         <!-- table consecutivos -->
         <p-dataTable
          id="tblcc"
+         #tblcc
          [responsive]="true"
          [value]="consecutivosPaginados.registros"
          [totalRecords]="consecutivosPaginados.datos.totalRegistros"
