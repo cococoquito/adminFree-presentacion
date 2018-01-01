@@ -11,8 +11,8 @@ export class PaginadorDTO {
     public totalRegistros: number;
 
     /** es la cantidad de filas por paginas*/
-    public rowsPage: number;
+    public rowsPage: string;
 
     /** es el skip para firebird(10, 20, 30)*/
-    public skip: number;
+    public skip: string;
 }

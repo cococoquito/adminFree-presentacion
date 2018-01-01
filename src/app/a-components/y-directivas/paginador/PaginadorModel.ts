@@ -11,6 +11,9 @@ import { LazyLoadEvent, DataTable } from 'primeng/primeng';
  */
 export class PaginadorModel {
 
+    /** Indica si es la primera invocacion del metodo paginar*/
+    public esPrimerInvocacion: boolean;
+
     /** son los registros a visualizar por pantalla*/
     public registros: Array<any>;
 
@@ -43,29 +46,37 @@ export class PaginadorModel {
 
         // se configura las opciones que tiene el paginador
         this.rowsPerPageOptions = ROWS_PER_PAGE_OPTIONS;
+
+        /** Indica si es la primera invocacion del metodo paginar*/
+        this.esPrimerInvocacion = true;
     }
 
     /**
      * Escuchador del scroller de la tabla que visualiza la pagina
      * @param event, evento ejecutado desde el scroll de la tabla
      */
-    public scrollerListener(event: LazyLoadEvent): void {
+     public scrollerListener(event: LazyLoadEvent): void {
 
-        // solo aplica si no es la misma pagina
-        if (this.datos.skip != event.first ||
-            event.rows != this.datos.rowsPage ||
-            this.datos.totalRegistros == null) {
+         // los valores first y rows se pasa a string
+         let first = event.first + "";
+         let rows = event.rows + "";
 
-            // se configura el numero por paginas dado que puede llegar valores diferentes
-            this.datos.rowsPage = event.rows;
+         // aplica cuando no sea la misma pagina o el usuario cambio el valor filas por paginas
+         // O el totalRegistros es null por algun reinicio del filtro de busqueda
+         if (this.datos.skip != first ||
+             this.datos.rowsPage != rows ||
+             this.datos.totalRegistros == null) {
 
-            // se configura el skip para consultar paginadas FIREBIRD
-            this.datos.skip = event.first;
+             // se configura el numero por paginas dado que puede llegar valores diferentes
+             this.datos.rowsPage = rows;
 
-            // se invoca el metodo a consultar los registros
-            this.listener.paginar(this);
-        }
-    }
+             // se configura el skip para consultas paginadas en FIREBIRD
+             this.datos.skip = first;
+
+             // se invoca el metodo paginar del listener
+             this.listener.paginar(this);
+         }
+     }
 
     /**
      * Metodo que permite configurar lo registros consultados
@@ -88,7 +99,7 @@ export class PaginadorModel {
      */
     public filtrar(dataTable: DataTable): void {
 
-        // se ejecutar el filtrar del listener
+        // se ejecuta el filtrar del listener
         this.listener.filtrar(this);
 
         // se resetea el estado del paginador
@@ -103,7 +114,7 @@ export class PaginadorModel {
      */
     public limpiarFiltro(dataTable: DataTable): void {
 
-        // se ejecutar el filtrar del listener
+        // se ejecuta el limpiar filtro del listener
         this.listener.limpiarFiltro(this);
 
         // se resetea el estado del paginador
@@ -113,7 +124,7 @@ export class PaginadorModel {
     /**
      * Metodo que permite resetear el paginador
      * 
-     * @param dataTable , tabla donde hace referencia el paginador
+     * @param dataTable , tabla asociada al paginador
      */
     private reset(dataTable: DataTable): void {
 

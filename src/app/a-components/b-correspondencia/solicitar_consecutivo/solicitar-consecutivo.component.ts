@@ -31,7 +31,7 @@ export class SolicitarConsecutivoComponent extends ComponentCommon implements On
     @ViewChild('divSolicitud')
     private divSolicitud: ElementRef;
 
-    /**DTO que contiene los datos iniciales del modulo*/
+    /**DTO que contiene los datos iniciales de este submodulo*/
     private init: InitSolicitarConsecutivoDTO;
 
     /**Es la localidad para los componentes fechas*/

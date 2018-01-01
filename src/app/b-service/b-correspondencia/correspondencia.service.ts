@@ -48,22 +48,20 @@ export class CorrespondenciaService {
     }
 
     /**
-	 * Metodo que permite obtener los datos iniciales para el submodulo de
-	 * consecutivo de correspondencia solicitados
-     * 
-     * @param paginador, Paginador inicial para consultar los consecutivos
-	 */
-    public getDatosInitConsecutivoSolicitados(paginador: PaginadorDTO): Observable<Response> {
-        return this.http.post(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_INIT_CONSECUTIVO_SOLICITADOS, paginador, this.options);
-    }
-
-    /**
      * Metodo que permite generar un consecutivo de correspondencia para el anio actual
      * @param consecutivo , correspondencia, Datos de los valores relacionados al consecutivo
      */
     public solicitarConsecutivoAnioActual(consecutivo: ConsecutivoCorrespondenciaDTO): Observable<Response> {
         return this.http.post(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_SOLICITAR_CONSECUTIVO, consecutivo, this.options);
     }
+
+    /**
+	 * Metodo que permite obtener los datos iniciales para el submodulo de
+	 * consecutivo de correspondencia solicitados
+	 */
+    public getDatosInitConsecutivoSolicitados(): Observable<Response> {
+        return this.http.get(URL_BASE + CorrespondenciaService.PATH + CorrespondenciaService.PATH_INIT_CONSECUTIVO_SOLICITADOS);
+    }    
 
     /**
      * Metodo para obtener los consecutivos de correspondencia solicitados

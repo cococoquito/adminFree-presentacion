@@ -9,7 +9,7 @@
 <alert></alert>
 
 <!-- panel principal -->
-<div id="cs03" class="panel panel-primary panel_primary">
+<div id="cs03" class="panel panel-primary panel_primary" *ngIf="init">
 
     <div id="cs04" class="panel-heading sub_panel_primary">
         <p class="sin_margin_botton"><i class="fa fa-fw fa-envelope"></i> Cantidad de Consecutivos: {{consecutivosPaginados?.datos?.totalRegistros}}</p>
@@ -18,12 +18,11 @@
     <div id="cs05" class="panel-body padding_bottom3">
 
         <!-- filtro nomenclatura -->
-        <div id="cs06" class="col-md-4 paddin_lef_zero margin_bottom5" *ngIf="init && init.nomenclaturas">
+        <div id="cs06" class="col-md-4 paddin_lef_zero margin_bottom5">
             <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de múltiples ítems</p>
             <p-multiSelect
              id="nomenclatura"
              [options]="init.nomenclaturas"
-             [(ngModel)]="nome"
              optionLabel="nombre"
              defaultLabel="Nomenclatura"
              maxSelectedLabels="4"
@@ -32,18 +31,18 @@
         </div>
 
         <!-- filtro consecutivos -->
-        <div id="cs07" class="col-md-4 margin_bottom5" *ngIf="init">
+        <div id="cs07" class="col-md-4 margin_bottom5">
             <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Ingrese varios consecutivos separados por ENTER</p>
             <p-chips 
              id="inConse"
              inputId="inConse"
-             [(ngModel)]="filtroDTO.consecutivos"
+             [(ngModel)]="filtroClone.consecutivos"
              placeholder="Consecutivo">
             </p-chips>
         </div>
 
         <!-- filtro estados -->
-        <div id="cs08" class="col-md-4 margin_bottom5 paddin_right_zero" *ngIf="init">
+        <div id="cs08" class="col-md-4 margin_bottom5 paddin_right_zero">
             <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de múltiples ítems</p>
             <p-multiSelect
              id="estado"
@@ -55,13 +54,13 @@
         </div>
 
         <!-- filtro fecha inicial -->
-        <div id="cs09" class="col-md-4 paddin_lef_zero margin_bottom5" *ngIf="init">
+        <div id="cs09" class="col-md-4 paddin_lef_zero margin_bottom5">
             <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de fecha</p>
             <p-calendar
              id="fechaInicio"
              name="fechaInicio"
              dateFormat="dd/mm/yy"
-             [(ngModel)]="filtroDTO.fechaInicial"
+             [(ngModel)]="filtroClone.fechaInicial"
              [monthNavigator]="true"
              [yearNavigator]="true"
              [showIcon]="true"
@@ -76,13 +75,13 @@
         </div>
 
         <!-- filtro fecha final -->
-        <div id="cs10" class="col-md-4 margin_bottom5" *ngIf="init">
+        <div id="cs10" class="col-md-4 margin_bottom5">
             <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de fecha</p>
             <p-calendar
              id="fechaFinal"
              name="fechaFinal"
              dateFormat="dd/mm/yy"
-             [(ngModel)]="filtroDTO.fechaFinal"
+             [(ngModel)]="filtroClone.fechaFinal"
              [monthNavigator]="true"
              [yearNavigator]="true"
              [showIcon]="true"
