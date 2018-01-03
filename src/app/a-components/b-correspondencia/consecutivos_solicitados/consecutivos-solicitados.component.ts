@@ -73,32 +73,32 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
     /**
      * Metodo que soporta el evento click del boton Filtrar, donde
      * es invocado desde el modelo del paginador
-     * 
-     * @param paginador , es el modelo del paginador
      */
-    public filtrar(paginador: PaginadorModel): void {
+    public filtrar(paginador: PaginadorModel): boolean {
+
+        // se esconde la ventana de alert
+        this.alertService.hiddenAlert();
 
         // se configura el filtro de acuerdo al filtro busqueda ingresado
         this.filtro = new ConsecutivoSolicitadoFiltroDTO();
         this.filtro.clone(this.filtroClone);
-
-        // se esconde la ventana de alert
-        this.alertService.hiddenAlert();
+       
+        return true;
     }
 
     /**
      * Metodo que soporta el evento click del boton Limpiar, donde
      * es invocado desde el modelo del paginador
-     * 
-     * @param paginador , es el modelo del paginador
      */
-    public limpiarFiltro(paginador: PaginadorModel): void {
+    public limpiarFiltro(paginador: PaginadorModel): boolean {
+
+        // se esconde la ventana de alert
+        this.alertService.hiddenAlert();
 
         // se inicializa los filtros de busqueda
         this.inicializarFiltroBusqueda();
 
-        // se esconde la ventana de alert
-        this.alertService.hiddenAlert();
+        return true;
     }
 
     /**
@@ -107,15 +107,6 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
      * @param paginador , es el modelo del paginador
      */
     public paginar(paginador: PaginadorModel): void {
-
-        // Para la primera invocacion el paginador NO debe ejecutar el
-        // servicio, el init ya tiene los consecutivos iniciales
-        if (this.consecutivosPaginados.esPrimerInvocacion) {
-            this.consecutivosPaginados.configurarRegistros(this.init.consecutivos);
-            this.init.consecutivos = null;
-            this.consecutivosPaginados.esPrimerInvocacion = false;
-            return;
-        }
 
         // se muestra el modal de carga
         this.utilService.displayLoading(true);
@@ -187,8 +178,10 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
             this.autocompleteUsers.inputID = null;
         }, 100)
 
-        // se crea el paginador para consultar los consecutivos solicitados
+        // se crea el modelo del paginador
         this.consecutivosPaginados = new PaginadorModel(this);
+        this.consecutivosPaginados.configurarRegistros(this.init.consecutivos);
+        this.init.consecutivos = null;
 
         // se inicializa los filtros de busqueda
         this.inicializarFiltroBusqueda();

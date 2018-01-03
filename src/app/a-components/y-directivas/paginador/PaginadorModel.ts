@@ -1,7 +1,7 @@
-import { CANTIDAD_FILAS_POR_PAGINA_DEFAULT, ROWS_PER_PAGE_OPTIONS } from './../../../z-util/Constants';
+import { ROWS_PER_PAGE_OPTIONS } from './../../../z-util/Constants';
 import { PaginadorResponseDTO } from './PaginadorResponseDTO';
 import { PaginadorDTO } from './PaginadorDTO';
-import { LazyLoadEvent, DataTable } from 'primeng/primeng';
+import { DataTable } from 'primeng/primeng';
 
 /**
  * Clase que contiene el modelo del paginador, se debe utilizar esta clase para
@@ -10,9 +10,6 @@ import { LazyLoadEvent, DataTable } from 'primeng/primeng';
  * @author Carlos Andres Diaz
  */
 export class PaginadorModel {
-
-    /** Indica si es la primera invocacion del metodo paginar*/
-    public esPrimerInvocacion: boolean;
 
     /** son los registros a visualizar por pantalla*/
     public registros: Array<any>;
@@ -23,7 +20,7 @@ export class PaginadorModel {
     /** define el metodo que se invocara al momento de interactuar con el paginador*/
     public listener: any;
 
-    /** Es la cantidad de filas por default*/
+    /** Es el nro de filas por paginas por default*/
     private rowsDefault: number;
 
     /** son las opciones para el tamanio de cada pagina (10,20,30,40,50)*/
@@ -33,7 +30,7 @@ export class PaginadorModel {
      * Constructor del modelo del paginador
      * @param listener , escuchador del controlador para invocar el metodo a consultar
      */
-     constructor(listener: any) {
+    constructor(listener: any) {
 
         // se configura el listener
         this.listener = listener;
@@ -42,49 +39,49 @@ export class PaginadorModel {
         this.datos = new PaginadorDTO();
 
         // se configura la cantidad de filas por default
-        this.rowsDefault = CANTIDAD_FILAS_POR_PAGINA_DEFAULT;
+        this.rowsDefault = this.datos.rowsPage;
 
         // se configura las opciones que tiene el paginador
         this.rowsPerPageOptions = ROWS_PER_PAGE_OPTIONS;
-
-        /** Indica si es la primera invocacion del metodo paginar*/
-        this.esPrimerInvocacion = true;
     }
 
     /**
-     * Escuchador del scroller de la tabla que visualiza la pagina
+     * Escuchador del scroller de la tabla asociada al paginador
+     * 
      * @param event, evento ejecutado desde el scroll de la tabla
      */
-     public scrollerListener(event: LazyLoadEvent): void {
+    public scrollerListener(event): void {
 
-         // los valores first y rows se pasa a string
-         let first = event.first + "";
-         let rows = event.rows + "";
+        // se valida cuales datos se deben tomar
+        let first = (event) ? event.first : this.datos.skip;
+        let rows = (event) ? event.rows : this.datos.rowsPage;
 
-         // aplica cuando no sea la misma pagina o el usuario cambio el valor filas por paginas
-         // O el totalRegistros es null por algun reinicio del filtro de busqueda
-         if (this.datos.skip != first ||
-             this.datos.rowsPage != rows ||
-             this.datos.totalRegistros == null) {
+        // aplica cuando no sea la misma pagina o el usuario cambio el valor filas por paginas
+        // O el totalRegistros es null por algun reinicio del filtro de busqueda
+        if (this.datos.skip != first ||
+            this.datos.rowsPage != rows ||
+            this.datos.totalRegistros == null) {
 
-             // se configura el numero por paginas dado que puede llegar valores diferentes
-             this.datos.rowsPage = rows;
+            // se configura el numero por paginas dado que puede llegar valores diferentes
+            this.datos.rowsPage = rows;
 
-             // se configura el skip para consultas paginadas en FIREBIRD
-             this.datos.skip = first;
+            // se configura el skip para consultas paginadas en FIREBIRD
+            this.datos.skip = first;
 
-             // se invoca el metodo paginar del listener
-             this.listener.paginar(this);
-         }
-     }
+            // se invoca el metodo paginar del listener
+            this.listener.paginar(this);
+        }
+    }
 
     /**
      * Metodo que permite configurar lo registros consultados
      */
     public configurarRegistros(response: PaginadorResponseDTO): void {
 
-        // se configura el total de registro solo si es la primera vez que se consulta
+        // se configura el total de registros solamente para la 1 invocacion
         if (!this.datos.totalRegistros) {
+
+            // se configura el total de registros
             this.datos.totalRegistros = response.registrosTotal;
         }
 
@@ -95,46 +92,44 @@ export class PaginadorModel {
     /**
      * Metodo que soporta el evento click del boton filtrar
      * 
-     * @param dataTable , tabla asociada al paginador
+     * @param table, tabla asociada al paginador
      */
-    public filtrar(dataTable: DataTable): void {
+    public filtrar(table: DataTable): void {
 
-        // se ejecuta el filtrar del listener
-        this.listener.filtrar(this);
-
-        // se resetea el estado del paginador
-        this.reset(dataTable);
-
+        // dependiendo de lo que retorne el listener se to reset el paginador
+        if (this.listener.filtrar(this)) {
+            this.reset(table);
+        }
     }
 
     /**
      * Metodo que soporta el evento click del boton limpiar filtro
      * 
-     * @param dataTable , tabla asociada al paginador
+     * @param table, tabla asociada al paginador
      */
-    public limpiarFiltro(dataTable: DataTable): void {
+    public limpiarFiltro(table: DataTable): void {
 
-        // se ejecuta el limpiar filtro del listener
-        this.listener.limpiarFiltro(this);
-
-        // se resetea el estado del paginador
-        this.reset(dataTable);
+        // dependiendo de lo que retorne el listener se to reset el paginador
+        if (this.listener.limpiarFiltro(this)) {
+            this.reset(table);
+        }
     }
 
     /**
-     * Metodo que permite resetear el paginador
-     * 
-     * @param dataTable , tabla asociada al paginador
+     * Metodo que permite to reset el paginador de la tabla
      */
-    private reset(dataTable: DataTable): void {
+    private reset(table: DataTable): void {
 
-        // se limpia el total de registro, esto con el fin para que sea de nuevo calculado
-        this.datos.totalRegistros = null;
+        // se to reset el paginador, esto con el fin para que sea de nuevo calculado
+        this.datos.reset();
+
+        // se to reset el paginador de la tabla
+        table.reset();
 
         // se limpia los registros consultado con anterioridad
         this.registros = null;
 
-        // se resetea el estado del paginador
-        dataTable.reset();
+        // se ejecutar el paginador
+        this.scrollerListener(null);
     }
 }

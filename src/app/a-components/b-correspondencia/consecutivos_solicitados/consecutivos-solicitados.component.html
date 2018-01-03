@@ -150,7 +150,7 @@
          [responsive]="true"
          [value]="consecutivosPaginados.registros"
          [totalRecords]="consecutivosPaginados.datos.totalRegistros"
-         (onLazyLoad)="consecutivosPaginados.scrollerListener($event)"
+         (onPage)="consecutivosPaginados.scrollerListener($event)"
          [alwaysShowPaginator]="consecutivosPaginados.datos.totalRegistros > consecutivosPaginados.rowsDefault"
          [rowsPerPageOptions]="consecutivosPaginados.rowsPerPageOptions"
          [rows]="consecutivosPaginados.rowsDefault"
