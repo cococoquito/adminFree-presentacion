@@ -17,111 +17,126 @@
 
     <div id="cs05" class="panel-body padding_bottom3">
 
-        <!-- filtro nomenclatura -->
-        <div id="cs06" class="col-md-4 paddin_lef_zero margin_bottom5">
-            <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de múltiples ítems</p>
-            <p-multiSelect
-             id="nomenclatura"
-             [options]="init.nomenclaturas"
-             optionLabel="nombre"
-             defaultLabel="Nomenclatura"
-             maxSelectedLabels="4"
-             selectedItemsLabel="{0} items seleccionados">
-            </p-multiSelect>
-        </div>
+        <table class="width_100">
+            <tr>
+                <!-- filtro nomenclatura -->
+                <td class="col-md-4 paddin_lef_zero">
+                    <div id="cs06" class="margin_bottom5">
+                        <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de múltiples ítems</p>
+                        <p-multiSelect
+                            id="nomenclatura"
+                            [options]="init.nomenclaturas"
+                            optionLabel="nombre"
+                            defaultLabel="Nomenclaturas"
+                            maxSelectedLabels="4"
+                            selectedItemsLabel="{0} items seleccionados">
+                        </p-multiSelect>
+                    </div>                
+                </td>
 
-        <!-- filtro consecutivos -->
-        <div id="cs07" class="col-md-4 margin_bottom5">
-            <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Ingrese varios valores separados por ENTER</p>
-            <p-chips 
-             id="inConse"
-             inputId="inConse"
-             [(ngModel)]="filtroClone.consecutivos"
-             placeholder="Consecutivo">
-            </p-chips>
-        </div>
-
-        <!-- filtro estados -->
-        <div id="cs08" class="col-md-4 margin_bottom5 paddin_right_zero">
-            <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de múltiples ítems</p>
-            <p-multiSelect
-             id="estado"
-             [options]="init.estados"
-             optionLabel="nombre"
-             defaultLabel="Estado del consecutivo"
-             selectedItemsLabel="{0} items seleccionados">
-            </p-multiSelect>
-        </div>
-
-        <!-- filtro fecha inicial -->
-        <div id="cs09" class="col-md-4 paddin_lef_zero margin_bottom5">
-            <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de fecha</p>
-            <p-calendar
-             id="fechaInicio"
-             name="fechaInicio"
-             dateFormat="dd/mm/yy"
-             [(ngModel)]="filtroClone.fechaInicial"
-             [monthNavigator]="true"
-             [yearNavigator]="true"
-             [showIcon]="true"
-             [style]="{'width':'100%'}"
-             [inputStyle]="{'width':'92%'}"
-             [locale]="es"
-             [yearRange]="init.rangeYear"
-             placeholder="Fecha de solicitud inicial"
-             inputStyleClass="component_ng ng-valido"
-             required="false">
-            </p-calendar>
-        </div>
-
-        <!-- filtro fecha final -->
-        <div id="cs10" class="col-md-4 margin_bottom5">
-            <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de fecha</p>
-            <p-calendar
-             id="fechaFinal"
-             name="fechaFinal"
-             dateFormat="dd/mm/yy"
-             [(ngModel)]="filtroClone.fechaFinal"
-             [monthNavigator]="true"
-             [yearNavigator]="true"
-             [showIcon]="true"
-             [style]="{'width':'100%'}"
-             [inputStyle]="{'width':'92%'}"
-             [locale]="es"
-             [yearRange]="init.rangeYear"
-             placeholder="Fecha de solicitud final"
-             inputStyleClass="component_ng ng-valido"
-             required="false">
-            </p-calendar>
-        </div>
-
-        <!-- filtro usuarios -->
-        <div id="divUser" class="col-md-4 margin_bottom10 paddin_right_zero">
-            <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo autocompletable</p>
-            <p-autoComplete
-             #user
-             id="user"
-             inputId="user"
-             [(ngModel)]="autocompleteUsers.valor"
-             [suggestions]="autocompleteUsers.itemsFilter"
-             (completeMethod)="autocompleteUsers.dropDownSearch($event)"
-             (onBlur)="autocompleteUsers.dropDownOnblur($event)"
-             [dropdown]="false"
-             [style]="{'width':'100%'}"
-             [inputStyle]="{'width':'100%'}"
-             placeholder="Usuario quien solicitó el consecutivo"
-             inputStyleClass="component_ng ng-valido"
-             required="false">
-                <ng-template let-item pTemplate="item">
-                    <div class="ui-helper-clearfix autocomplete_item">
-                    <div class="autocomplete_2tem">{{item}}</div>
+                <!-- filtro consecutivos -->
+                <td class="col-md-4 paddin_lef_zero paddin_right_zero">
+                    <div id="cs07" class="margin_bottom5">
+                        <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Ingrese varios valores separados por ENTER</p>
+                        <p-chips 
+                            id="inConse"
+                            inputId="inConse"
+                            [(ngModel)]="filtroClone.consecutivos"
+                            placeholder="Consecutivo">
+                        </p-chips>
                     </div>
-                </ng-template>
-            </p-autoComplete>
-        </div>
+                </td>
+
+                <!-- filtro estados -->
+                <td class="col-md-4 paddin_right_zero">
+                    <div id="cs08" class="margin_bottom5">
+                        <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo de selección de múltiples ítems</p>
+                        <p-multiSelect
+                            id="estado"
+                            [options]="init.estados"
+                            optionLabel="nombre"
+                            defaultLabel="Estado del consecutivo"
+                            selectedItemsLabel="{0} items seleccionados">
+                        </p-multiSelect>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <!-- filtro fecha inicial -->
+                <td class="col-md-4 paddin_lef_zero">
+                    <div id="cs09" class="margin_bottom5">
+                        <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Fecha de solicitud inicial</p>
+                        <p-calendar
+                            id="fechaInicio"
+                            name="fechaInicio"
+                            dateFormat="dd/mm/yy"
+                            [(ngModel)]="filtroClone.fechaInicial"
+                            [monthNavigator]="true"
+                            [yearNavigator]="true"
+                            [showIcon]="true"
+                            [style]="{'width':'100%'}"
+                            [inputStyle]="{'width':'92%'}"
+                            [locale]="es"
+                            [yearRange]="init.rangeYear"
+                            inputStyleClass="component_ng ng-valido"
+                            required="false">
+                        </p-calendar>
+                    </div>                  
+                </td>
+
+                <!-- filtro fecha final -->
+                <td class="col-md-4 paddin_lef_zero paddin_right_zero">
+                    <div id="cs10" class="margin_bottom5">
+                        <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Fecha de solicitud final</p>
+                        <p-calendar
+                            id="fechaFinal"
+                            name="fechaFinal"
+                            dateFormat="dd/mm/yy"
+                            [(ngModel)]="filtroClone.fechaFinal"
+                            [monthNavigator]="true"
+                            [yearNavigator]="true"
+                            [showIcon]="true"
+                            [style]="{'width':'100%'}"
+                            [inputStyle]="{'width':'92%'}"
+                            [locale]="es"
+                            [yearRange]="init.rangeYear"
+                            inputStyleClass="component_ng ng-valido"
+                            required="false">
+                        </p-calendar>
+                    </div>                  
+                </td>
+
+                <!-- filtro usuarios -->
+                <td class="col-md-4 paddin_right_zero">
+                    <div id="divUser" class="margin_bottom5">
+                        <p class="grey font_13 sin_margin font_12"><i class="fa fa-info-circle grey"></i> Campo autocompletable</p>
+                        <p-autoComplete
+                            #user
+                            id="user"
+                            inputId="user"
+                            [(ngModel)]="autocompleteUsers.valor"
+                            [suggestions]="autocompleteUsers.itemsFilter"
+                            (completeMethod)="autocompleteUsers.dropDownSearch($event)"
+                            (onBlur)="autocompleteUsers.dropDownOnblur($event)"
+                            [dropdown]="false"
+                            [style]="{'width':'100%'}"
+                            [inputStyle]="{'width':'100%'}"
+                            placeholder="Usuario quien solicitó el consecutivo"
+                            inputStyleClass="component_ng ng-valido"
+                            required="false">
+                            <ng-template let-item pTemplate="item">
+                                <div class="ui-helper-clearfix autocomplete_item">
+                                <div class="autocomplete_2tem">{{item}}</div>
+                                </div>
+                            </ng-template>
+                        </p-autoComplete>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
         <!-- btns filtrar-limpiar -->
-        <div id="cs12" class="col-md-4 sin_margin_botton width_100 margin_bottom10 paddin_lef_zero text-left">
+        <div id="cs12" class="width_100 margin_bottom10 text-left">
             <button 
              id="btn01"
              (click)="consecutivosPaginados.filtrar(tblcc)"
@@ -176,7 +191,7 @@
         </p-dataTable>
 
         <!-- Exportar Excel -->
-        <div id="cs13"  class="form-group col-md-6 padding_top15 margin_bottom5 paddin_right_zero text-right width_100">
+        <div id="cs13"  class="padding_top15 margin_bottom5 text-right width_100">
             <button
              id="bnt03"
              type="button"
