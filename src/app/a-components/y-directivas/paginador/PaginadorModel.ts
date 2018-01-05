@@ -117,6 +117,8 @@ export class PaginadorModel {
 
     /**
      * Metodo que permite to reset el paginador de la tabla
+     *
+     * @param table, tabla asociada al paginador
      */
     private reset(table: DataTable): void {
 

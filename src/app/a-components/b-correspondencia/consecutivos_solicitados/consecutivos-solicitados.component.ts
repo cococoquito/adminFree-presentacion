@@ -73,6 +73,8 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
     /**
      * Metodo que soporta el evento click del boton Filtrar, donde
      * es invocado desde el modelo del paginador
+     * 
+     * @param paginador, Paginador asociada a la tabla consecutivos
      */
     public filtrar(paginador: PaginadorModel): boolean {
 
@@ -89,6 +91,8 @@ export class ConsecutivosSolicitadosComponent extends ComponentCommon implements
     /**
      * Metodo que soporta el evento click del boton Limpiar, donde
      * es invocado desde el modelo del paginador
+     * 
+     * @param paginador, Paginador asociada a la tabla consecutivos
      */
     public limpiarFiltro(paginador: PaginadorModel): boolean {
 
