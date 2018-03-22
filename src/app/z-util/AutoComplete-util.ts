@@ -85,6 +85,14 @@ export class AutocompleteUtil {
     }
 
     /**
+     * Metodo que permite to reset el autocomplete
+     */
+    public reset(): void {
+        this.itemSeleccionado = null;
+        this.valor = null;
+    }
+
+    /**
      * Metodo que permite buscar el input del componente autocomplete dentro del DOM
      */
     private findAutocompleteComponent(): void {
